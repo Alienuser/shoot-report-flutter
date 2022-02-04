@@ -45,7 +45,6 @@ dependencies:
   shared_preferences: any
   modal_bottom_sheet: any
   flutter_native_splash: any
-  animated_splash_screen: any
   syncfusion_flutter_charts: any
 
 dev_dependencies:
