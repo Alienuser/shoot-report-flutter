@@ -81,6 +81,9 @@
     "training_kind_final":"Finaltraining",
     "training_kind_other":"Sonstiges",
 
+    "statistic_whole":"Ganze Ringe",
+    "statistic_tenth":"Zehntel Ringe",
+
     "competition_menu_competition":"Wettkampf",
     "competition_menu_statistic":"Statistik",
     "competition_deleted":"Wettkampf wurde gelöscht.",

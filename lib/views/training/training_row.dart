@@ -68,7 +68,7 @@ class _TrainingListRowState extends State<TrainingListRow> {
                 weapon: widget.weapon,
                 trainingDao: widget.trainingDao,
                 training: widget.training),
-          ).then((value) => setState(() {}));
+          );
         },
       ),
     );
@@ -92,6 +92,14 @@ class _TrainingListRowState extends State<TrainingListRow> {
   }
 
   Text getTrainingPoints(Training training) {
-    return Text(training.shotCount.toString());
+    if (training.shots.any((element) => element is int)) {
+      return Text(training.shots
+          .reduce((value, next) => value + next)
+          .toStringAsFixed(1));
+    } else {
+      return Text(training.shots
+          .reduce((value, next) => value + next)
+          .toStringAsFixed(1));
+    }
   }
 }

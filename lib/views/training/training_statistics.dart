@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -38,16 +39,29 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         List<ChartData> dataTenth = <ChartData>[];
         final trainings = snapshot.requireData;
         for (var training in trainings) {
-          dataWhole.add(ChartData(x: training.id.toString(), y: training.id));
-          dataTenth.add(ChartData(x: training.id.toString(), y: training.id));
+          var rings = training.shots.reduce((value, next) => value + next);
+          var average = rings / training.shotCount;
+          bool isWhole = training.shots.any((element) => element is int);
+
+          if (isWhole && dataWhole.length < 10) {
+            dataWhole.add(ChartData(
+                x: DateFormat.yMd().format(training.date), y: average));
+          } else if (!isWhole && dataTenth.length < 10) {
+            dataTenth.add(ChartData(
+                x: DateFormat.yMd().format(training.date), y: average));
+          }
         }
 
         return Column(children: [
           Expanded(
-              child: _getChart("Ganze Ringe", dataWhole,
+              child: _getChart(
+                  tr("statistic_whole"),
+                  dataWhole.reversed.toList(),
                   const Color(CompanyColors.chartWholeColor))),
           Expanded(
-              child: _getChart("Zehntel Ringe", dataTenth,
+              child: _getChart(
+                  tr("statistic_tenth"),
+                  dataTenth.reversed.toList(),
                   const Color(CompanyColors.chartTenthColor))),
         ]);
       },
@@ -88,5 +102,5 @@ class ChartData {
   ChartData({required this.x, required this.y});
 
   final String x;
-  final num? y;
+  final num y;
 }

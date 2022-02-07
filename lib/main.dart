@@ -17,7 +17,7 @@ Future<void> main() async {
   final trainingDao = database.trainingDao;
   final competitionDao = database.competitionDao;
 
-  //FlutterNativeSplash.removeAfter(_fetchData);
+  FlutterNativeSplash.removeAfter(initialization);
 
   runApp(
     EasyLocalization(
@@ -31,4 +31,6 @@ Future<void> main() async {
   );
 }
 
-void _fetchData() async {}
+void initialization(BuildContext context) async {
+  await Future.delayed(const Duration(seconds: 2));
+}

@@ -42,6 +42,7 @@ class TrainingEditWidget extends StatefulWidget {
 
 class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   static final _formKey = GlobalKey<FormState>();
+  final _textDateController = TextEditingController();
   bool isInEditMode = false;
   int? groupValue = 0;
   num pointsTotal = 0;
@@ -50,6 +51,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   @override
   void initState() {
     calculateTotalAndAverage();
+    _textDateController.text = DateFormat.yMd().format(widget.date);
     super.initState();
   }
 
@@ -156,9 +158,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 hintText: tr("training_date"),
                               ),
                               enabled: isInEditMode,
-                              initialValue: DateFormat.yMd()
-                                  .format(widget.date)
-                                  .toString(),
+                              controller: _textDateController,
                               onTap: () async {
                                 final DateTime? picked = await showDatePicker(
                                   context: context,
@@ -166,10 +166,12 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   firstDate: DateTime(2000),
                                   lastDate: DateTime(2025),
                                 );
+
                                 if (picked != null) {
-                                  widget.date = picked;
                                   setState(() {
                                     widget.date = picked;
+                                    _textDateController.text =
+                                        DateFormat.yMd().format(widget.date);
                                   });
                                 }
                               },
@@ -301,7 +303,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 initialValue: widget.shots[index].toString(),
                                 onChanged: (value) async {
                                   widget.shots[index] =
-                                      int.tryParse(value) ?? 0;
+                                      double.tryParse(value) ?? 0;
                                   calculateTotalAndAverage();
                                 },
                               );
