@@ -42,10 +42,10 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.shoot_report_flutter"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        applicationId "de.famprobst.shoot_report1"
+        minSdkVersion 21
+        targetSdkVersion 32
+        buildToolsVersion "32.0.0"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
