@@ -8,12 +8,12 @@ import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 
-class TasksTextField extends StatelessWidget {
+class DummyData extends StatelessWidget {
   final WeaponDao weaponDao;
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
-  const TasksTextField(
+  const DummyData(
       {Key? key,
       required this.weaponDao,
       required this.trainingDao,

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
-import 'package:shoot_report/utilities/app_migration.dart';
 import 'package:version_migration/version_migration.dart';
 import 'utilities/database.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +37,7 @@ void initialization(BuildContext context) async {
   VersionMigration.migrateToVersion("1.5.0", () {
     //AppMigration.doDatabaseMigration();
     //AppMigration.doSharedPrefMigration();
+    // TODO Adding weapons to new database
   });
 
   await Future.delayed(const Duration(seconds: 2));

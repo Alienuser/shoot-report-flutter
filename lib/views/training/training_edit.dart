@@ -19,16 +19,7 @@ class TrainingEditWidget extends StatefulWidget {
   final TrainingDao trainingDao;
   final Training training;
 
-  late String? imagePath = training.image;
-  late DateTime date = training.date;
-  late int indicator = training.indicator;
-  late String place = training.place;
-  late String kind = training.kind;
-  late int shotCount = training.shotCount;
-  late List shots = training.shots;
-  late String comment = training.comment;
-
-  TrainingEditWidget(
+  const TrainingEditWidget(
       {Key? key,
       required this.weapon,
       required this.trainingDao,
@@ -42,6 +33,14 @@ class TrainingEditWidget extends StatefulWidget {
 class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   static final _formKey = GlobalKey<FormState>();
   final _textDateController = TextEditingController();
+  late String? imagePath = widget.training.image;
+  late DateTime date = widget.training.date;
+  late int indicator = widget.training.indicator;
+  late String place = widget.training.place;
+  late String kind = widget.training.kind;
+  late int shotCount = widget.training.shotCount;
+  late List shots = widget.training.shots;
+  late String comment = widget.training.comment;
   bool isInEditMode = false;
   int? groupValue = 0;
   num pointsTotal = 0;
@@ -50,7 +49,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   @override
   void initState() {
     calculateTotalAndAverage();
-    _textDateController.text = DateFormat.yMd().format(widget.date);
+    _textDateController.text = DateFormat.yMd().format(date);
     super.initState();
   }
 
@@ -95,7 +94,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             SizedBox(
                               width: double.infinity,
                               child: CupertinoSlidingSegmentedControl<int>(
-                                groupValue: widget.indicator,
+                                groupValue: indicator,
                                 backgroundColor: Colors.white,
                                 thumbColor: const Color(AppTheme.primaryColor),
                                 children: {
@@ -106,7 +105,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 },
                                 onValueChanged: (value) {
                                   setState(() {
-                                    widget.indicator = value!;
+                                    indicator = value!;
                                   });
                                 },
                               ),
@@ -118,7 +117,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: DropdownButton(
-                                  value: widget.kind,
+                                  value: kind,
                                   isExpanded: true,
                                   underline: const SizedBox(),
                                   isDense: true,
@@ -132,7 +131,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   onChanged: isInEditMode
                                       ? (String? value) {
                                           setState(() {
-                                            widget.kind = value!;
+                                            kind = value!;
                                           });
                                         }
                                       : null,
@@ -144,9 +143,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 hintText: tr("training_location"),
                               ),
                               enabled: isInEditMode,
-                              initialValue: widget.place,
+                              initialValue: place,
                               onChanged: (value) async {
-                                widget.place = value;
+                                place = value;
                               },
                             ),
                             TextFormField(
@@ -160,16 +159,16 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               onTap: () async {
                                 final DateTime? picked = await showDatePicker(
                                   context: context,
-                                  initialDate: widget.date,
+                                  initialDate: date,
                                   firstDate: DateTime(2000),
                                   lastDate: DateTime(2025),
                                 );
 
                                 if (picked != null) {
                                   setState(() {
-                                    widget.date = picked;
+                                    date = picked;
                                     _textDateController.text =
-                                        DateFormat.yMd().format(widget.date);
+                                        DateFormat.yMd().format(date);
                                   });
                                 }
                               },
@@ -180,10 +179,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             color: Color(AppTheme.infoBackgroundColor),
                           ),
                           children: [
-                            widget.imagePath != null &&
-                                    widget.imagePath!.isNotEmpty
+                            imagePath != null && imagePath!.isNotEmpty
                                 ? SizedBox(
-                                    child: Image.file(File(widget.imagePath!),
+                                    child: Image.file(File(imagePath!),
                                         fit: BoxFit.contain, errorBuilder:
                                             (BuildContext context,
                                                 Object exception,
@@ -192,8 +190,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     }),
                                   )
                                 : const SizedBox.shrink(),
-                            widget.imagePath != null &&
-                                    widget.imagePath!.isNotEmpty
+                            imagePath != null && imagePath!.isNotEmpty
                                 ? ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       primary:
@@ -203,7 +200,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     onPressed: isInEditMode
                                         ? () {
                                             setState(() {
-                                              widget.imagePath = "";
+                                              imagePath = "";
                                             });
                                           }
                                         : null,
@@ -274,17 +271,14 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             ),
                             keyboardType: TextInputType.number,
                             enabled: isInEditMode,
-                            initialValue: widget.shotCount.toString(),
+                            initialValue: shotCount.toString(),
                             onChanged: (value) async {
-                              widget.shotCount = int.tryParse(value) ?? 0;
-                              widget.shots = List.filled(
-                                  (widget.shotCount / 10).ceil(), 0);
+                              shotCount = int.tryParse(value) ?? 0;
+                              shots = List.filled((shotCount / 10).ceil(), 0);
                               calculateTotalAndAverage();
                             },
                           ),
-                          for (var i = 0;
-                              i < (widget.shotCount / 10).ceil();
-                              i++)
+                          for (var i = 0; i < (shotCount / 10).ceil(); i++)
                             TextFormField(
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -295,9 +289,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                 enabled: isInEditMode,
-                                initialValue: widget.shots[i].toString(),
+                                initialValue: shots[i].toString(),
                                 onChanged: (value) async {
-                                  widget.shots[i] = double.tryParse(value) ?? 0;
+                                  shots[i] = double.tryParse(value) ?? 0;
                                   calculateTotalAndAverage();
                                 }),
                         ],
@@ -325,9 +319,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 hintText: tr("trainig_report"),
                               ),
                               enabled: isInEditMode,
-                              initialValue: widget.comment,
+                              initialValue: comment,
                               onChanged: (value) async {
-                                widget.comment = value;
+                                comment = value;
                               },
                             ),
                           ]),
@@ -367,14 +361,14 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   }
 
   void editTraining() {
-    widget.training.date = widget.date;
-    widget.training.image = widget.imagePath != null ? widget.imagePath! : "";
-    widget.training.indicator = widget.indicator;
-    widget.training.place = widget.place;
-    widget.training.kind = widget.kind;
-    widget.training.shotCount = widget.shotCount;
-    widget.training.shots = widget.shots;
-    widget.training.comment = widget.comment;
+    widget.training.date = date;
+    widget.training.image = imagePath != null ? imagePath! : "";
+    widget.training.indicator = indicator;
+    widget.training.place = place;
+    widget.training.kind = kind;
+    widget.training.shotCount = shotCount;
+    widget.training.shots = shots;
+    widget.training.comment = comment;
     widget.trainingDao.updateTraining(widget.training);
 
     StatusAlert.show(
@@ -392,9 +386,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
   void calculateTotalAndAverage() {
     setState(() {
-      pointsTotal =
-          widget.shots.fold(0, (previous, current) => previous + current);
-      pointsAverage = (pointsTotal / widget.shotCount).toStringAsFixed(2);
+      pointsTotal = shots.fold(0, (previous, current) => previous + current);
+      pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
     });
   }
 
@@ -419,7 +412,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
     if (res != null) {
       setState(() {
-        widget.imagePath = res[0].thumbPath;
+        imagePath = res[0].thumbPath;
       });
     }
   }
@@ -437,7 +430,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
     if (res != null) {
       setState(() {
-        widget.imagePath = res[0].thumbPath;
+        imagePath = res[0].thumbPath;
       });
     }
   }
