@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   csv: any
+  xml: any # For the migration
   floor: any
   sqflite: any # For the migration
   share_plus: any
@@ -42,9 +43,11 @@ dependencies:
   webview_flutter: any
   easy_localization: any
   package_info_plus: any 
+  version_migration: any
   shared_preferences: any
   modal_bottom_sheet: any
   flutter_native_splash: any
+  native_shared_preferences: any # For the migration
   syncfusion_flutter_charts: any
 
 dev_dependencies:

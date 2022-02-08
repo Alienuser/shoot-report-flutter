@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
-import 'package:shoot_report/utilities/database_callback.dart';
+import 'package:shoot_report/utilities/app_migration.dart';
+import 'package:version_migration/version_migration.dart';
 import 'utilities/database.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ Future<void> main() async {
 
   final database = await $FloorFlutterDatabase
       .databaseBuilder('flutter_database.db')
-      .addCallback(DatabaseCallback.callback)
       .build();
   final weaponDao = database.weaponDao;
   final trainingDao = database.trainingDao;
@@ -32,5 +32,13 @@ Future<void> main() async {
 }
 
 void initialization(BuildContext context) async {
+  // TODO Delete after  debugging
+  VersionMigration.reset();
+
+  VersionMigration.migrateToVersion("1.5.0", () {
+    //AppMigration.doDatabaseMigration();
+    //AppMigration.doSharedPrefMigration();
+  });
+
   await Future.delayed(const Duration(seconds: 2));
 }

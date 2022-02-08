@@ -427,6 +427,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  native_shared_preferences:
+    dependency: "direct main"
+    description:
+      name: native_shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   package_config:
     dependency: transitive
     description:
@@ -922,6 +929,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  version_migration:
+    dependency: "direct main"
+    description:
+      name: version_migration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
   watcher:
     dependency: transitive
     description:
@@ -979,7 +993,7 @@ packages:
     source: hosted
     version: "0.2.0+1"
   xml:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: xml
       url: "https://pub.dartlang.org"

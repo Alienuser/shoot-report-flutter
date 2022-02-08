@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -286,11 +285,10 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               calculateTotalAndAverage();
                             },
                           ),
-                          Wrap(
-                            direction: Axis.horizontal,
-                            children: List.generate(
-                                (widget.shotCount / 10).ceil(), (index) {
-                              return TextFormField(
+                          for (var i = 0;
+                              i < (widget.shotCount / 10).ceil();
+                              i++)
+                            TextFormField(
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -300,15 +298,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                 enabled: isInEditMode,
-                                initialValue: widget.shots[index].toString(),
+                                initialValue: widget.shots[i].toString(),
                                 onChanged: (value) async {
-                                  widget.shots[index] =
-                                      double.tryParse(value) ?? 0;
+                                  widget.shots[i] = double.tryParse(value) ?? 0;
                                   calculateTotalAndAverage();
-                                },
-                              );
-                            }),
-                          ),
+                                }),
                         ],
                       ),
                       CupertinoFormSection.insetGrouped(
