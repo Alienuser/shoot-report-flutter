@@ -166,11 +166,11 @@ class _HomeWidgetState extends State<HomeWidget> {
         onTap: _onItemTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
+            icon: const Icon(Icons.fitness_center),
             label: tr("menu_bottom_training"),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.business),
+            icon: const Icon(Icons.emoji_events),
             label: tr("menu_bottom_competition"),
           ),
           BottomNavigationBarItem(

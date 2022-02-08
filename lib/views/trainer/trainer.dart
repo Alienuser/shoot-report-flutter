@@ -43,7 +43,7 @@ class _TrainerWidgetState extends State<TrainerWidget> {
         onTap: _onItemTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(Icons.shopping_bag),
+            icon: const Icon(Icons.business_center),
             label: tr("trainer_tab_equipment"),
           ),
           BottomNavigationBarItem(
@@ -51,7 +51,7 @@ class _TrainerWidgetState extends State<TrainerWidget> {
             label: tr("trainer_tab_tech"),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.people_alt),
+            icon: const Icon(Icons.psychology),
             label: tr("trainer_tab_mental"),
           ),
         ],
