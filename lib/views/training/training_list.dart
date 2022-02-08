@@ -57,7 +57,7 @@ class TrainingListWidget extends StatelessWidget {
             builder: (context) => TrainingAddWidget(weapon: weapon),
           );
         },
-        backgroundColor: const Color(CompanyColors.accentColor),
+        backgroundColor: const Color(AppTheme.accentColor),
         child: const Icon(Icons.add),
       ),
     );

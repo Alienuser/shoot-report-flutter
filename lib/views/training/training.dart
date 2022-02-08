@@ -26,7 +26,7 @@ class TrainingWidget extends StatelessWidget {
         child: Column(
           children: <Widget>[
             TabBar(
-                indicatorColor: const Color(CompanyColors.accentColor),
+                indicatorColor: const Color(AppTheme.accentColor),
                 labelColor: Colors.black,
                 tabs: <Widget>[
                   Tab(text: tr("training_menu_training")),

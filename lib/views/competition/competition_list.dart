@@ -56,7 +56,7 @@ class CompetitionListWidget extends StatelessWidget {
             builder: (context) => CompetitionAddWidget(weapon: weapon),
           );
         },
-        backgroundColor: const Color(CompanyColors.accentColor),
+        backgroundColor: const Color(AppTheme.accentColor),
         child: const Icon(Icons.add),
       ),
     );

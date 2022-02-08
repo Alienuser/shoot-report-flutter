@@ -17,7 +17,7 @@ class TrainerEquipmentWidget extends StatelessWidget {
           title: Text(tr("trainer_title")),
           centerTitle: false,
           bottom: TabBar(
-            indicatorColor: const Color(CompanyColors.accentColor),
+            indicatorColor: const Color(AppTheme.accentColor),
             tabs: <Widget>[
               Tab(text: tr("trainer_tab_equipment_clothes")),
               Tab(text: tr("trainer_tab_equipment_equipment")),

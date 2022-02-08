@@ -58,7 +58,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        backgroundColor: const Color(CompanyColors.infoBackgroundColor),
+        backgroundColor: const Color(AppTheme.infoBackgroundColor),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 80,
@@ -97,8 +97,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               child: CupertinoSlidingSegmentedControl<int>(
                                 groupValue: widget.indicator,
                                 backgroundColor: Colors.white,
-                                thumbColor:
-                                    const Color(CompanyColors.primaryColor),
+                                thumbColor: const Color(AppTheme.primaryColor),
                                 children: {
                                   0: IndicatorImage.getIcon(0),
                                   1: IndicatorImage.getIcon(1),
@@ -178,7 +177,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                           ]),
                       CupertinoFormSection.insetGrouped(
                           decoration: const BoxDecoration(
-                            color: Color(CompanyColors.infoBackgroundColor),
+                            color: Color(AppTheme.infoBackgroundColor),
                           ),
                           children: [
                             widget.imagePath != null &&
@@ -197,8 +196,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     widget.imagePath!.isNotEmpty
                                 ? ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      primary: const Color(
-                                          CompanyColors.primaryColor),
+                                      primary:
+                                          const Color(AppTheme.primaryColor),
                                       minimumSize: const Size.fromHeight(40),
                                     ),
                                     onPressed: isInEditMode
@@ -213,8 +212,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 : const SizedBox.shrink(),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary:
-                                    const Color(CompanyColors.primaryColor),
+                                primary: const Color(AppTheme.primaryColor),
                                 minimumSize: const Size.fromHeight(40),
                               ),
                               onPressed: isInEditMode
@@ -254,8 +252,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary:
-                                    const Color(CompanyColors.primaryColor),
+                                primary: const Color(AppTheme.primaryColor),
                                 minimumSize: const Size.fromHeight(40),
                               ),
                               onPressed: isInEditMode
@@ -336,13 +333,12 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                           ]),
                       CupertinoFormSection.insetGrouped(
                           decoration: const BoxDecoration(
-                            color: Color(CompanyColors.infoBackgroundColor),
+                            color: Color(AppTheme.infoBackgroundColor),
                           ),
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary:
-                                    const Color(CompanyColors.primaryColor),
+                                primary: const Color(AppTheme.primaryColor),
                                 minimumSize: const Size.fromHeight(40),
                               ),
                               onPressed: isInEditMode
@@ -354,8 +350,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary:
-                                    const Color(CompanyColors.primaryColor),
+                                primary: const Color(AppTheme.primaryColor),
                                 minimumSize: const Size.fromHeight(40),
                               ),
                               onPressed: !isInEditMode

@@ -47,7 +47,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: const Color(CompanyColors.infoBackgroundColor),
+        color: const Color(AppTheme.infoBackgroundColor),
         child: SingleChildScrollView(
             child: Form(
                 key: _formKey,
@@ -57,7 +57,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                       CupertinoFormSection.insetGrouped(
                           header: Text(tr("goals_whole_40_title"),
                               style: const TextStyle(
-                                color: Color(CompanyColors.accentColor),
+                                color: Color(AppTheme.accentColor),
                               )),
                           children: [
                             TextFormField(
@@ -69,8 +69,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_jackpot.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_jackpot")),
                               onChanged: (value) async {
@@ -91,8 +90,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_optimal.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_optimal")),
                               onChanged: (value) async {
@@ -113,8 +111,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_real.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_real")),
                               onChanged: (value) async {
@@ -135,8 +132,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_minimal.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_minimal")),
                               onChanged: (value) async {
@@ -157,8 +153,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_chaos.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_chaos")),
                               onChanged: (value) async {
@@ -174,7 +169,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                       CupertinoFormSection.insetGrouped(
                           header: Text(tr("goals_whole_60_title"),
                               style: const TextStyle(
-                                color: Color(CompanyColors.accentColor),
+                                color: Color(AppTheme.accentColor),
                               )),
                           children: [
                             TextFormField(
@@ -186,8 +181,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_jackpot.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_jackpot")),
                               onChanged: (value) async {
@@ -208,8 +202,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_optimal.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_optimal")),
                               onChanged: (value) async {
@@ -230,8 +223,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_real.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_real")),
                               onChanged: (value) async {
@@ -252,8 +244,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_minimal.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_minimal")),
                               onChanged: (value) async {
@@ -274,8 +265,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   prefixIcon: SvgPicture.asset(
                                     "assets/images/arrow_chaos.svg",
                                     height: 1,
-                                    color:
-                                        const Color(CompanyColors.accentColor),
+                                    color: const Color(AppTheme.accentColor),
                                   ),
                                   labelText: tr("goals_whole_chaos")),
                               onChanged: (value) async {

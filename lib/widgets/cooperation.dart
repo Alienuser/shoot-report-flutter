@@ -12,7 +12,7 @@ class CooperationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-            backgroundColor: const Color(CompanyColors.infoBackgroundColor),
+            backgroundColor: const Color(AppTheme.infoBackgroundColor),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               toolbarHeight: 80,
@@ -37,7 +37,7 @@ class CooperationWidget extends StatelessWidget {
                   CupertinoFormSection.insetGrouped(
                       header: Text(tr("cooperation_list_title"),
                           style: const TextStyle(
-                              color: Color(CompanyColors.accentColor))),
+                              color: Color(AppTheme.accentColor))),
                       children: [
                         GestureDetector(
                             behavior: HitTestBehavior.translucent,
@@ -58,13 +58,13 @@ class CooperationWidget extends StatelessWidget {
                       ]),
                   CupertinoFormSection.insetGrouped(
                       decoration: const BoxDecoration(
-                        color: Color(CompanyColors.infoBackgroundColor),
+                        color: Color(AppTheme.infoBackgroundColor),
                       ),
                       header: Text(tr("cooperation_action_title")),
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: const Color(CompanyColors.accentColor),
+                              primary: const Color(AppTheme.accentColor),
                               minimumSize: const Size.fromHeight(40),
                               textStyle: const TextStyle(
                                 fontSize: 20,

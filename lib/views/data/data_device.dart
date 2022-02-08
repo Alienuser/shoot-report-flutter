@@ -25,7 +25,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: const Color(CompanyColors.infoBackgroundColor),
+        color: const Color(AppTheme.infoBackgroundColor),
         child: SingleChildScrollView(
             child: Form(
                 key: _formKey,
@@ -35,7 +35,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                       CupertinoFormSection.insetGrouped(
                           header: Text(tr("data_device_title"),
                               style: const TextStyle(
-                                color: Color(CompanyColors.accentColor),
+                                color: Color(AppTheme.accentColor),
                               )),
                           children: [
                             TextFormField(

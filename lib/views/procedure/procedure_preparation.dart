@@ -31,7 +31,7 @@ class _ProcedurePreparationWidgetState
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: const Color(CompanyColors.infoBackgroundColor),
+        color: const Color(AppTheme.infoBackgroundColor),
         child: SingleChildScrollView(
             child: Form(
                 key: _formKey,
@@ -41,7 +41,7 @@ class _ProcedurePreparationWidgetState
                       CupertinoFormSection.insetGrouped(
                           header: Text(tr("procedure_preparation_title"),
                               style: const TextStyle(
-                                color: Color(CompanyColors.accentColor),
+                                color: Color(AppTheme.accentColor),
                               )),
                           children: [
                             TextFormField(

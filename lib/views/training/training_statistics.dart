@@ -57,12 +57,12 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
               child: _getChart(
                   tr("statistic_whole"),
                   dataWhole.reversed.toList(),
-                  const Color(CompanyColors.chartWholeColor))),
+                  const Color(AppTheme.chartWholeColor))),
           Expanded(
               child: _getChart(
                   tr("statistic_tenth"),
                   dataTenth.reversed.toList(),
-                  const Color(CompanyColors.chartTenthColor))),
+                  const Color(AppTheme.chartTenthColor))),
         ]);
       },
     ));

@@ -31,7 +31,7 @@ class _InformationWidgetState extends State<InformationWidget> {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-            backgroundColor: const Color(CompanyColors.infoBackgroundColor),
+            backgroundColor: const Color(AppTheme.infoBackgroundColor),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               toolbarHeight: 80,
@@ -56,14 +56,14 @@ class _InformationWidgetState extends State<InformationWidget> {
                   CupertinoFormSection.insetGrouped(
                     header: Text(tr("information_author_title"),
                         style: const TextStyle(
-                            color: Color(CompanyColors.accentColor))),
+                            color: Color(AppTheme.accentColor))),
                     children: [
                       CupertinoFormRow(
                         prefix: Text(tr("information_author_author")),
                         child: Container(),
                         helper: Text(tr("information_author_description"),
                             style: const TextStyle(
-                                color: Color(CompanyColors.lightTextColor))),
+                                color: Color(AppTheme.lightTextColor))),
                       ),
                       CupertinoFormRow(
                           prefix: Text(tr("information_author_website")),
@@ -86,35 +86,35 @@ class _InformationWidgetState extends State<InformationWidget> {
                   CupertinoFormSection.insetGrouped(
                     header: Text(tr("information_version_title"),
                         style: const TextStyle(
-                            color: Color(CompanyColors.accentColor))),
+                            color: Color(AppTheme.accentColor))),
                     children: [
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_version")),
                         child: Container(),
                         helper: Text(_packageInfo.version,
                             style: const TextStyle(
-                                color: Color(CompanyColors.lightTextColor))),
+                                color: Color(AppTheme.lightTextColor))),
                       ),
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_build")),
                         child: Container(),
                         helper: Text(_packageInfo.buildNumber,
                             style: const TextStyle(
-                                color: Color(CompanyColors.lightTextColor))),
+                                color: Color(AppTheme.lightTextColor))),
                       ),
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_date")),
                         child: Container(),
                         helper: Text(tr("information_version_date_description"),
                             style: const TextStyle(
-                                color: Color(CompanyColors.lightTextColor))),
+                                color: Color(AppTheme.lightTextColor))),
                       ),
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
                     header: Text(tr("information_source_title"),
                         style: const TextStyle(
-                            color: Color(CompanyColors.accentColor))),
+                            color: Color(AppTheme.accentColor))),
                     children: [
                       Padding(
                           // Even Padding On All Sides

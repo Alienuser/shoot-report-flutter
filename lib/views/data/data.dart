@@ -18,7 +18,7 @@ class DataWidget extends StatelessWidget {
           title: Text(tr("data_title")),
           centerTitle: false,
           bottom: TabBar(
-            indicatorColor: const Color(CompanyColors.accentColor),
+            indicatorColor: const Color(AppTheme.accentColor),
             tabs: <Widget>[
               Tab(text: tr("data_tab_person")),
               Tab(text: tr("data_tab_device")),
