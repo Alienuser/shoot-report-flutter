@@ -38,13 +38,10 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                                 color: Color(AppTheme.accentColor),
                               )),
                           children: [
-                            TextFormField(
+                            CupertinoTextFormFieldRow(
                               controller: _textDataDeviceController,
                               maxLines: 20,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_device_value")),
+                              placeholder: tr("data_device_value"),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
