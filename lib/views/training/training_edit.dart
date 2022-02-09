@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        backgroundColor: const Color(AppTheme.infoBackgroundColor),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 80,
@@ -89,6 +87,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("training_evaluation")),
                           children: [
                             SizedBox(
@@ -112,36 +111,36 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             )
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("training_general")),
                           children: [
-                            Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: DropdownButton(
-                                  value: kind,
-                                  isExpanded: true,
-                                  underline: const SizedBox(),
-                                  isDense: true,
-                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                  items: KindList.items.map((String items) {
-                                    return DropdownMenuItem(
-                                      value: items,
-                                      child: Text(items),
-                                    );
-                                  }).toList(),
-                                  onChanged: isInEditMode
-                                      ? (String? value) {
-                                          setState(() {
-                                            kind = value!;
-                                          });
-                                        }
-                                      : null,
-                                )),
+                            DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                  hintText: tr("training_kind"),
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 10, right: 10)),
+                              value: kind,
+                              onChanged: isInEditMode
+                                  ? (String? value) {
+                                      setState(() {
+                                        kind = value!;
+                                      });
+                                    }
+                                  : null,
+                              items: KindList.items.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                            ),
                             TextFormField(
                               decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.all(10.0),
-                                hintText: tr("training_location"),
-                              ),
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  hintText: tr("training_location"),
+                                  labelText: tr("training_location")),
                               enabled: isInEditMode,
                               initialValue: place,
                               onChanged: (value) async {
@@ -149,34 +148,34 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               },
                             ),
                             TextFormField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.all(10.0),
-                                hintText: tr("training_date"),
-                              ),
-                              enabled: isInEditMode,
-                              controller: _textDateController,
-                              onTap: () async {
-                                final DateTime? picked = await showDatePicker(
-                                  context: context,
-                                  initialDate: date,
-                                  firstDate: DateTime(1960),
-                                  lastDate: DateTime(2025),
-                                );
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    hintText: tr("training_date"),
+                                    labelText: tr("training_date")),
+                                enabled: isInEditMode,
+                                controller: _textDateController,
+                                onTap: () async {
+                                  final DateTime? picked = await showDatePicker(
+                                    context: context,
+                                    initialDate: date,
+                                    firstDate: DateTime(1960),
+                                    lastDate: DateTime(2025),
+                                  );
 
-                                if (picked != null) {
-                                  setState(() {
-                                    date = picked;
-                                    _textDateController.text =
-                                        DateFormat.yMd().format(date);
-                                  });
-                                }
-                              },
-                            ),
+                                  if (picked != null) {
+                                    setState(() {
+                                      date = picked;
+                                      _textDateController.text =
+                                          DateFormat.yMd().format(date);
+                                    });
+                                  }
+                                }),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           decoration: const BoxDecoration(
-                            color: Color(AppTheme.infoBackgroundColor),
+                            color: Colors.transparent,
                           ),
                           children: [
                             imagePath != null && imagePath!.isNotEmpty
@@ -254,24 +253,43 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               onPressed: isInEditMode
                                   ? () {
-                                      print("QR Code");
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title:
+                                                Text(tr("training_qr_title")),
+                                            content: Text(
+                                                tr("training_qr_description")),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                  child: Text(
+                                                      tr("training_qr_button")),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  }),
+                                            ],
+                                          );
+                                        },
+                                      );
                                     }
                                   : null,
                               child: Text(tr("training_qrcode")),
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                        backgroundColor: Colors.transparent,
                         header: Text(tr("training_result")),
                         children: [
                           TextFormField(
                             decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              hintText: tr("training_shots"),
-                            ),
-                            keyboardType: TextInputType.number,
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.all(10.0),
+                                hintText: tr("training_shots"),
+                                labelText: tr("training_shots")),
                             enabled: isInEditMode,
                             initialValue: shotCount.toString(),
+                            keyboardType: TextInputType.number,
                             onChanged: (value) async {
                               shotCount = int.tryParse(value) ?? 0;
                               shots = List.filled((shotCount / 10).ceil(), 0);
@@ -281,15 +299,15 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                           for (var i = 0; i < (shotCount / 10).ceil(); i++)
                             TextFormField(
                                 decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("training_serie"),
-                                ),
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    hintText: tr("training_serie"),
+                                    labelText: tr("training_serie")),
+                                enabled: isInEditMode,
+                                initialValue: shots[i].toString(),
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
-                                enabled: isInEditMode,
-                                initialValue: shots[i].toString(),
                                 onChanged: (value) async {
                                   shots[i] = double.tryParse(value) ?? 0;
                                   calculateTotalAndAverage();
@@ -297,6 +315,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                         ],
                       ),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("training_score")),
                           children: [
                             ListTile(
@@ -309,25 +328,26 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("trainig_report")),
                           children: [
                             TextFormField(
-                              maxLines: 10,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.all(10.0),
-                                hintText: tr("trainig_report"),
-                              ),
-                              enabled: isInEditMode,
-                              initialValue: comment,
-                              onChanged: (value) async {
-                                comment = value;
-                              },
-                            ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    hintText: tr("trainig_report"),
+                                    labelText: tr("trainig_report")),
+                                enabled: isInEditMode,
+                                maxLines: 10,
+                                initialValue: comment,
+                                onChanged: (value) async {
+                                  comment = value;
+                                }),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           decoration: const BoxDecoration(
-                            color: Color(AppTheme.infoBackgroundColor),
+                            color: Colors.transparent,
                           ),
                           children: [
                             ElevatedButton(

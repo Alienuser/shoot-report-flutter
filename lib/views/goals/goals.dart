@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/goals/goals_tenth.dart';
 import 'package:shoot_report/views/goals/goals_whole.dart';
 
@@ -18,13 +17,10 @@ class GoalsWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(
-                indicatorColor: const Color(AppTheme.accentColor),
-                labelColor: Colors.black,
-                tabs: <Widget>[
-                  Tab(text: tr("goals_whole")),
-                  Tab(text: tr("goals_tenth"))
-                ]),
+            TabBar(tabs: <Widget>[
+              Tab(text: tr("goals_whole")),
+              Tab(text: tr("goals_tenth"))
+            ]),
             Flexible(
               //Add this to give height
               child: TabBarView(children: [

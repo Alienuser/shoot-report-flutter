@@ -30,28 +30,24 @@ class _ProcedurePreparationWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: const Color(AppTheme.infoBackgroundColor),
-        child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("procedure_preparation_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),
                               )),
                           children: [
-                            TextFormField(
+                            CupertinoTextFormFieldRow(
                               controller: _textPreparationController,
                               maxLines: 20,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.all(10.0),
-                                hintText: tr("procedure_preparation_text"),
-                              ),
+                              placeholder: tr("procedure_preparation_text"),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

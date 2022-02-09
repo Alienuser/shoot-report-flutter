@@ -38,8 +38,6 @@ class _TrainerWidgetState extends State<TrainerWidget> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color(AppTheme.primaryColor),
-        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

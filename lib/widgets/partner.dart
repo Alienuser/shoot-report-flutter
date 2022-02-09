@@ -12,7 +12,6 @@ class PartnerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-            backgroundColor: const Color(AppTheme.infoBackgroundColor),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               toolbarHeight: 80,
@@ -35,6 +34,7 @@ class PartnerWidget extends StatelessWidget {
               child: Column(
                 children: [
                   CupertinoFormSection.insetGrouped(
+                    backgroundColor: Colors.transparent,
                     header: Text(tr("partner_list_title"),
                         style: const TextStyle(
                             color: Color(AppTheme.accentColor))),
@@ -127,9 +127,8 @@ class PartnerWidget extends StatelessWidget {
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
-                      decoration: const BoxDecoration(
-                        color: Color(AppTheme.infoBackgroundColor),
-                      ),
+                      backgroundColor: Colors.transparent,
+                      decoration: const BoxDecoration(),
                       header: Text(tr("partner_action_title")),
                       children: [
                         ElevatedButton(

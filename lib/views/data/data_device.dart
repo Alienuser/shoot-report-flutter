@@ -24,15 +24,15 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: const Color(AppTheme.infoBackgroundColor),
-        child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("data_device_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),

@@ -45,17 +45,17 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: const Color(AppTheme.infoBackgroundColor),
-        child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           decoration: const BoxDecoration(
-                            color: Color(AppTheme.infoBackgroundColor),
+                            color: Colors.transparent,
                           ),
                           children: [
                             imagePath != null && imagePath!.isNotEmpty
@@ -72,11 +72,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                 : const SizedBox.shrink(),
                             imagePath != null && imagePath!.isNotEmpty
                                 ? ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary:
-                                          const Color(AppTheme.primaryColor),
-                                      minimumSize: const Size.fromHeight(40),
-                                    ),
                                     onPressed: () {
                                       _deleteImage();
                                     },
@@ -92,7 +87,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   showCupertinoModalBottomSheet(
                                     expand: false,
                                     context: context,
-                                    backgroundColor: Colors.transparent,
                                     builder: (context) {
                                       return Material(
                                           child: SafeArea(
@@ -123,6 +117,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                 child: Text(tr("data_person_photo"))),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),
@@ -173,6 +168,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_club"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),
@@ -206,6 +202,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_trainer"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),

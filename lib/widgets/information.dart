@@ -31,7 +31,6 @@ class _InformationWidgetState extends State<InformationWidget> {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-            backgroundColor: const Color(AppTheme.infoBackgroundColor),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               toolbarHeight: 80,
@@ -54,6 +53,7 @@ class _InformationWidgetState extends State<InformationWidget> {
               child: Column(
                 children: [
                   CupertinoFormSection.insetGrouped(
+                    backgroundColor: Colors.transparent,
                     header: Text(tr("information_author_title"),
                         style: const TextStyle(
                             color: Color(AppTheme.accentColor))),
@@ -84,6 +84,7 @@ class _InformationWidgetState extends State<InformationWidget> {
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
+                    backgroundColor: Colors.transparent,
                     header: Text(tr("information_version_title"),
                         style: const TextStyle(
                             color: Color(AppTheme.accentColor))),
@@ -112,6 +113,7 @@ class _InformationWidgetState extends State<InformationWidget> {
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
+                    backgroundColor: Colors.transparent,
                     header: Text(tr("information_source_title"),
                         style: const TextStyle(
                             color: Color(AppTheme.accentColor))),

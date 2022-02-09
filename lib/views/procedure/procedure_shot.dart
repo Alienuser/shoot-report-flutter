@@ -26,28 +26,24 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: const Color(AppTheme.infoBackgroundColor),
-        child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("procedure_shot_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),
                               )),
                           children: [
-                            TextFormField(
+                            CupertinoTextFormFieldRow(
                               controller: _textShotController,
                               maxLines: 20,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.all(10.0),
-                                hintText: tr("procedure_shot_text"),
-                              ),
+                              placeholder: tr("procedure_shot_text"),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

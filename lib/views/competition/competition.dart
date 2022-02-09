@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
-import 'package:shoot_report/utilities/theme.dart';
 import 'competition_list.dart';
 import 'competition_statistics.dart';
 
@@ -25,13 +24,10 @@ class CompetitionWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(
-                indicatorColor: const Color(AppTheme.accentColor),
-                labelColor: Colors.black,
-                tabs: <Widget>[
-                  Tab(text: tr("competition_menu_competition")),
-                  Tab(text: tr("competition_menu_statistic")),
-                ]),
+            TabBar(tabs: <Widget>[
+              Tab(text: tr("competition_menu_competition")),
+              Tab(text: tr("competition_menu_statistic")),
+            ]),
             Flexible(
               //Add this to give height
               child: TabBarView(children: [

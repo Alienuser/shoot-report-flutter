@@ -46,15 +46,15 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: const Color(AppTheme.infoBackgroundColor),
-        child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("goals_whole_40_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),
@@ -167,6 +167,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
                           header: Text(tr("goals_whole_60_title"),
                               style: const TextStyle(
                                 color: Color(AppTheme.accentColor),

@@ -12,7 +12,6 @@ class CooperationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-            backgroundColor: const Color(AppTheme.infoBackgroundColor),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               toolbarHeight: 80,
@@ -35,6 +34,7 @@ class CooperationWidget extends StatelessWidget {
               child: Column(
                 children: [
                   CupertinoFormSection.insetGrouped(
+                      backgroundColor: Colors.transparent,
                       header: Text(tr("cooperation_list_title"),
                           style: const TextStyle(
                               color: Color(AppTheme.accentColor))),
@@ -57,9 +57,8 @@ class CooperationWidget extends StatelessWidget {
                                         "assets/images/partner_kksvilligen.svg")))),
                       ]),
                   CupertinoFormSection.insetGrouped(
-                      decoration: const BoxDecoration(
-                        color: Color(AppTheme.infoBackgroundColor),
-                      ),
+                      backgroundColor: Colors.transparent,
+                      decoration: const BoxDecoration(),
                       header: Text(tr("cooperation_action_title")),
                       children: [
                         ElevatedButton(

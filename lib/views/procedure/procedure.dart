@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/procedure/procedure_preparation.dart';
 import 'package:shoot_report/views/procedure/procedure_shot.dart';
 
@@ -19,13 +18,10 @@ class ProcedureWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(
-                indicatorColor: const Color(AppTheme.accentColor),
-                labelColor: Colors.black,
-                tabs: <Widget>[
-                  Tab(text: tr("procedure_preparation")),
-                  Tab(text: tr("procedure_shot")),
-                ]),
+            TabBar(tabs: <Widget>[
+              Tab(text: tr("procedure_preparation")),
+              Tab(text: tr("procedure_shot")),
+            ]),
             Flexible(
               //Add this to give height
               child: TabBarView(children: [

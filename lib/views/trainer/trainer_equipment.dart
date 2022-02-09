@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/trainer/trainer_view.dart';
 
 class TrainerEquipmentWidget extends StatelessWidget {
@@ -17,7 +16,7 @@ class TrainerEquipmentWidget extends StatelessWidget {
           title: Text(tr("trainer_title")),
           centerTitle: false,
           bottom: TabBar(
-            indicatorColor: const Color(AppTheme.accentColor),
+            labelColor: Colors.white,
             tabs: <Widget>[
               Tab(text: tr("trainer_tab_equipment_clothes")),
               Tab(text: tr("trainer_tab_equipment_equipment")),
