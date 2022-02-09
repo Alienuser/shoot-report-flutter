@@ -1,20 +1,30 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
+import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/app_migration.dart';
 import 'package:version_migration/version_migration.dart';
 import 'utilities/database.dart';
 import 'package:flutter/material.dart';
+
+late FlutterDatabase database;
+late WeaponDao weaponDao;
+late TrainingDao trainingDao;
+late CompetitionDao competitionDao;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  final database = await $FloorFlutterDatabase
-      .databaseBuilder('flutter_database.db')
+  // Database initialization
+  database = await $FloorFlutterDatabase
+      .databaseBuilder('flutter_shoot_report.db')
       .build();
-  final weaponDao = database.weaponDao;
-  final trainingDao = database.trainingDao;
-  final competitionDao = database.competitionDao;
+  weaponDao = database.weaponDao;
+  trainingDao = database.trainingDao;
+  competitionDao = database.competitionDao;
 
   FlutterNativeSplash.removeAfter(initialization);
 
@@ -31,13 +41,11 @@ Future<void> main() async {
 }
 
 void initialization(BuildContext context) async {
-  // TODO Delete after  debugging
-  VersionMigration.reset();
+  //VersionMigration.reset();
 
-  VersionMigration.migrateToVersion("1.5.0", () {
-    //AppMigration.doDatabaseMigration();
+  VersionMigration.migrateToVersion("1.5.0", () async {
+    AppMigration.doDatabaseMigration(weaponDao);
     //AppMigration.doSharedPrefMigration();
-    // TODO Adding weapons to new database
   });
 
   await Future.delayed(const Duration(seconds: 2));

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
-import 'package:shoot_report/utilities/dummy_data.dart';
 import 'package:shoot_report/views/weapon/weapon_list.dart';
 
 class WeaponWidget extends StatefulWidget {
@@ -54,10 +53,6 @@ class _WeaponWidgetState extends State<WeaponWidget> {
               trainingDao: widget.trainingDao,
               competitionDao: widget.competitionDao,
             ),
-            DummyData(
-                weaponDao: widget.weaponDao,
-                trainingDao: widget.trainingDao,
-                competitionDao: widget.competitionDao),
             //AdsWidget()
           ],
         ),

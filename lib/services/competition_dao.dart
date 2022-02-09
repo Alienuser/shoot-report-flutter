@@ -7,7 +7,7 @@ abstract class CompetitionDao {
   Stream<List<Competition>> findAllCompetitions();
 
   @Query('SELECT * FROM competition WHERE weapon_id = :wid')
-  Stream<List<Competition>> findAllTrainingsForWeapon(int wid);
+  Stream<List<Competition>> findAllCompetitionForWeapon(int wid);
 
   @insert
   Future<void> insertCompetition(Competition competition);

@@ -25,7 +25,7 @@ class Competition {
 
   int shotCount;
 
-  String shots;
+  List shots;
 
   String comment;
 

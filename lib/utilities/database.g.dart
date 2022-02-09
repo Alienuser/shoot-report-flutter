@@ -169,7 +169,7 @@ class _$WeaponDao extends WeaponDao {
   @override
   Stream<List<Weapon>> findAllWeapons() {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM weapon WHERE show = true',
+        'SELECT * FROM weapon WHERE show = true ORDER by \"order\" ASC',
         mapper: (Map<String, Object?> row) => Weapon(
             row['id'] as int?,
             row['name'] as String,
@@ -334,7 +334,7 @@ class _$CompetitionDao extends CompetitionDao {
                   'place': item.place,
                   'kind': item.kind,
                   'shotCount': item.shotCount,
-                  'shots': item.shots,
+                  'shots': _arrayConverter.encode(item.shots),
                   'comment': item.comment,
                   'weapon_id': item.weaponId
                 },
@@ -350,7 +350,7 @@ class _$CompetitionDao extends CompetitionDao {
                   'place': item.place,
                   'kind': item.kind,
                   'shotCount': item.shotCount,
-                  'shots': item.shots,
+                  'shots': _arrayConverter.encode(item.shots),
                   'comment': item.comment,
                   'weapon_id': item.weaponId
                 },
@@ -376,7 +376,7 @@ class _$CompetitionDao extends CompetitionDao {
             row['place'] as String,
             row['kind'] as String,
             row['shotCount'] as int,
-            row['shots'] as String,
+            _arrayConverter.decode(row['shots'] as String),
             row['comment'] as String,
             row['weapon_id'] as int),
         queryableName: 'Competition',
@@ -384,7 +384,7 @@ class _$CompetitionDao extends CompetitionDao {
   }
 
   @override
-  Stream<List<Competition>> findAllTrainingsForWeapon(int wid) {
+  Stream<List<Competition>> findAllCompetitionForWeapon(int wid) {
     return _queryAdapter.queryListStream(
         'SELECT * FROM competition WHERE weapon_id = ?1',
         mapper: (Map<String, Object?> row) => Competition(
@@ -394,7 +394,7 @@ class _$CompetitionDao extends CompetitionDao {
             row['place'] as String,
             row['kind'] as String,
             row['shotCount'] as int,
-            row['shots'] as String,
+            _arrayConverter.decode(row['shots'] as String),
             row['comment'] as String,
             row['weapon_id'] as int),
         arguments: [wid],

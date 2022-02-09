@@ -160,7 +160,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 final DateTime? picked = await showDatePicker(
                                   context: context,
                                   initialDate: date,
-                                  firstDate: DateTime(2000),
+                                  firstDate: DateTime(1960),
                                   lastDate: DateTime(2025),
                                 );
 

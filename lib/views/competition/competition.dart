@@ -40,7 +40,10 @@ class CompetitionWidget extends StatelessWidget {
                   weaponDao: weaponDao,
                   competitionDao: competitionDao,
                 ),
-                CompetitionStatisticWidget(weapon: weapon)
+                CompetitionStatisticWidget(
+                  weapon: weapon,
+                  competitionDao: competitionDao,
+                )
               ]),
             ),
           ],

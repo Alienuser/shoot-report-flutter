@@ -37,5 +37,3 @@ class Training {
   Training(this.id, this.date, this.image, this.indicator, this.place,
       this.kind, this.shotCount, this.shots, this.comment, this.weaponId);
 }
-
-class Date {}

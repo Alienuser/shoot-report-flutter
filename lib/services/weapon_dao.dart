@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class WeaponDao {
-  @Query("SELECT * FROM weapon WHERE show = true")
+  @Query("SELECT * FROM weapon WHERE show = true ORDER by \"order\" ASC")
   Stream<List<Weapon>> findAllWeapons();
 
   @insert

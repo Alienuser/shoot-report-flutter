@@ -29,10 +29,36 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
       stream: widget.trainingDao.findAllTrainingsForWeapon(widget.weapon.id!),
       builder: (_, snapshot) {
         if (!snapshot.hasData) {
-          return const Text("Keine Daten da...");
+          return Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                const Icon(
+                  Icons.refresh,
+                  color: Color(AppTheme.primaryColor),
+                  size: 120,
+                ),
+                Text(
+                  tr("training_statistic_data_loading"),
+                  textAlign: TextAlign.center,
+                )
+              ]));
         }
         if (snapshot.data.toString() == "[]") {
-          return const Text('Keine Daten da...');
+          return Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                const Icon(
+                  Icons.hourglass_empty,
+                  color: Color(AppTheme.primaryColor),
+                  size: 120,
+                ),
+                Text(
+                  tr("training_statistic_data_no"),
+                  textAlign: TextAlign.center,
+                )
+              ]));
         }
 
         List<ChartData> dataWhole = <ChartData>[];
@@ -55,12 +81,12 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         return Column(children: [
           Expanded(
               child: _getChart(
-                  tr("statistic_whole"),
+                  tr("training_statistic_whole"),
                   dataWhole.reversed.toList(),
                   const Color(AppTheme.chartWholeColor))),
           Expanded(
               child: _getChart(
-                  tr("statistic_tenth"),
+                  tr("training_statistic_tenth"),
                   dataTenth.reversed.toList(),
                   const Color(AppTheme.chartTenthColor))),
         ]);
@@ -89,6 +115,8 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         SplineSeries<ChartData, String>(
             dataSource: dataSource,
             color: color,
+            animationDuration: 1500,
+            animationDelay: 0,
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,
             name: '\u00D8',

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/training.dart';
@@ -27,10 +28,23 @@ class TrainingListWidget extends StatelessWidget {
         stream: trainingDao.findAllTrainingsForWeapon(weapon.id!),
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
-            return const Text("Daten werden geladen...");
+            return const SizedBox();
           }
           if (snapshot.data.toString() == "[]") {
-            return const Text('Keine Daten da...');
+            return Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  const Icon(
+                    Icons.hourglass_empty,
+                    color: Color(AppTheme.primaryColor),
+                    size: 120,
+                  ),
+                  Text(
+                    tr("training_data_no"),
+                    textAlign: TextAlign.center,
+                  )
+                ]));
           }
 
           final trainings = snapshot.requireData;
