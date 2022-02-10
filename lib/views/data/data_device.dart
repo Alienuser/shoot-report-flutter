@@ -40,6 +40,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textDataDeviceController,
+                              textInputAction: TextInputAction.done,
                               maxLines: 20,
                               placeholder: tr("data_device_value"),
                               onChanged: (value) async {

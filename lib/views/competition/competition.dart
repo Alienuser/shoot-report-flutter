@@ -29,7 +29,6 @@ class CompetitionWidget extends StatelessWidget {
               Tab(text: tr("competition_menu_statistic")),
             ]),
             Flexible(
-              //Add this to give height
               child: TabBarView(children: [
                 CompetitionListWidget(
                   weapon: weapon,

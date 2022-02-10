@@ -61,7 +61,7 @@ class _TrainingListRowState extends State<TrainingListRow> {
         subtitle: Text(
             "${DateFormat.yMd().format(widget.training.date)}, in ${widget.training.place}"),
         onTap: () {
-          showCupertinoModalBottomSheet(
+          showBarModalBottomSheet(
             context: context,
             expand: true,
             builder: (context) => TrainingEditWidget(

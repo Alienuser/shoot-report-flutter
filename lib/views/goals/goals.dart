@@ -22,7 +22,6 @@ class GoalsWidget extends StatelessWidget {
               Tab(text: tr("goals_tenth"))
             ]),
             Flexible(
-              //Add this to give height
               child: TabBarView(children: [
                 GoalsWholeWidget(weapon: weapon),
                 GoalsTenthWidget(weapon: weapon)

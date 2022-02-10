@@ -58,6 +58,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                           children: [
                             TextFormField(
                               controller: _text40JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -79,6 +83,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text40OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -100,6 +108,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text40RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -121,6 +133,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text40MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -142,6 +158,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text40ChaosController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -171,6 +191,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                           children: [
                             TextFormField(
                               controller: _text60JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -192,6 +216,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text60OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -213,6 +241,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text60RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -234,6 +266,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text60MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -255,6 +291,10 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                             ),
                             TextFormField(
                               controller: _text60ChaosController,
+                              textInputAction: TextInputAction.done,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),

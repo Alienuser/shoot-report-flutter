@@ -24,12 +24,13 @@ class TrainingWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(tabs: <Widget>[
-              Tab(text: tr("training_menu_training")),
-              Tab(text: tr("training_menu_statistic")),
-            ]),
+            TabBar(
+              tabs: <Widget>[
+                Tab(text: tr("training_menu_training")),
+                Tab(text: tr("training_menu_statistic")),
+              ],
+            ),
             Flexible(
-              //Add this to give height
               child: TabBarView(children: [
                 TrainingListWidget(
                     weapon: weapon,

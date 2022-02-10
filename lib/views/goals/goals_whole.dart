@@ -62,6 +62,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                           children: [
                             TextFormField(
                               controller: _textWhole40JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -83,6 +87,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole40OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -104,6 +112,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole40RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -125,6 +137,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole40MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -146,6 +162,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole40ChaosController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -175,6 +195,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                           children: [
                             TextFormField(
                               controller: _textWhole60JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -196,6 +220,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole60OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -217,6 +245,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole60RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -238,6 +270,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole60MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -259,6 +295,10 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                             ),
                             TextFormField(
                               controller: _textWhole60ChaosController,
+                              textInputAction: TextInputAction.done,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),

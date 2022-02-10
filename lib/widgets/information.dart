@@ -33,12 +33,9 @@ class _InformationWidgetState extends State<InformationWidget> {
         child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              toolbarHeight: 80,
               title: Text(
                 tr("information_title"),
-                style: const TextStyle(fontSize: 25),
               ),
-              centerTitle: false,
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(

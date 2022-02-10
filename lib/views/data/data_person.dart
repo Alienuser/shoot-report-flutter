@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
@@ -84,7 +85,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: () {
-                                  showCupertinoModalBottomSheet(
+                                  showMaterialModalBottomSheet(
                                     expand: false,
                                     context: context,
                                     builder: (context) {
@@ -125,6 +126,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           children: [
                             TextFormField(
                               controller: _textDataPersonNameController,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -138,6 +140,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                             TextFormField(
                               controller: _textDataPersonAgeController,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -152,6 +155,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                             TextFormField(
                               controller: _textDataPersonHightController,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -176,6 +180,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           children: [
                             TextFormField(
                               controller: _textDataPersonClub1Controller,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -189,6 +194,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                             TextFormField(
                               controller: _textDataPersonClub2Controller,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -210,6 +216,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           children: [
                             TextFormField(
                               controller: _textDataPersonTrainerontroller,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -223,6 +230,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                             TextFormField(
                               controller: _textDataPersonTrainerMailController,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -238,6 +246,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             ),
                             TextFormField(
                               controller: _textDataPersonSquadTrainerController,
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -253,6 +262,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                             TextFormField(
                               controller:
                                   _textDataPersonSquadTrainerMailController,
+                              textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
@@ -275,22 +285,19 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
     Navigator.of(context).pop(null);
     List<Media>? res = await ImagesPicker.openCamera(
       pickType: PickType.image,
-      quality: 0.8,
-      maxSize: 800,
       cropOpt: CropOption(
         aspectRatio: CropAspectRatio.custom,
         cropType: CropType.rect,
       ),
-      maxTime: 15,
     );
 
     if (res != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("data_person_photo", res[0].thumbPath!);
+      prefs.setString("data_person_photo", res[0].path.split("/").last);
       await ImagesPicker.saveImageToAlbum(File(res[0].path),
-          albumName: "shoot_report");
+          albumName: "shoot report");
       setState(() {
-        imagePath = res[0].thumbPath;
+        imagePath = res[0].path;
       });
     }
   }
@@ -308,9 +315,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
     if (res != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("data_person_photo", res[0].thumbPath!);
+      prefs.setString("data_person_photo", res[0].path.split("/").last);
       setState(() {
-        imagePath = res[0].thumbPath;
+        imagePath = res[0].path;
       });
     }
   }
@@ -325,6 +332,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
   void _loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String directory = (await getApplicationDocumentsDirectory()).parent.path;
+
     setState(() {
       _textDataPersonNameController.text =
           prefs.getString("data_person_name") ?? "";
@@ -346,7 +355,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
           prefs.getString("data_person_squadtrainer_mail") ?? "";
 
       // Get image path if there is one
-      imagePath = prefs.getString("data_person_photo") ?? "";
+      imagePath =
+          "$directory/tmp/${prefs.getString("data_person_photo") ?? ""}";
     });
   }
 }

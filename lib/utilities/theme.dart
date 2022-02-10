@@ -5,6 +5,8 @@ class AppTheme {
   static const accentColor = 0xFF0AE20A;
   static const backgroundColorLight = 0xFFF2F2F7;
   static const backgroundColorDark = 0xFF2c2c2e;
+  static const backgroundAdsLight = 0xFFFDFCFF;
+  static const backgroundAdsDark = 0xFF1A1C1E;
   static const lightTextColor = 0xFF9c9ca0;
   static const chartWholeColor = 0x0AE20A;
   static const chartTenthColor = 0x0E2435;

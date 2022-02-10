@@ -14,12 +14,10 @@ class PartnerWidget extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              toolbarHeight: 80,
               title: Text(
                 tr("partner_title"),
                 style: const TextStyle(fontSize: 25),
               ),
-              centerTitle: false,
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
@@ -39,8 +37,7 @@ class PartnerWidget extends StatelessWidget {
                         style: const TextStyle(
                             color: Color(AppTheme.accentColor))),
                     children: [
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
+                      InkWell(
                           onTap: () {
                             launch(
                               "https://www.feinwerkbau.de",
@@ -56,8 +53,7 @@ class PartnerWidget extends StatelessWidget {
                                 helper: SvgPicture.asset(
                                     "assets/images/partner_feinwerkbau.svg"),
                               ))),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
+                      InkWell(
                           onTap: () {
                             launch(
                               "https://www.sauer-shootingsportswear.de",
@@ -73,8 +69,7 @@ class PartnerWidget extends StatelessWidget {
                                 helper: SvgPicture.asset(
                                     "assets/images/partner_sauer.svg"),
                               ))),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
+                      InkWell(
                           onTap: () {
                             launch(
                               "https://coaching-koch.de",
@@ -90,8 +85,7 @@ class PartnerWidget extends StatelessWidget {
                                 helper: SvgPicture.asset(
                                     "assets/images/partner_koch.svg"),
                               ))),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
+                      InkWell(
                           onTap: () {
                             launch(
                               "https://www.disag.de",
@@ -107,8 +101,7 @@ class PartnerWidget extends StatelessWidget {
                                 helper: SvgPicture.asset(
                                     "assets/images/partner_disag.svg"),
                               ))),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
+                      InkWell(
                           onTap: () {
                             launch(
                               "https://tec-hro.de/schiesssport",

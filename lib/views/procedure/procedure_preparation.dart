@@ -46,6 +46,7 @@ class _ProcedurePreparationWidgetState
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textPreparationController,
+                              textInputAction: TextInputAction.done,
                               maxLines: 20,
                               placeholder: tr("procedure_preparation_text"),
                               onChanged: (value) async {

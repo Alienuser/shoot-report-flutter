@@ -14,12 +14,10 @@ class CooperationWidget extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              toolbarHeight: 80,
               title: Text(
                 tr("cooperation_title"),
                 style: const TextStyle(fontSize: 25),
               ),
-              centerTitle: false,
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
@@ -39,8 +37,7 @@ class CooperationWidget extends StatelessWidget {
                           style: const TextStyle(
                               color: Color(AppTheme.accentColor))),
                       children: [
-                        GestureDetector(
-                            behavior: HitTestBehavior.translucent,
+                        InkWell(
                             onTap: () {
                               launch(
                                 "https://www.kksvillingen.de",
@@ -51,10 +48,11 @@ class CooperationWidget extends StatelessWidget {
                             child: Padding(
                                 padding: const EdgeInsets.all(20),
                                 child: CupertinoFormRow(
-                                    prefix: Container(),
-                                    child: Container(),
-                                    helper: SvgPicture.asset(
-                                        "assets/images/partner_kksvilligen.svg")))),
+                                  prefix: Container(),
+                                  child: Container(),
+                                  helper: SvgPicture.asset(
+                                      "assets/images/partner_kksvilligen.svg"),
+                                ))),
                       ]),
                   CupertinoFormSection.insetGrouped(
                       backgroundColor: Colors.transparent,

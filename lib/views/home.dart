@@ -5,7 +5,6 @@ import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
-import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/competition/competition.dart';
 import 'package:shoot_report/views/data/data.dart';
 import 'package:shoot_report/views/goals/goals.dart';
@@ -13,6 +12,7 @@ import 'package:shoot_report/views/procedure/procedure.dart';
 import 'package:shoot_report/views/trainer/trainer.dart';
 import 'package:shoot_report/views/training/training.dart';
 import 'package:shoot_report/widgets/Partner.dart';
+import 'package:shoot_report/widgets/ads.dart';
 import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -61,125 +61,138 @@ class _HomeWidgetState extends State<HomeWidget> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(tr(widget.weapon.name)),
-        centerTitle: false,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            tooltip: tr("tooltip_user"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DataWidget(),
+      bottomNavigationBar: const AdsWidget(),
+      body: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          elevation: 0,
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.fitness_center),
+              label: tr("menu_bottom_training"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.emoji_events),
+              label: tr("menu_bottom_competition"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.format_list_bulleted),
+              label: tr("menu_bottom_procedure"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.flag),
+              label: tr("menu_bottom_goals"),
+            ),
+          ],
+        ),
+        appBar: AppBar(
+          title: Text(tr(widget.weapon.name)),
+          centerTitle: false,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.account_circle),
+              tooltip: tr("tooltip_user"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DataWidget(),
+                  ),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.sports),
+              tooltip: tr("tooltip_trainer"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TrainerWidget(),
+                  ),
+                );
+              },
+            ),
+            PopupMenuButton(
+              icon: const Icon(Icons.more_vert),
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text(tr("menu_information")),
                 ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.sports),
-            tooltip: tr("tooltip_trainer"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const TrainerWidget(),
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text(tr("menu_partner")),
                 ),
-              );
-            },
+                PopupMenuItem<int>(
+                  value: 2,
+                  child: Text(tr("menu_cooperation")),
+                ),
+                PopupMenuItem<int>(
+                  value: 3,
+                  child: Text(tr("menu_facebook")),
+                ),
+                PopupMenuItem<int>(
+                  value: 4,
+                  child: Text(tr("menu_instagram")),
+                ),
+                PopupMenuItem<int>(
+                  value: 5,
+                  child: Text(tr("menu_export")),
+                ),
+              ],
+              onSelected: (item) {
+                switch (item) {
+                  case 0:
+                    showBarModalBottomSheet(
+                      expand: true,
+                      context: context,
+                      builder: (context) => const InformationWidget(),
+                    );
+                    break;
+                  case 1:
+                    showBarModalBottomSheet(
+                      context: context,
+                      expand: true,
+                      builder: (context) => const PartnerWidget(),
+                    );
+                    break;
+                  case 2:
+                    showBarModalBottomSheet(
+                      context: context,
+                      expand: true,
+                      builder: (context) => const CooperationWidget(),
+                    );
+                    break;
+                  case 3:
+                    launch(
+                      "https://facebook.com/shoot.report",
+                      forceSafariVC: false,
+                      forceWebView: false,
+                    );
+                    break;
+                  case 4:
+                    launch(
+                      "https://instagram.com/shoot.report",
+                      forceSafariVC: false,
+                      forceWebView: false,
+                    );
+                    break;
+                  case 5:
+                    print("Alles exportieren");
+                    break;
+                }
+              },
+            ),
+          ],
+        ),
+        body: Center(
+          child: Container(
+            child: _widgetOptions.elementAt(_selectedIndex),
           ),
-          PopupMenuButton(
-            icon: const Icon(Icons.more_vert),
-            itemBuilder: (context) => [
-              PopupMenuItem<int>(
-                value: 0,
-                child: Text(tr("menu_information")),
-              ),
-              PopupMenuItem<int>(
-                value: 1,
-                child: Text(tr("menu_partner")),
-              ),
-              PopupMenuItem<int>(
-                value: 2,
-                child: Text(tr("menu_cooperation")),
-              ),
-              PopupMenuItem<int>(
-                value: 3,
-                child: Text(tr("menu_facebook")),
-              ),
-              PopupMenuItem<int>(
-                value: 4,
-                child: Text(tr("menu_instagram")),
-              ),
-            ],
-            onSelected: (item) {
-              switch (item) {
-                case 0:
-                  showCupertinoModalBottomSheet(
-                    expand: true,
-                    context: context,
-                    builder: (context) => const InformationWidget(),
-                  );
-                  break;
-                case 1:
-                  showCupertinoModalBottomSheet(
-                    context: context,
-                    expand: true,
-                    builder: (context) => const PartnerWidget(),
-                  );
-                  break;
-                case 2:
-                  showCupertinoModalBottomSheet(
-                    context: context,
-                    expand: true,
-                    builder: (context) => const CooperationWidget(),
-                  );
-                  break;
-                case 3:
-                  launch(
-                    "https://facebook.com/shoot.report",
-                    forceSafariVC: false,
-                    forceWebView: false,
-                  );
-                  break;
-                case 4:
-                  launch(
-                    "https://instagram.com/shoot.report",
-                    forceSafariVC: false,
-                    forceWebView: false,
-                  );
-                  break;
-              }
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.fitness_center),
-            label: tr("menu_bottom_training"),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.emoji_events),
-            label: tr("menu_bottom_competition"),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.format_list_bulleted),
-            label: tr("menu_bottom_procedure"),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.flag),
-            label: tr("menu_bottom_goals"),
-          ),
-        ],
+        ),
       ),
     );
   }

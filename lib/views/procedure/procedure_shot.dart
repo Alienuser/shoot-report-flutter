@@ -42,6 +42,7 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textShotController,
+                              textInputAction: TextInputAction.done,
                               maxLines: 20,
                               placeholder: tr("procedure_shot_text"),
                               onChanged: (value) async {

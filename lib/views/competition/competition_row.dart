@@ -46,7 +46,7 @@ class CompetitionListRow extends StatelessWidget {
         subtitle: Text(
             "${DateFormat.yMd().format(competition.date)}, in ${competition.place}"),
         onTap: () {
-          showCupertinoModalBottomSheet(
+          showBarModalBottomSheet(
             context: context,
             expand: true,
             builder: (context) =>

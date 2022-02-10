@@ -64,7 +64,7 @@ class CompetitionListWidget extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showCupertinoModalBottomSheet(
+          showBarModalBottomSheet(
             context: context,
             expand: true,
             builder: (context) => CompetitionAddWidget(weapon: weapon),

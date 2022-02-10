@@ -22,8 +22,7 @@ class CsvConverter {
     data[0].add(tr("export_training_date"));
     data[0].add(tr("export_training_shots"));
     for (var i = 0; i < training.shots.length; i++) {
-      data[0].add(tr("export_training_serie",
-          namedArgs: {"serie": (i + 1).toString()}));
+      data[0].add(tr("export_training_serie", args: [(i + 1).toString()]));
     }
     data[0].add(tr("export_training_result"));
     data[0].add(tr("export_training_average"));

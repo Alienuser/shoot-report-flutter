@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -31,6 +33,7 @@ class TrainingEditWidget extends StatefulWidget {
 
 class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   static final _formKey = GlobalKey<FormState>();
+
   final _textDateController = TextEditingController();
   late String? imagePath = widget.training.image;
   late DateTime date = widget.training.date;
@@ -41,14 +44,17 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   late List shots = widget.training.shots;
   late String comment = widget.training.comment;
   bool isInEditMode = false;
-  int? groupValue = 0;
+  int? kindValue = 0;
   num pointsTotal = 0;
   String pointsAverage = "0";
 
   @override
   void initState() {
-    calculateTotalAndAverage();
+    _calculateTotalAndAverage();
     _textDateController.text = DateFormat.yMd().format(date);
+    if (imagePath != null) {
+      _setImage();
+    }
     super.initState();
   }
 
@@ -58,12 +64,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 80,
           title: Text(
             tr("training_edit_title"),
-            style: const TextStyle(fontSize: 25),
           ),
-          centerTitle: false,
           actions: <Widget>[
             IconButton(
               onPressed: () => setState(() {
@@ -142,6 +145,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   hintText: tr("training_location"),
                                   labelText: tr("training_location")),
                               enabled: isInEditMode,
+                              textInputAction: TextInputAction.next,
                               initialValue: place,
                               onChanged: (value) async {
                                 place = value;
@@ -155,6 +159,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     labelText: tr("training_date")),
                                 enabled: isInEditMode,
                                 controller: _textDateController,
+                                textInputAction: TextInputAction.next,
+                                onFieldSubmitted: (_) =>
+                                    FocusScope.of(context).nextFocus(),
                                 onTap: () async {
                                   final DateTime? picked = await showDatePicker(
                                     context: context,
@@ -213,7 +220,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               onPressed: isInEditMode
                                   ? () {
-                                      showModalBottomSheet(
+                                      showMaterialModalBottomSheet(
                                         context: context,
                                         backgroundColor: Colors.transparent,
                                         builder: (context) {
@@ -229,14 +236,14 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                                     leading: const Icon(Icons
                                                         .camera_alt_outlined),
                                                     onTap: () =>
-                                                        getImageFromCamera()),
+                                                        _getImageFromCamera()),
                                                 ListTile(
                                                     title: Text(tr(
                                                         "training_image_gallery")),
                                                     leading:
                                                         const Icon(Icons.image),
                                                     onTap: () =>
-                                                        getImageFromGallery()),
+                                                        _getImageFromGallery()),
                                               ],
                                             ),
                                           ));
@@ -290,28 +297,34 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             enabled: isInEditMode,
                             initialValue: shotCount.toString(),
                             keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
                             onChanged: (value) async {
                               shotCount = int.tryParse(value) ?? 0;
                               shots = List.filled((shotCount / 10).ceil(), 0);
-                              calculateTotalAndAverage();
+                              _calculateTotalAndAverage();
                             },
                           ),
                           for (var i = 0; i < (shotCount / 10).ceil(); i++)
                             TextFormField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: const EdgeInsets.all(10.0),
-                                    hintText: tr("training_serie"),
-                                    labelText: tr("training_serie")),
-                                enabled: isInEditMode,
-                                initialValue: shots[i].toString(),
-                                keyboardType:
-                                    const TextInputType.numberWithOptions(
-                                        decimal: true),
-                                onChanged: (value) async {
-                                  shots[i] = double.tryParse(value) ?? 0;
-                                  calculateTotalAndAverage();
-                                }),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  hintText: tr("training_serie",
+                                      args: [(i + 1).toString()]),
+                                  labelText: tr("training_serie",
+                                      args: [(i + 1).toString()])),
+                              enabled: isInEditMode,
+                              initialValue:
+                                  (shots[i] != 0) ? shots[i].toString() : "",
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              textInputAction: TextInputAction.next,
+                              onChanged: (value) async {
+                                shots[i] = double.tryParse(value) ?? 0;
+                                _calculateTotalAndAverage();
+                              },
+                            ),
                         ],
                       ),
                       CupertinoFormSection.insetGrouped(
@@ -339,6 +352,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     labelText: tr("trainig_report")),
                                 enabled: isInEditMode,
                                 maxLines: 10,
+                                textInputAction: TextInputAction.done,
                                 initialValue: comment,
                                 onChanged: (value) async {
                                   comment = value;
@@ -357,7 +371,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               onPressed: isInEditMode
                                   ? () {
-                                      editTraining();
+                                      _editTraining();
                                     }
                                   : null,
                               child: Text(tr("training_edit")),
@@ -369,7 +383,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               onPressed: !isInEditMode
                                   ? () {
-                                      shareAsCsv();
+                                      _shareAsCsv();
                                     }
                                   : null,
                               child: Text(tr("training_share")),
@@ -380,9 +394,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     );
   }
 
-  void editTraining() {
+  void _editTraining() {
     widget.training.date = date;
-    widget.training.image = imagePath != null ? imagePath! : "";
+    widget.training.image = imagePath != null ? imagePath!.split("/").last : "";
     widget.training.indicator = indicator;
     widget.training.place = place;
     widget.training.kind = kind;
@@ -404,40 +418,39 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     Navigator.of(context).pop(null);
   }
 
-  void calculateTotalAndAverage() {
+  void _calculateTotalAndAverage() {
     setState(() {
       pointsTotal = shots.fold(0, (previous, current) => previous + current);
       pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
     });
   }
 
-  Future<void> shareAsCsv() async {
+  Future<void> _shareAsCsv() async {
     Share.shareFiles(
         [await CsvConverter.generateCsv(widget.weapon, widget.training)],
         text: tr("training_share_text"));
   }
 
-  Future getImageFromCamera() async {
+  Future _getImageFromCamera() async {
     Navigator.of(context).pop(null);
     List<Media>? res = await ImagesPicker.openCamera(
       pickType: PickType.image,
-      quality: 0.8,
-      maxSize: 800,
       cropOpt: CropOption(
         aspectRatio: CropAspectRatio.custom,
         cropType: CropType.rect,
       ),
-      maxTime: 15,
     );
 
     if (res != null) {
+      await ImagesPicker.saveImageToAlbum(File(res[0].path),
+          albumName: "shoot report");
       setState(() {
-        imagePath = res[0].thumbPath;
+        imagePath = res[0].path;
       });
     }
   }
 
-  Future getImageFromGallery() async {
+  Future _getImageFromGallery() async {
     Navigator.of(context).pop(null);
     List<Media>? res = await ImagesPicker.pick(
       count: 1,
@@ -450,8 +463,15 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
     if (res != null) {
       setState(() {
-        imagePath = res[0].thumbPath;
+        imagePath = res[0].path;
       });
     }
+  }
+
+  void _setImage() async {
+    String directory = (await getApplicationDocumentsDirectory()).parent.path;
+    setState(() {
+      imagePath = "$directory/tmp/$imagePath";
+    });
   }
 }

@@ -26,7 +26,7 @@ Future<void> main() async {
   trainingDao = database.trainingDao;
   competitionDao = database.competitionDao;
 
-  FlutterNativeSplash.removeAfter(initialization);
+  FlutterNativeSplash.removeAfter(_initialization);
 
   runApp(
     EasyLocalization(
@@ -40,7 +40,7 @@ Future<void> main() async {
   );
 }
 
-void initialization(BuildContext context) async {
+void _initialization(BuildContext context) async {
   //VersionMigration.reset();
 
   VersionMigration.migrateToVersion("1.5.0", () async {
