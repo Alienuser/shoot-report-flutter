@@ -1,11 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
+import 'package:shoot_report/services/training_dao.dart';
 
 class TrainingAddWidget extends StatefulWidget {
   final Weapon weapon;
+  final TrainingDao trainingDao;
 
-  const TrainingAddWidget({Key? key, required this.weapon}) : super(key: key);
+  const TrainingAddWidget(
+      {Key? key, required this.weapon, required this.trainingDao})
+      : super(key: key);
 
   @override
   State<TrainingAddWidget> createState() => _TrainingAddWidgetState();

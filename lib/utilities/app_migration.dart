@@ -21,7 +21,7 @@ class AppMigration {
         );
       } catch (_) {
         print("Doing initial load");
-        print("Daten laden");
+        _loadDefaultWeapons(weaponDao);
       }
     } else if (Platform.isIOS) {
       try {

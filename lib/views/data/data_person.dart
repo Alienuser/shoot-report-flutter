@@ -293,7 +293,13 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
     if (res != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("data_person_photo", res[0].path.split("/").last);
+
+      if (Platform.isIOS) {
+        prefs.setString("data_person_photo", res[0].path.split("/").last);
+      } else if (Platform.isAndroid) {
+        prefs.setString("data_person_photo", res[0].path);
+      }
+
       await ImagesPicker.saveImageToAlbum(File(res[0].path),
           albumName: "shoot report");
       setState(() {
@@ -315,7 +321,12 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
     if (res != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("data_person_photo", res[0].path.split("/").last);
+
+      if (Platform.isIOS) {
+        prefs.setString("data_person_photo", res[0].path.split("/").last);
+      } else if (Platform.isAndroid) {
+        prefs.setString("data_person_photo", res[0].path);
+      }
       setState(() {
         imagePath = res[0].path;
       });
@@ -355,8 +366,13 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
           prefs.getString("data_person_squadtrainer_mail") ?? "";
 
       // Get image path if there is one
-      imagePath =
-          "$directory/tmp/${prefs.getString("data_person_photo") ?? ""}";
+      if (prefs.getString("data_person_photo") != "") {
+        if (Platform.isIOS) {
+          imagePath = "$directory/tmp/${prefs.getString("data_person_photo")}";
+        } else if (Platform.isAndroid) {
+          imagePath = prefs.getString("data_person_photo");
+        }
+      }
     });
   }
 }

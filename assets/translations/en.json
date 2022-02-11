@@ -15,7 +15,7 @@
     "weapon_10":"Luftpistole aufgelegt",
     "weapon_11":"Armbrust",
 
-    "weapon_deleted":"Waffe wurde ausgeblendet.",
+    "weapon_deleted":"\"{}\" wurde ausgeblendet.",
     "weapon_show_toolltip":"Alle Waffen anzeigen",
     "weapon_show":"Alle Waffen werden angezeigt.",
 
@@ -96,8 +96,7 @@
 
     "training_statistic_whole":"Ganze Ringe",
     "training_statistic_tenth":"Zehntel Ringe",
-    "training_statistic_data_loading":"Deine Statistiken werden geladen...",
-    "training_statistic_data_no":"Zurzeit gibt es noch keine Statistik.",
+    "training_statistic_data_no":"Statistiken erscheinen erst,\nwenn du dein erstes Training erstellt hast.",
 
     "competition_menu_competition":"Wettkampf",
     "competition_menu_statistic":"Statistik",
@@ -108,8 +107,7 @@
 
     "competition_statistic_whole":"Ganze Ringe",
     "competition_statistic_tenth":"Zehntel Ringe",
-    "competition_statistic_data_loading":"Deine Statistiken werden geladen...",
-    "competition_statistic_data_no":"Zurzeit gibt es noch keine Statistik.",
+    "competition_statistic_data_no":"Statistiken erscheinen erst,\nwenn du dein ersten Wettkampf erstellt hast.",
 
     "data_title":"Stammdaten",
     "data_tab_person":"Person",
@@ -185,7 +183,7 @@
     "information_version_version":"Version",
     "information_version_build":"Buildnummer",
     "information_version_date":"Builddatum",
-    "information_version_date_description":"2022xxxx",
+    "information_version_date_description":"202202xx",
     "information_source_title":"Quellenangabe",
     "information_source_description":"Texte der Trainerfunktion sind in Anlehnung der Trainer-C Breitensportausbildung des Deutschen Schützenbundes.",
 

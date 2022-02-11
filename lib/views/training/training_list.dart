@@ -68,7 +68,8 @@ class TrainingListWidget extends StatelessWidget {
           showBarModalBottomSheet(
             context: context,
             expand: true,
-            builder: (context) => TrainingAddWidget(weapon: weapon),
+            builder: (context) =>
+                TrainingAddWidget(weapon: weapon, trainingDao: trainingDao),
           );
         },
         backgroundColor: const Color(AppTheme.accentColor),

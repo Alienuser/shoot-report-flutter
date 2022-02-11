@@ -52,7 +52,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   void initState() {
     _calculateTotalAndAverage();
     _textDateController.text = DateFormat.yMd().format(date);
-    if (imagePath != null) {
+    if (imagePath != "") {
       _setImage();
     }
     super.initState();
@@ -471,7 +471,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   void _setImage() async {
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
     setState(() {
-      imagePath = "$directory/tmp/$imagePath";
+      if (Platform.isIOS) {
+        imagePath = "$directory/tmp/$imagePath";
+      }
     });
   }
 }

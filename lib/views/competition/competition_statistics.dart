@@ -31,20 +31,7 @@ class _CompetitionStatisticWidgetState
           widget.competitionDao.findAllCompetitionForWeapon(widget.weapon.id!),
       builder: (_, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                const Icon(
-                  Icons.refresh,
-                  color: Color(AppTheme.primaryColor),
-                  size: 120,
-                ),
-                Text(
-                  tr("training_statistic_data_loading"),
-                  textAlign: TextAlign.center,
-                )
-              ]));
+          return const SizedBox();
         }
         if (snapshot.data.toString() == "[]") {
           return Center(
@@ -52,12 +39,12 @@ class _CompetitionStatisticWidgetState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                 const Icon(
-                  Icons.hourglass_empty,
+                  Icons.insights,
                   color: Color(AppTheme.primaryColor),
                   size: 120,
                 ),
                 Text(
-                  tr("training_statistic_data_no"),
+                  tr("competition_statistic_data_no"),
                   textAlign: TextAlign.center,
                 )
               ]));

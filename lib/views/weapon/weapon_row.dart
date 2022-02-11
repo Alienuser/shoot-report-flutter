@@ -43,7 +43,8 @@ class WeaponListCell extends StatelessWidget {
         final scaffoldMessengerState = ScaffoldMessenger.of(context);
         scaffoldMessengerState.hideCurrentSnackBar();
         scaffoldMessengerState.showSnackBar(
-          SnackBar(content: Text(tr("weapon_deleted"))),
+          SnackBar(
+              content: Text(tr("weapon_deleted", args: [tr(weapon.name)]))),
         );
       },
       child: ListTile(

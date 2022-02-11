@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
    <application
-        android:label="shoot_report_flutter"
+        android:label="shoot report new"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
