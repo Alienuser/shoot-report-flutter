@@ -53,6 +53,7 @@ class CompetitionListWidget extends StatelessWidget {
             itemCount: competitions.length,
             itemBuilder: (context, index) {
               return CompetitionListRow(
+                  weapon: weapon,
                   competitionDao: competitionDao,
                   competition: competitions[index]);
             },
@@ -67,7 +68,8 @@ class CompetitionListWidget extends StatelessWidget {
           showBarModalBottomSheet(
             context: context,
             expand: true,
-            builder: (context) => CompetitionAddWidget(weapon: weapon),
+            builder: (context) => CompetitionAddWidget(
+                weapon: weapon, competitionDao: competitionDao),
           );
         },
         backgroundColor: const Color(AppTheme.accentColor),

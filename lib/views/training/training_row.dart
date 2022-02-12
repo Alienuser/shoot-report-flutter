@@ -92,14 +92,18 @@ class _TrainingListRowState extends State<TrainingListRow> {
   }
 
   Text getTrainingPoints(Training training) {
-    if (training.shots.any((element) => element is int)) {
-      return Text(training.shots
-          .reduce((value, next) => value + next)
-          .toStringAsFixed(1));
+    if (training.shots.isNotEmpty) {
+      if (training.shots.any((element) => element is double)) {
+        return Text(training.shots
+            .reduce((value, next) => value + next)
+            .toStringAsFixed(1));
+      } else {
+        return Text(
+            training.shots.reduce((value, next) => value + next).toString() +
+                "   ");
+      }
     } else {
-      return Text(training.shots
-          .reduce((value, next) => value + next)
-          .toStringAsFixed(1));
+      return const Text("0");
     }
   }
 }

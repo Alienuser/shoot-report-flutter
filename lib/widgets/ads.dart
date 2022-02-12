@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class AdsWidget extends StatefulWidget {
@@ -15,12 +16,11 @@ class _AdsWidgetState extends State<AdsWidget> {
   var _pos = 1;
   Timer? _timer;
   final List<String> _photos = [
-    "assets/images/100.png",
-    "assets/images/100.png",
-    "assets/images/100.png",
-    "assets/images/100.png",
-    "assets/images/100.png",
-    "assets/images/100.png",
+    "assets/images/partner_feinwerkbau.svg",
+    "assets/images/partner_sauer.svg",
+    "assets/images/partner_koch.svg",
+    "assets/images/partner_disag.svg",
+    "assets/images/partner_techro.png",
   ];
 
   @override
@@ -49,9 +49,9 @@ class _AdsWidgetState extends State<AdsWidget> {
       color: (whichMode == Brightness.light)
           ? const Color(AppTheme.backgroundAdsLight)
           : const Color(AppTheme.backgroundAdsDark),
-      height: 90,
+      height: 80,
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-      child: Image.asset(
+      child: SvgPicture.asset(
         _photos[_pos],
         fit: BoxFit.fitHeight,
       ),

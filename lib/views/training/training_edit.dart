@@ -33,9 +33,8 @@ class TrainingEditWidget extends StatefulWidget {
 
 class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   static final _formKey = GlobalKey<FormState>();
-
   final _textDateController = TextEditingController();
-  late String? imagePath = widget.training.image;
+  late String imagePath = widget.training.image;
   late DateTime date = widget.training.date;
   late int indicator = widget.training.indicator;
   late String place = widget.training.place;
@@ -131,7 +130,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                       });
                                     }
                                   : null,
-                              items: KindList.items.map((String items) {
+                              items: KindList.trainingItems.map((String items) {
                                 return DropdownMenuItem(
                                   value: items,
                                   child: Text(items),
@@ -185,9 +184,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             color: Colors.transparent,
                           ),
                           children: [
-                            imagePath != null && imagePath!.isNotEmpty
+                            imagePath != ""
                                 ? SizedBox(
-                                    child: Image.file(File(imagePath!),
+                                    child: Image.file(File(imagePath),
                                         fit: BoxFit.contain, errorBuilder:
                                             (BuildContext context,
                                                 Object exception,
@@ -196,7 +195,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     }),
                                   )
                                 : const SizedBox.shrink(),
-                            imagePath != null && imagePath!.isNotEmpty
+                            imagePath != ""
                                 ? ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       primary:
@@ -300,7 +299,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             textInputAction: TextInputAction.next,
                             onChanged: (value) async {
                               shotCount = int.tryParse(value) ?? 0;
-                              shots = List.filled((shotCount / 10).ceil(), 0);
+                              shots = List.filled((shotCount / 10).ceil(), -1);
                               _calculateTotalAndAverage();
                             },
                           ),
@@ -315,13 +314,23 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                       args: [(i + 1).toString()])),
                               enabled: isInEditMode,
                               initialValue:
-                                  (shots[i] != 0) ? shots[i].toString() : "",
+                                  (shots[i] != -1) ? shots[i].toString() : "",
                               keyboardType:
                                   const TextInputType.numberWithOptions(
                                       decimal: true),
                               textInputAction: TextInputAction.next,
                               onChanged: (value) async {
-                                shots[i] = double.tryParse(value) ?? 0;
+                                if (value.contains(",") ||
+                                    value.contains(".")) {
+                                  if (value.contains(",")) {
+                                    shots[i] = double.tryParse(
+                                        value.replaceAll(",", "."));
+                                  } else {
+                                    shots[i] = double.tryParse(value);
+                                  }
+                                } else {
+                                  shots[i] = int.tryParse(value);
+                                }
                                 _calculateTotalAndAverage();
                               },
                             ),
@@ -333,11 +342,14 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                           children: [
                             ListTile(
                               title: Text(tr("training_rings_total")),
-                              trailing: Text(pointsTotal.toString()),
+                              trailing:
+                                  (shots.any((element) => element is double))
+                                      ? Text(pointsTotal.toStringAsFixed(1))
+                                      : Text(pointsTotal.toString()),
                             ),
                             ListTile(
                               title: Text(tr("training_rings_average")),
-                              trailing: Text(pointsAverage.toString()),
+                              trailing: Text(pointsAverage),
                             ),
                           ]),
                       CupertinoFormSection.insetGrouped(
@@ -396,7 +408,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
   void _editTraining() {
     widget.training.date = date;
-    widget.training.image = imagePath != null ? imagePath!.split("/").last : "";
+    if (Platform.isIOS) {
+      widget.training.image = imagePath.split("/").last;
+    } else {
+      widget.training.image = imagePath;
+    }
     widget.training.indicator = indicator;
     widget.training.place = place;
     widget.training.kind = kind;
@@ -421,14 +437,16 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   void _calculateTotalAndAverage() {
     setState(() {
       pointsTotal = shots.fold(0, (previous, current) => previous + current);
-      pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
+      if (shots.isNotEmpty) {
+        pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
+      }
     });
   }
 
   Future<void> _shareAsCsv() async {
-    Share.shareFiles(
-        [await CsvConverter.generateCsv(widget.weapon, widget.training)],
-        text: tr("training_share_text"));
+    Share.shareFiles([
+      await CsvConverter.generateTrainingCsv(widget.weapon, widget.training)
+    ], text: tr("training_share_text"));
   }
 
   Future _getImageFromCamera() async {

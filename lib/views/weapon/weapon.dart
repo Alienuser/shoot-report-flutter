@@ -4,7 +4,6 @@ import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/views/weapon/weapon_list.dart';
-import 'package:shoot_report/widgets/ads.dart';
 
 class WeaponWidget extends StatefulWidget {
   final WeaponDao weaponDao;
@@ -35,7 +34,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
             tooltip: tr("weapon_show_toolltip"),
             onPressed: () {
               setState(() {
-                widget.weaponDao.showAllWeapons();
+                widget.weaponDao.showAllWeapons(true);
               });
               final scaffoldMessengerState = ScaffoldMessenger.of(context);
               scaffoldMessengerState.hideCurrentSnackBar();

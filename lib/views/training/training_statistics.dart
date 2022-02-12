@@ -52,16 +52,18 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         List<ChartData> dataTenth = <ChartData>[];
         final trainings = snapshot.requireData;
         for (var training in trainings) {
-          var rings = training.shots.reduce((value, next) => value + next);
-          var average = rings / training.shotCount;
-          bool isWhole = training.shots.any((element) => element is int);
+          if (training.shots.isNotEmpty) {
+            var rings = training.shots.reduce((value, next) => value + next);
+            var average = rings / training.shotCount;
+            bool isWhole = training.shots.any((element) => element is int);
 
-          if (isWhole && dataWhole.length < 10) {
-            dataWhole.add(ChartData(
-                x: DateFormat.yMd().format(training.date), y: average));
-          } else if (!isWhole && dataTenth.length < 10) {
-            dataTenth.add(ChartData(
-                x: DateFormat.yMd().format(training.date), y: average));
+            if (isWhole && dataWhole.length < 10) {
+              dataWhole.add(ChartData(
+                  x: DateFormat.MMMd().format(training.date), y: average));
+            } else if (!isWhole && dataTenth.length < 10) {
+              dataTenth.add(ChartData(
+                  x: DateFormat.MMMd().format(training.date), y: average));
+            }
           }
         }
 
@@ -86,18 +88,21 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       title: ChartTitle(text: title),
-      trackballBehavior: TrackballBehavior(
+      tooltipBehavior: TooltipBehavior(
           enable: true,
           activationMode: ActivationMode.singleTap,
-          markerSettings: const TrackballMarkerSettings(
-              markerVisibility: TrackballVisibilityMode.visible),
-          tooltipSettings: const InteractiveTooltip(format: '\u00D8: point.y')),
+          format: "\u00D8: point.y",
+          shouldAlwaysShow: true),
+      onTooltipRender: (TooltipArgs args) {
+        args.text = 'Customized Text';
+      },
       primaryXAxis: CategoryAxis(
         majorGridLines: const MajorGridLines(width: 0),
       ),
       primaryYAxis: NumericAxis(
           axisLine: const AxisLine(width: 0),
-          majorTickLines: const MajorTickLines(size: 0)),
+          majorTickLines: const MajorTickLines(size: 0),
+          title: AxisTitle(text: tr("training_statistic_rings"))),
       series: [
         SplineSeries<ChartData, String>(
             dataSource: dataSource,
@@ -107,7 +112,7 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,
             name: '\u00D8',
-            markerSettings: const MarkerSettings(isVisible: true)),
+            markerSettings: MarkerSettings(isVisible: true, color: color)),
       ],
     );
   }

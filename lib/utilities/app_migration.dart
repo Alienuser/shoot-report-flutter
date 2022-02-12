@@ -20,7 +20,6 @@ class AppMigration {
           },
         );
       } catch (_) {
-        print("Doing initial load");
         _loadDefaultWeapons(weaponDao);
       }
     } else if (Platform.isIOS) {

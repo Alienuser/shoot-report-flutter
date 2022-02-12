@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:floor/floor.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
 import 'package:shoot_report/services/competition_dao.dart';

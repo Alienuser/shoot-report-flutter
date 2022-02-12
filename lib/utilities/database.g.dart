@@ -167,22 +167,24 @@ class _$WeaponDao extends WeaponDao {
   final DeletionAdapter<Weapon> _weaponDeletionAdapter;
 
   @override
-  Stream<List<Weapon>> findAllWeapons() {
+  Stream<List<Weapon>> findAllWeapons(bool show) {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM weapon WHERE show = true ORDER by \"order\" ASC',
+        'SELECT * FROM weapon WHERE show = ?1 ORDER by \"order\" ASC;',
         mapper: (Map<String, Object?> row) => Weapon(
             row['id'] as int?,
             row['name'] as String,
             row['order'] as int,
             row['prefFile'] as String,
             (row['show'] as int) != 0),
+        arguments: [show ? 1 : 0],
         queryableName: 'Weapon',
         isView: false);
   }
 
   @override
-  Future<void> showAllWeapons() async {
-    await _queryAdapter.queryNoReturn('Update weapon SET show=true');
+  Future<void> showAllWeapons(bool show) async {
+    await _queryAdapter
+        .queryNoReturn('Update weapon SET show=?1', arguments: [show ? 1 : 0]);
   }
 
   @override
@@ -339,6 +341,22 @@ class _$CompetitionDao extends CompetitionDao {
                   'weapon_id': item.weaponId
                 },
             changeListener),
+        _competitionUpdateAdapter = UpdateAdapter(
+            database,
+            'Competition',
+            ['id'],
+            (Competition item) => <String, Object?>{
+                  'id': item.id,
+                  'date': _dateTimeConverter.encode(item.date),
+                  'image': item.image,
+                  'place': item.place,
+                  'kind': item.kind,
+                  'shotCount': item.shotCount,
+                  'shots': _arrayConverter.encode(item.shots),
+                  'comment': item.comment,
+                  'weapon_id': item.weaponId
+                },
+            changeListener),
         _competitionDeletionAdapter = DeletionAdapter(
             database,
             'Competition',
@@ -364,6 +382,8 @@ class _$CompetitionDao extends CompetitionDao {
 
   final InsertionAdapter<Competition> _competitionInsertionAdapter;
 
+  final UpdateAdapter<Competition> _competitionUpdateAdapter;
+
   final DeletionAdapter<Competition> _competitionDeletionAdapter;
 
   @override
@@ -386,7 +406,7 @@ class _$CompetitionDao extends CompetitionDao {
   @override
   Stream<List<Competition>> findAllCompetitionForWeapon(int wid) {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM competition WHERE weapon_id = ?1',
+        'SELECT * FROM competition WHERE weapon_id = ?1 ORDER by date DESC',
         mapper: (Map<String, Object?> row) => Competition(
             row['id'] as int?,
             _dateTimeConverter.decode(row['date'] as int),
@@ -405,6 +425,12 @@ class _$CompetitionDao extends CompetitionDao {
   @override
   Future<void> insertCompetition(Competition competition) async {
     await _competitionInsertionAdapter.insert(
+        competition, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateCompetition(Competition competition) async {
+    await _competitionUpdateAdapter.update(
         competition, OnConflictStrategy.abort);
   }
 

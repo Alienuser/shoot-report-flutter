@@ -2,15 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/competition.dart';
+import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/views/competition/competition_edit.dart';
 
 class CompetitionListRow extends StatelessWidget {
+  final Weapon weapon;
   final CompetitionDao competitionDao;
   final Competition competition;
 
   const CompetitionListRow({
     Key? key,
+    required this.weapon,
     required this.competitionDao,
     required this.competition,
   }) : super(key: key);
@@ -49,8 +52,10 @@ class CompetitionListRow extends StatelessWidget {
           showBarModalBottomSheet(
             context: context,
             expand: true,
-            builder: (context) =>
-                CompetitionEditWidget(competition: competition),
+            builder: (context) => CompetitionEditWidget(
+                weapon: weapon,
+                competitionDao: competitionDao,
+                competition: competition),
           );
         },
       ),
@@ -58,6 +63,12 @@ class CompetitionListRow extends StatelessWidget {
   }
 
   Text getCompetitionPoints(Competition competition) {
-    return Text(competition.shotCount.toString());
+    if (competition.shots.isNotEmpty) {
+      num shots =
+          competition.shots.fold(0, (previous, current) => previous + current);
+      return Text(shots.toString());
+    } else {
+      return const Text("0");
+    }
   }
 }

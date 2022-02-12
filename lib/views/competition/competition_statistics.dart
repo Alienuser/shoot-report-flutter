@@ -54,16 +54,17 @@ class _CompetitionStatisticWidgetState
         List<ChartData> dataTenth = <ChartData>[];
         final competitions = snapshot.requireData;
         for (var competition in competitions) {
-          var rings = competition.shots.reduce((value, next) => value + next);
-          var average = rings / competition.shotCount;
-          bool isWhole = competition.shots.any((element) => element is int);
+          if (competition.shots.isNotEmpty) {
+            var rings = competition.shots.reduce((value, next) => value + next);
+            bool isWhole = competition.shots.any((element) => element is int);
 
-          if (isWhole && dataWhole.length < 10) {
-            dataWhole.add(ChartData(
-                x: DateFormat.yMd().format(competition.date), y: average));
-          } else if (!isWhole && dataTenth.length < 10) {
-            dataTenth.add(ChartData(
-                x: DateFormat.yMd().format(competition.date), y: average));
+            if (isWhole && dataWhole.length < 10) {
+              dataWhole.add(ChartData(
+                  x: DateFormat.MMMd().format(competition.date), y: rings));
+            } else if (!isWhole && dataTenth.length < 10) {
+              dataTenth.add(ChartData(
+                  x: DateFormat.MMMd().format(competition.date), y: rings));
+            }
           }
         }
 
@@ -88,18 +89,21 @@ class _CompetitionStatisticWidgetState
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       title: ChartTitle(text: title),
-      trackballBehavior: TrackballBehavior(
+      tooltipBehavior: TooltipBehavior(
           enable: true,
           activationMode: ActivationMode.singleTap,
-          markerSettings: const TrackballMarkerSettings(
-              markerVisibility: TrackballVisibilityMode.visible),
-          tooltipSettings: const InteractiveTooltip(format: '\u00D8: point.y')),
+          format: "\u00D8: point.y",
+          shouldAlwaysShow: true),
+      onTooltipRender: (TooltipArgs args) {
+        args.header = args.dataPoints![args.pointIndex!.toInt()].x;
+      },
       primaryXAxis: CategoryAxis(
         majorGridLines: const MajorGridLines(width: 0),
       ),
       primaryYAxis: NumericAxis(
           axisLine: const AxisLine(width: 0),
-          majorTickLines: const MajorTickLines(size: 0)),
+          majorTickLines: const MajorTickLines(size: 0),
+          title: AxisTitle(text: tr("competition_statistic_rings"))),
       series: [
         SplineSeries<ChartData, String>(
             dataSource: dataSource,
@@ -109,7 +113,7 @@ class _CompetitionStatisticWidgetState
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,
             name: '\u00D8',
-            markerSettings: const MarkerSettings(isVisible: true)),
+            markerSettings: MarkerSettings(isVisible: true, color: color)),
       ],
     );
   }
