@@ -1,4 +1,4 @@
-package de.famprobst.shoot_report1
+package de.famprobst.report
 
 import io.flutter.embedding.android.FlutterActivity
 

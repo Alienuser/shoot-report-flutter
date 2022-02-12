@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "de.famprobst.shoot_report1"
+        applicationId "de.famprobst.report"
         minSdkVersion 21
         targetSdkVersion 32
         buildToolsVersion "32.0.0"

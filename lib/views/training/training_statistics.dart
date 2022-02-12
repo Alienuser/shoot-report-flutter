@@ -55,12 +55,12 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
           if (training.shots.isNotEmpty) {
             var rings = training.shots.reduce((value, next) => value + next);
             var average = rings / training.shotCount;
-            bool isWhole = training.shots.any((element) => element is int);
+            bool isTenth = training.shots.any((element) => element is double);
 
-            if (isWhole && dataWhole.length < 10) {
+            if (!isTenth && dataWhole.length < 10) {
               dataWhole.add(ChartData(
                   x: DateFormat.MMMd().format(training.date), y: average));
-            } else if (!isWhole && dataTenth.length < 10) {
+            } else if (isTenth && dataTenth.length < 10) {
               dataTenth.add(ChartData(
                   x: DateFormat.MMMd().format(training.date), y: average));
             }
@@ -107,7 +107,7 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         SplineSeries<ChartData, String>(
             dataSource: dataSource,
             color: color,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationDelay: 0,
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,

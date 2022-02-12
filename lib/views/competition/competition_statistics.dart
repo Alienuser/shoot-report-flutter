@@ -56,12 +56,13 @@ class _CompetitionStatisticWidgetState
         for (var competition in competitions) {
           if (competition.shots.isNotEmpty) {
             var rings = competition.shots.reduce((value, next) => value + next);
-            bool isWhole = competition.shots.any((element) => element is int);
+            bool isTenth =
+                competition.shots.any((element) => element is double);
 
-            if (isWhole && dataWhole.length < 10) {
+            if (!isTenth && dataWhole.length < 10) {
               dataWhole.add(ChartData(
                   x: DateFormat.MMMd().format(competition.date), y: rings));
-            } else if (!isWhole && dataTenth.length < 10) {
+            } else if (isTenth && dataTenth.length < 10) {
               dataTenth.add(ChartData(
                   x: DateFormat.MMMd().format(competition.date), y: rings));
             }
@@ -108,7 +109,7 @@ class _CompetitionStatisticWidgetState
         SplineSeries<ChartData, String>(
             dataSource: dataSource,
             color: color,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationDelay: 0,
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,

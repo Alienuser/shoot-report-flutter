@@ -42,10 +42,10 @@ Future<void> main() async {
 }
 
 void _initialization(BuildContext context) async {
-  //VersionMigration.reset();
+  VersionMigration.reset();
 
   VersionMigration.migrateToVersion("1.5.0", () async {
-    AppMigration.doDatabaseMigration(weaponDao);
+    AppMigration.doDatabaseMigration(weaponDao, trainingDao, competitionDao);
     //AppMigration.doSharedPrefMigration();
   });
 
