@@ -34,7 +34,6 @@ dependencies:
   floor: any
   sqflite: any # For the migration
   share_plus: any
-  flutter_svg: any
   url_launcher: any
   status_alert: any
   images_picker: any

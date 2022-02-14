@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -45,14 +44,15 @@ class PartnerWidget extends StatelessWidget {
                               forceWebView: false,
                             );
                           },
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: CupertinoFormRow(
-                                prefix: Container(),
-                                child: Container(),
-                                helper: SvgPicture.asset(
-                                    "assets/images/partner_feinwerkbau.svg"),
-                              ))),
+                          child: CupertinoFormRow(
+                            padding: const EdgeInsets.all(20),
+                            prefix: Container(),
+                            child: Container(),
+                            helper: Center(
+                                child: Image.asset(
+                                    "assets/images/partner_feinwerkbau.png",
+                                    height: 50)),
+                          )),
                       InkWell(
                           onTap: () {
                             launch(
@@ -61,14 +61,15 @@ class PartnerWidget extends StatelessWidget {
                               forceWebView: false,
                             );
                           },
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: CupertinoFormRow(
-                                prefix: Container(),
-                                child: Container(),
-                                helper: SvgPicture.asset(
-                                    "assets/images/partner_sauer.svg"),
-                              ))),
+                          child: CupertinoFormRow(
+                            padding: const EdgeInsets.all(20),
+                            prefix: Container(),
+                            child: Container(),
+                            helper: Center(
+                                child: Image.asset(
+                                    "assets/images/partner_sauer.png",
+                                    height: 50)),
+                          )),
                       InkWell(
                           onTap: () {
                             launch(
@@ -77,13 +78,15 @@ class PartnerWidget extends StatelessWidget {
                               forceWebView: false,
                             );
                           },
-                          child: Padding(
+                          child: CupertinoFormRow(
                               padding: const EdgeInsets.all(20),
-                              child: CupertinoFormRow(
-                                prefix: Container(),
-                                child: Container(),
-                                helper: SvgPicture.asset(
-                                    "assets/images/partner_koch.svg"),
+                              prefix: Container(),
+                              child: Container(),
+                              helper: Center(
+                                child: Center(
+                                    child: Image.asset(
+                                        "assets/images/partner_koch.png",
+                                        height: 50)),
                               ))),
                       InkWell(
                           onTap: () {
@@ -93,14 +96,15 @@ class PartnerWidget extends StatelessWidget {
                               forceWebView: false,
                             );
                           },
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: CupertinoFormRow(
-                                prefix: Container(),
-                                child: Container(),
-                                helper: SvgPicture.asset(
-                                    "assets/images/partner_disag.svg"),
-                              ))),
+                          child: CupertinoFormRow(
+                            padding: const EdgeInsets.all(20),
+                            prefix: Container(),
+                            child: Container(),
+                            helper: Center(
+                                child: Image.asset(
+                                    "assets/images/partner_disag.png",
+                                    height: 50)),
+                          )),
                       InkWell(
                           onTap: () {
                             launch(
@@ -109,14 +113,15 @@ class PartnerWidget extends StatelessWidget {
                               forceWebView: false,
                             );
                           },
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: CupertinoFormRow(
-                                prefix: Container(),
-                                child: Container(),
-                                helper: SvgPicture.asset(
-                                    "assets/images/partner_techro.svg"),
-                              ))),
+                          child: CupertinoFormRow(
+                            padding: const EdgeInsets.all(20),
+                            prefix: Container(),
+                            child: Container(),
+                            helper: Center(
+                                child: Image.asset(
+                                    "assets/images/partner_techro.png",
+                                    height: 50)),
+                          )),
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(

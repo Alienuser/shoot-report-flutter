@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class AdsWidget extends StatefulWidget {
@@ -16,10 +15,10 @@ class _AdsWidgetState extends State<AdsWidget> {
   var _pos = 1;
   Timer? _timer;
   final List<String> _photos = [
-    "assets/images/partner_feinwerkbau.svg",
-    "assets/images/partner_sauer.svg",
-    "assets/images/partner_koch.svg",
-    "assets/images/partner_disag.svg",
+    "assets/images/partner_feinwerkbau.png",
+    "assets/images/partner_sauer.png",
+    "assets/images/partner_koch.png",
+    "assets/images/partner_disag.png",
     "assets/images/partner_techro.png",
   ];
 
@@ -49,11 +48,11 @@ class _AdsWidgetState extends State<AdsWidget> {
       color: (whichMode == Brightness.light)
           ? const Color(AppTheme.backgroundAdsLight)
           : const Color(AppTheme.backgroundAdsDark),
-      height: 80,
+      height: 60,
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-      child: SvgPicture.asset(
+      child: Image.asset(
         _photos[_pos],
-        fit: BoxFit.fitHeight,
+        fit: BoxFit.contain,
       ),
     );
   }
@@ -61,7 +60,7 @@ class _AdsWidgetState extends State<AdsWidget> {
   void _setTimer() {
     var random = Random();
     _pos = random.nextInt(_photos.length);
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _pos = (_pos + 1) % _photos.length;
         print("New Image: $_pos");

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -45,14 +44,14 @@ class CooperationWidget extends StatelessWidget {
                                 forceWebView: false,
                               );
                             },
-                            child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: CupertinoFormRow(
-                                  prefix: Container(),
-                                  child: Container(),
-                                  helper: SvgPicture.asset(
-                                      "assets/images/partner_kksvilligen.svg"),
-                                ))),
+                            child: CupertinoFormRow(
+                              prefix: Container(),
+                              child: Container(),
+                              helper: Center(
+                                  child: Image.asset(
+                                      "assets/images/partner_kksvilligen.png",
+                                      height: 70)),
+                            )),
                       ]),
                   CupertinoFormSection.insetGrouped(
                       backgroundColor: Colors.transparent,

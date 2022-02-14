@@ -70,8 +70,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_jackpot.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_jackpot.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -95,8 +95,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_optimal.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_optimal.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -120,8 +120,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_real.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_real.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -145,8 +145,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_minimal.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_minimal.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -170,8 +170,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_chaos.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_chaos.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -203,8 +203,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_jackpot.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_jackpot.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -228,8 +228,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_optimal.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_optimal.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -253,8 +253,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_real.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_real.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -278,8 +278,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_minimal.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_minimal.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
@@ -303,8 +303,8 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   hintText: tr("goals_whole_value"),
-                                  prefixIcon: SvgPicture.asset(
-                                    "assets/images/arrow_chaos.svg",
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_chaos.png",
                                     height: 1,
                                     color: const Color(AppTheme.accentColor),
                                   ),
