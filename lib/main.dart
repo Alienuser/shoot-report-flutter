@@ -45,8 +45,8 @@ void _initialization(BuildContext context) async {
   VersionMigration.reset();
 
   VersionMigration.migrateToVersion("1.5.0", () async {
-    AppMigration.doDatabaseMigration(weaponDao, trainingDao, competitionDao);
-    //AppMigration.doSharedPrefMigration();
+    AppMigration.doDatabaseMigration(database);
+    AppMigration.doSharedPrefMigration();
   });
 
   await Future.delayed(const Duration(seconds: 2));

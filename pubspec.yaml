@@ -30,9 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   csv: any
-  xml: any # For the migration
   floor: any
-  sqflite: any # For the migration
   share_plus: any
   url_launcher: any
   status_alert: any
@@ -46,8 +44,14 @@ dependencies:
   shared_preferences: any
   modal_bottom_sheet: any
   flutter_native_splash: any
-  native_shared_preferences: any # For the migration
   syncfusion_flutter_charts: any
+
+  # For the migration
+  xml: any
+  uuid: any
+  sqflite: any
+  plist_parser: any
+  native_shared_preferences: any
 
 dev_dependencies:
   build_runner: any

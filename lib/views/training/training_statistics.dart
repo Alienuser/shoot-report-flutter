@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/utilities/chart_data.dart';
 import 'package:shoot_report/utilities/theme.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:shoot_report/widgets/statistic.dart';
 
 class TrainingStatisticWidget extends StatefulWidget {
   final Weapon weapon;
@@ -69,58 +70,17 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
 
         return Column(children: [
           Expanded(
-              child: _getChart(
-                  tr("training_statistic_whole"),
-                  dataWhole.reversed.toList(),
-                  const Color(AppTheme.chartWholeColor))),
+              child: StatisticWidget(
+                  title: tr("training_statistic_whole"),
+                  dataSource: dataWhole.reversed.toList(),
+                  color: const Color(AppTheme.chartWholeColor))),
           Expanded(
-              child: _getChart(
-                  tr("training_statistic_tenth"),
-                  dataTenth.reversed.toList(),
-                  const Color(AppTheme.chartTenthColor))),
+              child: StatisticWidget(
+                  title: tr("training_statistic_tenth"),
+                  dataSource: dataTenth.reversed.toList(),
+                  color: const Color(AppTheme.chartTenthColor))),
         ]);
       },
     ));
   }
-
-  SfCartesianChart _getChart(
-      String title, List<ChartData> dataSource, Color color) {
-    return SfCartesianChart(
-      plotAreaBorderWidth: 0,
-      title: ChartTitle(text: title),
-      tooltipBehavior: TooltipBehavior(
-          enable: true,
-          activationMode: ActivationMode.singleTap,
-          format: "\u00D8: point.y",
-          shouldAlwaysShow: true),
-      onTooltipRender: (TooltipArgs args) {
-        args.text = 'Customized Text';
-      },
-      primaryXAxis: CategoryAxis(
-        majorGridLines: const MajorGridLines(width: 0),
-      ),
-      primaryYAxis: NumericAxis(
-          axisLine: const AxisLine(width: 0),
-          majorTickLines: const MajorTickLines(size: 0),
-          title: AxisTitle(text: tr("training_statistic_rings"))),
-      series: [
-        SplineSeries<ChartData, String>(
-            dataSource: dataSource,
-            color: color,
-            animationDuration: 500,
-            animationDelay: 0,
-            xValueMapper: (ChartData sales, _) => sales.x,
-            yValueMapper: (ChartData sales, _) => sales.y,
-            name: '\u00D8',
-            markerSettings: MarkerSettings(isVisible: true, color: color)),
-      ],
-    );
-  }
-}
-
-class ChartData {
-  ChartData({required this.x, required this.y});
-
-  final String x;
-  final num y;
 }
