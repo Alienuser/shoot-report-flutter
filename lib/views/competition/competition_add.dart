@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/competition.dart';
@@ -338,6 +339,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
+    HapticFeedback.lightImpact();
 
     Navigator.of(context).pop(null);
   }

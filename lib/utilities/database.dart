@@ -1,16 +1,14 @@
 import 'dart:async';
-
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/training.dart';
+import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:floor/floor.dart';
+import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import '../models/weapon.dart';
-import '../services/weapon_dao.dart';
 import 'date_time_converter.dart';
 import 'array_converter.dart';
-
 part 'database.g.dart';
 
 @TypeConverters([DateTimeConverter, ArrayConverter])

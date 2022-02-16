@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -138,10 +139,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   value: 4,
                   child: Text(tr("menu_instagram")),
                 ),
-                PopupMenuItem<int>(
+                /*PopupMenuItem<int>(
                   value: 5,
                   child: Text(tr("menu_export")),
-                ),
+                ),*/
               ],
               onSelected: (item) {
                 switch (item) {
@@ -181,7 +182,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     );
                     break;
                   case 5:
-                    print("Alles exportieren");
+                    log("Export all");
                     break;
                 }
               },

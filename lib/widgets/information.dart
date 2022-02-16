@@ -29,6 +29,7 @@ class _InformationWidgetState extends State<InformationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return Material(
         child: Scaffold(
             appBar: AppBar(
@@ -56,14 +57,22 @@ class _InformationWidgetState extends State<InformationWidget> {
                             color: Color(AppTheme.accentColor))),
                     children: [
                       CupertinoFormRow(
-                        prefix: Text(tr("information_author_author")),
+                        prefix: Text(tr("information_author_author"),
+                            style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.lightTextColor)
+                                    : const Color(AppTheme.darkTextColor))),
                         child: Container(),
                         helper: Text(tr("information_author_description"),
                             style: const TextStyle(
-                                color: Color(AppTheme.lightTextColor))),
+                                color: Color(AppTheme.textSublineColor))),
                       ),
                       CupertinoFormRow(
-                          prefix: Text(tr("information_author_website")),
+                          prefix: Text(tr("information_author_website"),
+                              style: TextStyle(
+                                  color: (mode.brightness == Brightness.light)
+                                      ? const Color(AppTheme.lightTextColor)
+                                      : const Color(AppTheme.darkTextColor))),
                           child: Container(),
                           helper: GestureDetector(
                             behavior: HitTestBehavior.translucent,
@@ -87,25 +96,37 @@ class _InformationWidgetState extends State<InformationWidget> {
                             color: Color(AppTheme.accentColor))),
                     children: [
                       CupertinoFormRow(
-                        prefix: Text(tr("information_version_version")),
+                        prefix: Text(tr("information_version_version"),
+                            style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.lightTextColor)
+                                    : const Color(AppTheme.darkTextColor))),
                         child: Container(),
                         helper: Text(_packageInfo.version,
                             style: const TextStyle(
-                                color: Color(AppTheme.lightTextColor))),
+                                color: Color(AppTheme.textSublineColor))),
                       ),
                       CupertinoFormRow(
-                        prefix: Text(tr("information_version_build")),
+                        prefix: Text(tr("information_version_build"),
+                            style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.lightTextColor)
+                                    : const Color(AppTheme.darkTextColor))),
                         child: Container(),
                         helper: Text(_packageInfo.buildNumber,
                             style: const TextStyle(
-                                color: Color(AppTheme.lightTextColor))),
+                                color: Color(AppTheme.textSublineColor))),
                       ),
                       CupertinoFormRow(
-                        prefix: Text(tr("information_version_date")),
+                        prefix: Text(tr("information_version_date"),
+                            style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.lightTextColor)
+                                    : const Color(AppTheme.darkTextColor))),
                         child: Container(),
                         helper: Text(tr("information_version_date_description"),
                             style: const TextStyle(
-                                color: Color(AppTheme.lightTextColor))),
+                                color: Color(AppTheme.textSublineColor))),
                       ),
                     ],
                   ),

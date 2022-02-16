@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:floor/floor.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/utilities/app_migration.dart';
+import 'package:shoot_report/utilities/database.dart';
 import 'package:version_migration/version_migration.dart';
-import 'utilities/database.dart';
 import 'package:flutter/material.dart';
 
 late FlutterDatabase database;

@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
@@ -26,7 +26,7 @@ class _AdsWidgetState extends State<AdsWidget> {
   void initState() {
     super.initState();
     if (_timer == null) {
-      print("Start Timer");
+      developer.log("Start Timer", name: "Ads-Widget");
       _setTimer();
     }
   }
@@ -34,7 +34,7 @@ class _AdsWidgetState extends State<AdsWidget> {
   @override
   void deactivate() {
     if (_timer != null) {
-      print('Deactivate Timer');
+      developer.log("Deactivate Timer", name: "Ads-Widget");
       _timer!.cancel();
     }
     super.deactivate();
@@ -43,11 +43,10 @@ class _AdsWidgetState extends State<AdsWidget> {
   @override
   Widget build(BuildContext context) {
     final ThemeData mode = Theme.of(context);
-    var whichMode = mode.brightness;
     return Container(
-      color: (whichMode == Brightness.light)
-          ? const Color(AppTheme.backgroundAdsLight)
-          : const Color(AppTheme.backgroundAdsDark),
+      color: (mode.brightness == Brightness.light)
+          ? const Color(AppTheme.backgroundLight)
+          : const Color(AppTheme.backgroundDark),
       height: 60,
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: Image.asset(
@@ -60,10 +59,9 @@ class _AdsWidgetState extends State<AdsWidget> {
   void _setTimer() {
     var random = Random();
     _pos = random.nextInt(_photos.length);
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
         _pos = (_pos + 1) % _photos.length;
-        print("New Image: $_pos");
       });
     });
   }

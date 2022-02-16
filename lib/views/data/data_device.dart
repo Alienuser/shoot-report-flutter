@@ -42,7 +42,6 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                               controller: _textDataDeviceController,
                               textInputAction: TextInputAction.done,
                               maxLines: 20,
-                              placeholder: tr("data_device_value"),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

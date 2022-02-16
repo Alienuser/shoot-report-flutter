@@ -4,6 +4,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/views/training/training_edit.dart';
 
 class TrainingListRow extends StatefulWidget {
@@ -89,15 +90,13 @@ class _TrainingListRowState extends State<TrainingListRow> {
   Icon _getTrainingIcon(Training training) {
     switch (training.indicator) {
       case 0:
-        return const Icon(Icons.sentiment_dissatisfied_outlined,
-            color: Colors.red);
+        return IndicatorImage.getIcon(0);
       case 1:
-        return const Icon(Icons.sentiment_dissatisfied, color: Colors.red);
+        return IndicatorImage.getIcon(1);
       case 2:
-        return const Icon(Icons.sentiment_neutral_outlined,
-            color: Colors.yellow);
+        return IndicatorImage.getIcon(2);
       case 3:
-        return const Icon(Icons.sentiment_satisfied, color: Colors.green);
+        return IndicatorImage.getIcon(3);
       default:
         return const Icon(Icons.error);
     }

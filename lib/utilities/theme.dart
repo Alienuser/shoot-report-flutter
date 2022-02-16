@@ -4,10 +4,12 @@ class AppTheme {
   static const primaryColor = 0xFF1B344C;
   static const accentColor = 0xFF0AE20A;
   static const backgroundColorLight = 0xFFF2F2F7;
-  static const backgroundColorDark = 0xFF2c2c2e;
-  static const backgroundAdsLight = 0xFFFDFCFF;
-  static const backgroundAdsDark = 0xFF1A1C1E;
-  static const lightTextColor = 0xFF9c9ca0;
+  static const backgroundColorDark = 0xFF2C2C2E;
+  static const backgroundLight = 0xFFFDFCFF;
+  static const backgroundDark = 0xFF1A1C1E;
+  static const textSublineColor = 0xFF9C9CA0;
+  static const lightTextColor = 0xFF000000;
+  static const darkTextColor = 0xFFE2E2E6;
   static const chartWholeColor = 0x0AE20A;
   static const chartTenthColor = 0x0E2435;
 
@@ -51,7 +53,7 @@ class AppTheme {
         minimumSize: const Size.fromHeight(40),
       )),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(color: Color(primaryColor)),
-          selectedLabelStyle: TextStyle(color: Color(primaryColor))),
+          selectedIconTheme: IconThemeData(color: Colors.white),
+          selectedLabelStyle: TextStyle(color: Colors.white)),
       useMaterial3: true);
 }

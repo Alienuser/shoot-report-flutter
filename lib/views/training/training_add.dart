@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -369,6 +369,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
+    HapticFeedback.lightImpact();
 
     Navigator.of(context).pop(null);
   }

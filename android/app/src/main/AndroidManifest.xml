@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.famprobst.report">
-    <!-- package="de.famprobst.shoot_report1"> -->
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
    <application
         android:label="shoot report new"

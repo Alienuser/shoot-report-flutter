@@ -1,5 +1,5 @@
-import '../models/weapon.dart';
 import 'package:floor/floor.dart';
+import 'package:shoot_report/models/weapon.dart';
 
 @dao
 abstract class WeaponDao {

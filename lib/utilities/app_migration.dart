@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,9 +24,9 @@ class AppMigration {
         await openDatabase(
           "report.db",
           onOpen: (db) async {
-            print(db.path);
+            log(db.path, name: "Migration-Android");
 
-            print("Migrate Weapons");
+            log("Migrate Weapons", name: "Migration-Android");
             List<Map> weapons = await db.rawQuery('SELECT * FROM rifle_table');
             for (var i = 0; i < weapons.length; i++) {
               if (i < 10) {
@@ -39,7 +40,7 @@ class AppMigration {
               }
             }
 
-            print("Migrate Trainings");
+            log("Migrate Trainings", name: "Migration-Android");
             List<Map> trainings =
                 await db.rawQuery('SELECT * FROM training_table');
             for (var element in trainings) {
@@ -56,7 +57,7 @@ class AppMigration {
                   element["rifleId"] ?? ""));
             }
 
-            print("Migrate Competitions");
+            log("Migrate Competitions", name: "Migration-Android");
             List<Map> competitions =
                 await db.rawQuery('SELECT * FROM competition_table');
             for (var element in competitions) {
@@ -82,9 +83,9 @@ class AppMigration {
         await openDatabase(
           "${(await getApplicationSupportDirectory()).path}/shoot_report.sqlite",
           onOpen: (db) async {
-            print(db.path);
+            log(db.path, name: "Migration-iOS");
 
-            print("Migrate Weapons");
+            log("Migrate Weapons", name: "Migration-iOS");
             List<Map> weapons = await db.rawQuery('SELECT * from ZRIFLE;');
             for (var i = 0; i < weapons.length; i++) {
               weaponIds.add(UuidValue.fromByteList(weapons[i]["ZID"]).uuid);
@@ -99,7 +100,7 @@ class AppMigration {
               }
             }
 
-            print("Migrate Trainings");
+            log("Migrate Trainings", name: "Migration-iOS");
             List<Map> trainings = await db.rawQuery('SELECT * from ZTRAINING;');
             for (var element in trainings) {
               Training training = Training(
@@ -121,7 +122,7 @@ class AppMigration {
               database.trainingDao.insertTraining(training);
             }
 
-            print("Migrate Competitions");
+            log("Migrate Competitions", name: "Migration-iOS");
             List<Map> competitions =
                 await db.rawQuery('SELECT * from ZCOMPETITION;');
             for (var element in competitions) {
@@ -151,43 +152,53 @@ class AppMigration {
   }
 
   static void doSharedPrefMigration() async {
-    print("Migrate SharedPrefs");
     if (Platform.isAndroid) {
-      var path = (await getApplicationDocumentsDirectory()).parent.path +
-          "/shared_prefs/preference_rifle_1.xml";
-      var file = File(path);
-      var document = XmlDocument.parse(file.readAsStringSync());
-      final titles = document.findAllElements('string');
+      log("Migrate SharedPrefs", name: "Migration-Android");
+      try {
+        var path = (await getApplicationDocumentsDirectory()).parent.path +
+            "/shared_prefs/preference_rifle_1.xml";
+        var file = File(path);
+        var document = XmlDocument.parse(file.readAsStringSync());
+        final titles = document.findAllElements('string');
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      for (var element in titles) {
-        if (element.attributes.first.value == "pref_plan_during") {
-          prefs.setString("prefWeapon00_procedure_shot", element.text);
-        } else if (element.attributes.first.value == "pref_plan_before") {
-          prefs.setString("prefWeapon00_procedure_before", element.text);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        for (var element in titles) {
+          if (element.attributes.first.value == "pref_plan_during") {
+            prefs.setString("prefWeapon00_procedure_shot", element.text);
+          } else if (element.attributes.first.value == "pref_plan_before") {
+            prefs.setString("prefWeapon00_procedure_before", element.text);
+          }
+
+          log("${element.attributes.first.value}->${element.text}",
+              name: "Migration-Android");
         }
-
-        print('${element.attributes.first.value}->${element.text}');
+      } catch (_) {
+        log("No SharedPrefs.", name: "Migration-Android");
       }
     } else if (Platform.isIOS) {
-      NativeSharedPreferences nativePref =
-          await NativeSharedPreferences.getInstance();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      log("Migrate SharedPrefs", name: "Migration-iOS");
+      try {
+        NativeSharedPreferences nativePref =
+            await NativeSharedPreferences.getInstance();
+        SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      for (var i = 1; i < 13; i++) {
-        if (i < 10) {
-          prefs.setString("prefWeapon0${i - 1}_goalWhole_60_optimal",
-              nativePref.getString('goals_whole_60_optimal_$i') ?? "");
-        } else {
-          prefs.setString("prefWeapon${i - 1}_goalWhole_60_optimal",
-              nativePref.getString('goals_whole_60_optimal_$i') ?? "");
+        for (var i = 1; i < 13; i++) {
+          if (i < 10) {
+            prefs.setString("prefWeapon0${i - 1}_goalWhole_60_optimal",
+                nativePref.getString('goals_whole_60_optimal_$i') ?? "");
+          } else {
+            prefs.setString("prefWeapon${i - 1}_goalWhole_60_optimal",
+                nativePref.getString('goals_whole_60_optimal_$i') ?? "");
+          }
         }
+      } catch (_) {
+        log("No SharedPrefs.", name: "Migration-iOS");
       }
     }
   }
 
   static void _loadDefaultWeapons(FlutterDatabase database) async {
-    print("Loading initial weapons...");
+    log("Loading initial weapons.", name: "Migration");
 
     await database.weaponDao
         .insertWeapon(Weapon(null, "weapon_00", 0, "prefWeapon00", true));

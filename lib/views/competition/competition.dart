@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/theme.dart';
 import 'competition_list.dart';
 import 'competition_statistics.dart';
 
@@ -20,12 +21,15 @@ class CompetitionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return DefaultTabController(
         length: 2,
         child: Column(
           children: <Widget>[
             Material(
-              color: Colors.white,
+              color: (mode.brightness == Brightness.light)
+                  ? const Color(AppTheme.backgroundLight)
+                  : const Color(AppTheme.backgroundDark),
               child: TabBar(tabs: <Widget>[
                 Tab(text: tr("competition_menu_competition").toUpperCase()),
                 Tab(text: tr("competition_menu_statistic").toUpperCase()),

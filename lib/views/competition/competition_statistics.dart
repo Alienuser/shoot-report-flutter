@@ -35,13 +35,16 @@ class _CompetitionStatisticWidgetState
           return const SizedBox();
         }
         if (snapshot.data.toString() == "[]") {
+          final ThemeData mode = Theme.of(context);
           return Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                const Icon(
+                Icon(
                   Icons.insights,
-                  color: Color(AppTheme.primaryColor),
+                  color: (mode.brightness == Brightness.light)
+                      ? const Color(AppTheme.primaryColor)
+                      : const Color(AppTheme.backgroundLight),
                   size: 120,
                 ),
                 Text(

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/views/data/data_device.dart';
 import 'package:shoot_report/views/data/data_person.dart';
+import 'package:shoot_report/widgets/ads.dart';
 
 class DataWidget extends StatelessWidget {
   const DataWidget({
@@ -10,27 +11,29 @@ class DataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(tr("data_title")),
-          centerTitle: false,
-          bottom: TabBar(
-            labelColor: Colors.white,
-            tabs: <Widget>[
-              Tab(text: tr("data_tab_person")),
-              Tab(text: tr("data_tab_device")),
-            ],
+    return Scaffold(
+        bottomNavigationBar: const AdsWidget(),
+        body: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(tr("data_title")),
+              centerTitle: false,
+              bottom: TabBar(
+                labelColor: Colors.white,
+                tabs: <Widget>[
+                  Tab(text: tr("data_tab_person")),
+                  Tab(text: tr("data_tab_device")),
+                ],
+              ),
+            ),
+            body: const TabBarView(
+              children: <Widget>[
+                DataPersonWidget(),
+                DataDeviceWidget(),
+              ],
+            ),
           ),
-        ),
-        body: const TabBarView(
-          children: <Widget>[
-            DataPersonWidget(),
-            DataDeviceWidget(),
-          ],
-        ),
-      ),
-    );
+        ));
   }
 }
