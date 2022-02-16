@@ -27,14 +27,17 @@ class _TrainingListRowState extends State<TrainingListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Wrap(
-        spacing: 20,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: <Widget>[
-          _getTrainingIcon(widget.training),
-          _getTrainingPoints(widget.training)
-        ],
-      ),
+      horizontalTitleGap: 8,
+      leading: SizedBox(
+          width: 80,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              _getTrainingIcon(widget.training),
+              _getTrainingPoints(widget.training)
+            ],
+          )),
       title: Text(widget.training.kind),
       subtitle: Text(
           "${DateFormat.yMMMd().format(widget.training.date)}, in ${widget.training.place}"),
@@ -72,7 +75,9 @@ class _TrainingListRowState extends State<TrainingListRow> {
                         ScaffoldMessenger.of(context);
                     scaffoldMessengerState.hideCurrentSnackBar();
                     scaffoldMessengerState.showSnackBar(
-                      SnackBar(content: Text(tr("training_removed"))),
+                      SnackBar(
+                          content: Text(tr("training_removed")),
+                          behavior: SnackBarBehavior.floating),
                     );
                     Navigator.of(context).pop();
                   },
@@ -106,15 +111,17 @@ class _TrainingListRowState extends State<TrainingListRow> {
     if (training.shots.isNotEmpty) {
       if (training.shots.any((element) => element is double)) {
         return Text(
-            training.shots
-                .reduce((value, next) => value + next)
-                .toStringAsFixed(1),
-            style: const TextStyle(fontWeight: FontWeight.bold));
+          training.shots
+              .reduce((value, next) => value + next)
+              .toStringAsFixed(1),
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        );
       } else {
         return Text(
-            training.shots.reduce((value, next) => value + next).toString() +
-                "   ",
-            style: const TextStyle(fontWeight: FontWeight.bold));
+            training.shots.reduce((value, next) => value + next).toString(),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ));
       }
     } else {
       return const Text("0", style: TextStyle(fontWeight: FontWeight.bold));

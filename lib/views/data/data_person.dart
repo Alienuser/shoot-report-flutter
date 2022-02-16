@@ -326,7 +326,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
 
   void _deleteImage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("data_person_photo", "");
+    prefs.remove("data_person_photo");
     setState(() {
       imagePath = "";
     });
@@ -357,7 +357,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
           prefs.getString("data_person_squadtrainer_mail") ?? "";
 
       // Get image path if there is one
-      if (prefs.getString("data_person_photo") != "") {
+      if (prefs.getString("data_person_photo") != null &&
+          prefs.getString("data_person_photo") != "") {
         if (Platform.isIOS) {
           imagePath = "$directory/tmp/${prefs.getString("data_person_photo")}";
         } else if (Platform.isAndroid) {

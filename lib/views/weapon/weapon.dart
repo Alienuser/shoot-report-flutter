@@ -40,7 +40,9 @@ class _WeaponWidgetState extends State<WeaponWidget> {
               final scaffoldMessengerState = ScaffoldMessenger.of(context);
               scaffoldMessengerState.hideCurrentSnackBar();
               scaffoldMessengerState.showSnackBar(
-                SnackBar(content: Text(tr("weapon_show"))),
+                SnackBar(
+                    content: Text(tr("weapon_show")),
+                    behavior: SnackBarBehavior.floating),
               );
             },
           )

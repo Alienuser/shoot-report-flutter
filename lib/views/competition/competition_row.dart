@@ -26,6 +26,7 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      horizontalTitleGap: 0,
       leading: getCompetitionPoints(widget.competition),
       title: Text(widget.competition.kind),
       subtitle: Text(
@@ -64,7 +65,9 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
                         ScaffoldMessenger.of(context);
                     scaffoldMessengerState.hideCurrentSnackBar();
                     scaffoldMessengerState.showSnackBar(
-                      SnackBar(content: Text(tr("competition_deleted"))),
+                      SnackBar(
+                          content: Text(tr("competition_deleted")),
+                          behavior: SnackBarBehavior.floating),
                     );
                     Navigator.of(context).pop();
                   },
