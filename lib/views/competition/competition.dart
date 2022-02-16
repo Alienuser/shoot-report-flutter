@@ -24,10 +24,13 @@ class CompetitionWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(tabs: <Widget>[
-              Tab(text: tr("competition_menu_competition")),
-              Tab(text: tr("competition_menu_statistic")),
-            ]),
+            Material(
+              color: Colors.white,
+              child: TabBar(tabs: <Widget>[
+                Tab(text: tr("competition_menu_competition").toUpperCase()),
+                Tab(text: tr("competition_menu_statistic").toUpperCase()),
+              ]),
+            ),
             Flexible(
               child: TabBarView(children: [
                 CompetitionListWidget(

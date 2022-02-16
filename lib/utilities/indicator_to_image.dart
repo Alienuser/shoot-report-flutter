@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:shoot_report/utilities/theme.dart';
 
 class IndicatorImage {
   static Icon getIcon(int indicator) {
     switch (indicator) {
       case 0:
-        return const Icon(Icons.sentiment_dissatisfied_outlined,
-            color: Colors.red);
+        return const Icon(Icons.mood_bad, color: Colors.red);
       case 1:
         return const Icon(Icons.sentiment_dissatisfied, color: Colors.red);
       case 2:
-        return const Icon(Icons.sentiment_neutral_outlined,
-            color: Colors.yellow);
+        return const Icon(Icons.sentiment_satisfied,
+            color: Color(AppTheme.accentColor));
       case 3:
-        return const Icon(Icons.sentiment_satisfied, color: Colors.green);
+        return const Icon(Icons.mood, color: Color(AppTheme.accentColor));
       default:
         return const Icon(Icons.sentiment_satisfied, color: Colors.green);
     }

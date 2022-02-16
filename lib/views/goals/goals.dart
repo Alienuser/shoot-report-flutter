@@ -17,10 +17,13 @@ class GoalsWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(tabs: <Widget>[
-              Tab(text: tr("goals_whole")),
-              Tab(text: tr("goals_tenth"))
-            ]),
+            Material(
+              color: Colors.white,
+              child: TabBar(tabs: <Widget>[
+                Tab(text: tr("goals_whole").toUpperCase()),
+                Tab(text: tr("goals_tenth").toUpperCase())
+              ]),
+            ),
             Flexible(
               child: TabBarView(children: [
                 GoalsWholeWidget(weapon: weapon),

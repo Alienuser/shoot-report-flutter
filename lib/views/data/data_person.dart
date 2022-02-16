@@ -130,7 +130,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_name")),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
@@ -144,7 +143,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_age")),
                               keyboardType: TextInputType.number,
                               onChanged: (value) async {
@@ -159,7 +157,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_height")),
                               keyboardType:
                                   const TextInputType.numberWithOptions(
@@ -184,7 +181,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_club_1")),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
@@ -198,7 +194,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_club_2")),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
@@ -220,7 +215,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_trainer")),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
@@ -234,7 +228,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_trainer_mail")),
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) async {
@@ -250,7 +243,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText: tr("data_person_squadtrainer")),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
@@ -266,7 +258,6 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("data_person_value"),
                                   labelText:
                                       tr("data_person_squadtrainer_mail")),
                               keyboardType: TextInputType.emailAddress,

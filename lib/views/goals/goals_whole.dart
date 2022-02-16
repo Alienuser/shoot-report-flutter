@@ -68,7 +68,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_jackpot.png",
                                     height: 1,
@@ -93,7 +92,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_optimal.png",
                                     height: 1,
@@ -118,7 +116,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_real.png",
                                     height: 1,
@@ -143,7 +140,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_minimal.png",
                                     height: 1,
@@ -168,7 +164,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_chaos.png",
                                     height: 1,
@@ -201,7 +196,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_jackpot.png",
                                     height: 1,
@@ -226,7 +220,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_optimal.png",
                                     height: 1,
@@ -251,7 +244,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_real.png",
                                     height: 1,
@@ -276,7 +268,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_minimal.png",
                                     height: 1,
@@ -301,7 +292,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
-                                  hintText: tr("goals_whole_value"),
                                   prefixIcon: Image.asset(
                                     "assets/images/arrow_chaos.png",
                                     height: 1,

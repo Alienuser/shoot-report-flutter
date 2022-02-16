@@ -44,7 +44,6 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                               controller: _textShotController,
                               textInputAction: TextInputAction.done,
                               maxLines: 20,
-                              placeholder: tr("procedure_shot_text"),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

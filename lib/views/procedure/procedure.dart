@@ -18,12 +18,14 @@ class ProcedureWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(tabs: <Widget>[
-              Tab(text: tr("procedure_preparation")),
-              Tab(text: tr("procedure_shot")),
-            ]),
+            Material(
+              color: Colors.white,
+              child: TabBar(tabs: <Widget>[
+                Tab(text: tr("procedure_preparation").toUpperCase()),
+                Tab(text: tr("procedure_shot").toUpperCase()),
+              ]),
+            ),
             Flexible(
-              //Add this to give height
               child: TabBarView(children: [
                 ProcedurePreparationWidget(weapon: weapon),
                 ProcedureShotWidget(weapon: weapon)

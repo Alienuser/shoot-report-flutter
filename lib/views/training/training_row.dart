@@ -25,56 +25,68 @@ class TrainingListRow extends StatefulWidget {
 class _TrainingListRowState extends State<TrainingListRow> {
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key('${widget.training.hashCode}'),
-      background: Container(
-        alignment: AlignmentDirectional.centerEnd,
-        color: Colors.red,
-        child: const Padding(
-          padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
-          child: Icon(
-            Icons.delete,
-            color: Colors.white,
-          ),
-        ),
+    return ListTile(
+      leading: Wrap(
+        spacing: 20,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: <Widget>[
+          _getTrainingIcon(widget.training),
+          _getTrainingPoints(widget.training)
+        ],
       ),
-      direction: DismissDirection.endToStart,
-      onDismissed: (direction) {
-        widget.trainingDao.deleteTraining(widget.training);
-
-        final scaffoldMessengerState = ScaffoldMessenger.of(context);
-        scaffoldMessengerState.hideCurrentSnackBar();
-        scaffoldMessengerState.showSnackBar(
-          SnackBar(content: Text(tr("training_removed"))),
+      title: Text(widget.training.kind),
+      subtitle: Text(
+          "${DateFormat.yMMMd().format(widget.training.date)}, in ${widget.training.place}"),
+      trailing: IconButton(
+          onPressed: () {
+            _deleteTraining();
+          },
+          icon: const Icon(Icons.delete)),
+      onTap: () {
+        showBarModalBottomSheet(
+          context: context,
+          expand: true,
+          builder: (context) => TrainingEditWidget(
+              weapon: widget.weapon,
+              trainingDao: widget.trainingDao,
+              training: widget.training),
         );
       },
-      child: ListTile(
-        leading: Wrap(
-          spacing: 20,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: <Widget>[
-            getTrainingIcon(widget.training),
-            getTrainingPoints(widget.training)
-          ],
-        ),
-        title: Text(widget.training.kind),
-        subtitle: Text(
-            "${DateFormat.yMd().format(widget.training.date)}, in ${widget.training.place}"),
-        onTap: () {
-          showBarModalBottomSheet(
-            context: context,
-            expand: true,
-            builder: (context) => TrainingEditWidget(
-                weapon: widget.weapon,
-                trainingDao: widget.trainingDao,
-                training: widget.training),
-          );
-        },
-      ),
     );
   }
 
-  Icon getTrainingIcon(Training training) {
+  void _deleteTraining() {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: Text(tr("training_alert_title")),
+            content: Text(tr("training_alert_message")),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    widget.trainingDao.deleteTraining(widget.training);
+
+                    final scaffoldMessengerState =
+                        ScaffoldMessenger.of(context);
+                    scaffoldMessengerState.hideCurrentSnackBar();
+                    scaffoldMessengerState.showSnackBar(
+                      SnackBar(content: Text(tr("training_removed"))),
+                    );
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(tr("general_yes"))),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(tr("general_no")))
+            ],
+          );
+        });
+  }
+
+  Icon _getTrainingIcon(Training training) {
     switch (training.indicator) {
       case 0:
         return const Icon(Icons.sentiment_dissatisfied_outlined,
@@ -91,19 +103,22 @@ class _TrainingListRowState extends State<TrainingListRow> {
     }
   }
 
-  Text getTrainingPoints(Training training) {
+  Text _getTrainingPoints(Training training) {
     if (training.shots.isNotEmpty) {
       if (training.shots.any((element) => element is double)) {
-        return Text(training.shots
-            .reduce((value, next) => value + next)
-            .toStringAsFixed(1));
+        return Text(
+            training.shots
+                .reduce((value, next) => value + next)
+                .toStringAsFixed(1),
+            style: const TextStyle(fontWeight: FontWeight.bold));
       } else {
         return Text(
             training.shots.reduce((value, next) => value + next).toString() +
-                "   ");
+                "   ",
+            style: const TextStyle(fontWeight: FontWeight.bold));
       }
     } else {
-      return const Text("0");
+      return const Text("0", style: TextStyle(fontWeight: FontWeight.bold));
     }
   }
 }

@@ -22,7 +22,7 @@ class PartnerWidget extends StatelessWidget {
                   style: TextButton.styleFrom(
                     primary: Colors.white,
                   ),
-                  child: Text(tr("general_close")),
+                  child: const Icon(Icons.close),
                   onPressed: () => Navigator.of(context).pop(null),
                 ),
               ],

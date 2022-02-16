@@ -58,7 +58,7 @@ class TrainingListWidget extends StatelessWidget {
                   training: trainings[index]);
             },
             separatorBuilder: (context, index) {
-              return const Divider(height: 5);
+              return const Divider(height: 0);
             },
           );
         },

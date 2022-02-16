@@ -1,6 +1,8 @@
 {
     "general_title":"shoot report",
     "general_close":"schließen",
+    "general_yes":"Ja",
+    "general_no":"Nein",
 
     "weapon_00":"Luftgewehr",
     "weapon_01":"Luftgewehr 3-Stellung",
@@ -15,6 +17,8 @@
     "weapon_10":"Luftpistole aufgelegt",
     "weapon_11":"Armbrust",
 
+    "weapon_alert_title":"Waffe ausblenden",
+    "weapon_alert_message":"Möchtest du die Waffe wirklich ausblenden?",
     "weapon_deleted":"\"{}\" wurde ausgeblendet.",
     "weapon_show_toolltip":"Alle Waffen anzeigen",
     "weapon_show":"Alle Waffen werden angezeigt.",
@@ -56,6 +60,8 @@
     "export_competition_result":"Gesamtringzahl",
     "export_competition_report":"Trainingsbericht",
 
+    "training_alert_title":"Training löschen?",
+    "training_alert_message":"Möchtest du das Training wirklich löschen?",
     "training_menu_training":"Training",
     "training_menu_statistic":"Statistik",
     "training_removed":"Training wurde gelöscht.",
@@ -110,6 +116,8 @@
     "training_statistic_data_no":"Statistiken erscheinen erst,\nwenn du dein erstes Training erstellt hast.",
     "training_statistic_rings":"Ringe",
 
+    "competition_alert_title":"Wettkampf löschen?",
+    "competition_alert_message":"Möchtest du den Wettkampf wirklich löschen?",
     "competition_menu_competition":"Wettkampf",
     "competition_menu_statistic":"Statistik",
     "competition_deleted":"Wettkampf wurde gelöscht.",
@@ -190,11 +198,9 @@
 
     "procedure_preparation":"Vorbereitung",
     "procedure_preparation_title":"Mein Ablauf vor dem Wettkampf",
-    "procedure_preparation_text":"Vorbereitung",
 
     "procedure_shot":"Schuss",
     "procedure_shot_title":"Mein Ablauf für den Schuss",
-    "procedure_shot_text":"Schussablauf",
 
     "goals_whole":"Ganze Ringe",
     "goals_whole_jackpot":"Jackpot",
@@ -202,7 +208,6 @@
     "goals_whole_real":"Real",
     "goals_whole_minimal":"Minimal",
     "goals_whole_chaos":"Chaos",
-    "goals_whole_value":"Wert angeben",
     "goals_whole_40_title":"Meine Ziele 40 Schuss",
     "goals_whole_60_title":"Meine Ziele 60 Schuss",
 
@@ -212,7 +217,6 @@
     "goals_tenth_real":"Real",
     "goals_tenth_minimal":"Minimal",
     "goals_tenth_chaos":"Chaos",
-    "goals_tenth_value":"Wert angeben",
     "goals_tenth_40_title":"Meine Ziele 40 Schuss",
     "goals_tenth_60_title":"Meine Ziele 60 Schuss",
     

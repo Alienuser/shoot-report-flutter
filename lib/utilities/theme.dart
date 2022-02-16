@@ -21,13 +21,16 @@ class AppTheme {
       tabBarTheme: const TabBarTheme(
           labelColor: Colors.black,
           indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 3, color: Color(accentColor)))),
+              borderSide: BorderSide(width: 4, color: Color(primaryColor)))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         primary: const Color(AppTheme.primaryColor),
         onPrimary: Colors.white,
         minimumSize: const Size.fromHeight(40),
       )),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedIconTheme: IconThemeData(color: Color(primaryColor)),
+          selectedLabelStyle: TextStyle(color: Color(primaryColor))),
       useMaterial3: true);
 
   static final ThemeData darkTheme = ThemeData(
@@ -40,12 +43,15 @@ class AppTheme {
       tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
           indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 3, color: Color(accentColor)))),
+              borderSide: BorderSide(width: 4, color: Color(primaryColor)))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         primary: const Color(AppTheme.primaryColor),
         onPrimary: Colors.white,
         minimumSize: const Size.fromHeight(40),
       )),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedIconTheme: IconThemeData(color: Color(primaryColor)),
+          selectedLabelStyle: TextStyle(color: Color(primaryColor))),
       useMaterial3: true);
 }

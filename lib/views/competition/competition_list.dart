@@ -58,7 +58,7 @@ class CompetitionListWidget extends StatelessWidget {
                   competition: competitions[index]);
             },
             separatorBuilder: (context, index) {
-              return const Divider(height: 5);
+              return const Divider(height: 0);
             },
           );
         },

@@ -24,11 +24,14 @@ class TrainingWidget extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(
-              tabs: <Widget>[
-                Tab(text: tr("training_menu_training")),
-                Tab(text: tr("training_menu_statistic")),
-              ],
+            Material(
+              color: Colors.white,
+              child: TabBar(
+                tabs: <Widget>[
+                  Tab(text: tr("training_menu_training").toUpperCase()),
+                  Tab(text: tr("training_menu_statistic").toUpperCase()),
+                ],
+              ),
             ),
             Flexible(
               child: TabBarView(children: [

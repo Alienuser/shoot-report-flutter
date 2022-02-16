@@ -22,48 +22,60 @@ class WeaponListCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key('${weapon.hashCode}'),
-      background: Container(
-        alignment: AlignmentDirectional.centerEnd,
-        color: Colors.red,
-        child: const Padding(
-          padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
-          child: Icon(
-            Icons.delete,
-            color: Colors.white,
+    return ListTile(
+      leading: const Icon(Icons.legend_toggle_sharp),
+      title: Text(tr(weapon.name)),
+      trailing: IconButton(
+          onPressed: () {
+            _deleteWeapon(context);
+          },
+          icon: const Icon(Icons.delete)),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeWidget(
+                weapon: weapon,
+                weaponDao: weaponDao,
+                trainingDao: trainingDao,
+                competitionDao: competitionDao),
           ),
-        ),
-      ),
-      direction: DismissDirection.endToStart,
-      onDismissed: (direction) {
-        weapon.show = false;
-        weaponDao.updateWeapon(weapon);
-
-        final scaffoldMessengerState = ScaffoldMessenger.of(context);
-        scaffoldMessengerState.hideCurrentSnackBar();
-        scaffoldMessengerState.showSnackBar(
-          SnackBar(
-              content: Text(tr("weapon_deleted", args: [tr(weapon.name)]))),
         );
       },
-      child: ListTile(
-        leading: const Icon(Icons.legend_toggle_sharp),
-        title: Text(tr(weapon.name)),
-        trailing: const Icon(Icons.keyboard_arrow_right),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeWidget(
-                  weapon: weapon,
-                  weaponDao: weaponDao,
-                  trainingDao: trainingDao,
-                  competitionDao: competitionDao),
-            ),
-          );
-        },
-      ),
     );
+  }
+
+  void _deleteWeapon(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: Text(tr("weapon_alert_title")),
+            content: Text(tr("weapon_alert_message")),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    weapon.show = false;
+                    weaponDao.updateWeapon(weapon);
+
+                    final scaffoldMessengerState =
+                        ScaffoldMessenger.of(context);
+                    scaffoldMessengerState.hideCurrentSnackBar();
+                    scaffoldMessengerState.showSnackBar(
+                      SnackBar(
+                          content: Text(
+                              tr("weapon_deleted", args: [tr(weapon.name)]))),
+                    );
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(tr("general_yes"))),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(tr("general_no")))
+            ],
+          );
+        });
   }
 }
