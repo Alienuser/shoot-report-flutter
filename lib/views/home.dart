@@ -12,10 +12,10 @@ import 'package:shoot_report/views/goals/goals.dart';
 import 'package:shoot_report/views/procedure/procedure.dart';
 import 'package:shoot_report/views/trainer/trainer.dart';
 import 'package:shoot_report/views/training/training.dart';
-import 'package:shoot_report/widgets/Partner.dart';
 import 'package:shoot_report/widgets/ads.dart';
 import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
+import 'package:shoot_report/widgets/partner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeWidget extends StatefulWidget {
