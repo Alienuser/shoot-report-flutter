@@ -16,6 +16,7 @@ jobs:
       - run: ls -la
 
   packages:
+    needs: checkout
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -27,6 +28,7 @@ jobs:
       - run: flutter pub get
 
   analyze:
+    needs: packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -38,6 +40,7 @@ jobs:
       - run: flutter analyze
 
 #  test:
+#    needs: packages
 #    runs-on: ubuntu-latest
 #    steps:
 #      - uses: actions/download-artifact@v2
@@ -49,6 +52,7 @@ jobs:
 #      - run: flutter test
   
   build:
+    needs: packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
