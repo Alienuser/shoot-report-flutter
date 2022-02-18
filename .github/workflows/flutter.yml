@@ -40,7 +40,7 @@ jobs:
       - run: flutter analyze
 
 #  test:
-#    needs: packages
+#    needs: analyze
 #    runs-on: ubuntu-latest
 #    steps:
 #      - uses: actions/download-artifact@v2
@@ -52,7 +52,7 @@ jobs:
 #      - run: flutter test
   
   build:
-    needs: packages
+    needs: analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
