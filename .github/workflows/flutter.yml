@@ -13,7 +13,6 @@ jobs:
         with:
           name: repository
           path: ./
-      - run: ls -la
 
   packages:
     needs: checkout
@@ -61,8 +60,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter build apk
-      - run: ls -la
+      - run: flutter build apk --debug
       - uses: actions/upload-artifact@v2
         with:
           name: android
