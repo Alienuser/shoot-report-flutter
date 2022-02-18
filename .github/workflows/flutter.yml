@@ -5,14 +5,61 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2
+        with:
+          name: repository
+          path: /Users/runner/work
+      - run: ls -la
+
+  packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       - run: flutter pub get
+
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
       - run: flutter analyze
-      #- run: flutter test
+
+#  test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: repository
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#      - run: flutter test
+  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
       - run: flutter build apk
+      - run: ls -la
+      - uses: actions/upload-artifact@v2
+        with:
+          name: android
+          path: build/app/outputs/flutter-apk/app-release.apk
