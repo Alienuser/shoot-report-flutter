@@ -4,8 +4,8 @@ import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/utilities/theme.dart';
-import 'competition_list.dart';
-import 'competition_statistics.dart';
+import 'package:shoot_report/views/competition/competition_list.dart';
+import 'package:shoot_report/views/competition/competition_statistics.dart';
 
 class CompetitionWidget extends StatelessWidget {
   final Weapon weapon;

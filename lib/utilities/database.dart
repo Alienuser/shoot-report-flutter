@@ -6,9 +6,9 @@ import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:floor/floor.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/array_converter.dart';
+import 'package:shoot_report/utilities/date_time_converter.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'date_time_converter.dart';
-import 'array_converter.dart';
 part 'database.g.dart';
 
 @TypeConverters([DateTimeConverter, ArrayConverter])
