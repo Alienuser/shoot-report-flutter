@@ -60,11 +60,8 @@ class CooperationWidget extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: const Color(AppTheme.accentColor),
-                              minimumSize: const Size.fromHeight(40),
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                              )),
+                            primary: const Color(AppTheme.accentColor),
+                          ),
                           onPressed: () {
                             launch(
                               "https://www.burkhardt-sport.solutions/kontakt",

@@ -29,7 +29,7 @@ class _StatisticWidgetState extends State<StatisticWidget> {
       tooltipBehavior: TooltipBehavior(
           enable: true,
           activationMode: ActivationMode.singleTap,
-          format: "\u00D8: point.y",
+          format: "${tr("training_statistics_result")}: point.y",
           shouldAlwaysShow: true),
       onTooltipRender: (TooltipArgs args) {
         args.header = args.dataPoints![args.pointIndex!.toInt()].x;
@@ -49,7 +49,7 @@ class _StatisticWidgetState extends State<StatisticWidget> {
             animationDelay: 0,
             xValueMapper: (ChartData sales, _) => sales.x,
             yValueMapper: (ChartData sales, _) => sales.y,
-            name: '\u00D8',
+            name: tr("training_statistics_result"),
             markerSettings:
                 MarkerSettings(isVisible: true, color: widget.color)),
       ],

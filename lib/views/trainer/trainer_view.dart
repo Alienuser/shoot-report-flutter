@@ -20,20 +20,12 @@ class _TrainerViewWidgetState extends State<TrainerViewWidget> {
   Widget build(BuildContext context) {
     var locale = Localizations.localeOf(context).toString();
     var language = validLocales.contains(locale) ? locale : 'en';
-    late WebViewController _controller;
 
     return Scaffold(
       body: WebView(
         initialUrl: "$host/$language/${widget.url}",
         backgroundColor: const Color(AppTheme.backgroundColorLight),
         javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (controller) {
-          _controller = controller;
-        },
-        onPageFinished: (url) {
-          _controller.runJavascript(
-              'document.body.style.backgroundColor = "#F2F2F7";');
-        },
         navigationDelegate: (NavigationRequest request) {
           if (!request.url.contains(host)) {
             launch(request.url);

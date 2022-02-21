@@ -43,11 +43,11 @@ class _TrainerWidgetState extends State<TrainerWidget> {
             onTap: _onItemTapped,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: const Icon(Icons.business_center),
+                icon: const Icon(Icons.work),
                 label: tr("trainer_tab_equipment"),
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.settings),
+                icon: const Icon(Icons.miscellaneous_services),
                 label: tr("trainer_tab_tech"),
               ),
               BottomNavigationBarItem(

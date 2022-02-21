@@ -5,7 +5,7 @@ class AppTheme {
   static const accentColor = 0xFF0AE20A;
   static const backgroundColorLight = 0xFFF2F2F7;
   static const backgroundColorDark = 0xFF2C2C2E;
-  static const backgroundLight = 0xFFFDFCFF;
+  static const backgroundLight = 0xFFFFFFFF;
   static const backgroundDark = 0xFF1A1C1E;
   static const textSublineColor = 0xFF9C9CA0;
   static const lightTextColor = 0xFF000000;
