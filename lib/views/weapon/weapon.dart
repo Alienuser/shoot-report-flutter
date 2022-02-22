@@ -55,9 +55,9 @@ class _WeaponWidgetState extends State<WeaponWidget> {
             trainingDao: widget.trainingDao,
             competitionDao: widget.competitionDao,
           ),
-          const AdsWidget(),
         ],
       ),
+      bottomNavigationBar: const AdsWidget(),
     );
   }
 }

@@ -62,32 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     ];
 
     return Scaffold(
-      bottomNavigationBar: const AdsWidget(),
       body: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          elevation: 0,
-          onTap: _onItemTapped,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.fitness_center),
-              label: tr("menu_bottom_training"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.emoji_events),
-              label: tr("menu_bottom_competition"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.format_list_bulleted),
-              label: tr("menu_bottom_procedure"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.flag),
-              label: tr("menu_bottom_goals"),
-            ),
-          ],
-        ),
         appBar: AppBar(
           title: Text(tr(widget.weapon.name)),
           centerTitle: false,
@@ -194,7 +169,31 @@ class _HomeWidgetState extends State<HomeWidget> {
             child: _widgetOptions.elementAt(_selectedIndex),
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.fitness_center),
+              label: tr("menu_bottom_training"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.emoji_events),
+              label: tr("menu_bottom_competition"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.format_list_bulleted),
+              label: tr("menu_bottom_procedure"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.flag),
+              label: tr("menu_bottom_goals"),
+            ),
+          ],
+        ),
       ),
+      bottomNavigationBar: const AdsWidget(),
     );
   }
 }

@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:shoot_report/firebase_options.dart';
 import 'package:shoot_report/main_app.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
@@ -10,23 +13,24 @@ import 'package:version_migration/version_migration.dart';
 import 'package:flutter/material.dart';
 
 late FlutterDatabase database;
-late WeaponDao weaponDao;
-late TrainingDao trainingDao;
-late CompetitionDao competitionDao;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Splash initialization
+  FlutterNativeSplash.removeAfter(_initialization);
+  // Language initialization
   await EasyLocalization.ensureInitialized();
-
+  // Firebase initialization
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // Database initialization
   database = await $FloorFlutterDatabase
       .databaseBuilder('flutter_shoot_report.db')
       .build();
-  weaponDao = database.weaponDao;
-  trainingDao = database.trainingDao;
-  competitionDao = database.competitionDao;
-
-  FlutterNativeSplash.removeAfter(_initialization);
+  WeaponDao weaponDao = database.weaponDao;
+  TrainingDao trainingDao = database.trainingDao;
+  CompetitionDao competitionDao = database.competitionDao;
 
   runApp(
     EasyLocalization(

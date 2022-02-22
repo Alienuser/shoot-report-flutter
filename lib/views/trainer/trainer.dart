@@ -32,30 +32,31 @@ class _TrainerWidgetState extends State<TrainerWidget> {
     ];
 
     return Scaffold(
-        bottomNavigationBar: const AdsWidget(),
-        body: Scaffold(
-          body: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.work),
-                label: tr("trainer_tab_equipment"),
-              ),
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.miscellaneous_services),
-                label: tr("trainer_tab_tech"),
-              ),
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.psychology),
-                label: tr("trainer_tab_mental"),
-              ),
-            ],
-          ),
-        ));
+      body: Scaffold(
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.work),
+              label: tr("trainer_tab_equipment"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.miscellaneous_services),
+              label: tr("trainer_tab_tech"),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.psychology),
+              label: tr("trainer_tab_mental"),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const AdsWidget(),
+    );
   }
 }

@@ -48,7 +48,7 @@ class _AdsWidgetState extends State<AdsWidget> {
           ? const Color(AppTheme.backgroundLight)
           : const Color(AppTheme.backgroundDark),
       height: 60,
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Image.asset(
         _photos[_pos],
         fit: BoxFit.contain,

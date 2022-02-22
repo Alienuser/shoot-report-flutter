@@ -46,6 +46,10 @@ dependencies:
   flutter_native_splash: any
   syncfusion_flutter_charts: any
 
+  # Firebase
+  firebase_core: any
+  firebase_analytics: any
+
   # For the migration
   xml: any
   uuid: any

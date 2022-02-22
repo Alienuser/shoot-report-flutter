@@ -43,6 +43,8 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                             CupertinoTextFormFieldRow(
                               controller: _textShotController,
                               textInputAction: TextInputAction.done,
+                              placeholder: tr("general_value"),
+                              padding: const EdgeInsets.all(8),
                               maxLines: 20,
                               onChanged: (value) async {
                                 SharedPreferences prefs =

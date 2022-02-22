@@ -112,9 +112,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     3: IndicatorImage.getIcon(3),
                                   },
                                   onValueChanged: (value) {
-                                    setState(() {
-                                      indicator = value!;
-                                    });
+                                    if (isInEditMode) {
+                                      setState(() {
+                                        indicator = value!;
+                                      });
+                                    }
                                   },
                                 ),
                               )

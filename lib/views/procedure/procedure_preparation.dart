@@ -47,6 +47,8 @@ class _ProcedurePreparationWidgetState
                             CupertinoTextFormFieldRow(
                               controller: _textPreparationController,
                               textInputAction: TextInputAction.done,
+                              placeholder: tr("general_value"),
+                              padding: const EdgeInsets.all(8),
                               maxLines: 20,
                               onChanged: (value) async {
                                 SharedPreferences prefs =
