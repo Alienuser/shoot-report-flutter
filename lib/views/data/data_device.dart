@@ -35,30 +35,29 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
             body: SingleChildScrollView(
                 child: Form(
                     key: _formKey,
-                    child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(children: [
-                          CupertinoFormSection.insetGrouped(
-                              backgroundColor: Colors.transparent,
-                              header: Text(tr("data_device_title"),
-                                  style: const TextStyle(
-                                    color: Color(AppTheme.accentColor),
-                                  )),
-                              children: [
-                                CupertinoTextFormFieldRow(
-                                  controller: _textDataDeviceController,
-                                  textInputAction: TextInputAction.done,
-                                  placeholder: tr("general_value"),
-                                  padding: const EdgeInsets.all(8),
-                                  maxLines: 20,
-                                  onChanged: (value) async {
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    prefs.setString("data_device", value);
-                                  },
-                                ),
-                              ]),
-                        ]))))));
+                    child: Column(children: [
+                      CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
+                          header: Text(tr("data_device_title"),
+                              style: const TextStyle(
+                                color: Color(AppTheme.accentColor),
+                                //fontWeight: FontWeight.bold)
+                              )),
+                          children: [
+                            CupertinoTextFormFieldRow(
+                              controller: _textDataDeviceController,
+                              textInputAction: TextInputAction.done,
+                              placeholder: tr("general_value"),
+                              padding: const EdgeInsets.all(8),
+                              maxLines: 20,
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString("data_device", value);
+                              },
+                            ),
+                          ]),
+                    ])))));
   }
 
   void _loadData() async {

@@ -29,6 +29,7 @@ class TrainerMentalWidget extends StatelessWidget {
           ),
         ),
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             TrainerViewWidget(url: "mental_relax.html"),
             TrainerViewWidget(url: "mental_motivation.html"),

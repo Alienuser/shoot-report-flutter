@@ -29,6 +29,7 @@ class TrainerEquipmentWidget extends StatelessWidget {
           ),
         ),
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             TrainerViewWidget(url: "equipment_cloths.html"),
             TrainerViewWidget(url: "equipment_sport.html"),

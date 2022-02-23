@@ -28,6 +28,7 @@ class TrainerTechWidget extends StatelessWidget {
           ),
         ),
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             TrainerViewWidget(url: "tech_positioning.html"),
             TrainerViewWidget(url: "tech_procedure.html"),
