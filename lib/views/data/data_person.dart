@@ -58,72 +58,74 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                 child: Form(
                     key: _formKey,
                     child: Column(children: [
-                      CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
-                          decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                          children: [
-                            imagePath != null && imagePath!.isNotEmpty
-                                ? Padding(
-                                    padding: const EdgeInsets.only(top: 22),
-                                    child: SizedBox(
-                                      child: Image.file(File(imagePath!),
-                                          fit: BoxFit.contain, errorBuilder:
-                                              (BuildContext context,
-                                                  Object exception,
-                                                  StackTrace? stackTrace) {
-                                        return Text(
-                                            tr("data_person_image_error"));
-                                      }),
-                                    ))
-                                : const SizedBox.shrink(),
-                            imagePath != null && imagePath!.isNotEmpty
-                                ? ElevatedButton(
+                      Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: CupertinoFormSection.insetGrouped(
+                              backgroundColor: Colors.transparent,
+                              decoration: const BoxDecoration(
+                                color: Colors.transparent,
+                              ),
+                              children: [
+                                imagePath != null && imagePath!.isNotEmpty
+                                    ? SizedBox(
+                                        child: Image.file(File(imagePath!),
+                                            fit: BoxFit.contain, errorBuilder:
+                                                (BuildContext context,
+                                                    Object exception,
+                                                    StackTrace? stackTrace) {
+                                          return Text(
+                                              tr("data_person_image_error"));
+                                        }),
+                                      )
+                                    : const SizedBox.shrink(),
+                                imagePath != null && imagePath!.isNotEmpty
+                                    ? ElevatedButton(
+                                        onPressed: () {
+                                          _deleteImage();
+                                        },
+                                        child: Text(
+                                            tr("data_person_photo_delete")),
+                                      )
+                                    : const SizedBox.shrink(),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary:
+                                          const Color(AppTheme.primaryColor),
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
                                     onPressed: () {
-                                      _deleteImage();
+                                      showMaterialModalBottomSheet(
+                                        expand: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return Material(
+                                              child: SafeArea(
+                                            top: false,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                ListTile(
+                                                    title: Text(tr(
+                                                        "data_person_image_camera")),
+                                                    leading: const Icon(Icons
+                                                        .camera_alt_outlined),
+                                                    onTap: () =>
+                                                        _getImageFromCamera()),
+                                                ListTile(
+                                                    title: Text(tr(
+                                                        "data_person_image_gallery")),
+                                                    leading:
+                                                        const Icon(Icons.image),
+                                                    onTap: () =>
+                                                        _getImageFromGallery()),
+                                              ],
+                                            ),
+                                          ));
+                                        },
+                                      );
                                     },
-                                    child: Text(tr("data_person_photo_delete")),
-                                  )
-                                : const SizedBox.shrink(),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
-                                  minimumSize: const Size.fromHeight(40),
-                                ),
-                                onPressed: () {
-                                  showMaterialModalBottomSheet(
-                                    expand: false,
-                                    context: context,
-                                    builder: (context) {
-                                      return Material(
-                                          child: SafeArea(
-                                        top: false,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            ListTile(
-                                                title: Text(tr(
-                                                    "data_person_image_camera")),
-                                                leading: const Icon(
-                                                    Icons.camera_alt_outlined),
-                                                onTap: () =>
-                                                    _getImageFromCamera()),
-                                            ListTile(
-                                                title: Text(tr(
-                                                    "data_person_image_gallery")),
-                                                leading:
-                                                    const Icon(Icons.image),
-                                                onTap: () =>
-                                                    _getImageFromGallery()),
-                                          ],
-                                        ),
-                                      ));
-                                    },
-                                  );
-                                },
-                                child: Text(tr("data_person_photo"))),
-                          ]),
+                                    child: Text(tr("data_person_photo"))),
+                              ])),
                       CupertinoFormSection.insetGrouped(
                           backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_title"),

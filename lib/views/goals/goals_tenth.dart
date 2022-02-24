@@ -45,266 +45,250 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
         body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
-                child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(children: [
-                      CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
-                          header: Text(tr("goals_tenth_40_title"),
-                              style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                              )),
-                          children: [
-                            TextFormField(
-                              controller: _text40JackpotController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_jackpot.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_jackpot")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_jackpot",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text40OptimalController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_optimal.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_optimal")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_optimal",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text40RealController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_real.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_real")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_real",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text40MinimalController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_minimal.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_minimal")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_minimal",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text40ChaosController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_chaos.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_chaos")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_chaos",
-                                    value);
-                              },
-                            ),
-                          ]),
-                      CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
-                          header: Text(tr("goals_whole_60_title"),
-                              style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                              )),
-                          children: [
-                            TextFormField(
-                              controller: _text60JackpotController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_jackpot.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_jackpot")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_jackpot",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text60OptimalController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_optimal.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_optimal")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_optimal",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text60RealController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_real.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_real")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_real",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text60MinimalController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_minimal.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_minimal")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_minimal",
-                                    value);
-                              },
-                            ),
-                            TextFormField(
-                              controller: _text60ChaosController,
-                              textInputAction: TextInputAction.done,
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  prefixIcon: Image.asset(
-                                    "assets/images/arrow_chaos.png",
-                                    height: 1,
-                                    color: const Color(AppTheme.accentColor),
-                                  ),
-                                  labelText: tr("goals_tenth_chaos")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_chaos",
-                                    value);
-                              },
-                            ),
-                          ]),
-                    ])))));
+                child: Column(children: [
+                  CupertinoFormSection.insetGrouped(
+                      backgroundColor: Colors.transparent,
+                      header: Text(tr("goals_tenth_40_title"),
+                          style: const TextStyle(
+                            color: Color(AppTheme.accentColor),
+                          )),
+                      children: [
+                        TextFormField(
+                          controller: _text40JackpotController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_jackpot.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_jackpot")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_40_jackpot",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text40OptimalController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_optimal.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_optimal")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_40_optimal",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text40RealController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_real.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_real")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile + "_goalTenth_40_real",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text40MinimalController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_minimal.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_minimal")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_40_minimal",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text40ChaosController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_chaos.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_chaos")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile + "_goalTenth_40_chaos",
+                                value);
+                          },
+                        ),
+                      ]),
+                  CupertinoFormSection.insetGrouped(
+                      backgroundColor: Colors.transparent,
+                      header: Text(tr("goals_whole_60_title"),
+                          style: const TextStyle(
+                            color: Color(AppTheme.accentColor),
+                          )),
+                      children: [
+                        TextFormField(
+                          controller: _text60JackpotController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_jackpot.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_jackpot")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_60_jackpot",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text60OptimalController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_optimal.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_optimal")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_60_optimal",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text60RealController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_real.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_real")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile + "_goalTenth_60_real",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text60MinimalController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_minimal.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_minimal")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile +
+                                    "_goalTenth_60_minimal",
+                                value);
+                          },
+                        ),
+                        TextFormField(
+                          controller: _text60ChaosController,
+                          textInputAction: TextInputAction.done,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.all(10.0),
+                              prefixIcon: Image.asset(
+                                "assets/images/arrow_chaos.png",
+                                height: 1,
+                                color: const Color(AppTheme.accentColor),
+                              ),
+                              labelText: tr("goals_tenth_chaos")),
+                          onChanged: (value) async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                widget.weapon.prefFile + "_goalTenth_60_chaos",
+                                value);
+                          },
+                        ),
+                      ]),
+                ]))));
   }
 
   void _loadData() async {
