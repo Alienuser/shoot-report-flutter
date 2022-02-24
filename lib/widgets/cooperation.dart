@@ -1,11 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CooperationWidget extends StatelessWidget {
+class CooperationWidget extends StatefulWidget {
   const CooperationWidget({Key? key}) : super(key: key);
+
+  @override
+  State<CooperationWidget> createState() => _CooperationWidgetState();
+}
+
+class _CooperationWidgetState extends State<CooperationWidget> {
+  @override
+  void initState() {
+    super.initState();
+    _logPageVisit();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,5 +87,9 @@ class CooperationWidget extends StatelessWidget {
                 ],
               ),
             )));
+  }
+
+  void _logPageVisit() async {
+    await FirebaseAnalytics.instance.logEvent(name: 'view_cooperation');
   }
 }

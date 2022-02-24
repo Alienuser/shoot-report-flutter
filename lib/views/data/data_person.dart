@@ -65,16 +65,18 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           ),
                           children: [
                             imagePath != null && imagePath!.isNotEmpty
-                                ? SizedBox(
-                                    child: Image.file(File(imagePath!),
-                                        fit: BoxFit.contain, errorBuilder:
-                                            (BuildContext context,
-                                                Object exception,
-                                                StackTrace? stackTrace) {
-                                      return Text(
-                                          tr("data_person_image_error"));
-                                    }),
-                                  )
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 22),
+                                    child: SizedBox(
+                                      child: Image.file(File(imagePath!),
+                                          fit: BoxFit.contain, errorBuilder:
+                                              (BuildContext context,
+                                                  Object exception,
+                                                  StackTrace? stackTrace) {
+                                        return Text(
+                                            tr("data_person_image_error"));
+                                      }),
+                                    ))
                                 : const SizedBox.shrink(),
                             imagePath != null && imagePath!.isNotEmpty
                                 ? ElevatedButton(

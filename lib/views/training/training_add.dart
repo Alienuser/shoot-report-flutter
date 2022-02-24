@@ -48,6 +48,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -84,7 +85,10 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                 width: double.infinity,
                                 child: CupertinoSlidingSegmentedControl<int>(
                                   groupValue: indicator,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: (mode.brightness ==
+                                          Brightness.light)
+                                      ? const Color(AppTheme.backgroundLight)
+                                      : const Color(AppTheme.backgroundDark),
                                   thumbColor:
                                       const Color(AppTheme.primaryColor),
                                   children: {
@@ -337,6 +341,11 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("general_value"),
                                   maxLines: 10,
+                                  style: TextStyle(
+                                    color: (mode.brightness == Brightness.light)
+                                        ? const Color(AppTheme.textColorLight)
+                                        : const Color(AppTheme.textColorDark),
+                                  ),
                                   onChanged: (value) async {
                                     comment = value;
                                   }),

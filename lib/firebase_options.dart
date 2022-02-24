@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show defaultTargetPlatform, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -16,9 +16,6 @@ import 'package:flutter/foundation.dart'
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
     // ignore: missing_enum_constant_in_switch
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -37,16 +34,6 @@ class DefaultFirebaseOptions {
     );
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDyb-7BBRClabntfUxNfZaGJUd04SU8ouE',
-    appId: '1:629596194534:web:a2ada3ce81e7d0bcf29d27',
-    messagingSenderId: '629596194534',
-    projectId: 'shoot-report',
-    authDomain: 'shoot-report.firebaseapp.com',
-    storageBucket: 'shoot-report.appspot.com',
-    measurementId: 'G-J5KCEKZCE2',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBUAWubr5qIVqHMQBJkiLRToSzPYdD2QIU',
     appId: '1:629596194534:android:45bf7590911c6066f29d27',
@@ -61,8 +48,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '629596194534',
     projectId: 'shoot-report',
     storageBucket: 'shoot-report.appspot.com',
-    androidClientId: '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
-    iosClientId: '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
+    androidClientId:
+        '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
+    iosClientId:
+        '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
     iosBundleId: 'de.famprobst.report',
   );
 }

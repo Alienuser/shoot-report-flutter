@@ -18,6 +18,7 @@
     "weapon_10":"Luftpistole aufgelegt",
     "weapon_11":"Armbrust",
 
+    "weapon_data_no":"Keine Waffen.",
     "weapon_alert_title":"Waffe ausblenden",
     "weapon_alert_message":"Möchtest du die Waffe wirklich ausblenden?",
     "weapon_deleted":"\"{}\" wurde ausgeblendet.",

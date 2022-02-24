@@ -18,6 +18,7 @@
     "weapon_10":"Luftpistole aufgelegt",
     "weapon_11":"Armbrust",
 
+    "weapon_data_no":"Keine Waffen.",
     "weapon_alert_title":"Waffe ausblenden",
     "weapon_alert_message":"Möchtest du die Waffe wirklich ausblenden?",
     "weapon_deleted":"\"{}\" wurde ausgeblendet.",
@@ -116,6 +117,7 @@
     "training_statistic_tenth":"Zehntel Ringe",
     "training_statistic_data_no":"Statistiken erscheinen erst,\nwenn du dein erstes Training erstellt hast.",
     "training_statistic_rings":"Ringe",
+    "training_statistics_result":"Ergebnis",
 
     "competition_alert_title":"Wettkampf löschen?",
     "competition_alert_message":"Möchtest du den Wettkampf wirklich löschen?",
@@ -160,6 +162,7 @@
     "competition_statistic_tenth":"Zehntel Ringe",
     "competition_statistic_data_no":"Statistiken erscheinen erst,\nwenn du dein ersten Wettkampf erstellt hast.",
     "competition_statistic_rings":"Ringe",
+    "competition_statistics_result":"Ergebnis",
 
     "data_title":"Stammdaten",
     "data_tab_person":"Person",

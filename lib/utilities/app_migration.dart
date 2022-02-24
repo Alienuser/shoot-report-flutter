@@ -154,42 +154,267 @@ class AppMigration {
   static void doSharedPrefMigration() async {
     if (Platform.isAndroid) {
       log("Migrate SharedPrefs", name: "Migration-Android");
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
       try {
+        log("Migrate User Data", name: "Migration-Android");
         var path = (await getApplicationDocumentsDirectory()).parent.path +
-            "/shared_prefs/preference_rifle_1.xml";
+            "/shared_prefs/activity.ActivityMasterData.xml";
         var file = File(path);
         var document = XmlDocument.parse(file.readAsStringSync());
         final titles = document.findAllElements('string');
 
-        SharedPreferences prefs = await SharedPreferences.getInstance();
         for (var element in titles) {
-          if (element.attributes.first.value == "pref_plan_during") {
-            prefs.setString("prefWeapon00_procedure_shot", element.text);
-          } else if (element.attributes.first.value == "pref_plan_before") {
-            prefs.setString("prefWeapon00_procedure_before", element.text);
+          if (element.attributes.first.value == "masterData_Name") {
+            prefs.setString("data_person_name", element.text);
+          } else if (element.attributes.first.value == "masterData_Age") {
+            prefs.setString("data_person_age", element.text);
+          } else if (element.attributes.first.value == "masterData_Size") {
+            prefs.setString("data_person_height", element.text);
+          } else if (element.attributes.first.value ==
+              "masterData_Association1") {
+            prefs.setString("data_person_club_1", element.text);
+          } else if (element.attributes.first.value ==
+              "masterData_Association2") {
+            prefs.setString("data_person_club_2", element.text);
+          } else if (element.attributes.first.value == "masterData_Trainer") {
+            prefs.setString("data_person_trainer", element.text);
+          } else if (element.attributes.first.value ==
+              "masterData_TrainerMail") {
+            prefs.setString("data_person_trainer_mail", element.text);
+          } else if (element.attributes.first.value == "masterData_Squad") {
+            prefs.setString("data_person_squadtrainer", element.text);
+          } else if (element.attributes.first.value == "masterData_SquadMail") {
+            prefs.setString("data_person_squadtrainer_mail", element.text);
+          } else if (element.attributes.first.value == "pref_data_device") {
+            prefs.setString("data_device", element.text);
           }
-
-          log("${element.attributes.first.value}->${element.text}",
-              name: "Migration-Android");
         }
       } catch (_) {
-        log("No SharedPrefs.", name: "Migration-Android");
+        log("No SharedPrefs. for user data.", name: "Migration-Android");
+      }
+
+      log("Migrate weapon data", name: "Migration-Android");
+      for (var i = 1; i < 13; i++) {
+        try {
+          var path = (await getApplicationDocumentsDirectory()).parent.path +
+              "/shared_prefs/preference_rifle_$i.xml";
+          var file = File(path);
+          var document = XmlDocument.parse(file.readAsStringSync());
+          final titles = document.findAllElements('string');
+
+          for (var element in titles) {
+            if (element.attributes.first.value == "pref_plan_during") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_shot",
+                  element.text);
+            } else if (element.attributes.first.value == "pref_plan_before") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_before",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete40_wish") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete40_optimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete40_real") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete40_minimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete40_chaos") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete60_wish") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete60_optimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete60_real") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete60_minimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_complete60_chaos") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth40_wish") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth40_optimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth40_real") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth40_minimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth40_chaos") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth60_wish") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth60_optimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth60_real") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth60_minimal") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
+                  element.text);
+            } else if (element.attributes.first.value ==
+                "pref_goal_tenth60_chaos") {
+              prefs.setString(
+                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
+                  element.text);
+            }
+          }
+        } catch (_) {
+          log("No SharedPrefs. for weapon $i", name: "Migration-Android");
+          continue;
+        }
       }
     } else if (Platform.isIOS) {
       log("Migrate SharedPrefs", name: "Migration-iOS");
+
       try {
         NativeSharedPreferences nativePref =
             await NativeSharedPreferences.getInstance();
         SharedPreferences prefs = await SharedPreferences.getInstance();
 
+        log("Migrate User Data", name: "Migration-iOS");
+        prefs.setString(
+            "data_person_name", nativePref.getString('user_name') ?? "");
+        prefs.setString(
+            "data_person_age", nativePref.getString('user_age') ?? "");
+        prefs.setString(
+            "data_person_height", nativePref.getString('user_height') ?? "");
+        prefs.setString(
+            "data_person_club_1", nativePref.getString('user_club_1') ?? "");
+        prefs.setString(
+            "data_person_club_2", nativePref.getString('user_club_2') ?? "");
+        prefs.setString(
+            "data_person_trainer", nativePref.getString('user_trainer') ?? "");
+        prefs.setString("data_person_trainer_mail",
+            nativePref.getString('user_trainer_mail') ?? "");
+        prefs.setString("data_person_squadtrainer",
+            nativePref.getString('user_squad_trainer') ?? "");
+        prefs.setString("data_person_squadtrainer_mail",
+            nativePref.getString('user_squad_trainer_mail') ?? "");
+
+        log("Migrate weapon data", name: "Migration-iOS");
         for (var i = 1; i < 13; i++) {
-          if (i < 10) {
-            prefs.setString("prefWeapon0${i - 1}_goalWhole_60_optimal",
-                nativePref.getString('goals_whole_60_optimal_$i') ?? "");
-          } else {
-            prefs.setString("prefWeapon${i - 1}_goalWhole_60_optimal",
-                nativePref.getString('goals_whole_60_optimal_$i') ?? "");
-          }
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_shot",
+              nativePref.getString('procedure_during_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_before",
+              nativePref.getString('procedure_before_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
+              nativePref.getString('goals_whole_40_jackpot_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
+              nativePref.getString('goals_whole_40_optimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
+              nativePref.getString('goals_whole_40_real_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
+              nativePref.getString('goals_whole_40_minimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
+              nativePref.getString('goals_whole_40_chaos_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
+              nativePref.getString('goals_whole_60_jackpot_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
+              nativePref.getString('goals_whole_60_optimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
+              nativePref.getString('goals_whole_60_real_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
+              nativePref.getString('goals_whole_60_minimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
+              nativePref.getString('goals_whole_60_chaos_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
+              nativePref.getString('goals_tenth_40_jackpot_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
+              nativePref.getString('goals_tenth_40_optimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
+              nativePref.getString('goals_tenth_40_real_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
+              nativePref.getString('goals_tenth_40_minimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
+              nativePref.getString('goals_tenth_40_chaos_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
+              nativePref.getString('goals_tenth_60_jackpot_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
+              nativePref.getString('goals_tenth_60_optimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
+              nativePref.getString('goals_tenth_60_real_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
+              nativePref.getString('goals_tenth_60_minimal_$i') ?? "");
+          prefs.setString(
+              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
+              nativePref.getString('goals_tenth_60_chaos_$i') ?? "");
         }
       } catch (_) {
         log("No SharedPrefs.", name: "Migration-iOS");

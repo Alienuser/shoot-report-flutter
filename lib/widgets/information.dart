@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -25,6 +26,7 @@ class _InformationWidgetState extends State<InformationWidget> {
   void initState() {
     super.initState();
     _initPackageInfo();
+    _logPageVisit();
   }
 
   @override
@@ -152,5 +154,9 @@ class _InformationWidgetState extends State<InformationWidget> {
     setState(() {
       _packageInfo = info;
     });
+  }
+
+  void _logPageVisit() async {
+    await FirebaseAnalytics.instance.logEvent(name: 'view_information');
   }
 }

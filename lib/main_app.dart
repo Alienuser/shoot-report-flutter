@@ -27,9 +27,10 @@ class ShootReport extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       home: WeaponWidget(
-          weaponDao: weaponDao,
-          trainingDao: trainingDao,
-          competitionDao: competitionDao),
+        weaponDao: weaponDao,
+        trainingDao: trainingDao,
+        competitionDao: competitionDao,
+      ),
     );
   }
 }

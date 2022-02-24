@@ -37,9 +37,10 @@ Future<void> main() async {
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
         child: ShootReport(
-            weaponDao: weaponDao,
-            trainingDao: trainingDao,
-            competitionDao: competitionDao)),
+          weaponDao: weaponDao,
+          trainingDao: trainingDao,
+          competitionDao: competitionDao,
+        )),
   );
 }
 

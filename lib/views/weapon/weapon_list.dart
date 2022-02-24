@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/weapon/weapon_row.dart';
 
 class WeaponListView extends StatelessWidget {
@@ -10,12 +12,12 @@ class WeaponListView extends StatelessWidget {
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
-  const WeaponListView(
-      {Key? key,
-      required this.weaponDao,
-      required this.trainingDao,
-      required this.competitionDao})
-      : super(key: key);
+  const WeaponListView({
+    Key? key,
+    required this.weaponDao,
+    required this.trainingDao,
+    required this.competitionDao,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,26 @@ class WeaponListView extends StatelessWidget {
         stream: weaponDao.findAllWeapons(true),
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
-            return const Text("Daten werden geladen...");
+            return const SizedBox();
           }
           if (snapshot.data.toString() == "[]") {
-            return const Text('Keine Daten da...');
+            final ThemeData mode = Theme.of(context);
+            return Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  Icon(
+                    Icons.hourglass_empty,
+                    color: (mode.brightness == Brightness.light)
+                        ? const Color(AppTheme.primaryColor)
+                        : const Color(AppTheme.backgroundLight),
+                    size: 120,
+                  ),
+                  Text(
+                    tr("weapon_data_no"),
+                    textAlign: TextAlign.center,
+                  )
+                ]));
           }
 
           final weapons = snapshot.requireData;

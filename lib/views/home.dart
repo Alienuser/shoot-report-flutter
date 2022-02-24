@@ -24,13 +24,13 @@ class HomeWidget extends StatefulWidget {
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
-  const HomeWidget(
-      {Key? key,
-      required this.weapon,
-      required this.weaponDao,
-      required this.trainingDao,
-      required this.competitionDao})
-      : super(key: key);
+  const HomeWidget({
+    Key? key,
+    required this.weapon,
+    required this.weaponDao,
+    required this.trainingDao,
+    required this.competitionDao,
+  }) : super(key: key);
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();

@@ -12,13 +12,13 @@ class WeaponListCell extends StatelessWidget {
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
-  const WeaponListCell(
-      {Key? key,
-      required this.weapon,
-      required this.weaponDao,
-      required this.trainingDao,
-      required this.competitionDao})
-      : super(key: key);
+  const WeaponListCell({
+    Key? key,
+    required this.weapon,
+    required this.weaponDao,
+    required this.trainingDao,
+    required this.competitionDao,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,11 @@ class WeaponListCell extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => HomeWidget(
-                weapon: weapon,
-                weaponDao: weaponDao,
-                trainingDao: trainingDao,
-                competitionDao: competitionDao),
+              weapon: weapon,
+              weaponDao: weaponDao,
+              trainingDao: trainingDao,
+              competitionDao: competitionDao,
+            ),
           ),
         );
       },

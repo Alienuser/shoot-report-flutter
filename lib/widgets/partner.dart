@@ -1,11 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class PartnerWidget extends StatelessWidget {
+class PartnerWidget extends StatefulWidget {
   const PartnerWidget({Key? key}) : super(key: key);
+
+  @override
+  State<PartnerWidget> createState() => _PartnerWidgetState();
+}
+
+class _PartnerWidgetState extends State<PartnerWidget> {
+  @override
+  void initState() {
+    super.initState();
+    _logPageVisit();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,5 +158,9 @@ class PartnerWidget extends StatelessWidget {
                 ],
               ),
             )));
+  }
+
+  void _logPageVisit() async {
+    await FirebaseAnalytics.instance.logEvent(name: 'view_partner');
   }
 }

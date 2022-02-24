@@ -54,7 +54,7 @@ dependencies:
   xml: any
   uuid: any
   sqflite: any
-  plist_parser: any
+  plist_parser: 0.0.4
   native_shared_preferences: any
 
 dev_dependencies:

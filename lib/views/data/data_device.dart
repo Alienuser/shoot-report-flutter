@@ -24,6 +24,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -50,6 +51,11 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                               placeholder: tr("general_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,
+                              style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.textColorLight)
+                                    : const Color(AppTheme.textColorDark),
+                              ),
                               onChanged: (value) async {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

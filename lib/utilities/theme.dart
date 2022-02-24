@@ -12,6 +12,8 @@ class AppTheme {
   static const darkTextColor = 0xFFE2E2E6;
   static const chartWholeColor = 0x0AE20A;
   static const chartTenthColor = 0x0E2435;
+  static const textColorDark = 0xFFFAFAFA;
+  static const textColorLight = 0xFF363636;
 
   static final ThemeData lightTheme = ThemeData(
       colorSchemeSeed: const Color(primaryColor),

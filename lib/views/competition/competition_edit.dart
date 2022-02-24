@@ -57,6 +57,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -338,6 +339,11 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("general_value"),
                                   maxLines: 10,
+                                  style: TextStyle(
+                                    color: (mode.brightness == Brightness.light)
+                                        ? const Color(AppTheme.textColorLight)
+                                        : const Color(AppTheme.textColorDark),
+                                  ),
                                   enabled: isInEditMode,
                                   onChanged: (value) async {
                                     comment = value;
