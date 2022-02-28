@@ -27,39 +27,46 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
   @override
   Widget build(BuildContext context) {
     final ThemeData mode = Theme.of(context);
-    return Scaffold(
-        body: SingleChildScrollView(
-            child: Form(
-                key: _formKey,
-                child: Column(children: [
-                  CupertinoFormSection.insetGrouped(
-                      backgroundColor: Colors.transparent,
-                      header: Text(tr("procedure_shot_title"),
-                          style: const TextStyle(
-                            color: Color(AppTheme.accentColor),
-                          )),
-                      children: [
-                        CupertinoTextFormFieldRow(
-                          controller: _textShotController,
-                          textInputAction: TextInputAction.done,
-                          placeholder: tr("general_value"),
-                          padding: const EdgeInsets.all(8),
-                          maxLines: 20,
-                          style: TextStyle(
-                            color: (mode.brightness == Brightness.light)
-                                ? const Color(AppTheme.textColorLight)
-                                : const Color(AppTheme.textColorDark),
-                          ),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_procedure_shot",
-                                value);
-                          },
-                        ),
-                      ]),
-                ]))));
+    return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+            body: SingleChildScrollView(
+                child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
+                          header: Text(tr("procedure_shot_title"),
+                              style: const TextStyle(
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
+                          children: [
+                            CupertinoTextFormFieldRow(
+                              controller: _textShotController,
+                              textInputAction: TextInputAction.done,
+                              placeholder: tr("procedure_shot_value"),
+                              padding: const EdgeInsets.all(8),
+                              maxLines: 20,
+                              style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.textColorLight)
+                                    : const Color(AppTheme.textColorDark),
+                              ),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile + "_procedure_shot",
+                                    value);
+                              },
+                            ),
+                          ]),
+                    ])))));
   }
 
   void _loadData() async {

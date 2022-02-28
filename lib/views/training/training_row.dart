@@ -27,12 +27,11 @@ class _TrainingListRowState extends State<TrainingListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 8,
+      horizontalTitleGap: 20,
       leading: SizedBox(
           width: 80,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               _getTrainingIcon(widget.training),
               _getTrainingPoints(widget.training)

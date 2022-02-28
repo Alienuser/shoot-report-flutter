@@ -168,6 +168,7 @@
     "data_tab_person":"Person",
     "data_tab_device":"Sportgerät",
     "data_device_title":"Einstellungen am Sportgerät",
+    "data_device_value":"Hier bitte was eingeben. Danke",
     "data_person_photo":"Photo hinzufügen",
     "data_person_photo_delete":"Bild löschen",
     "data_person_image_error":"Bild konnte nicht geladen werden.",
@@ -200,9 +201,11 @@
 
     "procedure_preparation":"Vorbereitung",
     "procedure_preparation_title":"Mein Ablauf vor dem Wettkampf",
+    "procedure_preparation_value":"Das ist auch ein Wert",
 
     "procedure_shot":"Schuss",
     "procedure_shot_title":"Mein Ablauf für den Schuss",
+    "procedure_shot_value":"Hier mein Wert",
 
     "goals_whole":"Ganze Ringe",
     "goals_whole_jackpot":"Jackpot",

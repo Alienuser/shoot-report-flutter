@@ -26,8 +26,15 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 0,
-      leading: getCompetitionPoints(widget.competition),
+      horizontalTitleGap: 20,
+      leading: SizedBox(
+          width: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              getCompetitionPoints(widget.competition),
+            ],
+          )),
       title: Text(widget.competition.kind),
       subtitle: Text(
           "${DateFormat.yMMMd().format(widget.competition.date)}, in ${widget.competition.place}"),

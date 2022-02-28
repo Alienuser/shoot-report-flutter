@@ -45,10 +45,10 @@ class _AdsWidgetState extends State<AdsWidget> {
     final ThemeData mode = Theme.of(context);
     return Container(
       color: (mode.brightness == Brightness.light)
-          ? const Color(AppTheme.backgroundLight)
-          : const Color(AppTheme.backgroundDark),
-      height: 60,
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          ? const Color(AppTheme.backgroundAdsLight)
+          : const Color(AppTheme.backgroundAdsDark),
+      height: 70,
+      padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
       child: Image.asset(
         _photos[_pos],
         fit: BoxFit.contain,

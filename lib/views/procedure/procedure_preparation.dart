@@ -31,39 +31,47 @@ class _ProcedurePreparationWidgetState
   @override
   Widget build(BuildContext context) {
     final ThemeData mode = Theme.of(context);
-    return Scaffold(
-        body: SingleChildScrollView(
-            child: Form(
-                key: _formKey,
-                child: Column(children: [
-                  CupertinoFormSection.insetGrouped(
-                      backgroundColor: Colors.transparent,
-                      header: Text(tr("procedure_preparation_title"),
-                          style: const TextStyle(
-                            color: Color(AppTheme.accentColor),
-                          )),
-                      children: [
-                        CupertinoTextFormFieldRow(
-                          controller: _textPreparationController,
-                          textInputAction: TextInputAction.done,
-                          placeholder: tr("general_value"),
-                          padding: const EdgeInsets.all(8),
-                          maxLines: 20,
-                          style: TextStyle(
-                            color: (mode.brightness == Brightness.light)
-                                ? const Color(AppTheme.textColorLight)
-                                : const Color(AppTheme.textColorDark),
-                          ),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_procedure_before",
-                                value);
-                          },
-                        ),
-                      ]),
-                ]))));
+    return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+            body: SingleChildScrollView(
+                child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
+                          header: Text(tr("procedure_preparation_title"),
+                              style: const TextStyle(
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
+                          children: [
+                            CupertinoTextFormFieldRow(
+                              controller: _textPreparationController,
+                              textInputAction: TextInputAction.done,
+                              placeholder: tr("procedure_preparation_value"),
+                              padding: const EdgeInsets.all(8),
+                              maxLines: 20,
+                              style: TextStyle(
+                                color: (mode.brightness == Brightness.light)
+                                    ? const Color(AppTheme.textColorLight)
+                                    : const Color(AppTheme.textColorDark),
+                              ),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_procedure_before",
+                                    value);
+                              },
+                            ),
+                          ]),
+                    ])))));
   }
 
   void _loadData() async {

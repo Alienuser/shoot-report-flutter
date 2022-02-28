@@ -172,6 +172,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
+          //fixedColor: Colors.red,
           onTap: _onItemTapped,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(

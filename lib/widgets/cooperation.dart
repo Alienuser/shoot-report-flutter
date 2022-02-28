@@ -46,29 +46,36 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                       backgroundColor: Colors.transparent,
                       header: Text(tr("cooperation_list_title"),
                           style: const TextStyle(
-                              color: Color(AppTheme.accentColor))),
+                              color: Color(AppTheme.accentColor),
+                              fontSize: 15)),
                       children: [
-                        InkWell(
-                            onTap: () {
-                              launch(
-                                "https://www.kksvillingen.de",
-                                forceSafariVC: false,
-                                forceWebView: false,
-                              );
-                            },
-                            child: CupertinoFormRow(
-                              prefix: Container(),
-                              child: Container(),
-                              helper: Center(
-                                  child: Image.asset(
-                                      "assets/images/partner_kksvilligen.png",
-                                      height: 70)),
-                            )),
+                        Container(
+                          color: const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launch(
+                                  "https://www.kksvillingen.de",
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                );
+                              },
+                              child: CupertinoFormRow(
+                                padding: const EdgeInsets.all(10),
+                                prefix: Container(),
+                                child: Container(),
+                                helper: Center(
+                                    child: Image.asset(
+                                        "assets/images/partner_kksvilligen.png",
+                                        height: 40)),
+                              )),
+                        )
                       ]),
                   CupertinoFormSection.insetGrouped(
                       backgroundColor: Colors.transparent,
                       decoration: const BoxDecoration(),
-                      header: Text(tr("cooperation_action_title")),
+                      header: Text(tr("cooperation_action_title"),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(

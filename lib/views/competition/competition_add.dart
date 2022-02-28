@@ -31,7 +31,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
   late DateTime date = DateTime.now();
   late String place = "";
   late String kind = KindList.competitionItems[0];
-  late int shotCount = 0;
+  late int shotCount = -1;
   late List shots = [];
   late String comment = "";
   int? kindValue = 0;
@@ -245,7 +245,8 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("competition_shots")),
-                              initialValue: shotCount.toString(),
+                              initialValue:
+                                  (shotCount == -1) ? "" : shotCount.toString(),
                               keyboardType: TextInputType.number,
                               textInputAction: TextInputAction.next,
                               onChanged: (value) async {

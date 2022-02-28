@@ -45,254 +45,276 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-            child: Form(
-                key: _formKey,
-                child: Column(children: [
-                  CupertinoFormSection.insetGrouped(
-                      backgroundColor: Colors.transparent,
-                      header: Text(tr("goals_whole_40_title"),
-                          style: const TextStyle(
-                            color: Color(AppTheme.accentColor),
-                          )),
-                      children: [
-                        TextFormField(
-                          controller: _textWhole40JackpotController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_jackpot.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
+    return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+            body: SingleChildScrollView(
+                child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
+                          header: Text(tr("goals_whole_40_title"),
+                              style: const TextStyle(
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
+                          children: [
+                            TextFormField(
+                              controller: _textWhole40JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.all(10.0),
+                                prefixIcon: Image.asset(
+                                  "assets/images/arrow_jackpot.png",
+                                  height: 1,
+                                  color: const Color(AppTheme.accentColor),
+                                ),
+                                labelText: tr("goals_whole_jackpot"),
                               ),
-                              labelText: tr("goals_whole_jackpot")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_40_jackpot",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole40OptimalController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_optimal.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_optimal")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_40_optimal",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole40RealController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_real.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_real")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_goalWhole_40_real",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole40MinimalController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_minimal.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_minimal")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_40_minimal",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole40ChaosController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_chaos.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_chaos")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_goalWhole_40_chaos",
-                                value);
-                          },
-                        ),
-                      ]),
-                  CupertinoFormSection.insetGrouped(
-                      backgroundColor: Colors.transparent,
-                      header: Text(tr("goals_whole_60_title"),
-                          style: const TextStyle(
-                            color: Color(AppTheme.accentColor),
-                          )),
-                      children: [
-                        TextFormField(
-                          controller: _textWhole60JackpotController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_jackpot.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_jackpot")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_60_jackpot",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole60OptimalController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_optimal.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_optimal")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_60_optimal",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole60RealController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_real.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_real")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_goalWhole_60_real",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole60MinimalController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_minimal.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_minimal")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile +
-                                    "_goalWhole_60_minimal",
-                                value);
-                          },
-                        ),
-                        TextFormField(
-                          controller: _textWhole60ChaosController,
-                          textInputAction: TextInputAction.done,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10.0),
-                              prefixIcon: Image.asset(
-                                "assets/images/arrow_chaos.png",
-                                height: 1,
-                                color: const Color(AppTheme.accentColor),
-                              ),
-                              labelText: tr("goals_whole_chaos")),
-                          onChanged: (value) async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString(
-                                widget.weapon.prefFile + "_goalWhole_60_chaos",
-                                value);
-                          },
-                        ),
-                      ]),
-                ]))));
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_40_jackpot",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole40OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_optimal.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_optimal")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_40_optimal",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole40RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_real.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_real")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_40_real",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole40MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_minimal.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_minimal")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_40_minimal",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole40ChaosController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_chaos.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_chaos")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_40_chaos",
+                                    value);
+                              },
+                            ),
+                          ]),
+                      CupertinoFormSection.insetGrouped(
+                          backgroundColor: Colors.transparent,
+                          header: Text(tr("goals_whole_60_title"),
+                              style: const TextStyle(
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
+                          children: [
+                            TextFormField(
+                              controller: _textWhole60JackpotController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_jackpot.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_jackpot")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_60_jackpot",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole60OptimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_optimal.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_optimal")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_60_optimal",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole60RealController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_real.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_real")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_60_real",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole60MinimalController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_minimal.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_minimal")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_60_minimal",
+                                    value);
+                              },
+                            ),
+                            TextFormField(
+                              controller: _textWhole60ChaosController,
+                              textInputAction: TextInputAction.done,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.all(10.0),
+                                  prefixIcon: Image.asset(
+                                    "assets/images/arrow_chaos.png",
+                                    height: 1,
+                                    color: const Color(AppTheme.accentColor),
+                                  ),
+                                  labelText: tr("goals_whole_chaos")),
+                              onChanged: (value) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    widget.weapon.prefFile +
+                                        "_goalWhole_60_chaos",
+                                    value);
+                              },
+                            ),
+                          ]),
+                    ])))));
   }
 
   void _loadData() async {

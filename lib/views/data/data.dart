@@ -24,6 +24,7 @@ class DataWidget extends StatelessWidget {
                   borderSide:
                       BorderSide(width: 4, color: Color(AppTheme.accentColor))),
               labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
               tabs: <Widget>[
                 Tab(text: tr("data_tab_person")),
                 Tab(text: tr("data_tab_device")),

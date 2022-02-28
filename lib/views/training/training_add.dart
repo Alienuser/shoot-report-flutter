@@ -33,7 +33,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
   late int indicator = 2;
   late String place = "";
   late String kind = KindList.trainingItems[0];
-  late int shotCount = 0;
+  late int shotCount = -1;
   late List shots = [];
   late String comment = "";
   int? kindValue = 0;
@@ -114,7 +114,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                     border: InputBorder.none,
                                     contentPadding:
                                         EdgeInsets.only(left: 10, right: 10)),
-                                isDense: true,
                                 hint: Text(tr("training_kind")),
                                 onChanged: (String? value) {
                                   setState(() {
@@ -275,7 +274,8 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   border: InputBorder.none,
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("training_shots")),
-                              initialValue: shotCount.toString(),
+                              initialValue:
+                                  (shotCount == -1) ? "" : shotCount.toString(),
                               keyboardType: TextInputType.number,
                               textInputAction: TextInputAction.next,
                               onChanged: (value) async {

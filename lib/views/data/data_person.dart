@@ -130,8 +130,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_title"),
                               style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                              )),
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
                           children: [
                             TextFormField(
                               controller: _textDataPersonNameController,
@@ -181,8 +181,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_club"),
                               style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                              )),
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
                           children: [
                             TextFormField(
                               controller: _textDataPersonClub1Controller,
@@ -215,8 +215,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           backgroundColor: Colors.transparent,
                           header: Text(tr("data_person_trainer"),
                               style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                              )),
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
                           children: [
                             TextFormField(
                               controller: _textDataPersonTrainerontroller,

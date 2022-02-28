@@ -56,7 +56,7 @@ class _InformationWidgetState extends State<InformationWidget> {
                     backgroundColor: Colors.transparent,
                     header: Text(tr("information_author_title"),
                         style: const TextStyle(
-                            color: Color(AppTheme.accentColor))),
+                            color: Color(AppTheme.accentColor), fontSize: 15)),
                     children: [
                       CupertinoFormRow(
                         prefix: Text(tr("information_author_author"),
@@ -95,7 +95,7 @@ class _InformationWidgetState extends State<InformationWidget> {
                     backgroundColor: Colors.transparent,
                     header: Text(tr("information_version_title"),
                         style: const TextStyle(
-                            color: Color(AppTheme.accentColor))),
+                            color: Color(AppTheme.accentColor), fontSize: 15)),
                     children: [
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_version"),
@@ -136,7 +136,7 @@ class _InformationWidgetState extends State<InformationWidget> {
                     backgroundColor: Colors.transparent,
                     header: Text(tr("information_source_title"),
                         style: const TextStyle(
-                            color: Color(AppTheme.accentColor))),
+                            color: Color(AppTheme.accentColor), fontSize: 15)),
                     children: [
                       Padding(
                           // Even Padding On All Sides

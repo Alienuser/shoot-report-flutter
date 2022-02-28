@@ -46,100 +46,116 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                     backgroundColor: Colors.transparent,
                     header: Text(tr("partner_list_title"),
                         style: const TextStyle(
-                            color: Color(AppTheme.accentColor))),
+                            color: Color(AppTheme.accentColor), fontSize: 15)),
                     children: [
-                      InkWell(
-                          onTap: () {
-                            launch(
-                              "https://www.feinwerkbau.de",
-                              forceSafariVC: false,
-                              forceWebView: false,
-                            );
-                          },
-                          child: CupertinoFormRow(
-                            padding: const EdgeInsets.all(20),
-                            prefix: Container(),
-                            child: Container(),
-                            helper: Center(
-                                child: Image.asset(
-                                    "assets/images/partner_feinwerkbau.png",
-                                    height: 50)),
-                          )),
-                      InkWell(
-                          onTap: () {
-                            launch(
-                              "https://www.sauer-shootingsportswear.de",
-                              forceSafariVC: false,
-                              forceWebView: false,
-                            );
-                          },
-                          child: CupertinoFormRow(
-                            padding: const EdgeInsets.all(20),
-                            prefix: Container(),
-                            child: Container(),
-                            helper: Center(
-                                child: Image.asset(
-                                    "assets/images/partner_sauer.png",
-                                    height: 50)),
-                          )),
-                      InkWell(
-                          onTap: () {
-                            launch(
-                              "https://coaching-koch.de",
-                              forceSafariVC: false,
-                              forceWebView: false,
-                            );
-                          },
-                          child: CupertinoFormRow(
-                              padding: const EdgeInsets.all(20),
+                      Container(
+                          color: const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launch(
+                                  "https://www.feinwerkbau.de",
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                );
+                              },
+                              child: CupertinoFormRow(
+                                padding: const EdgeInsets.all(10),
+                                prefix: Container(),
+                                child: Container(),
+                                helper: Center(
+                                    child: Image.asset(
+                                        "assets/images/partner_feinwerkbau.png",
+                                        height: 40,
+                                        width: 250)),
+                              ))),
+                      Container(
+                          color: const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launch(
+                                  "https://www.sauer-shootingsportswear.de",
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                );
+                              },
+                              child: CupertinoFormRow(
+                                padding: const EdgeInsets.all(10),
+                                prefix: Container(),
+                                child: Container(),
+                                helper: Center(
+                                    child: Image.asset(
+                                  "assets/images/partner_sauer.png",
+                                  height: 40,
+                                )),
+                              ))),
+                      Container(
+                          color: const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launch(
+                                  "https://coaching-koch.de",
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                );
+                              },
+                              child: CupertinoFormRow(
+                                  padding: const EdgeInsets.all(10),
+                                  prefix: Container(),
+                                  child: Container(),
+                                  helper: Center(
+                                    child: Center(
+                                        child: Image.asset(
+                                            "assets/images/partner_koch.png",
+                                            height: 40)),
+                                  )))),
+                      Container(
+                          color: const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launch(
+                                  "https://www.disag.de",
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                );
+                              },
+                              child: CupertinoFormRow(
+                                padding: const EdgeInsets.all(10),
+                                prefix: Container(),
+                                child: Container(),
+                                helper: Center(
+                                    child: Image.asset(
+                                        "assets/images/partner_disag.png",
+                                        height: 40)),
+                              ))),
+                      Container(
+                        color: const Color(AppTheme.backgroundAdsDark),
+                        child: InkWell(
+                            onTap: () {
+                              launch(
+                                "https://tec-hro.de/schiesssport",
+                                forceSafariVC: false,
+                                forceWebView: false,
+                              );
+                            },
+                            child: CupertinoFormRow(
+                              padding: const EdgeInsets.all(10),
                               prefix: Container(),
                               child: Container(),
                               helper: Center(
-                                child: Center(
-                                    child: Image.asset(
-                                        "assets/images/partner_koch.png",
-                                        height: 50)),
-                              ))),
-                      InkWell(
-                          onTap: () {
-                            launch(
-                              "https://www.disag.de",
-                              forceSafariVC: false,
-                              forceWebView: false,
-                            );
-                          },
-                          child: CupertinoFormRow(
-                            padding: const EdgeInsets.all(20),
-                            prefix: Container(),
-                            child: Container(),
-                            helper: Center(
-                                child: Image.asset(
-                                    "assets/images/partner_disag.png",
-                                    height: 50)),
-                          )),
-                      InkWell(
-                          onTap: () {
-                            launch(
-                              "https://tec-hro.de/schiesssport",
-                              forceSafariVC: false,
-                              forceWebView: false,
-                            );
-                          },
-                          child: CupertinoFormRow(
-                            padding: const EdgeInsets.all(20),
-                            prefix: Container(),
-                            child: Container(),
-                            helper: Center(
-                                child: Image.asset(
-                                    "assets/images/partner_techro.png",
-                                    height: 50)),
-                          )),
+                                  child: Image.asset(
+                                "assets/images/partner_techro.png",
+                                height: 40,
+                              )),
+                            )),
+                      )
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
                       backgroundColor: Colors.transparent,
                       decoration: const BoxDecoration(),
-                      header: Text(tr("partner_action_title")),
+                      header: Text(tr("partner_action_title"),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(

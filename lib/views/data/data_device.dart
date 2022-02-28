@@ -41,14 +41,13 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                           backgroundColor: Colors.transparent,
                           header: Text(tr("data_device_title"),
                               style: const TextStyle(
-                                color: Color(AppTheme.accentColor),
-                                //fontWeight: FontWeight.bold)
-                              )),
+                                  color: Color(AppTheme.accentColor),
+                                  fontSize: 15)),
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textDataDeviceController,
                               textInputAction: TextInputAction.done,
-                              placeholder: tr("general_value"),
+                              placeholder: tr("data_device_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,
                               style: TextStyle(

@@ -29,15 +29,13 @@ class AppMigration {
             log("Migrate Weapons", name: "Migration-Android");
             List<Map> weapons = await db.rawQuery('SELECT * FROM rifle_table');
             for (var i = 0; i < weapons.length; i++) {
-              if (i < 10) {
-                Weapon weapon = Weapon(null, "weapon_0$i", weapons[i]["order"],
-                    "prefWeapon0$i", (weapons[i]["show"] == 0) ? false : true);
-                database.weaponDao.insertWeapon(weapon);
-              } else {
-                Weapon weapon = Weapon(null, "weapon_$i", weapons[i]["order"],
-                    "prefWeapon$i", (weapons[i]["show"] == 0) ? false : true);
-                database.weaponDao.insertWeapon(weapon);
-              }
+              Weapon weapon = Weapon(
+                  null,
+                  "weapon_${i < 10 ? "0$i" : i}",
+                  weapons[i]["order"],
+                  "prefWeapon0$i",
+                  (weapons[i]["show"] == 0) ? false : true);
+              database.weaponDao.insertWeapon(weapon);
             }
 
             log("Migrate Trainings", name: "Migration-Android");
@@ -89,15 +87,13 @@ class AppMigration {
             List<Map> weapons = await db.rawQuery('SELECT * from ZRIFLE;');
             for (var i = 0; i < weapons.length; i++) {
               weaponIds.add(UuidValue.fromByteList(weapons[i]["ZID"]).uuid);
-              if (i < 10) {
-                Weapon weapon = Weapon(null, "weapon_0$i", weapons[i]["ZORDER"],
-                    "prefWeapon0$i", (weapons[i]["ZSHOW"] == 0) ? false : true);
-                database.weaponDao.insertWeapon(weapon);
-              } else {
-                Weapon weapon = Weapon(null, "weapon_$i", weapons[i]["ZORDER"],
-                    "prefWeapon$i", (weapons[i]["ZSHOW"] == 0) ? false : true);
-                database.weaponDao.insertWeapon(weapon);
-              }
+              Weapon weapon = Weapon(
+                  null,
+                  "weapon_${i < 10 ? "0$i" : i}",
+                  weapons[i]["ZORDER"],
+                  "prefWeapon0$i",
+                  (weapons[i]["ZSHOW"] == 0) ? false : true);
+              database.weaponDao.insertWeapon(weapon);
             }
 
             log("Migrate Trainings", name: "Migration-iOS");
@@ -192,6 +188,23 @@ class AppMigration {
         }
       } catch (_) {
         log("No SharedPrefs. for user data.", name: "Migration-Android");
+      }
+
+      try {
+        log("Migrate User Rifle Data", name: "Migration-Android");
+        var path = (await getApplicationDocumentsDirectory()).parent.path +
+            "/shared_prefs/de.famprobst.report_preferences.xml";
+        var file = File(path);
+        var document = XmlDocument.parse(file.readAsStringSync());
+        final titles = document.findAllElements('string');
+
+        for (var element in titles) {
+          if (element.attributes.first.value == "pref_data_device") {
+            prefs.setString("data_device", element.text);
+          }
+        }
+      } catch (_) {
+        log("No SharedPrefs. for user rifle data.", name: "Migration-Android");
       }
 
       log("Migrate weapon data", name: "Migration-Android");
