@@ -26,7 +26,7 @@ class _AdsWidgetState extends State<AdsWidget> {
   void initState() {
     super.initState();
     if (_timer == null) {
-      developer.log("Start Timer", name: "Ads-Widget");
+      developer.log("Start Timer", name: "Widget-Ads");
       _setTimer();
     }
   }
@@ -34,7 +34,7 @@ class _AdsWidgetState extends State<AdsWidget> {
   @override
   void deactivate() {
     if (_timer != null) {
-      developer.log("Deactivate Timer", name: "Ads-Widget");
+      developer.log("Deactivate Timer", name: "Widget-Ads");
       _timer!.cancel();
     }
     super.deactivate();

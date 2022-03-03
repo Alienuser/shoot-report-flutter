@@ -27,13 +27,14 @@ class AppMigration {
             log(db.path, name: "Migration-Android");
 
             log("Migrate Weapons", name: "Migration-Android");
-            List<Map> weapons = await db.rawQuery('SELECT * FROM rifle_table');
+            List<Map> weapons = await db
+                .rawQuery('SELECT * FROM rifle_table Order by "order";');
             for (var i = 0; i < weapons.length; i++) {
               Weapon weapon = Weapon(
                   null,
                   "weapon_${i < 10 ? "0$i" : i}",
                   weapons[i]["order"],
-                  "prefWeapon0$i",
+                  "prefWeapon${i < 10 ? "0$i" : i}",
                   (weapons[i]["show"] == 0) ? false : true);
               database.weaponDao.insertWeapon(weapon);
             }
@@ -91,7 +92,7 @@ class AppMigration {
                   null,
                   "weapon_${i < 10 ? "0$i" : i}",
                   weapons[i]["ZORDER"],
-                  "prefWeapon0$i",
+                  "prefWeapon${i < 10 ? "0$i" : i}",
                   (weapons[i]["ZSHOW"] == 0) ? false : true);
               database.weaponDao.insertWeapon(weapon);
             }
@@ -219,111 +220,111 @@ class AppMigration {
           for (var element in titles) {
             if (element.attributes.first.value == "pref_plan_during") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_shot",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_procedure_shot",
                   element.text);
             } else if (element.attributes.first.value == "pref_plan_before") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_before",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_procedure_before",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete40_wish") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete40_optimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete40_real") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete40_minimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete40_chaos") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete60_wish") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete60_optimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete60_real") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete60_minimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_complete60_chaos") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth40_wish") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth40_optimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth40_real") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth40_minimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth40_chaos") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth60_wish") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth60_optimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth60_real") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth60_minimal") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
                   element.text);
             } else if (element.attributes.first.value ==
                 "pref_goal_tenth60_chaos") {
               prefs.setString(
-                  "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
+                  "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
                   element.text);
             }
           }
@@ -363,70 +364,70 @@ class AppMigration {
         log("Migrate weapon data", name: "Migration-iOS");
         for (var i = 1; i < 13; i++) {
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_shot",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_procedure_shot",
               nativePref.getString('procedure_during_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_procedure_before",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_procedure_before",
               nativePref.getString('procedure_before_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_jackpot",
               nativePref.getString('goals_whole_40_jackpot_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_optimal",
               nativePref.getString('goals_whole_40_optimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_real",
               nativePref.getString('goals_whole_40_real_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_minimal",
               nativePref.getString('goals_whole_40_minimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_40_chaos",
               nativePref.getString('goals_whole_40_chaos_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_jackpot",
               nativePref.getString('goals_whole_60_jackpot_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_optimal",
               nativePref.getString('goals_whole_60_optimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_real",
               nativePref.getString('goals_whole_60_real_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_minimal",
               nativePref.getString('goals_whole_60_minimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalWhole_60_chaos",
               nativePref.getString('goals_whole_60_chaos_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_jackpot",
               nativePref.getString('goals_tenth_40_jackpot_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_optimal",
               nativePref.getString('goals_tenth_40_optimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_real",
               nativePref.getString('goals_tenth_40_real_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_minimal",
               nativePref.getString('goals_tenth_40_minimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_40_chaos",
               nativePref.getString('goals_tenth_40_chaos_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_jackpot",
               nativePref.getString('goals_tenth_60_jackpot_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_optimal",
               nativePref.getString('goals_tenth_60_optimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_real",
               nativePref.getString('goals_tenth_60_real_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_minimal",
               nativePref.getString('goals_tenth_60_minimal_$i') ?? "");
           prefs.setString(
-              "prefWeapon${i < 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
+              "prefWeapon${i <= 10 ? "0${i - 1}" : i - 1}_goalTenth_60_chaos",
               nativePref.getString('goals_tenth_60_chaos_$i') ?? "");
         }
       } catch (_) {

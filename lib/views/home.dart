@@ -6,6 +6,7 @@ import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/views/competition/competition.dart';
 import 'package:shoot_report/views/data/data.dart';
 import 'package:shoot_report/views/goals/goals.dart';
@@ -143,6 +144,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     );
                     break;
                   case 3:
+                    FirebaseLog().logEvent("Facebook");
                     launch(
                       "https://facebook.com/shoot.report",
                       forceSafariVC: false,
@@ -150,6 +152,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     );
                     break;
                   case 4:
+                    FirebaseLog().logEvent("Instagram");
                     launch(
                       "https://instagram.com/shoot.report",
                       forceSafariVC: false,
@@ -172,7 +175,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
-          //fixedColor: Colors.red,
           onTap: _onItemTapped,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(

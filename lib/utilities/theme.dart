@@ -8,7 +8,7 @@ class AppTheme {
   static const backgroundColorDark = 0xFF2C2C2E;
   static const backgroundLight = 0xFFFDfCFF;
   static const backgroundDark = 0xFF1A1C1E;
-  static const backgroundAdsLight = 0xFFF2F2F7;
+  static const backgroundAdsLight = 0xFFFDFCFF;
   static const backgroundAdsDark = 0xFF706F6F;
   static const textSublineColor = 0xFF9C9CA0;
   static const lightTextColor = 0xFF000000;

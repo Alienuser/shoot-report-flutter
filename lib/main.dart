@@ -8,6 +8,7 @@ import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/utilities/app_migration.dart';
 import 'package:shoot_report/utilities/database.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:version_migration/version_migration.dart';
 import 'package:flutter/material.dart';
 
@@ -45,12 +46,21 @@ Future<void> main() async {
 }
 
 void _initialization(BuildContext context) async {
-  //VersionMigration.reset();
+  VersionMigration.reset();
 
+  // Migrate to version 1.5.0
   VersionMigration.migrateToVersion("1.5.0", () async {
+    // Migrate the database
     AppMigration.doDatabaseMigration(database);
+    // Migrate the shared preferences
     AppMigration.doSharedPrefMigration();
+    // Log Migration to 1.5.0
+    FirebaseLog().logEvent("migration_1_5_0");
   });
 
+  // Log App opended
+  FirebaseLog().logAppStart();
+
+  // Wait some time to show splashscreen
   await Future.delayed(const Duration(seconds: 2));
 }

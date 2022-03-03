@@ -77,6 +77,7 @@ class _ProcedurePreparationWidgetState
   void _loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
+      print(widget.weapon.prefFile);
       _textPreparationController.text =
           prefs.getString(widget.weapon.prefFile + "_procedure_before") ?? "";
     });

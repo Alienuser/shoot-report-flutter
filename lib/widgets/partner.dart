@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,11 +16,12 @@ class _PartnerWidgetState extends State<PartnerWidget> {
   @override
   void initState() {
     super.initState();
-    _logPageVisit();
+    FirebaseLog().logScreenView("partner.dart", "partner");
   }
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
     return Material(
         child: Scaffold(
             appBar: AppBar(
@@ -49,7 +50,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                             color: Color(AppTheme.accentColor), fontSize: 15)),
                     children: [
                       Container(
-                          color: const Color(AppTheme.backgroundAdsDark),
+                          color: (mode.brightness == Brightness.light)
+                              ? Colors.transparent
+                              : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
                                 launch(
@@ -69,7 +72,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                         width: 250)),
                               ))),
                       Container(
-                          color: const Color(AppTheme.backgroundAdsDark),
+                          color: (mode.brightness == Brightness.light)
+                              ? Colors.transparent
+                              : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
                                 launch(
@@ -89,7 +94,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                 )),
                               ))),
                       Container(
-                          color: const Color(AppTheme.backgroundAdsDark),
+                          color: (mode.brightness == Brightness.light)
+                              ? Colors.transparent
+                              : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
                                 launch(
@@ -109,7 +116,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                             height: 40)),
                                   )))),
                       Container(
-                          color: const Color(AppTheme.backgroundAdsDark),
+                          color: (mode.brightness == Brightness.light)
+                              ? Colors.transparent
+                              : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
                                 launch(
@@ -128,7 +137,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                         height: 40)),
                               ))),
                       Container(
-                        color: const Color(AppTheme.backgroundAdsDark),
+                        color: (mode.brightness == Brightness.light)
+                            ? Colors.transparent
+                            : const Color(AppTheme.backgroundAdsDark),
                         child: InkWell(
                             onTap: () {
                               launch(
@@ -174,9 +185,5 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                 ],
               ),
             )));
-  }
-
-  void _logPageVisit() async {
-    await FirebaseAnalytics.instance.logEvent(name: 'view_partner');
   }
 }
