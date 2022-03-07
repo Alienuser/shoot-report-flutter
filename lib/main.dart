@@ -46,7 +46,7 @@ Future<void> main() async {
 }
 
 void _initialization(BuildContext context) async {
-  VersionMigration.reset();
+  //VersionMigration.reset();
 
   // Migrate to version 1.5.0
   VersionMigration.migrateToVersion("1.5.0", () async {

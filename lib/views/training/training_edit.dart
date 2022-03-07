@@ -373,7 +373,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   initialValue: comment,
                                   textInputAction: TextInputAction.done,
                                   padding: const EdgeInsets.all(8),
-                                  placeholder: tr("general_value"),
+                                  placeholder: tr("training_comment"),
                                   maxLines: 10,
                                   style: TextStyle(
                                     color: (mode.brightness == Brightness.light)

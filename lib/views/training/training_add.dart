@@ -333,13 +333,13 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                             ]),
                         CupertinoFormSection.insetGrouped(
                             backgroundColor: Colors.transparent,
-                            header: Text(tr("trainig_report")),
+                            header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
                                   textInputAction: TextInputAction.done,
                                   padding: const EdgeInsets.all(8),
-                                  placeholder: tr("general_value"),
+                                  placeholder: tr("training_comment"),
                                   maxLines: 10,
                                   style: TextStyle(
                                     color: (mode.brightness == Brightness.light)
@@ -395,7 +395,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
-    HapticFeedback.lightImpact();
+    HapticFeedback.mediumImpact();
 
     Navigator.of(context).pop(null);
   }

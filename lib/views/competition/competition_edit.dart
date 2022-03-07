@@ -331,13 +331,13 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                             ]),
                         CupertinoFormSection.insetGrouped(
                             backgroundColor: Colors.transparent,
-                            header: Text(tr("trainig_report")),
+                            header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
                                   textInputAction: TextInputAction.done,
                                   padding: const EdgeInsets.all(8),
-                                  placeholder: tr("general_value"),
+                                  placeholder: tr("competition_comment"),
                                   maxLines: 10,
                                   style: TextStyle(
                                     color: (mode.brightness == Brightness.light)

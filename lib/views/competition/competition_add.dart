@@ -306,7 +306,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   initialValue: comment,
                                   textInputAction: TextInputAction.done,
                                   padding: const EdgeInsets.all(8),
-                                  placeholder: tr("general_value"),
+                                  placeholder: tr("competition_comment"),
                                   maxLines: 10,
                                   style: TextStyle(
                                     color: (mode.brightness == Brightness.light)
@@ -361,7 +361,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
-    HapticFeedback.lightImpact();
+    HapticFeedback.mediumImpact();
 
     Navigator.of(context).pop(null);
   }

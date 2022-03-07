@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -36,19 +37,20 @@ class CsvConverter {
     data[1].add(DateFormat.yMd().format(training.date));
     data[1].add(training.shotCount.toString());
     for (var i = 0; i < training.shots.length; i++) {
-      data[1].add(training.shots[i].toString());
+      data[1].add(training.shots[i].toString().replaceAll(".", ","));
     }
-    data[1].add(pointsTotal.toString());
-    data[1].add(pointsAverage.toStringAsFixed(2));
+    data[1].add(pointsTotal.toString().replaceAll(".", ","));
+    data[1].add(pointsAverage.toStringAsFixed(2).replaceAll(".", ","));
     data[1].add(training.comment);
 
     String csvData =
         const ListToCsvConverter(fieldDelimiter: ";").convert(data);
+    List<int> csvBytes = [0xEF, 0xBB, 0xBF, ...utf8.encode(csvData)];
     final String directory = (await getTemporaryDirectory()).path;
     final path = "$directory/share_training.csv";
 
     final File file = File(path);
-    await file.writeAsString(csvData);
+    await file.writeAsBytes(csvBytes);
     return path;
   }
 
@@ -76,18 +78,19 @@ class CsvConverter {
     data[1].add(DateFormat.yMd().format(training.date));
     data[1].add(training.shotCount.toString());
     for (var i = 0; i < training.shots.length; i++) {
-      data[1].add(training.shots[i].toString());
+      data[1].add(training.shots[i].toString().replaceAll(".", ","));
     }
-    data[1].add(pointsTotal.toString());
+    data[1].add(pointsTotal.toString().replaceAll(".", ","));
     data[1].add(training.comment);
 
     String csvData =
         const ListToCsvConverter(fieldDelimiter: ";").convert(data);
+    List<int> csvBytes = [0xEF, 0xBB, 0xBF, ...utf8.encode(csvData)];
     final String directory = (await getTemporaryDirectory()).path;
     final path = "$directory/share_competition.csv";
 
     final File file = File(path);
-    await file.writeAsString(csvData);
+    await file.writeAsBytes(csvBytes);
     return path;
   }
 }
