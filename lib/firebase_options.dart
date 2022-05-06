@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, TargetPlatform;
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -16,6 +16,12 @@ import 'package:flutter/foundation.dart'
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
+    if (kIsWeb) {
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
+    }
     // ignore: missing_enum_constant_in_switch
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -48,10 +54,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '629596194534',
     projectId: 'shoot-report',
     storageBucket: 'shoot-report.appspot.com',
-    androidClientId:
-        '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
-    iosClientId:
-        '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
+    androidClientId: '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
+    iosClientId: '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
     iosBundleId: 'de.famprobst.report',
   );
 }

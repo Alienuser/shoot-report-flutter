@@ -79,10 +79,10 @@ class _InformationWidgetState extends State<InformationWidget> {
                           helper: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
-                              launch(
-                                "https://${tr('information_author_website_description')}",
-                                forceSafariVC: false,
-                                forceWebView: false,
+                              launchUrl(
+                                Uri.parse(
+                                    "https://${tr('information_author_website_description')}"),
+                                mode: LaunchMode.externalApplication,
                               );
                             },
                             child: Text(

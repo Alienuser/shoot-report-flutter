@@ -55,10 +55,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
-                                launch(
-                                  "https://www.feinwerkbau.de",
-                                  forceSafariVC: false,
-                                  forceWebView: false,
+                                launchUrl(
+                                  Uri.parse("https://www.feinwerkbau.de"),
+                                  mode: LaunchMode.externalApplication,
                                 );
                               },
                               child: CupertinoFormRow(
@@ -77,10 +76,10 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
-                                launch(
-                                  "https://www.sauer-shootingsportswear.de",
-                                  forceSafariVC: false,
-                                  forceWebView: false,
+                                launchUrl(
+                                  Uri.parse(
+                                      "https://www.sauer-shootingsportswear.de"),
+                                  mode: LaunchMode.externalApplication,
                                 );
                               },
                               child: CupertinoFormRow(
@@ -99,10 +98,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
-                                launch(
-                                  "https://coaching-koch.de",
-                                  forceSafariVC: false,
-                                  forceWebView: false,
+                                launchUrl(
+                                  Uri.parse("https://coaching-koch.de"),
+                                  mode: LaunchMode.externalApplication,
                                 );
                               },
                               child: CupertinoFormRow(
@@ -121,10 +119,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               : const Color(AppTheme.backgroundAdsDark),
                           child: InkWell(
                               onTap: () {
-                                launch(
-                                  "https://www.disag.de",
-                                  forceSafariVC: false,
-                                  forceWebView: false,
+                                launchUrl(
+                                  Uri.parse("https://www.disag.de"),
+                                  mode: LaunchMode.externalApplication,
                                 );
                               },
                               child: CupertinoFormRow(
@@ -142,10 +139,9 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                             : const Color(AppTheme.backgroundAdsDark),
                         child: InkWell(
                             onTap: () {
-                              launch(
-                                "https://tec-hro.de/schiesssport",
-                                forceSafariVC: false,
-                                forceWebView: false,
+                              launchUrl(
+                                Uri.parse("https://tec-hro.de/schiesssport"),
+                                mode: LaunchMode.externalApplication,
                               );
                             },
                             child: CupertinoFormRow(
@@ -173,10 +169,10 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                             primary: const Color(AppTheme.accentColor),
                           ),
                           onPressed: () {
-                            launch(
-                              "https://www.burkhardt-sport.solutions/kontakt",
-                              forceSafariVC: false,
-                              forceWebView: false,
+                            launchUrl(
+                              Uri.parse(
+                                  "https://www.burkhardt-sport.solutions/kontakt"),
+                              mode: LaunchMode.externalApplication,
                             );
                           },
                           child: Text(tr("partner_action_contact")),

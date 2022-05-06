@@ -145,18 +145,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                     break;
                   case 3:
                     FirebaseLog().logEvent("Facebook");
-                    launch(
-                      "https://facebook.com/shoot.report",
-                      forceSafariVC: false,
-                      forceWebView: false,
+                    launchUrl(
+                      Uri.parse("https://facebook.com/shoot.report"),
+                      mode: LaunchMode.externalApplication,
                     );
                     break;
                   case 4:
                     FirebaseLog().logEvent("Instagram");
-                    launch(
-                      "https://instagram.com/shoot.report",
-                      forceSafariVC: false,
-                      forceWebView: false,
+                    launchUrl(
+                      Uri.parse("https://instagram.com/shoot.report"),
+                      mode: LaunchMode.externalApplication,
                     );
                     break;
                   case 5:

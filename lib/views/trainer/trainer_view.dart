@@ -28,7 +28,10 @@ class _TrainerViewWidgetState extends State<TrainerViewWidget> {
         javascriptMode: JavascriptMode.unrestricted,
         navigationDelegate: (NavigationRequest request) {
           if (!request.url.contains(host)) {
-            launch(request.url);
+            launchUrl(
+              Uri.parse(request.url),
+              mode: LaunchMode.externalApplication,
+            );
             return NavigationDecision.prevent;
           }
           return NavigationDecision.navigate;
