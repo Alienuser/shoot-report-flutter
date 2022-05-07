@@ -21,6 +21,7 @@ class TrainerTechWidget extends StatelessWidget {
                 borderSide:
                     BorderSide(width: 4, color: Color(AppTheme.accentColor))),
             labelColor: Colors.white,
+            unselectedLabelColor: Colors.white,
             tabs: <Widget>[
               Tab(text: tr("trainer_tab_tech_positioning")),
               Tab(text: tr("trainer_tab_tech_procedure")),

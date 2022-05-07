@@ -61,10 +61,10 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
             var average = rings / training.shotCount;
             bool isTenth = training.shots.any((element) => element is double);
 
-            if (!isTenth && dataWhole.length < 10) {
+            if (!isTenth && dataWhole.length < 100) {
               dataWhole.add(ChartData(
                   x: DateFormat.MMMd().format(training.date), y: average));
-            } else if (isTenth && dataTenth.length < 10) {
+            } else if (isTenth && dataTenth.length < 100) {
               dataTenth.add(ChartData(
                   x: DateFormat.MMMd().format(training.date), y: average));
             }

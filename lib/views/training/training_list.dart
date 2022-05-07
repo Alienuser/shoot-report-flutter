@@ -37,7 +37,7 @@ class TrainingListWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   Icon(
-                    Icons.hourglass_empty,
+                    Icons.fitness_center,
                     color: (mode.brightness == Brightness.light)
                         ? const Color(AppTheme.primaryColor)
                         : const Color(AppTheme.backgroundLight),

@@ -37,7 +37,7 @@ class CompetitionListWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   Icon(
-                    Icons.hourglass_empty,
+                    Icons.emoji_events,
                     color: (mode.brightness == Brightness.light)
                         ? const Color(AppTheme.primaryColor)
                         : const Color(AppTheme.backgroundLight),

@@ -19,6 +19,8 @@ Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Splash initialization
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // Language initialization
+  await EasyLocalization.ensureInitialized();
   // Database initialization
   database = await $FloorFlutterDatabase
       .databaseBuilder('flutter_shoot_report.db')
@@ -47,9 +49,6 @@ void _initialization() async {
   // Reset the migration for debug
   //VersionMigration.reset();
 
-  // Language initialization
-  await EasyLocalization.ensureInitialized();
-
   // Firebase initialization
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -61,7 +60,7 @@ void _initialization() async {
     AppMigration.doDatabaseMigration(database);
     // Migrate the shared preferences
     AppMigration.doSharedPrefMigration();
-    // Log Migration to 1.5.0
+    // Log migration
     FirebaseLog().logEvent("migration_1_5_0");
   });
 

@@ -93,7 +93,7 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
     if (competition.shots.isNotEmpty) {
       num shots =
           competition.shots.fold(0, (previous, current) => previous + current);
-      return Text(shots.toString(),
+      return Text(shots.toStringAsFixed(1),
           style: const TextStyle(fontWeight: FontWeight.bold));
     } else {
       return const Text("0", style: TextStyle(fontWeight: FontWeight.bold));

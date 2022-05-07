@@ -27,8 +27,8 @@ class AppMigration {
             log(db.path, name: "Migration-Android");
 
             log("Migrate Weapons", name: "Migration-Android");
-            List<Map> weapons = await db
-                .rawQuery('SELECT * FROM rifle_table Order by "order";');
+            List<Map> weapons =
+                await db.rawQuery("SELECT * FROM rifle_table Order by \"id\";");
             for (var i = 0; i < weapons.length; i++) {
               Weapon weapon = Weapon(
                   null,
@@ -85,7 +85,8 @@ class AppMigration {
             log(db.path, name: "Migration-iOS");
 
             log("Migrate Weapons", name: "Migration-iOS");
-            List<Map> weapons = await db.rawQuery('SELECT * from ZRIFLE;');
+            List<Map> weapons =
+                await db.rawQuery("SELECT * from ZRIFLE Order by \"Z_PK\";");
             for (var i = 0; i < weapons.length; i++) {
               weaponIds.add(UuidValue.fromByteList(weapons[i]["ZID"]).uuid);
               Weapon weapon = Weapon(
@@ -100,19 +101,32 @@ class AppMigration {
             log("Migrate Trainings", name: "Migration-iOS");
             List<Map> trainings = await db.rawQuery('SELECT * from ZTRAINING;');
             for (var element in trainings) {
-              Training training = Training(
-                null,
-                DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
+              var date = DateTime.now();
+              if (element["ZDATE"].toString().contains(".")) {
+                date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
                         ((element["ZDATE"] ?? 0) + 978307200)
                             .toString()
                             .replaceAll(".", "")) ??
-                    0),
+                    0);
+              } else {
+                date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
+                        ((double.parse(
+                                    element["ZDATE"].toString() + ".716835")) +
+                                978307200)
+                            .toString()
+                            .replaceAll(".", "")) ??
+                    0);
+              }
+
+              Training training = Training(
+                null,
+                date,
                 element["ZIMAGE"] ?? "",
                 helperGetIndicator(element["ZINDICATOR"] ?? 0),
                 element["ZPLACE"] ?? "",
                 helperGetTrainingKind(element["ZTRAINING"] ?? ""),
                 element["ZSHOOT_COUNT"] ?? 0,
-                jsonDecode(helperGetShotList(element["ZSHOOTS"])),
+                jsonDecode(helperGetShotList(element["ZSHOOTS"] ?? [])),
                 element["ZREPORT"] ?? "",
                 helperGetRifleId(element["ZRIFLEID"]),
               );
@@ -123,13 +137,26 @@ class AppMigration {
             List<Map> competitions =
                 await db.rawQuery('SELECT * from ZCOMPETITION;');
             for (var element in competitions) {
-              Competition competition = Competition(
-                null,
-                DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
+              var date = DateTime.now();
+              if (element["ZDATE"].toString().contains(".")) {
+                date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
                         ((element["ZDATE"] ?? 0) + 978307200)
                             .toString()
                             .replaceAll(".", "")) ??
-                    0),
+                    0);
+              } else {
+                date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
+                        ((double.parse(
+                                    element["ZDATE"].toString() + ".716835")) +
+                                978307200)
+                            .toString()
+                            .replaceAll(".", "")) ??
+                    0);
+              }
+
+              Competition competition = Competition(
+                null,
+                date,
                 element["ZIMAGE"] ?? "",
                 element["ZPLACE"] ?? "",
                 helperGetCompetitionKind(element["ZKIND"] ?? ""),
@@ -360,6 +387,8 @@ class AppMigration {
             nativePref.getString('user_squad_trainer') ?? "");
         prefs.setString("data_person_squadtrainer_mail",
             nativePref.getString('user_squad_trainer_mail') ?? "");
+        prefs.setString(
+            "data_device", nativePref.getString('device_data') ?? "");
 
         log("Migrate weapon data", name: "Migration-iOS");
         for (var i = 1; i < 13; i++) {

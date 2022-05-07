@@ -444,8 +444,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
-    HapticFeedback.lightImpact();
-
+    HapticFeedback.heavyImpact();
     Navigator.of(context).pop(null);
   }
 

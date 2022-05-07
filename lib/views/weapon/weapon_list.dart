@@ -35,7 +35,7 @@ class WeaponListView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   Icon(
-                    Icons.hourglass_empty,
+                    Icons.legend_toggle_sharp,
                     color: (mode.brightness == Brightness.light)
                         ? const Color(AppTheme.primaryColor)
                         : const Color(AppTheme.backgroundLight),

@@ -361,8 +361,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
       configuration: const FlareConfiguration('assets/animations/success.flr',
           animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
     );
-    HapticFeedback.mediumImpact();
-
+    HapticFeedback.heavyImpact();
     Navigator.of(context).pop(null);
   }
 
