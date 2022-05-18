@@ -299,16 +299,20 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                         decimal: true),
                                 textInputAction: TextInputAction.next,
                                 onChanged: (value) async {
-                                  if (value.contains(",") ||
-                                      value.contains(".")) {
-                                    if (value.contains(",")) {
-                                      shots[i] = double.tryParse(
-                                          value.replaceAll(",", "."));
+                                  if (value.isNotEmpty) {
+                                    if (value.contains(",") ||
+                                        value.contains(".")) {
+                                      if (value.contains(",")) {
+                                        shots[i] = double.tryParse(
+                                            value.replaceAll(",", "."));
+                                      } else {
+                                        shots[i] = double.tryParse(value);
+                                      }
                                     } else {
-                                      shots[i] = double.tryParse(value);
+                                      shots[i] = int.tryParse(value);
                                     }
                                   } else {
-                                    shots[i] = int.tryParse(value);
+                                    shots[i] = 0;
                                   }
                                   _calculateTotalAndAverage();
                                 },

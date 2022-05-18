@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -65,8 +65,7 @@ class _ProcedurePreparationWidgetState
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_procedure_before",
+                                    "${widget.weapon.prefFile}_procedure_before",
                                     value);
                               },
                             ),
@@ -78,7 +77,7 @@ class _ProcedurePreparationWidgetState
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _textPreparationController.text =
-          prefs.getString(widget.weapon.prefFile + "_procedure_before") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_procedure_before") ?? "";
     });
   }
 }

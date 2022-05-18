@@ -52,6 +52,7 @@ android {
         applicationId "de.famprobst.report"
         minSdkVersion 21
         targetSdkVersion 32
+        compileSdkVersion 32
         buildToolsVersion "32.0.0"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

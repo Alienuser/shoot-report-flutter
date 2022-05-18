@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -63,12 +63,12 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
                                 prefix: Container(),
-                                child: Container(),
                                 helper: Center(
                                     child: Image.asset(
                                         "assets/images/partner_feinwerkbau.png",
                                         height: 40,
                                         width: 250)),
+                                child: Container(),
                               ))),
                       Container(
                           color: (mode.brightness == Brightness.light)
@@ -85,12 +85,12 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
                                 prefix: Container(),
-                                child: Container(),
                                 helper: Center(
                                     child: Image.asset(
                                   "assets/images/partner_sauer.png",
                                   height: 40,
                                 )),
+                                child: Container(),
                               ))),
                       Container(
                           color: (mode.brightness == Brightness.light)
@@ -106,13 +106,13 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               child: CupertinoFormRow(
                                   padding: const EdgeInsets.all(10),
                                   prefix: Container(),
-                                  child: Container(),
                                   helper: Center(
                                     child: Center(
                                         child: Image.asset(
                                             "assets/images/partner_koch.png",
                                             height: 40)),
-                                  )))),
+                                  ),
+                                  child: Container()))),
                       Container(
                           color: (mode.brightness == Brightness.light)
                               ? Colors.transparent
@@ -127,11 +127,11 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
                                 prefix: Container(),
-                                child: Container(),
                                 helper: Center(
                                     child: Image.asset(
                                         "assets/images/partner_disag.png",
                                         height: 40)),
+                                child: Container(),
                               ))),
                       Container(
                         color: (mode.brightness == Brightness.light)
@@ -147,12 +147,12 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                             child: CupertinoFormRow(
                               padding: const EdgeInsets.all(10),
                               prefix: Container(),
-                              child: Container(),
                               helper: Center(
                                   child: Image.asset(
                                 "assets/images/partner_techro.png",
                                 height: 40,
                               )),
+                              child: Container(),
                             )),
                       )
                     ],

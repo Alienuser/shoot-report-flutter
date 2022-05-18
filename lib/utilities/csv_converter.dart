@@ -23,11 +23,11 @@ class CsvConverter {
     data[0].add(tr("export_training_location"));
     data[0].add(tr("export_training_date"));
     data[0].add(tr("export_training_shots"));
+    data[0].add(tr("export_training_result"));
+    data[0].add(tr("export_training_average"));
     for (var i = 0; i < training.shots.length; i++) {
       data[0].add(tr("export_training_serie", args: [(i + 1).toString()]));
     }
-    data[0].add(tr("export_training_result"));
-    data[0].add(tr("export_training_average"));
     data[0].add(tr("export_training_report"));
 
     data[1].add(tr(weapon.name));
@@ -36,11 +36,11 @@ class CsvConverter {
     data[1].add(training.place);
     data[1].add(DateFormat.yMd().format(training.date));
     data[1].add(training.shotCount.toString());
+    data[1].add(pointsTotal.toString().replaceAll(".", ","));
+    data[1].add(pointsAverage.toStringAsFixed(2).replaceAll(".", ","));
     for (var i = 0; i < training.shots.length; i++) {
       data[1].add(training.shots[i].toString().replaceAll(".", ","));
     }
-    data[1].add(pointsTotal.toString().replaceAll(".", ","));
-    data[1].add(pointsAverage.toStringAsFixed(2).replaceAll(".", ","));
     data[1].add(training.comment);
 
     String csvData =
@@ -66,10 +66,10 @@ class CsvConverter {
     data[0].add(tr("export_competition_location"));
     data[0].add(tr("export_competition_date"));
     data[0].add(tr("export_competition_shots"));
+    data[0].add(tr("export_competition_result"));
     for (var i = 0; i < training.shots.length; i++) {
       data[0].add(tr("export_competition_serie", args: [(i + 1).toString()]));
     }
-    data[0].add(tr("export_competition_result"));
     data[0].add(tr("export_competition_report"));
 
     data[1].add(tr(weapon.name));
@@ -77,10 +77,10 @@ class CsvConverter {
     data[1].add(training.place);
     data[1].add(DateFormat.yMd().format(training.date));
     data[1].add(training.shotCount.toString());
+    data[1].add(pointsTotal.toString().replaceAll(".", ","));
     for (var i = 0; i < training.shots.length; i++) {
       data[1].add(training.shots[i].toString().replaceAll(".", ","));
     }
-    data[1].add(pointsTotal.toString().replaceAll(".", ","));
     data[1].add(training.comment);
 
     String csvData =

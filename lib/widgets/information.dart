@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
@@ -64,10 +64,10 @@ class _InformationWidgetState extends State<InformationWidget> {
                                 color: (mode.brightness == Brightness.light)
                                     ? const Color(AppTheme.lightTextColor)
                                     : const Color(AppTheme.darkTextColor))),
-                        child: Container(),
                         helper: Text(tr("information_author_description"),
                             style: const TextStyle(
                                 color: Color(AppTheme.textSublineColor))),
+                        child: Container(),
                       ),
                       CupertinoFormRow(
                           prefix: Text(tr("information_author_website"),
@@ -75,7 +75,6 @@ class _InformationWidgetState extends State<InformationWidget> {
                                   color: (mode.brightness == Brightness.light)
                                       ? const Color(AppTheme.lightTextColor)
                                       : const Color(AppTheme.darkTextColor))),
-                          child: Container(),
                           helper: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
@@ -88,7 +87,8 @@ class _InformationWidgetState extends State<InformationWidget> {
                             child: Text(
                                 tr("information_author_website_description"),
                                 style: const TextStyle(color: Colors.blue)),
-                          )),
+                          ),
+                          child: Container()),
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
@@ -103,10 +103,10 @@ class _InformationWidgetState extends State<InformationWidget> {
                                 color: (mode.brightness == Brightness.light)
                                     ? const Color(AppTheme.lightTextColor)
                                     : const Color(AppTheme.darkTextColor))),
-                        child: Container(),
                         helper: Text(_packageInfo.version,
                             style: const TextStyle(
                                 color: Color(AppTheme.textSublineColor))),
+                        child: Container(),
                       ),
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_build"),
@@ -114,10 +114,10 @@ class _InformationWidgetState extends State<InformationWidget> {
                                 color: (mode.brightness == Brightness.light)
                                     ? const Color(AppTheme.lightTextColor)
                                     : const Color(AppTheme.darkTextColor))),
-                        child: Container(),
                         helper: Text(_packageInfo.buildNumber,
                             style: const TextStyle(
                                 color: Color(AppTheme.textSublineColor))),
+                        child: Container(),
                       ),
                       CupertinoFormRow(
                         prefix: Text(tr("information_version_date"),
@@ -125,10 +125,10 @@ class _InformationWidgetState extends State<InformationWidget> {
                                 color: (mode.brightness == Brightness.light)
                                     ? const Color(AppTheme.lightTextColor)
                                     : const Color(AppTheme.darkTextColor))),
-                        child: Container(),
                         helper: Text(tr("information_version_date_description"),
                             style: const TextStyle(
                                 color: Color(AppTheme.textSublineColor))),
+                        child: Container(),
                       ),
                     ],
                   ),

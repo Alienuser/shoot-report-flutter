@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -23,6 +24,8 @@ class AppTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(backgroundColorLight),
       appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(color: Colors.white),
+        foregroundColor: Colors.white,
         backgroundColor: Color(primaryColor),
       ),
       tabBarTheme: const TabBarTheme(
@@ -43,7 +46,8 @@ class AppTheme {
         unselectedItemColor: Color(greyColor),
       ),
       inputDecorationTheme: const InputDecorationTheme(
-          labelStyle: TextStyle(color: Color(greyColor))),
+        labelStyle: TextStyle(color: Color(greyColor)),
+      ),
       useMaterial3: true);
 
   static final ThemeData darkTheme = ThemeData(
@@ -51,10 +55,13 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: const Color(backgroundColorDark),
       appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(color: Colors.white),
+        foregroundColor: Colors.white,
         backgroundColor: Color(primaryColor),
       ),
       tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
+          unselectedLabelColor: Color(greyColor),
           indicator: UnderlineTabIndicator(
               borderSide: BorderSide(width: 4, color: Color(accentColor)))),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -68,6 +75,9 @@ class AppTheme {
         unselectedIconTheme: IconThemeData(color: Color(backgroundColorLight)),
         selectedItemColor: Color(accentColor),
         unselectedItemColor: Color(backgroundColorLight),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: TextStyle(color: Color(textColorDark)),
       ),
       useMaterial3: true);
 }

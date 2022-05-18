@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/trainer/trainer_view.dart';
 

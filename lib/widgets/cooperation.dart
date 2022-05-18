@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -64,11 +64,11 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
                                 prefix: Container(),
-                                child: Container(),
                                 helper: Center(
                                     child: Image.asset(
                                         "assets/images/partner_kksvilligen.png",
                                         height: 40)),
+                                child: Container(),
                               )),
                         )
                       ]),

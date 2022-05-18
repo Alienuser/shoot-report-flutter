@@ -169,7 +169,7 @@ class _$WeaponDao extends WeaponDao {
   @override
   Stream<List<Weapon>> findAllWeapons(bool show) {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM weapon WHERE show = ?1 ORDER by "order" ASC;',
+        'SELECT * FROM weapon WHERE show = ?1 ORDER by \"order\" ASC;',
         mapper: (Map<String, Object?> row) => Weapon(
             row['id'] as int?,
             row['name'] as String,

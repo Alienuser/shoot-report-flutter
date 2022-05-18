@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -79,8 +79,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_jackpot",
+                                    "${widget.weapon.prefFile}_goalTenth_40_jackpot",
                                     value);
                               },
                             ),
@@ -103,8 +102,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_optimal",
+                                    "${widget.weapon.prefFile}_goalTenth_40_optimal",
                                     value);
                               },
                             ),
@@ -127,8 +125,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_real",
+                                    "${widget.weapon.prefFile}_goalTenth_40_real",
                                     value);
                               },
                             ),
@@ -151,8 +148,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_minimal",
+                                    "${widget.weapon.prefFile}_goalTenth_40_minimal",
                                     value);
                               },
                             ),
@@ -175,8 +171,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_40_chaos",
+                                    "${widget.weapon.prefFile}_goalTenth_40_chaos",
                                     value);
                               },
                             ),
@@ -207,8 +202,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_jackpot",
+                                    "${widget.weapon.prefFile}_goalTenth_60_jackpot",
                                     value);
                               },
                             ),
@@ -231,8 +225,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_optimal",
+                                    "${widget.weapon.prefFile}_goalTenth_60_optimal",
                                     value);
                               },
                             ),
@@ -255,8 +248,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_real",
+                                    "${widget.weapon.prefFile}_goalTenth_60_real",
                                     value);
                               },
                             ),
@@ -279,8 +271,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_minimal",
+                                    "${widget.weapon.prefFile}_goalTenth_60_minimal",
                                     value);
                               },
                             ),
@@ -303,8 +294,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalTenth_60_chaos",
+                                    "${widget.weapon.prefFile}_goalTenth_60_chaos",
                                     value);
                               },
                             ),
@@ -316,31 +306,31 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _text40JackpotController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_40_jackpot") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_jackpot") ??
               "";
       _text40OptimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_40_optimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_optimal") ??
               "";
       _text40RealController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_40_real") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_real") ?? "";
       _text40MinimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_40_minimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_minimal") ??
               "";
       _text40ChaosController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_40_chaos") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_chaos") ?? "";
       _text60JackpotController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_60_jackpot") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_jackpot") ??
               "";
       _text60OptimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_60_optimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_optimal") ??
               "";
       _text60RealController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_60_real") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_real") ?? "";
       _text60MinimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_60_minimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_minimal") ??
               "";
       _text60ChaosController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalTenth_60_chaos") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_chaos") ?? "";
     });
   }
 }

@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -84,8 +84,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_40_jackpot",
+                                    "${widget.weapon.prefFile}_goalWhole_40_jackpot",
                                     value);
                               },
                             ),
@@ -108,8 +107,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_40_optimal",
+                                    "${widget.weapon.prefFile}_goalWhole_40_optimal",
                                     value);
                               },
                             ),
@@ -132,8 +130,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_40_real",
+                                    "${widget.weapon.prefFile}_goalWhole_40_real",
                                     value);
                               },
                             ),
@@ -156,8 +153,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_40_minimal",
+                                    "${widget.weapon.prefFile}_goalWhole_40_minimal",
                                     value);
                               },
                             ),
@@ -180,8 +176,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_40_chaos",
+                                    "${widget.weapon.prefFile}_goalWhole_40_chaos",
                                     value);
                               },
                             ),
@@ -212,8 +207,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_60_jackpot",
+                                    "${widget.weapon.prefFile}_goalWhole_60_jackpot",
                                     value);
                               },
                             ),
@@ -236,8 +230,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_60_optimal",
+                                    "${widget.weapon.prefFile}_goalWhole_60_optimal",
                                     value);
                               },
                             ),
@@ -260,8 +253,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_60_real",
+                                    "${widget.weapon.prefFile}_goalWhole_60_real",
                                     value);
                               },
                             ),
@@ -284,8 +276,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_60_minimal",
+                                    "${widget.weapon.prefFile}_goalWhole_60_minimal",
                                     value);
                               },
                             ),
@@ -308,8 +299,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
-                                    widget.weapon.prefFile +
-                                        "_goalWhole_60_chaos",
+                                    "${widget.weapon.prefFile}_goalWhole_60_chaos",
                                     value);
                               },
                             ),
@@ -321,31 +311,31 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _textWhole40JackpotController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_40_jackpot") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_jackpot") ??
               "";
       _textWhole40OptimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_40_optimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_optimal") ??
               "";
       _textWhole40RealController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_40_real") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_real") ?? "";
       _textWhole40MinimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_40_minimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_minimal") ??
               "";
       _textWhole40ChaosController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_40_chaos") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_chaos") ?? "";
       _textWhole60JackpotController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_60_jackpot") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_jackpot") ??
               "";
       _textWhole60OptimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_60_optimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_optimal") ??
               "";
       _textWhole60RealController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_60_real") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_real") ?? "";
       _textWhole60MinimalController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_60_minimal") ??
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_minimal") ??
               "";
       _textWhole60ChaosController.text =
-          prefs.getString(widget.weapon.prefFile + "_goalWhole_60_chaos") ?? "";
+          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_chaos") ?? "";
     });
   }
 }

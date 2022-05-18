@@ -110,8 +110,7 @@ class AppMigration {
                     0);
               } else {
                 date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
-                        ((double.parse(
-                                    element["ZDATE"].toString() + ".716835")) +
+                        ((double.parse("${element["ZDATE"]}.716835")) +
                                 978307200)
                             .toString()
                             .replaceAll(".", "")) ??
@@ -146,8 +145,7 @@ class AppMigration {
                     0);
               } else {
                 date = DateTime.fromMicrosecondsSinceEpoch(int.tryParse(
-                        ((double.parse(
-                                    element["ZDATE"].toString() + ".716835")) +
+                        ((double.parse("${element["ZDATE"]}.716835")) +
                                 978307200)
                             .toString()
                             .replaceAll(".", "")) ??
@@ -182,8 +180,8 @@ class AppMigration {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       try {
         log("Migrate User Data", name: "Migration-Android");
-        var path = (await getApplicationDocumentsDirectory()).parent.path +
-            "/shared_prefs/activity.ActivityMasterData.xml";
+        var path =
+            "${(await getApplicationDocumentsDirectory()).parent.path}/shared_prefs/activity.ActivityMasterData.xml";
         var file = File(path);
         var document = XmlDocument.parse(file.readAsStringSync());
         final titles = document.findAllElements('string');
@@ -220,8 +218,8 @@ class AppMigration {
 
       try {
         log("Migrate User Rifle Data", name: "Migration-Android");
-        var path = (await getApplicationDocumentsDirectory()).parent.path +
-            "/shared_prefs/de.famprobst.report_preferences.xml";
+        var path =
+            "${(await getApplicationDocumentsDirectory()).parent.path}/shared_prefs/de.famprobst.report_preferences.xml";
         var file = File(path);
         var document = XmlDocument.parse(file.readAsStringSync());
         final titles = document.findAllElements('string');
@@ -238,8 +236,8 @@ class AppMigration {
       log("Migrate weapon data", name: "Migration-Android");
       for (var i = 1; i < 13; i++) {
         try {
-          var path = (await getApplicationDocumentsDirectory()).parent.path +
-              "/shared_prefs/preference_rifle_$i.xml";
+          var path =
+              "${(await getApplicationDocumentsDirectory()).parent.path}/shared_prefs/preference_rifle_$i.xml";
           var file = File(path);
           var document = XmlDocument.parse(file.readAsStringSync());
           final titles = document.findAllElements('string');

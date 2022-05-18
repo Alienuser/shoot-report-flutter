@@ -48,7 +48,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _widgetOptions = <Widget>[
+    List<Widget> widgetOptions = <Widget>[
       TrainingWidget(
           weapon: widget.weapon,
           weaponDao: widget.weaponDao,
@@ -167,7 +167,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
         body: Center(
           child: Container(
-            child: _widgetOptions.elementAt(_selectedIndex),
+            child: widgetOptions.elementAt(_selectedIndex),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
