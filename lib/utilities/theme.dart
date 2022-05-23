@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -32,7 +31,10 @@ class AppTheme {
           labelColor: Color(primaryColor),
           unselectedLabelColor: Color(greyColor),
           indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 4, color: Color(primaryColor)))),
+              borderSide: BorderSide(
+            width: 4,
+            color: Color(primaryColor),
+          ))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         primary: const Color(AppTheme.primaryColor),
@@ -63,7 +65,8 @@ class AppTheme {
           labelColor: Colors.white,
           unselectedLabelColor: Color(greyColor),
           indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 4, color: Color(accentColor)))),
+            borderSide: BorderSide(width: 4, color: Color(accentColor)),
+          )),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         primary: const Color(AppTheme.primaryColor),
