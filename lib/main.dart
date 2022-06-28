@@ -64,7 +64,7 @@ void _initialization() async {
     FirebaseLog().logEvent("migration_1_5_0");
   });
 
-  // Log App opended
+  // Log App opened
   FirebaseLog().logAppStart();
 
   // Wait some time to show splash
