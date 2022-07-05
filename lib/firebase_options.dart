@@ -54,8 +54,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '629596194534',
     projectId: 'shoot-report',
     storageBucket: 'shoot-report.appspot.com',
-    androidClientId: '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
-    iosClientId: '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
+    androidClientId:
+        '629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com',
+    iosClientId:
+        '629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com',
     iosBundleId: 'de.famprobst.report',
   );
 }
