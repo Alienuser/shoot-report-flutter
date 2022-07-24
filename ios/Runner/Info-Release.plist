@@ -30,11 +30,11 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSCameraUsageDescription</key>
-		<string>To take pictures.</string>
+		<string>In order to take a picture and add it to your session, we need the permission to use the camera.</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>To get volume.</string>
+		<string>In order to record a video and add it to your session, we need the permission to use the microphone.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>To get images from library.</string>
+		<string>In order to add a picture from the library to your session, we need the permission to access your library.</string>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
