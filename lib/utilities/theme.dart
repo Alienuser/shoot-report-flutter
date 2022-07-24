@@ -23,10 +23,10 @@ class AppTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(backgroundColorLight),
       appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.white),
-        foregroundColor: Colors.white,
-        backgroundColor: Color(primaryColor),
-      ),
+          iconTheme: IconThemeData(color: Colors.white),
+          foregroundColor: Colors.white,
+          backgroundColor: Color(primaryColor),
+          titleTextStyle: TextStyle(fontSize: 20)),
       tabBarTheme: const TabBarTheme(
           labelColor: Color(primaryColor),
           unselectedLabelColor: Color(greyColor),
@@ -50,7 +50,8 @@ class AppTheme {
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(color: Color(greyColor)),
       ),
-      useMaterial3: true);
+      useMaterial3: true,
+      visualDensity: VisualDensity.comfortable);
 
   static final ThemeData darkTheme = ThemeData(
       colorSchemeSeed: const Color(primaryColor),
@@ -60,6 +61,7 @@ class AppTheme {
         iconTheme: IconThemeData(color: Colors.white),
         foregroundColor: Colors.white,
         backgroundColor: Color(primaryColor),
+        titleTextStyle: TextStyle(fontSize: 20),
       ),
       tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
@@ -82,5 +84,6 @@ class AppTheme {
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(color: Color(textColorDark)),
       ),
-      useMaterial3: true);
+      useMaterial3: true,
+      visualDensity: VisualDensity.comfortable);
 }

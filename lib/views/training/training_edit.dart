@@ -367,7 +367,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             ]),
                         CupertinoFormSection.insetGrouped(
                             backgroundColor: Colors.transparent,
-                            header: Text(tr("trainig_report")),
+                            header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
