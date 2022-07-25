@@ -14,5 +14,3 @@ This repo contains the Flutter App. This will be the new version for
 on the Android Play Store.
 * [Here](https://apps.apple.com/de/app/shoot-report/id1561001511) you can find the app on the
 App Store.
-
-Here you can find the app on the Android Play Store.

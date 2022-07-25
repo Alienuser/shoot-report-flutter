@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "629596194534",
+    "project_id": "shoot-report",
+    "storage_bucket": "shoot-report.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629596194534:android:45bf7590911c6066f29d27",
+        "android_client_info": {
+          "package_name": "de.famprobst.report"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.famprobst.report",
+            "certificate_hash": "142a35d3a09dbccae94f7e059e8d8af8de61ed45"
+          }
+        },
+        {
+          "client_id": "629596194534-s553iip5ihus3ff7upp0sc1mt6enlc52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUAWubr5qIVqHMQBJkiLRToSzPYdD2QIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629596194534-s553iip5ihus3ff7upp0sc1mt6enlc52.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "de.famprobst.report",
+                "app_store_id": "1561001511"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

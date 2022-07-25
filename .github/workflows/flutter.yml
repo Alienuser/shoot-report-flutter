@@ -1,0 +1,83 @@
+name: Flutter
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2
+        with:
+          name: repository
+          path: ./
+
+  packages:
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+
+  analyze:
+    needs: packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter analyze
+
+#  test:
+#    needs: analyze
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: repository
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#      - run: flutter test
+  
+  build-android:
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter build apk --debug
+      - uses: actions/upload-artifact@v2
+        with:
+          name: android
+          path: build/app/outputs/flutter-apk/app-debug.apk
+
+  build-ios:
+    needs: analyze
+    runs-on: macos-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: repository
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter build ios --debug --no-codesign
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ios
+          path: build/ios/iphoneos/Runner.app
