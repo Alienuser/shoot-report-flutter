@@ -5,18 +5,59 @@ import 'dart:typed_data';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:plist_parser/plist_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/utilities/database.dart';
+import 'package:shoot_report/utilities/plist_parser.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 import 'package:xml/xml.dart';
 
 class AppMigration {
   static List<String> weaponIds = [];
+
+  ///
+  /// Migration functions
+  ///
+
+  static void migrate_1_5_0(FlutterDatabase database) {
+    if (Platform.isAndroid) {
+      // Migrate the database
+      doDatabaseMigration(database);
+      // Migrate the shared preferences
+      doSharedPrefMigration();
+      // Logging
+      log("Migrate to 1.5.0");
+    }
+  }
+
+  static void migrate_1_5_1(FlutterDatabase database) {
+    if (Platform.isIOS) {
+      // Remove all weapons
+      removeOldData(database);
+      // Migrate the database
+      doDatabaseMigration(database);
+      // Migrate the shared preferences
+      doSharedPrefMigration();
+      // Logging
+      log("Migrate to 1.5.1");
+    }
+  }
+
+  ///
+  /// Helper functions
+  ///
+
+  static void removeOldData(FlutterDatabase database) {
+    database.database.delete("weapon");
+    database.database.delete("sqlite_sequence");
+  }
+
+  ///
+  /// ------------------------------------
+  ///
 
   static void doDatabaseMigration(FlutterDatabase database) async {
     if (Platform.isAndroid) {
@@ -563,8 +604,8 @@ class AppMigration {
   }
 
   static String helperGetShotList(Uint8List list) {
-    var test = PlistParser().parseBytes(list);
-    List objectList = test["\$objects"];
+    var objects = PlistParser().parseBytes(list);
+    List objectList = objects["\$objects"];
     objectList.removeAt(0);
     objectList.removeAt(0);
     objectList.removeLast();

@@ -55,13 +55,19 @@ void _initialization() async {
   );
 
   // Migrate to version 1.5.0
-  VersionMigration.migrateToVersion("1.5.0", () async {
-    // Migrate the database
-    AppMigration.doDatabaseMigration(database);
-    // Migrate the shared preferences
-    AppMigration.doSharedPrefMigration();
+  VersionMigration.migrateToVersion("1.5.0", () {
+    // Run migration
+    AppMigration.migrate_1_5_0(database);
     // Log migration
     FirebaseLog().logEvent("migration_1_5_0");
+  });
+
+  // Migrate to version 1.5.1
+  VersionMigration.migrateToVersion("1.5.1", () {
+    // Run migration
+    AppMigration.migrate_1_5_1(database);
+    // Log migration
+    FirebaseLog().logEvent("migration_1_5_1");
   });
 
   // Log App opened
