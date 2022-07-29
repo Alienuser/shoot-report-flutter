@@ -62,12 +62,12 @@ void _initialization() async {
     FirebaseLog().logEvent("migration_1_5_0");
   });
 
-  // Migrate to version 1.5.1
-  VersionMigration.migrateToVersion("1.5.1", () {
+  // Migrate to version 1.5.2
+  VersionMigration.migrateToVersion("1.5.2", () {
     // Run migration
-    AppMigration.migrate_1_5_1(database);
+    AppMigration.migrate_1_5_2(database);
     // Log migration
-    FirebaseLog().logEvent("migration_1_5_1");
+    FirebaseLog().logEvent("migration_1_5_2");
   });
 
   // Log App opened

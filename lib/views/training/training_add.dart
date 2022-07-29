@@ -155,7 +155,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                       context: context,
                                       initialDate: date,
                                       firstDate: DateTime(1960),
-                                      lastDate: DateTime(2025),
+                                      lastDate: DateTime(2500),
                                     );
 
                                     if (picked != null) {
