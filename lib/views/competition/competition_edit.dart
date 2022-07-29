@@ -295,7 +295,9 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                         args: [(i + 1).toString()])),
                                 enabled: isInEditMode,
                                 initialValue:
-                                    (shots[i] != -1) ? shots[i].toString() : "",
+                                    (i < shots.length && shots[i] != -1)
+                                        ? shots[i].toString()
+                                        : "",
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
