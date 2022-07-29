@@ -47,9 +47,9 @@ class AppMigration {
   ///
 
   static void removeOldData(FlutterDatabase database) {
-    database.database.delete("weapon");
     database.database.delete("training");
     database.database.delete("competition");
+    database.database.delete("weapon");
     database.database.delete("sqlite_sequence");
   }
 
