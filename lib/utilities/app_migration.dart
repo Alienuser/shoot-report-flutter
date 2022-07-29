@@ -28,12 +28,10 @@ class AppMigration {
       doDatabaseMigration(database);
       // Migrate the shared preferences
       doSharedPrefMigration();
-      // Logging
-      log("Migrate to 1.5.0");
     }
   }
 
-  static void migrate_1_5_1(FlutterDatabase database) {
+  static void migrate_1_5_2(FlutterDatabase database) {
     if (Platform.isIOS) {
       // Remove all weapons
       removeOldData(database);
@@ -41,8 +39,6 @@ class AppMigration {
       doDatabaseMigration(database);
       // Migrate the shared preferences
       doSharedPrefMigration();
-      // Logging
-      log("Migrate to 1.5.1");
     }
   }
 
@@ -52,6 +48,8 @@ class AppMigration {
 
   static void removeOldData(FlutterDatabase database) {
     database.database.delete("weapon");
+    database.database.delete("training");
+    database.database.delete("competition");
     database.database.delete("sqlite_sequence");
   }
 
@@ -87,7 +85,7 @@ class AppMigration {
               database.trainingDao.insertTraining(Training(
                   null,
                   DateTime.fromMillisecondsSinceEpoch(element["date"]),
-                  element["image"] ?? "",
+                  "",
                   element["indicator"] ?? "",
                   element["place"] ?? "",
                   element["training"] ?? "",
@@ -104,7 +102,7 @@ class AppMigration {
               database.competitionDao.insertCompetition(Competition(
                 null,
                 DateTime.fromMillisecondsSinceEpoch((element["date"] ?? "")),
-                element["image"] ?? "",
+                "",
                 element["place"] ?? "",
                 element["kind"] ?? "",
                 element["shoot_count"] ?? "",
@@ -161,7 +159,7 @@ class AppMigration {
               Training training = Training(
                 null,
                 date,
-                element["ZIMAGE"] ?? "",
+                "",
                 helperGetIndicator(element["ZINDICATOR"] ?? 0),
                 element["ZPLACE"] ?? "",
                 helperGetTrainingKind(element["ZTRAINING"] ?? ""),
@@ -196,7 +194,7 @@ class AppMigration {
               Competition competition = Competition(
                 null,
                 date,
-                element["ZIMAGE"] ?? "",
+                "",
                 element["ZPLACE"] ?? "",
                 helperGetCompetitionKind(element["ZKIND"] ?? ""),
                 element["ZSHOOT_COUNT"] ?? "",
