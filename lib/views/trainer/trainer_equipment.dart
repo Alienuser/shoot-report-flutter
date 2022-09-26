@@ -16,6 +16,7 @@ class TrainerEquipmentWidget extends StatelessWidget {
         appBar: AppBar(
           title: Text(tr("trainer_title")),
           centerTitle: false,
+          leading: const BackButton(color: Colors.white),
           bottom: TabBar(
             indicator: const UnderlineTabIndicator(
                 borderSide:

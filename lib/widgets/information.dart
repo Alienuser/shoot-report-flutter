@@ -42,7 +42,7 @@ class _InformationWidgetState extends State<InformationWidget> {
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                   ),
                   child: const Icon(Icons.close),
                   onPressed: () => Navigator.of(context).pop(null),

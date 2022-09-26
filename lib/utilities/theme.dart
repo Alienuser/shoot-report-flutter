@@ -37,8 +37,8 @@ class AppTheme {
           ))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-        primary: const Color(AppTheme.primaryColor),
-        onPrimary: Colors.white,
+        foregroundColor: Colors.white,
+        backgroundColor: const Color(AppTheme.primaryColor),
         minimumSize: const Size.fromHeight(40),
       )),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -71,8 +71,8 @@ class AppTheme {
           )),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-        primary: const Color(AppTheme.primaryColor),
-        onPrimary: Colors.white,
+        foregroundColor: Colors.white,
+        backgroundColor: const Color(AppTheme.primaryColor),
         minimumSize: const Size.fromHeight(40),
       )),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

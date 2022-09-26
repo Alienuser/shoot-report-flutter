@@ -63,7 +63,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                 actions: <Widget>[
                   TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.white,
+                      foregroundColor: Colors.white,
                     ),
                     child: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(null),
@@ -157,7 +157,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                               imagePath != ""
                                   ? ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary:
+                                        backgroundColor:
                                             const Color(AppTheme.primaryColor),
                                         minimumSize: const Size.fromHeight(40),
                                       ),
@@ -172,7 +172,8 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   : const SizedBox.shrink(),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: () {
@@ -210,7 +211,8 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: () {
@@ -329,7 +331,8 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                             children: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: () {
@@ -371,7 +374,11 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
 
   void _calculateTotalAndAverage() {
     setState(() {
-      pointsTotal = shots.fold(0, (previous, current) => previous + current);
+      pointsTotal = shots.fold(
+          0,
+          (previous, current) => (previous != -1 && current != -1)
+              ? previous + current
+              : previous);
     });
   }
 

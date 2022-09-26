@@ -67,9 +67,11 @@ class _HomeWidgetState extends State<HomeWidget> {
         appBar: AppBar(
           title: Text(tr(widget.weapon.name)),
           centerTitle: false,
+          leading: const BackButton(color: Colors.white),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.account_circle),
+              color: Colors.white,
               tooltip: tr("tooltip_user"),
               onPressed: () {
                 Navigator.push(
@@ -82,6 +84,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
             IconButton(
               icon: const Icon(Icons.sports),
+              color: Colors.white,
               tooltip: tr("tooltip_trainer"),
               onPressed: () {
                 Navigator.push(
@@ -93,7 +96,10 @@ class _HomeWidgetState extends State<HomeWidget> {
               },
             ),
             PopupMenuButton(
-              icon: const Icon(Icons.more_vert),
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
               itemBuilder: (context) => [
                 PopupMenuItem<int>(
                   value: 0,

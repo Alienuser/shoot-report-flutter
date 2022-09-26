@@ -33,7 +33,7 @@ class _PartnerWidgetState extends State<PartnerWidget> {
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                   ),
                   child: const Icon(Icons.close),
                   onPressed: () => Navigator.of(context).pop(null),
@@ -166,7 +166,7 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(AppTheme.accentColor),
+                            backgroundColor: const Color(AppTheme.accentColor),
                           ),
                           onPressed: () {
                             launchUrl(

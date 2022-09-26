@@ -19,6 +19,7 @@ class DataWidget extends StatelessWidget {
           appBar: AppBar(
             title: Text(tr("data_title")),
             centerTitle: false,
+            leading: const BackButton(color: Colors.white),
             bottom: TabBar(
               indicator: const UnderlineTabIndicator(
                   borderSide:
