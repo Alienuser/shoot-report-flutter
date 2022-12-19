@@ -310,7 +310,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("training_shots")),
                               enabled: isInEditMode,
-                              initialValue: shotCount.toString(),
+                              initialValue:
+                                  (shotCount == -1) ? "" : shotCount.toString(),
                               keyboardType: TextInputType.number,
                               textInputAction: TextInputAction.next,
                               onChanged: (value) async {
@@ -328,25 +329,29 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     labelText: tr("training_serie",
                                         args: [(i + 1).toString()])),
                                 enabled: isInEditMode,
-                                initialValue:
-                                    (i < shots.length && shots[i] != -1)
-                                        ? shots[i].toString()
-                                        : "",
+                                initialValue: (shots[i] != -1 &&
+                                        shots[i].toString() != "null")
+                                    ? shots[i].toString()
+                                    : "",
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                 textInputAction: TextInputAction.next,
                                 onChanged: (value) async {
-                                  if (value.contains(",") ||
-                                      value.contains(".")) {
-                                    if (value.contains(",")) {
-                                      shots[i] = double.tryParse(
-                                          value.replaceAll(",", "."));
+                                  if (value.isNotEmpty) {
+                                    if (value.contains(",") ||
+                                        value.contains(".")) {
+                                      if (value.contains(",")) {
+                                        shots[i] = double.tryParse(
+                                            value.replaceAll(",", "."));
+                                      } else {
+                                        shots[i] = double.tryParse(value);
+                                      }
                                     } else {
-                                      shots[i] = double.tryParse(value);
+                                      shots[i] = int.tryParse(value);
                                     }
                                   } else {
-                                    shots[i] = int.tryParse(value);
+                                    shots[i] = 0;
                                   }
                                   _calculateTotalAndAverage();
                                 },
@@ -458,9 +463,10 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     setState(() {
       pointsTotal = shots.fold(
           0,
-          (previous, current) => (previous != -1 && current != -1)
-              ? previous + current
-              : previous);
+          (previous, current) =>
+              (previous != -1 && current != -1 && current != null)
+                  ? previous + current
+                  : previous);
       if (shots.isNotEmpty) {
         pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
       }
