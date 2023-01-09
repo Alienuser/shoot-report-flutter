@@ -81,6 +81,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                       isInEditMode = !isInEditMode;
                     }),
                     icon: const Icon(Icons.edit),
+                    color: Colors.white,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(

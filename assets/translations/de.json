@@ -148,7 +148,7 @@
     "competition_report":"Report",
     "competition_comment":"Wettkampfbericht",
     "competition_add":"Speichern",
-    "competition_edit":"Bearbeiten",
+    "competition_edit":"Speichern",
     "competition_kind_league":"Ligawettkampf",
     "competition_kind_round":"Rundenwettkampf",
     "competition_kind_championship":"Meisterschaft",
@@ -239,7 +239,7 @@
     "information_version_version":"Version",
     "information_version_build":"Buildnummer",
     "information_version_date":"Builddatum",
-    "information_version_date_description":"20220927",
+    "information_version_date_description":"20230103",
     "information_source_title":"Quellenangabe",
     "information_source_description":"Texte der Trainerfunktion sind in Anlehnung der Trainer-C Breitensportausbildung des Deutschen Schützenbundes.",
 

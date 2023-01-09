@@ -15,31 +15,29 @@ class TrainerViewWidget extends StatefulWidget {
 class _TrainerViewWidgetState extends State<TrainerViewWidget> {
   final host = "https://trainer.burkhardt-sport.solutions";
   final validLocales = ["de", "en"];
-  bool isLoading = true;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     var locale = Localizations.localeOf(context).toString();
     var language = validLocales.contains(locale) ? locale : 'en';
 
-    return Scaffold(
-        body: Stack(
-      children: [
-        WebView(
-          initialUrl: "$host/$language/${widget.url}",
-          backgroundColor: const Color(AppTheme.backgroundColorLight),
-          javascriptMode: JavascriptMode.unrestricted,
+    var controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(AppTheme.backgroundColorLight))
+      ..setNavigationDelegate(
+        NavigationDelegate(
           onPageStarted: (String url) {
-            setState(() {
-              isLoading = true;
-            });
+            /*setState(() {
+                isLoading = true;
+              });*/
           },
           onPageFinished: (String url) {
-            setState(() {
-              isLoading = false;
-            });
+            /*setState(() {
+                isLoading = false;
+              });*/
           },
-          navigationDelegate: (NavigationRequest request) {
+          onNavigationRequest: (NavigationRequest request) {
             if (!request.url.contains(host)) {
               launchUrl(
                 Uri.parse(request.url),
@@ -50,6 +48,13 @@ class _TrainerViewWidgetState extends State<TrainerViewWidget> {
             return NavigationDecision.navigate;
           },
         ),
+      )
+      ..loadRequest(Uri.parse("$host/$language/${widget.url}"));
+
+    return Scaffold(
+        body: Stack(
+      children: [
+        WebViewWidget(controller: controller),
         Visibility(
           visible: isLoading,
           child: const Center(
