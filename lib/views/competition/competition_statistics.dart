@@ -59,7 +59,8 @@ class _CompetitionStatisticWidgetState
         final competitions = snapshot.requireData;
         for (var competition in competitions) {
           if (competition.shots.isNotEmpty) {
-            var rings = competition.shots.reduce((value, next) => value + next);
+            var rings = competition.shots.reduce((value, next) =>
+                (value != null && next != null) ? value + next : value + 0);
             bool isTenth =
                 competition.shots.any((element) => element is double);
 

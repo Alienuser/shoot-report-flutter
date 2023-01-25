@@ -91,10 +91,8 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
 
   Text getCompetitionPoints(Competition competition) {
     if (competition.shots.isNotEmpty) {
-      num shots = competition.shots.fold(
-          0,
-          (previous, current) =>
-              (current != null) ? previous + current : previous + 0);
+      num shots = competition.shots.reduce((value, next) =>
+          (value != null && next != null) ? value + next : value + 0);
       return Text(shots.toStringAsFixed(1),
           style: const TextStyle(fontWeight: FontWeight.bold));
     } else {
