@@ -117,7 +117,10 @@ class _TrainingListRowState extends State<TrainingListRow> {
         );
       } else {
         return Text(
-            training.shots.reduce((value, next) => value + next).toString(),
+            training.shots
+                .reduce((value, next) =>
+                    (value != null && next != null) ? value + next : value + 0)
+                .toString(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ));

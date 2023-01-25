@@ -81,10 +81,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                       isInEditMode = !isInEditMode;
                     }),
                     icon: const Icon(Icons.edit),
+                    color: Colors.white,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.white,
+                      foregroundColor: Colors.white,
                     ),
                     child: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(null),
@@ -212,7 +213,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               imagePath != ""
                                   ? ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary:
+                                        backgroundColor:
                                             const Color(AppTheme.primaryColor),
                                         minimumSize: const Size.fromHeight(40),
                                       ),
@@ -228,7 +229,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   : const SizedBox.shrink(),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -268,7 +270,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -308,7 +311,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("training_shots")),
                               enabled: isInEditMode,
-                              initialValue: shotCount.toString(),
+                              initialValue:
+                                  (shotCount == -1) ? "" : shotCount.toString(),
                               keyboardType: TextInputType.number,
                               textInputAction: TextInputAction.next,
                               onChanged: (value) async {
@@ -326,25 +330,29 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     labelText: tr("training_serie",
                                         args: [(i + 1).toString()])),
                                 enabled: isInEditMode,
-                                initialValue:
-                                    (i < shots.length && shots[i] != -1)
-                                        ? shots[i].toString()
-                                        : "",
+                                initialValue: (shots[i] != -1 &&
+                                        shots[i].toString() != "null")
+                                    ? shots[i].toString()
+                                    : "",
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                 textInputAction: TextInputAction.next,
                                 onChanged: (value) async {
-                                  if (value.contains(",") ||
-                                      value.contains(".")) {
-                                    if (value.contains(",")) {
-                                      shots[i] = double.tryParse(
-                                          value.replaceAll(",", "."));
+                                  if (value.isNotEmpty) {
+                                    if (value.contains(",") ||
+                                        value.contains(".")) {
+                                      if (value.contains(",")) {
+                                        shots[i] = double.tryParse(
+                                            value.replaceAll(",", "."));
+                                      } else {
+                                        shots[i] = double.tryParse(value);
+                                      }
                                     } else {
-                                      shots[i] = double.tryParse(value);
+                                      shots[i] = int.tryParse(value);
                                     }
                                   } else {
-                                    shots[i] = int.tryParse(value);
+                                    shots[i] = 0;
                                   }
                                   _calculateTotalAndAverage();
                                 },
@@ -395,7 +403,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             children: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -407,7 +416,8 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: !isInEditMode
@@ -452,7 +462,12 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
   void _calculateTotalAndAverage() {
     setState(() {
-      pointsTotal = shots.fold(0, (previous, current) => previous + current);
+      pointsTotal = shots.fold(
+          0,
+          (previous, current) =>
+              (previous != -1 && current != -1 && current != null)
+                  ? previous + current
+                  : previous);
       if (shots.isNotEmpty) {
         pointsAverage = (pointsTotal / shotCount).toStringAsFixed(2);
       }

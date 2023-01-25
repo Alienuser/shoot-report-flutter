@@ -32,6 +32,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.settings_backup_restore_outlined),
+            color: Colors.white,
             tooltip: tr("weapon_show_toolltip"),
             onPressed: () {
               setState(() {

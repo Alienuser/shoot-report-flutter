@@ -89,8 +89,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                     : const SizedBox.shrink(),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      primary:
-                                          const Color(AppTheme.primaryColor),
+                                      backgroundColor: const Color(AppTheme.primaryColor),
                                       minimumSize: const Size.fromHeight(40),
                                     ),
                                     onPressed: () {

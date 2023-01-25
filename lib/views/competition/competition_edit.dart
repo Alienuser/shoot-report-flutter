@@ -78,10 +78,11 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                       isInEditMode = !isInEditMode;
                     }),
                     icon: const Icon(Icons.edit),
+                    color: Colors.white,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.white,
+                      foregroundColor: Colors.white,
                     ),
                     child: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(null),
@@ -179,7 +180,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               imagePath != ""
                                   ? ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary:
+                                        backgroundColor:
                                             const Color(AppTheme.primaryColor),
                                         minimumSize: const Size.fromHeight(40),
                                       ),
@@ -196,7 +197,8 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   : const SizedBox.shrink(),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -236,7 +238,8 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -294,25 +297,30 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                     labelText: tr("competition_serie",
                                         args: [(i + 1).toString()])),
                                 enabled: isInEditMode,
-                                initialValue:
-                                    (i < shots.length && shots[i] != -1)
-                                        ? shots[i].toString()
-                                        : "",
+                                initialValue: (i < shots.length &&
+                                        shots[i] != -1 &&
+                                        shots[i].toString() != "null")
+                                    ? shots[i].toString()
+                                    : "",
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                 textInputAction: TextInputAction.next,
                                 onChanged: (value) async {
-                                  if (value.contains(",") ||
-                                      value.contains(".")) {
-                                    if (value.contains(",")) {
-                                      shots[i] = double.tryParse(
-                                          value.replaceAll(",", "."));
+                                  if (value.isNotEmpty) {
+                                    if (value.contains(",") ||
+                                        value.contains(".")) {
+                                      if (value.contains(",")) {
+                                        shots[i] = double.tryParse(
+                                            value.replaceAll(",", "."));
+                                      } else {
+                                        shots[i] = double.tryParse(value);
+                                      }
                                     } else {
-                                      shots[i] = double.tryParse(value);
+                                      shots[i] = int.tryParse(value);
                                     }
                                   } else {
-                                    shots[i] = int.tryParse(value);
+                                    shots[i] = 0;
                                   }
                                   _calculateTotalAndAverage();
                                 },
@@ -359,7 +367,8 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                             children: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: isInEditMode
@@ -371,7 +380,8 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(AppTheme.primaryColor),
+                                  backgroundColor:
+                                      const Color(AppTheme.primaryColor),
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: !isInEditMode
@@ -415,7 +425,12 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
 
   void _calculateTotalAndAverage() {
     setState(() {
-      pointsTotal = shots.fold(0, (previous, current) => previous + current);
+      pointsTotal = shots.fold(
+          0,
+          (previous, current) =>
+              (previous != -1 && current != -1 && current != null)
+                  ? previous + current
+                  : previous);
     });
   }
 

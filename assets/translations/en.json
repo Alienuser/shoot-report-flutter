@@ -148,7 +148,7 @@
     "competition_report":"Report",
     "competition_comment":"Competition report",
     "competition_add":"Save",
-    "competition_edit":"Edit",
+    "competition_edit":"Save",
     "competition_kind_league":"League Competition",
     "competition_kind_round":"Round Competition",
     "competition_kind_championship":"Championship",
@@ -239,7 +239,7 @@
     "information_version_version":"Version",
     "information_version_build":"Build number",
     "information_version_date":"Build date",
-    "information_version_date_description":"20220729",
+    "information_version_date_description":"20230103",
     "information_source_title":"Sources",
     "information_source_description":"Texts ot the coach function are in accordance with the Trainer-C mass sports training of the Deutscher Schützenbund.",
 

@@ -33,7 +33,7 @@ class _CooperationWidgetState extends State<CooperationWidget> {
               actions: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                   ),
                   child: const Icon(Icons.close),
                   onPressed: () => Navigator.of(context).pop(null),
@@ -81,7 +81,7 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(AppTheme.accentColor),
+                            backgroundColor: const Color(AppTheme.accentColor),
                           ),
                           onPressed: () {
                             launchUrl(
