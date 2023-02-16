@@ -435,9 +435,9 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
   }
 
   Future<void> _shareAsCsv() async {
-    Share.shareFiles([
-      await CsvConverter.generateCompetitionCsv(
-          widget.weapon, widget.competition)
+    Share.shareXFiles([
+      XFile(await CsvConverter.generateCompetitionCsv(
+          widget.weapon, widget.competition))
     ], text: tr("competition_share_text"));
   }
 

@@ -475,8 +475,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   }
 
   Future<void> _shareAsCsv() async {
-    Share.shareFiles([
-      await CsvConverter.generateTrainingCsv(widget.weapon, widget.training)
+    Share.shareXFiles([
+      XFile(await CsvConverter.generateTrainingCsv(
+          widget.weapon, widget.training))
     ], text: tr("training_share_text"));
   }
 
