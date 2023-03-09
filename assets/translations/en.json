@@ -39,6 +39,7 @@
     "tooltip_user":"Master Data",
     "tooltip_trainer":"Coach",
 
+    "export_database_text":"How would you like to share the data?",
     "export_training_weapon":"Discipline",
     "export_training_evaluation":"Rating",
     "export_training_indicator":"Rating",
