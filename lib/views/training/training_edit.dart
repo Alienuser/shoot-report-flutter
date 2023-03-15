@@ -11,6 +11,7 @@ import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/utilities/csv_converter.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -475,6 +476,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
   }
 
   Future<void> _shareAsCsv() async {
+    FirebaseLog().logEvent("Share Training");
     Share.shareXFiles([
       XFile(await CsvConverter.generateTrainingCsv(
           widget.weapon, widget.training))
