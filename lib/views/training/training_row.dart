@@ -116,14 +116,10 @@ class _TrainingListRowState extends State<TrainingListRow> {
           style: const TextStyle(fontWeight: FontWeight.bold),
         );
       } else {
-        return Text(
-            training.shots
-                .reduce((value, next) =>
-                    (value != null && next != null) ? value + next : value + 0)
-                .toString(),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ));
+        num shots = training.shots.reduce((value, next) =>
+            (value != null && next != null) ? value + next : value + 0);
+        return Text(shots.toStringAsFixed(1),
+            style: const TextStyle(fontWeight: FontWeight.bold));
       }
     } else {
       return const Text("0", style: TextStyle(fontWeight: FontWeight.bold));

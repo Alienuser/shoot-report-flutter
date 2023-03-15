@@ -57,7 +57,8 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
         final trainings = snapshot.requireData;
         for (var training in trainings) {
           if (training.shots.isNotEmpty) {
-            var rings = training.shots.reduce((value, next) => value + next);
+            var rings = training.shots.reduce((value, next) =>
+                (value != null && next != null) ? value + next : value + 0);
             var average = rings / training.shotCount;
             bool isTenth = training.shots.any((element) => element is double);
 

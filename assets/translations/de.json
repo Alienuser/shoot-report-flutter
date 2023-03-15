@@ -39,6 +39,7 @@
     "tooltip_user":"Stammdaten",
     "tooltip_trainer":"Trainer",
 
+    "export_database_text":"Wie möchtest du deine Daten teilen?",
     "export_training_weapon":"Disziplin",
     "export_training_evaluation":"Bewertung",
     "export_training_indicator":"Bewertung",

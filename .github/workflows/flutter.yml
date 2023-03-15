@@ -8,8 +8,8 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: repository
           path: ./
@@ -18,7 +18,7 @@ jobs:
     needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: repository
       - uses: subosito/flutter-action@v2
@@ -30,7 +30,7 @@ jobs:
     needs: packages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: repository
       - uses: subosito/flutter-action@v2
@@ -42,7 +42,7 @@ jobs:
 #    needs: analyze
 #    runs-on: ubuntu-latest
 #    steps:
-#      - uses: actions/download-artifact@v2
+#      - uses: actions/download-artifact@v3
 #        with:
 #          name: repository
 #      - uses: subosito/flutter-action@v2
@@ -54,14 +54,14 @@ jobs:
     needs: analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: repository
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       - run: flutter build apk --debug
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: android
           path: build/app/outputs/flutter-apk/app-debug.apk
@@ -70,14 +70,14 @@ jobs:
     needs: analyze
     runs-on: macos-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: repository
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       - run: flutter build ios --debug --no-codesign
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ios
           path: build/ios/iphoneos/Runner.app

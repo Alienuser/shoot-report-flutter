@@ -11,6 +11,7 @@ import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/utilities/csv_converter.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:status_alert/status_alert.dart';
@@ -435,9 +436,10 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
   }
 
   Future<void> _shareAsCsv() async {
-    Share.shareFiles([
-      await CsvConverter.generateCompetitionCsv(
-          widget.weapon, widget.competition)
+    FirebaseLog().logEvent("Share Competition");
+    Share.shareXFiles([
+      XFile(await CsvConverter.generateCompetitionCsv(
+          widget.weapon, widget.competition))
     ], text: tr("competition_share_text"));
   }
 

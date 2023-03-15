@@ -1,7 +1,8 @@
-import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:shoot_report/main.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
@@ -121,10 +122,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   value: 4,
                   child: Text(tr("menu_instagram")),
                 ),
-                /*PopupMenuItem<int>(
+                PopupMenuItem<int>(
                   value: 5,
                   child: Text(tr("menu_export")),
-                ),*/
+                ),
               ],
               onSelected: (item) {
                 switch (item) {
@@ -164,7 +165,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                     );
                     break;
                   case 5:
-                    log("Export all");
+                    FirebaseLog().logEvent("Share Database");
+                    Share.shareXFiles([XFile(database.database.database.path)],
+                        text: tr("training_share_text"));
                     break;
                 }
               },

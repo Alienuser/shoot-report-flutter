@@ -51,11 +51,12 @@ android {
     defaultConfig {
         applicationId "de.famprobst.report"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 32
         compileSdkVersion 33
-        buildToolsVersion "33.0.1"
+        buildToolsVersion "33.0.2"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     signingConfigs {
