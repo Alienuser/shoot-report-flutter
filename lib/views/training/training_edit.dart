@@ -345,12 +345,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   if (value.isNotEmpty) {
                                     if (value.contains(",") ||
                                         value.contains(".")) {
-                                      if (value.contains(",")) {
-                                        shots[i] = double.tryParse(
-                                            value.replaceAll(",", "."));
-                                      } else {
-                                        shots[i] = double.tryParse(value);
-                                      }
+                                      shots[i] = double.tryParse(
+                                              value.replaceAll(",", ".")) ??
+                                          0;
                                     } else {
                                       shots[i] = int.tryParse(value);
                                     }
