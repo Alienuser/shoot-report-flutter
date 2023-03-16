@@ -343,7 +343,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("training_comment"),
                                   maxLines: 10,

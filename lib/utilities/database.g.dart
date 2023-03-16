@@ -67,8 +67,11 @@ class _$FlutterDatabase extends FlutterDatabase {
 
   CompetitionDao? _competitionDaoInstance;
 
-  Future<sqflite.Database> open(String path, List<Migration> migrations,
-      [Callback? callback]) async {
+  Future<sqflite.Database> open(
+    String path,
+    List<Migration> migrations, [
+    Callback? callback,
+  ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
       onConfigure: (database) async {
@@ -116,8 +119,10 @@ class _$FlutterDatabase extends FlutterDatabase {
 }
 
 class _$WeaponDao extends WeaponDao {
-  _$WeaponDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$WeaponDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _weaponInsertionAdapter = InsertionAdapter(
             database,
             'Weapon',
@@ -177,7 +182,7 @@ class _$WeaponDao extends WeaponDao {
             row['prefFile'] as String,
             (row['show'] as int) != 0),
         arguments: [show ? 1 : 0],
-        queryableName: 'Weapon',
+        queryableName: 'weapon',
         isView: false);
   }
 
@@ -204,8 +209,10 @@ class _$WeaponDao extends WeaponDao {
 }
 
 class _$TrainingDao extends TrainingDao {
-  _$TrainingDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$TrainingDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _trainingInsertionAdapter = InsertionAdapter(
             database,
             'Training',
@@ -283,7 +290,7 @@ class _$TrainingDao extends TrainingDao {
             _arrayConverter.decode(row['shots'] as String),
             row['comment'] as String,
             row['weapon_id'] as int),
-        queryableName: 'Training',
+        queryableName: 'training',
         isView: false);
   }
 
@@ -303,7 +310,7 @@ class _$TrainingDao extends TrainingDao {
             row['comment'] as String,
             row['weapon_id'] as int),
         arguments: [wid],
-        queryableName: 'Training',
+        queryableName: 'training',
         isView: false);
   }
 
@@ -324,8 +331,10 @@ class _$TrainingDao extends TrainingDao {
 }
 
 class _$CompetitionDao extends CompetitionDao {
-  _$CompetitionDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$CompetitionDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _competitionInsertionAdapter = InsertionAdapter(
             database,
             'Competition',
@@ -399,7 +408,7 @@ class _$CompetitionDao extends CompetitionDao {
             _arrayConverter.decode(row['shots'] as String),
             row['comment'] as String,
             row['weapon_id'] as int),
-        queryableName: 'Competition',
+        queryableName: 'competition',
         isView: false);
   }
 
@@ -418,7 +427,7 @@ class _$CompetitionDao extends CompetitionDao {
             row['comment'] as String,
             row['weapon_id'] as int),
         arguments: [wid],
-        queryableName: 'Competition',
+        queryableName: 'competition',
         isView: false);
   }
 

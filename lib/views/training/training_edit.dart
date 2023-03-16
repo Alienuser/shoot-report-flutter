@@ -323,7 +323,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 _calculateTotalAndAverage();
                               },
                             ),
-                            for (var i = 0; i < (shotCount / 10).ceil(); i++)
+                            for (var i = 0;
+                                i < (shotCount / 10).ceil() && i < shots.length;
+                                i++)
                               TextFormField(
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -382,7 +384,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("training_comment"),
                                   maxLines: 10,

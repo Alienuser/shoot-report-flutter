@@ -346,7 +346,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("competition_comment"),
                                   maxLines: 10,

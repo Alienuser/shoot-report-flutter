@@ -47,27 +47,19 @@ Future<void> main() async {
 
 void _initialization() async {
   // Reset the migration for debug
-  //VersionMigration.reset();
+  VersionMigration.reset();
 
   // Firebase initialization
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Migrate to version 1.5.0
-  VersionMigration.migrateToVersion("1.5.0", () {
+  // Migrate to version 1.6.0
+  VersionMigration.migrateToVersion("1.6.0", () {
     // Run migration
-    AppMigration.migrate_1_5_0(database);
+    AppMigration.migrate_1_6_0(database);
     // Log migration
-    FirebaseLog().logEvent("migration_1_5_0");
-  });
-
-  // Migrate to version 1.5.2
-  VersionMigration.migrateToVersion("1.5.2", () {
-    // Run migration
-    AppMigration.migrate_1_5_2(database);
-    // Log migration
-    FirebaseLog().logEvent("migration_1_5_2");
+    FirebaseLog().logEvent("migration_1_6_0");
   });
 
   // Log App opened
