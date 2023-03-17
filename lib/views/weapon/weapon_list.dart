@@ -4,6 +4,7 @@ import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/app_migration.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/weapon/weapon_row.dart';
 
@@ -30,6 +31,7 @@ class WeaponListView extends StatelessWidget {
           }
           if (snapshot.data.toString() == "[]") {
             final ThemeData mode = Theme.of(context);
+            AppMigration.loadDefaultWeapons(weaponDao);
             return Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

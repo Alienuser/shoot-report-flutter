@@ -57,7 +57,7 @@ void _initialization() async {
   // Migrate to version 1.6.0
   VersionMigration.migrateToVersion("1.6.0", () {
     // Run migration
-    //AppMigration.migrate_1_6_0(database);
+    AppMigration.migrate_1_6_0(database);
     // Log migration
     FirebaseLog().logEvent("migration_1_6_0");
   });
