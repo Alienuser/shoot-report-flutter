@@ -52,7 +52,7 @@ class _ProcedurePreparationWidgetState
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textPreparationController,
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.newline,
                               placeholder: tr("procedure_preparation_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,
