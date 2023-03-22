@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:shoot_report/firebase_options.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shoot_report/main_app.dart';
@@ -54,12 +56,19 @@ void _initialization() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // Firebase configuration
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
   // Migrate to version 1.6.0
-  VersionMigration.migrateToVersion("1.6.0", () {
+  VersionMigration.migrateToVersion("1.6.0", () async {
+    Trace migrationTrace160 =
+        FirebasePerformance.instance.newTrace('migration_1.6.0');
+    await migrationTrace160.start();
     // Run migration
     AppMigration.migrate_1_6_0(database);
     // Log migration
     FirebaseLog().logEvent("migration_1_6_0");
+    await migrationTrace160.stop();
   });
 
   // Log App opened
