@@ -43,10 +43,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Scaffold(
             body: SingleChildScrollView(

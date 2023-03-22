@@ -27,10 +27,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Scaffold(
             body: SingleChildScrollView(
@@ -46,7 +43,7 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textDataDeviceController,
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.newline,
                               placeholder: tr("data_device_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,

@@ -40,7 +40,7 @@ dependencies:
   package_info_plus: any
   version_migration: any
   shared_preferences: any
-  modal_bottom_sheet: any
+  modal_bottom_sheet: ^3.0.0-pre
   flutter_native_splash: any
   syncfusion_flutter_charts: any
   flutter:
