@@ -133,28 +133,6 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                         height: 40)),
                                 child: Container(),
                               ))),
-                      Container(
-                        color: (mode.brightness == Brightness.light)
-                            ? Colors.transparent
-                            : const Color(AppTheme.backgroundAdsDark),
-                        child: InkWell(
-                            onTap: () {
-                              launchUrl(
-                                Uri.parse("https://tec-hro.de/schiesssport"),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            child: CupertinoFormRow(
-                              padding: const EdgeInsets.all(10),
-                              prefix: Container(),
-                              helper: Center(
-                                  child: Image.asset(
-                                "assets/images/partner_techro.png",
-                                height: 40,
-                              )),
-                              child: Container(),
-                            )),
-                      )
                     ],
                   ),
                   CupertinoFormSection.insetGrouped(
