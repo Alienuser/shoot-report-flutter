@@ -19,6 +19,7 @@ import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
 import 'package:shoot_report/widgets/partner.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cross_file/cross_file.dart';
 
 class HomeWidget extends StatefulWidget {
   final Weapon weapon;

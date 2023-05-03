@@ -29,6 +29,7 @@ environment:
 dependencies:
   csv: any
   floor: any
+  cross_file: any
   share_plus: any
   url_launcher: any
   status_alert: any
