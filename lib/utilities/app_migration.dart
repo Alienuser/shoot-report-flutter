@@ -13,6 +13,7 @@ class AppMigration {
     addEmptyShots(database);
     replaceNullValues(database);
     migrateDates(database);
+    addWeapon(database);
   }
 
   ///
@@ -135,6 +136,15 @@ class AppMigration {
     log("Migrating dates finished.", name: "Migration");
   }
 
+  static void addWeapon(FlutterDatabase database) async {
+    log("Adding weapon start.", name: "Migration");
+
+    await database.weaponDao
+        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", true));
+
+    log("Adding weapon finished.", name: "Migration");
+  }
+
   ///
   /// General functions
   ///
@@ -165,5 +175,9 @@ class AppMigration {
         .insertWeapon(Weapon(11, "weapon_10", 10, "prefWeapon10", true));
     await weaponDao
         .insertWeapon(Weapon(12, "weapon_11", 11, "prefWeapon11", true));
+    await weaponDao
+        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", true));
+
+    log("Loading initial weapons finished.", name: "Migration");
   }
 }
