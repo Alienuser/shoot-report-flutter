@@ -23,12 +23,6 @@ class StatisticWidget extends StatefulWidget {
 class _StatisticWidgetState extends State<StatisticWidget> {
   @override
   Widget build(BuildContext context) {
-    // Set minimum and maximum
-    var visibleMinimum =
-        widget.dataSource.length > 10 ? widget.dataSource.length - 10.0 : null;
-    var visibleMaximum =
-        widget.dataSource.length > 10 ? widget.dataSource.length - 1.0 : null;
-
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       title: ChartTitle(text: widget.title),
@@ -42,10 +36,9 @@ class _StatisticWidgetState extends State<StatisticWidget> {
       },
       primaryXAxis: CategoryAxis(
         majorGridLines: const MajorGridLines(width: 0),
-        visibleMinimum: visibleMinimum,
-        visibleMaximum: visibleMaximum,
         interval: 1,
         labelRotation: 30,
+        autoScrollingDelta: 10,
       ),
       primaryYAxis: NumericAxis(
         axisLine: const AxisLine(width: 0),
@@ -61,8 +54,8 @@ class _StatisticWidgetState extends State<StatisticWidget> {
           animationDuration: 500,
           animationDelay: 0,
           splineType: SplineType.natural,
-          xValueMapper: (ChartData sales, _) => sales.x,
-          yValueMapper: (ChartData sales, _) => sales.y,
+          xValueMapper: (ChartData point, _) => point.x,
+          yValueMapper: (ChartData point, _) => point.y,
           name: tr("training_statistics_result"),
           markerSettings: MarkerSettings(isVisible: true, color: widget.color),
         ),

@@ -64,10 +64,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Material(
           child: Scaffold(
@@ -323,7 +320,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                 _calculateTotalAndAverage();
                               },
                             ),
-                            for (var i = 0; i < (shotCount / 10).ceil(); i++)
+                            for (var i = 0;
+                                i < (shotCount / 10).ceil() && i < shots.length;
+                                i++)
                               TextFormField(
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -343,12 +342,9 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   if (value.isNotEmpty) {
                                     if (value.contains(",") ||
                                         value.contains(".")) {
-                                      if (value.contains(",")) {
-                                        shots[i] = double.tryParse(
-                                            value.replaceAll(",", "."));
-                                      } else {
-                                        shots[i] = double.tryParse(value);
-                                      }
+                                      shots[i] = double.tryParse(
+                                              value.replaceAll(",", ".")) ??
+                                          0;
                                     } else {
                                       shots[i] = int.tryParse(value);
                                     }
@@ -382,7 +378,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("training_comment"),
                                   maxLines: 10,

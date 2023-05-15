@@ -64,12 +64,12 @@ class _CompetitionStatisticWidgetState
             bool isTenth =
                 competition.shots.any((element) => element is double);
 
-            if (!isTenth && dataWhole.length < 10) {
+            if (!isTenth && dataWhole.length < 100) {
               dataWhole.add(ChartData(
-                  x: DateFormat.MMMd().format(competition.date), y: rings));
-            } else if (isTenth && dataTenth.length < 10) {
+                  x: DateFormat.yMMMd().format(competition.date), y: rings));
+            } else if (isTenth && dataTenth.length < 100) {
               dataTenth.add(ChartData(
-                  x: DateFormat.MMMd().format(competition.date), y: rings));
+                  x: DateFormat.yMMMd().format(competition.date), y: rings));
             }
           }
         }

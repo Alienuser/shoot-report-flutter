@@ -33,10 +33,7 @@ class _ProcedurePreparationWidgetState
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Scaffold(
             body: SingleChildScrollView(
@@ -52,7 +49,7 @@ class _ProcedurePreparationWidgetState
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textPreparationController,
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.newline,
                               placeholder: tr("procedure_preparation_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,

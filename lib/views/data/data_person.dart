@@ -48,10 +48,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Scaffold(
             body: SingleChildScrollView(
@@ -63,8 +60,7 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                           child: CupertinoFormSection.insetGrouped(
                               backgroundColor: Colors.transparent,
                               decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
+                                  color: Colors.transparent),
                               children: [
                                 imagePath != null && imagePath!.isNotEmpty
                                     ? SizedBox(
@@ -89,7 +85,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                     : const SizedBox.shrink(),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(AppTheme.primaryColor),
+                                      backgroundColor:
+                                          const Color(AppTheme.primaryColor),
                                       minimumSize: const Size.fromHeight(40),
                                     ),
                                     onPressed: () {

@@ -48,10 +48,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Material(
           child: Scaffold(
@@ -275,12 +272,9 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   if (value.isNotEmpty) {
                                     if (value.contains(",") ||
                                         value.contains(".")) {
-                                      if (value.contains(",")) {
-                                        shots[i] = double.tryParse(
-                                            value.replaceAll(",", "."));
-                                      } else {
-                                        shots[i] = double.tryParse(value);
-                                      }
+                                      shots[i] = double.tryParse(
+                                              value.replaceAll(",", ".")) ??
+                                          0;
                                     } else {
                                       shots[i] = int.tryParse(value);
                                     }
@@ -310,7 +304,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("competition_comment"),
                                   maxLines: 10,

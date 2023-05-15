@@ -16,6 +16,7 @@
     "weapon_09":"Kleinkalibergewehr aufgelegt",
     "weapon_10":"Luftpistole aufgelegt",
     "weapon_11":"Armbrust",
+    "weapon_12":"Kleinkaliberpistole",
 
     "weapon_data_no":"Disziplinen werden geladen ...",
     "weapon_alert_title":"Disziplin ausblenden",
@@ -240,7 +241,7 @@
     "information_version_version":"Version",
     "information_version_build":"Buildnummer",
     "information_version_date":"Builddatum",
-    "information_version_date_description":"20230103",
+    "information_version_date_description":"20230501",
     "information_source_title":"Quellenangabe",
     "information_source_description":"Texte der Trainerfunktion sind in Anlehnung der Trainer-C Breitensportausbildung des Deutschen Schützenbundes.",
 

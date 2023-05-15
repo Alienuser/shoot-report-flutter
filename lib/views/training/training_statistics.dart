@@ -64,10 +64,10 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
 
             if (!isTenth && dataWhole.length < 100) {
               dataWhole.add(ChartData(
-                  x: DateFormat.MMMd().format(training.date), y: average));
+                  x: DateFormat.yMMMd().format(training.date), y: average));
             } else if (isTenth && dataTenth.length < 100) {
               dataTenth.add(ChartData(
-                  x: DateFormat.MMMd().format(training.date), y: average));
+                  x: DateFormat.yMMMd().format(training.date), y: average));
             }
           }
         }

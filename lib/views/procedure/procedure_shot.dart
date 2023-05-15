@@ -29,10 +29,7 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Scaffold(
             body: SingleChildScrollView(
@@ -48,7 +45,7 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                           children: [
                             CupertinoTextFormFieldRow(
                               controller: _textShotController,
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.newline,
                               placeholder: tr("procedure_shot_value"),
                               padding: const EdgeInsets.all(8),
                               maxLines: 20,

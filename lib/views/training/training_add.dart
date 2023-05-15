@@ -51,10 +51,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
     final ThemeData mode = Theme.of(context);
     return GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: Material(
           child: Scaffold(
@@ -304,12 +301,9 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   if (value.isNotEmpty) {
                                     if (value.contains(",") ||
                                         value.contains(".")) {
-                                      if (value.contains(",")) {
-                                        shots[i] = double.tryParse(
-                                            value.replaceAll(",", "."));
-                                      } else {
-                                        shots[i] = double.tryParse(value);
-                                      }
+                                      shots[i] = double.tryParse(
+                                              value.replaceAll(",", ".")) ??
+                                          0;
                                     } else {
                                       shots[i] = int.tryParse(value);
                                     }
@@ -343,7 +337,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                             children: [
                               CupertinoTextFormFieldRow(
                                   initialValue: comment,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.newline,
                                   padding: const EdgeInsets.all(8),
                                   placeholder: tr("training_comment"),
                                   maxLines: 10,
