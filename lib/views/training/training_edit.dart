@@ -16,7 +16,6 @@ import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:status_alert/status_alert.dart';
-import 'package:cross_file/cross_file.dart';
 
 class TrainingEditWidget extends StatefulWidget {
   final Weapon weapon;

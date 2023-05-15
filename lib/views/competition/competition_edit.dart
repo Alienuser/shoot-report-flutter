@@ -15,7 +15,6 @@ import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:status_alert/status_alert.dart';
-import 'package:cross_file/cross_file.dart';
 
 class CompetitionEditWidget extends StatefulWidget {
   final Weapon weapon;
