@@ -24,7 +24,7 @@ class WeaponListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: StreamBuilder<List<Weapon>>(
-        stream: weaponDao.findAllWeapons(true),
+        stream: weaponDao.findAllWeaponsDistinction(true),
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
             return const SizedBox();

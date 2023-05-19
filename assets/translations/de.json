@@ -18,12 +18,8 @@
     "weapon_11":"Armbrust",
     "weapon_12":"Kleinkaliberpistole",
 
-    "weapon_data_no":"Disziplinen werden geladen ...",
-    "weapon_alert_title":"Disziplin ausblenden",
-    "weapon_alert_message":"Möchtest du diese Disziplin wirklich ausblenden?",
-    "weapon_deleted":"\"{}\" wurde ausgeblendet.",
-    "weapon_show_toolltip":"Alle Disziplinen anzeigen",
-    "weapon_show":"Alle Disziplinen werden angezeigt.",
+    "weapon_data_no":"Aktuell werden keine Disziplinen angezeigt.",
+    "weapon_favorite_toolltip":"",
 
     "menu_information":"Informationen",
     "menu_partner":"Partner",
@@ -241,7 +237,7 @@
     "information_version_version":"Version",
     "information_version_build":"Buildnummer",
     "information_version_date":"Builddatum",
-    "information_version_date_description":"20230501",
+    "information_version_date_description":"202305XX",
     "information_source_title":"Quellenangabe",
     "information_source_description":"Texte der Trainerfunktion sind in Anlehnung der Trainer-C Breitensportausbildung des Deutschen Schützenbundes.",
 

@@ -172,7 +172,21 @@ class _$WeaponDao extends WeaponDao {
   final DeletionAdapter<Weapon> _weaponDeletionAdapter;
 
   @override
-  Stream<List<Weapon>> findAllWeapons(bool show) {
+  Stream<List<Weapon>> findAllWeapons() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM weapon ORDER by \"order\" ASC;',
+        mapper: (Map<String, Object?> row) => Weapon(
+            row['id'] as int?,
+            row['name'] as String,
+            row['order'] as int,
+            row['prefFile'] as String,
+            (row['show'] as int) != 0),
+        queryableName: 'weapon',
+        isView: false);
+  }
+
+  @override
+  Stream<List<Weapon>> findAllWeaponsDistinction(bool show) {
     return _queryAdapter.queryListStream(
         'SELECT * FROM weapon WHERE show = ?1 ORDER by \"order\" ASC;',
         mapper: (Map<String, Object?> row) => Weapon(
@@ -184,12 +198,6 @@ class _$WeaponDao extends WeaponDao {
         arguments: [show ? 1 : 0],
         queryableName: 'weapon',
         isView: false);
-  }
-
-  @override
-  Future<void> showAllWeapons(bool show) async {
-    await _queryAdapter
-        .queryNoReturn('Update weapon SET show=?1', arguments: [show ? 1 : 0]);
   }
 
   @override

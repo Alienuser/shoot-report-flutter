@@ -18,12 +18,8 @@
     "weapon_11":"Crossbow",
     "weapon_12":"Small Bore Pistol",
 
-    "weapon_data_no":"Disciplines are loaded ...",
-    "weapon_alert_title":"Hide discipline",
-    "weapon_alert_message":"Do you really want to hide this discipline?",
-    "weapon_deleted":"\"{}\" has been hidden.",
-    "weapon_show_toolltip":"Show all disciplines",
-    "weapon_show":"All disciplines are shown.",
+    "weapon_data_no":"No disciplines are shown.",
+    "weapon_favorite_toolltip":"",
 
     "menu_information":"Information",
     "menu_partner":"Partners",
@@ -241,7 +237,7 @@
     "information_version_version":"Version",
     "information_version_build":"Build number",
     "information_version_date":"Build date",
-    "information_version_date_description":"20230501",
+    "information_version_date_description":"202305XX",
     "information_source_title":"Sources",
     "information_source_description":"Texts ot the coach function are in accordance with the Trainer-C mass sports training of the Deutscher Schützenbund.",
 
