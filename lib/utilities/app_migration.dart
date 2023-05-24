@@ -140,7 +140,7 @@ class AppMigration {
     log("Adding weapon start.", name: "Migration");
 
     await database.weaponDao
-        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", true));
+        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", false));
 
     log("Adding weapon finished.", name: "Migration");
   }
@@ -152,31 +152,31 @@ class AppMigration {
     log("Loading initial weapons.", name: "Migration");
 
     await weaponDao
-        .insertWeapon(Weapon(1, "weapon_00", 0, "prefWeapon00", true));
+        .insertWeapon(Weapon(1, "weapon_00", 0, "prefWeapon00", false));
     await weaponDao
-        .insertWeapon(Weapon(2, "weapon_01", 1, "prefWeapon01", true));
+        .insertWeapon(Weapon(2, "weapon_01", 1, "prefWeapon01", false));
     await weaponDao
-        .insertWeapon(Weapon(3, "weapon_02", 2, "prefWeapon02", true));
+        .insertWeapon(Weapon(3, "weapon_02", 2, "prefWeapon02", false));
     await weaponDao
-        .insertWeapon(Weapon(4, "weapon_03", 3, "prefWeapon03", true));
+        .insertWeapon(Weapon(4, "weapon_03", 3, "prefWeapon03", false));
     await weaponDao
-        .insertWeapon(Weapon(5, "weapon_04", 4, "prefWeapon04", true));
+        .insertWeapon(Weapon(5, "weapon_04", 4, "prefWeapon04", false));
     await weaponDao
-        .insertWeapon(Weapon(6, "weapon_05", 5, "prefWeapon05", true));
+        .insertWeapon(Weapon(6, "weapon_05", 5, "prefWeapon05", false));
     await weaponDao
-        .insertWeapon(Weapon(7, "weapon_06", 6, "prefWeapon06", true));
+        .insertWeapon(Weapon(7, "weapon_06", 6, "prefWeapon06", false));
     await weaponDao
-        .insertWeapon(Weapon(8, "weapon_07", 7, "prefWeapon07", true));
+        .insertWeapon(Weapon(8, "weapon_07", 7, "prefWeapon07", false));
     await weaponDao
-        .insertWeapon(Weapon(9, "weapon_08", 8, "prefWeapon08", true));
+        .insertWeapon(Weapon(9, "weapon_08", 8, "prefWeapon08", false));
     await weaponDao
-        .insertWeapon(Weapon(10, "weapon_09", 9, "prefWeapon09", true));
+        .insertWeapon(Weapon(10, "weapon_09", 9, "prefWeapon09", false));
     await weaponDao
-        .insertWeapon(Weapon(11, "weapon_10", 10, "prefWeapon10", true));
+        .insertWeapon(Weapon(11, "weapon_10", 10, "prefWeapon10", false));
     await weaponDao
-        .insertWeapon(Weapon(12, "weapon_11", 11, "prefWeapon11", true));
+        .insertWeapon(Weapon(12, "weapon_11", 11, "prefWeapon11", false));
     await weaponDao
-        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", true));
+        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", false));
 
     log("Loading initial weapons finished.", name: "Migration");
   }

@@ -59,6 +59,14 @@ void _initialization() async {
   // Firebase configuration
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+  // Check if we have to load default weapons
+  database.weaponDao.findAllWeapons().isEmpty.then((isEmpty) {
+    if (isEmpty) {
+      FirebaseLog().logEvent("default_weapons");
+      AppMigration.loadDefaultWeapons(database.weaponDao);
+    }
+  });
+
   // Migrate to version 1.6.0
   VersionMigration.migrateToVersion("1.6.0", () async {
     Trace migrationTrace160 =
