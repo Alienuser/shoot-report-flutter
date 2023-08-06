@@ -9,9 +9,8 @@ abstract class WeaponDao {
   @Query("SELECT * FROM weapon WHERE typeId = :id ORDER by \"order\" ASC;")
   Stream<List<Weapon>> findAllWeaponsForType(int id);
 
-  @Query(
-      "SELECT * FROM weapon WHERE favorite = :favorite ORDER by \"order\" ASC;")
-  Stream<List<Weapon>> findAllWeaponsDistinction(bool favorite);
+  @Query("SELECT * FROM weapon WHERE show = :show ORDER by \"order\" ASC;")
+  Stream<List<Weapon>> findAllWeaponsDistinction(bool show);
 
   @insert
   Future<void> insertWeapon(Weapon weapon);

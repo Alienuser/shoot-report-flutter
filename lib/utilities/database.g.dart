@@ -288,9 +288,9 @@ class _$WeaponDao extends WeaponDao {
   }
 
   @override
-  Stream<List<Weapon>> findAllWeaponsDistinction(bool favorite) {
+  Stream<List<Weapon>> findAllWeaponsDistinction(bool show) {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM weapon WHERE favorite = ?1 ORDER by \"order\" ASC;',
+        'SELECT * FROM weapon WHERE show = ?1 ORDER by \"order\" ASC;',
         mapper: (Map<String, Object?> row) => Weapon(
             row['id'] as int?,
             row['name'] as String,
@@ -298,7 +298,7 @@ class _$WeaponDao extends WeaponDao {
             row['prefFile'] as String,
             row['typeId'] as int,
             (row['show'] as int) != 0),
-        arguments: [favorite ? 1 : 0],
+        arguments: [show ? 1 : 0],
         queryableName: 'weapon',
         isView: false);
   }
