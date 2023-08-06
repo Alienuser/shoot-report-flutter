@@ -14,6 +14,7 @@ class AppMigration {
     // Migrate the database
     addTypeTable(database);
     addTypeColumn(database);
+    loadDefaultTypes(database.typeDao);
     categorizeWeapons(database);
     addNewWeapons(database);
   }
