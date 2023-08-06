@@ -14,7 +14,6 @@ class AppMigration {
     // Migrate the database
     addTypeTable(database);
     addTypeColumn(database);
-    loadDefaultTypes(database.typeDao);
     categorizeWeapons(database);
     addNewWeapons(database);
   }
@@ -30,7 +29,7 @@ class AppMigration {
 
   static void addTypeColumn(FlutterDatabase database) {
     database.database
-        .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER;");
+        .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER DEFAULT 0;");
   }
 
   static void categorizeWeapons(FlutterDatabase database) {
