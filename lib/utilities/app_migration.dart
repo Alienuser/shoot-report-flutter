@@ -24,13 +24,13 @@ class AppMigration {
   ///
 
   static void addTypeTable(FlutterDatabase database) {
-    //database.database.execute(
-    //  "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
+    database.database.execute(
+        "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
   }
 
   static void addTypeColumn(FlutterDatabase database) {
-    //database.database
-    //  .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER;");
+    database.database
+        .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER;");
   }
 
   static void categorizeWeapons(FlutterDatabase database) {
