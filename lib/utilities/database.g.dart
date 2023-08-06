@@ -93,7 +93,7 @@ class _$FlutterDatabase extends FlutterDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Weapon` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `prefFile` TEXT NOT NULL, `typeId` INTEGER NOT NULL, `favorite` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Weapon` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `prefFile` TEXT NOT NULL, `typeId` INTEGER NOT NULL, `show` INTEGER NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Training` (`id` INTEGER, `date` INTEGER NOT NULL, `image` TEXT NOT NULL, `indicator` INTEGER NOT NULL, `place` TEXT NOT NULL, `kind` TEXT NOT NULL, `shotCount` INTEGER NOT NULL, `shots` TEXT NOT NULL, `comment` TEXT NOT NULL, `weapon_id` INTEGER NOT NULL, FOREIGN KEY (`weapon_id`) REFERENCES `Weapon` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`id`))');
         await database.execute(
@@ -214,7 +214,7 @@ class _$WeaponDao extends WeaponDao {
                   'order': item.order,
                   'prefFile': item.prefFile,
                   'typeId': item.typeId,
-                  'favorite': item.favorite ? 1 : 0
+                  'show': item.show ? 1 : 0
                 },
             changeListener),
         _weaponUpdateAdapter = UpdateAdapter(
@@ -227,7 +227,7 @@ class _$WeaponDao extends WeaponDao {
                   'order': item.order,
                   'prefFile': item.prefFile,
                   'typeId': item.typeId,
-                  'favorite': item.favorite ? 1 : 0
+                  'show': item.show ? 1 : 0
                 },
             changeListener),
         _weaponDeletionAdapter = DeletionAdapter(
@@ -240,7 +240,7 @@ class _$WeaponDao extends WeaponDao {
                   'order': item.order,
                   'prefFile': item.prefFile,
                   'typeId': item.typeId,
-                  'favorite': item.favorite ? 1 : 0
+                  'show': item.show ? 1 : 0
                 },
             changeListener);
 
@@ -266,7 +266,7 @@ class _$WeaponDao extends WeaponDao {
             row['order'] as int,
             row['prefFile'] as String,
             row['typeId'] as int,
-            (row['favorite'] as int) != 0),
+            (row['show'] as int) != 0),
         queryableName: 'weapon',
         isView: false);
   }
@@ -281,7 +281,7 @@ class _$WeaponDao extends WeaponDao {
             row['order'] as int,
             row['prefFile'] as String,
             row['typeId'] as int,
-            (row['favorite'] as int) != 0),
+            (row['show'] as int) != 0),
         arguments: [id],
         queryableName: 'weapon',
         isView: false);
@@ -297,7 +297,7 @@ class _$WeaponDao extends WeaponDao {
             row['order'] as int,
             row['prefFile'] as String,
             row['typeId'] as int,
-            (row['favorite'] as int) != 0),
+            (row['show'] as int) != 0),
         arguments: [favorite ? 1 : 0],
         queryableName: 'weapon',
         isView: false);

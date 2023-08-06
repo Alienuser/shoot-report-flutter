@@ -13,8 +13,7 @@ class Weapon {
 
   final int typeId;
 
-  bool favorite;
+  bool show;
 
-  Weapon(this.id, this.name, this.order, this.prefFile, this.typeId,
-      this.favorite);
+  Weapon(this.id, this.name, this.order, this.prefFile, this.typeId, this.show);
 }

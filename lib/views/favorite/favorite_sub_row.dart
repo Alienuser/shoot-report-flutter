@@ -22,12 +22,12 @@ class FavoriteSubListCell extends StatelessWidget {
           onPressed: () {
             _updateFavorite(weapon);
           },
-          icon: Icon(weapon.favorite ? Icons.star : Icons.star_outline)),
+          icon: Icon(weapon.show ? Icons.star : Icons.star_outline)),
     );
   }
 
   void _updateFavorite(Weapon weapon) {
-    weapon.favorite = !weapon.favorite;
+    weapon.show = !weapon.show;
     weaponDao.updateWeapon(weapon);
   }
 }

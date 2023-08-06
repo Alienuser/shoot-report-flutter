@@ -31,9 +31,6 @@ class AppMigration {
   static void addTypeColumn(FlutterDatabase database) {
     //database.database
     //  .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER;");
-
-    //database.database
-    //   .execute("ALTER TABLE `Weapon` RENAME COLUMN show to favorite;");
   }
 
   static void categorizeWeapons(FlutterDatabase database) {
@@ -49,7 +46,7 @@ class AppMigration {
     database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 10;");
     database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 11;");
     database.database.execute("UPDATE `Weapon` SET typeId = 5 WHERE id = 12;");
-    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 9;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 13;");
   }
 
   static void addNewWeapons(FlutterDatabase database) {}
