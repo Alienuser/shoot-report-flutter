@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:shoot_report/models/type.dart';
 import 'package:shoot_report/models/weapon.dart';
+import 'package:shoot_report/services/type_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/utilities/database.dart';
 
@@ -8,176 +10,101 @@ class AppMigration {
   /// Migration functions
   ///
 
-  static void migrate_1_6_0(FlutterDatabase database) {
+  static void migrate_1_6_1(FlutterDatabase database) {
     // Migrate the database
-    addEmptyShots(database);
-    replaceNullValues(database);
-    migrateDates(database);
-    addWeapon(database);
+    addTypeTable(database);
+    addTypeColumn(database);
+    loadDefaultTypes(database.typeDao);
+    categorizeWeapons(database);
+    addNewWeapons(database);
   }
 
   ///
   /// Helper functions
   ///
 
-  static void addEmptyShots(FlutterDatabase database) {
-    log("Adding shots start.", name: "Migration");
-    database.trainingDao.findAllTrainings().forEach((elements) {
-      for (var element in elements) {
-        if (element.shots.length < (element.shotCount / 10)) {
-          for (int i = 0;
-              i <= (element.shotCount / 10) - element.shots.length;
-              i++) {
-            element.shots.add(-1);
-          }
-          database.trainingDao.updateTraining(element);
-        }
-      }
-
-      database.competitionDao.findAllCompetitions().forEach((elements) {
-        for (var element in elements) {
-          if (element.shots.length < (element.shotCount / 10)) {
-            for (int i = 0;
-                i <= (element.shotCount / 10) - element.shots.length;
-                i++) {
-              element.shots.add(-1);
-            }
-            database.competitionDao.updateCompetition(element);
-          }
-        }
-      });
-    });
-    log("Adding shots finished.", name: "Migration");
+  static void addTypeTable(FlutterDatabase database) {
+    database.database.execute(
+        "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
   }
 
-  static void replaceNullValues(FlutterDatabase database) {
-    log("Replacing null values start.", name: "Migration");
-
-    database.trainingDao.findAllTrainings().forEach((elements) {
-      for (var element in elements) {
-        if (element.shots.contains(null)) {
-          element.shots[element.shots.indexOf(null)] = -1;
-          database.trainingDao.updateTraining(element);
-        }
-      }
-    });
-
-    database.competitionDao.findAllCompetitions().forEach((elements) {
-      for (var element in elements) {
-        if (element.shots.contains(null)) {
-          element.shots[element.shots.indexOf(null)] = -1;
-          database.competitionDao.updateCompetition(element);
-        }
-      }
-    });
-
-    log("Replacing null values finished.", name: "Migration");
+  static void addTypeColumn(FlutterDatabase database) {
+    database.database
+        .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER;");
   }
 
-  static void migrateDates(FlutterDatabase database) {
-    log("Migrating dates start.", name: "Migration");
-
-    database.trainingDao.findAllTrainings().forEach((elements) {
-      for (var element in elements) {
-        if (element.date.millisecondsSinceEpoch.toString().length > 13) {
-          var calculation = element.date.millisecondsSinceEpoch
-              .toString()
-              .substring(
-                  0, element.date.millisecondsSinceEpoch.toString().length - 1);
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.trainingDao.updateTraining(element);
-        } else if (element.date.millisecondsSinceEpoch.toString().length ==
-            12) {
-          var calculation =
-              "${element.date.millisecondsSinceEpoch.toString()}0";
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.trainingDao.updateTraining(element);
-        } else if (element.date.millisecondsSinceEpoch.toString().length ==
-            11) {
-          var calculation =
-              "${element.date.millisecondsSinceEpoch.toString()}00";
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.trainingDao.updateTraining(element);
-        }
-      }
-    });
-
-    database.competitionDao.findAllCompetitions().forEach((elements) {
-      for (var element in elements) {
-        if (element.date.millisecondsSinceEpoch.toString().length > 13) {
-          var calculation = element.date.millisecondsSinceEpoch
-              .toString()
-              .substring(
-                  0, element.date.millisecondsSinceEpoch.toString().length - 1);
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.competitionDao.updateCompetition(element);
-        } else if (element.date.millisecondsSinceEpoch.toString().length ==
-            12) {
-          var calculation =
-              "${element.date.millisecondsSinceEpoch.toString()}0";
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.competitionDao.updateCompetition(element);
-        } else if (element.date.millisecondsSinceEpoch.toString().length ==
-            11) {
-          var calculation =
-              "${element.date.millisecondsSinceEpoch.toString()}00";
-          element.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(calculation));
-          database.competitionDao.updateCompetition(element);
-        }
-      }
-    });
-
-    log("Migrating dates finished.", name: "Migration");
+  static void categorizeWeapons(FlutterDatabase database) {
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 1;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 2;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 3;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 4;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 5;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 6;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 7;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 8;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 9;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 10;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 11;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 5 WHERE id = 12;");
+    database.database.execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 9;");
   }
 
-  static void addWeapon(FlutterDatabase database) async {
-    log("Adding weapon start.", name: "Migration");
-
-    await database.weaponDao
-        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", false));
-
-    log("Adding weapon finished.", name: "Migration");
-  }
+  static void addNewWeapons(FlutterDatabase database) {}
 
   ///
   /// General functions
   ///
   static void loadDefaultWeapons(WeaponDao weaponDao) async {
     log("Loading initial weapons.", name: "Migration");
+    try {
+      await weaponDao
+          .insertWeapon(Weapon(1, "weapon_00", 0, "prefWeapon00", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(2, "weapon_01", 1, "prefWeapon01", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(3, "weapon_02", 2, "prefWeapon02", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(4, "weapon_03", 3, "prefWeapon03", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(5, "weapon_04", 4, "prefWeapon04", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(6, "weapon_05", 5, "prefWeapon05", 2, false));
+      await weaponDao
+          .insertWeapon(Weapon(7, "weapon_06", 6, "prefWeapon06", 2, false));
+      await weaponDao
+          .insertWeapon(Weapon(8, "weapon_07", 7, "prefWeapon07", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(9, "weapon_08", 8, "prefWeapon08", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(10, "weapon_09", 9, "prefWeapon09", 1, false));
+      await weaponDao
+          .insertWeapon(Weapon(11, "weapon_10", 10, "prefWeapon10", 2, false));
+      await weaponDao
+          .insertWeapon(Weapon(12, "weapon_11", 11, "prefWeapon11", 5, false));
+      await weaponDao
+          .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", 2, false));
 
-    await weaponDao
-        .insertWeapon(Weapon(1, "weapon_00", 0, "prefWeapon00", false));
-    await weaponDao
-        .insertWeapon(Weapon(2, "weapon_01", 1, "prefWeapon01", false));
-    await weaponDao
-        .insertWeapon(Weapon(3, "weapon_02", 2, "prefWeapon02", false));
-    await weaponDao
-        .insertWeapon(Weapon(4, "weapon_03", 3, "prefWeapon03", false));
-    await weaponDao
-        .insertWeapon(Weapon(5, "weapon_04", 4, "prefWeapon04", false));
-    await weaponDao
-        .insertWeapon(Weapon(6, "weapon_05", 5, "prefWeapon05", false));
-    await weaponDao
-        .insertWeapon(Weapon(7, "weapon_06", 6, "prefWeapon06", false));
-    await weaponDao
-        .insertWeapon(Weapon(8, "weapon_07", 7, "prefWeapon07", false));
-    await weaponDao
-        .insertWeapon(Weapon(9, "weapon_08", 8, "prefWeapon08", false));
-    await weaponDao
-        .insertWeapon(Weapon(10, "weapon_09", 9, "prefWeapon09", false));
-    await weaponDao
-        .insertWeapon(Weapon(11, "weapon_10", 10, "prefWeapon10", false));
-    await weaponDao
-        .insertWeapon(Weapon(12, "weapon_11", 11, "prefWeapon11", false));
-    await weaponDao
-        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", false));
+      log("Loading initial weapons finished.", name: "Migration");
+    } on Exception catch (_) {
+      log("Default weapons already there.");
+    }
+  }
 
-    log("Loading initial weapons finished.", name: "Migration");
+  static void loadDefaultTypes(TypeDao typeDao) async {
+    log("Loading initial types.", name: "Migration");
+
+    try {
+      await typeDao.insertGroup(Type(1, "type_00", 0));
+      await typeDao.insertGroup(Type(2, "type_01", 1));
+      await typeDao.insertGroup(Type(3, "type_02", 2));
+      await typeDao.insertGroup(Type(4, "type_03", 3));
+      await typeDao.insertGroup(Type(5, "type_04", 4));
+      await typeDao.insertGroup(Type(6, "type_05", 5));
+      await typeDao.insertGroup(Type(7, "type_06", 6));
+
+      log("Loading initial types finished.", name: "Migration");
+    } on Exception catch (_) {
+      log("Default types already there.");
+    }
   }
 }

@@ -4,6 +4,14 @@
     "general_yes":"Ja",
     "general_no":"Nein",
 
+    "type_00":"Gewehr",
+    "type_01":"Pistole",
+    "type_02":"Laufende Scheibe",
+    "type_03":"Vorderlader",
+    "type_04":"Armbrust",
+    "type_05":"Bogensport",
+    "type_06":"Blasrohr",
+
     "weapon_00":"Luftgewehr",
     "weapon_01":"Luftgewehr 3-Stellung",
     "weapon_02":"Lichtgewehr",
@@ -20,6 +28,7 @@
 
     "weapon_data_no":"Aktuell werden keine Disziplinen angezeigt.\nÜber das Herz kannst du auswählen, welche du angezeigt bekommen möchtest.",
     "weapon_favorite_toolltip":"",
+    "weapon_favorite_title":"Disziplinen",
 
     "menu_information":"Informationen",
     "menu_partner":"Partner",

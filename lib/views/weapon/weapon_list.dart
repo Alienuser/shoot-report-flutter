@@ -51,16 +51,15 @@ class WeaponListView extends StatelessWidget {
           final weapons = snapshot.requireData;
 
           return ListView.separated(
-            itemCount: weapons.length,
-            itemBuilder: (context, index) {
-              return WeaponListCell(
-                  weapon: weapons[index],
-                  weaponDao: weaponDao,
-                  trainingDao: trainingDao,
-                  competitionDao: competitionDao);
-            },
-            separatorBuilder: (context, index) => const Divider(height: 5),
-          );
+              itemCount: weapons.length,
+              itemBuilder: (context, index) {
+                return WeaponListCell(
+                    weapon: weapons[index],
+                    weaponDao: weaponDao,
+                    trainingDao: trainingDao,
+                    competitionDao: competitionDao);
+              },
+              separatorBuilder: (context, index) => const Divider(height: 5));
         },
       ),
     );

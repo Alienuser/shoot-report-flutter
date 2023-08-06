@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/type_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/views/favorite/favorite.dart';
@@ -9,12 +10,14 @@ import 'package:shoot_report/widgets/ads.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class WeaponWidget extends StatefulWidget {
+  final TypeDao typeDao;
   final WeaponDao weaponDao;
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
   const WeaponWidget({
     Key? key,
+    required this.typeDao,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
@@ -33,16 +36,16 @@ class _WeaponWidgetState extends State<WeaponWidget> {
         centerTitle: false,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.favorite),
+            icon: const Icon(Icons.star_border),
             color: Colors.white,
             tooltip: tr("weapon_favorite_toolltip"),
             onPressed: () {
-              showBarModalBottomSheet(
+              showCupertinoModalBottomSheet(
                   context: context,
                   expand: true,
-                  enableDrag: false,
-                  builder: (context) =>
-                      FavoriteListView(weaponDao: widget.weaponDao));
+                  enableDrag: true,
+                  builder: (context) => FavoriteListView(
+                      typeDao: widget.typeDao, weaponDao: widget.weaponDao));
             },
           )
         ],

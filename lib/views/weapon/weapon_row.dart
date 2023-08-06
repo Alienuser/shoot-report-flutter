@@ -25,7 +25,7 @@ class WeaponListCell extends StatelessWidget {
     return ListTile(
       leading: const Icon(Icons.legend_toggle_sharp),
       title: Text(tr(weapon.name)),
-      trailing: const Icon(Icons.arrow_right_sharp),
+      trailing: const Icon(Icons.arrow_right_sharp, size: 35),
       onTap: () {
         Navigator.push(
           context,

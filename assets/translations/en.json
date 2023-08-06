@@ -4,6 +4,14 @@
     "general_yes":"Yes",
     "general_no":"No",
 
+    "type_00":"Rifle",
+    "type_01":"Pistol",
+    "type_02":"Running target",
+    "type_03":"Muzzleloader",
+    "type_04":"Crossbow",
+    "type_05":"Bow",
+    "type_06":"Blowgun",
+
     "weapon_00":"Air Rifle",
     "weapon_01":"Air Rifle 3-position",
     "weapon_02":"Light Rifle",
@@ -20,6 +28,7 @@
 
     "weapon_data_no":"No disciplines are shown.",
     "weapon_favorite_toolltip":"",
+    "weapon_favorite_title":"Disciplines",
 
     "menu_information":"Information",
     "menu_partner":"Partners",
