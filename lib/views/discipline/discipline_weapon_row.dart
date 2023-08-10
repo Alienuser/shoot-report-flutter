@@ -3,11 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
 
-class FavoriteSubListCell extends StatelessWidget {
+class DisciplineWeaponListCell extends StatelessWidget {
   final Weapon weapon;
   final WeaponDao weaponDao;
 
-  const FavoriteSubListCell({
+  const DisciplineWeaponListCell({
     Key? key,
     required this.weapon,
     required this.weaponDao,
@@ -16,7 +16,7 @@ class FavoriteSubListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.legend_toggle_sharp),
+      leading: Image.asset("assets/images/disciplines.png", height: 16),
       title: Text(tr(weapon.name)),
       trailing: IconButton(
           onPressed: () {

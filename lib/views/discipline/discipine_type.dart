@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/models/type.dart';
 import 'package:shoot_report/services/type_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
-import 'package:shoot_report/views/favorite/favorite_row.dart';
+import 'package:shoot_report/views/discipline/discipline_type_row.dart';
 
-class FavoriteListView extends StatelessWidget {
+class DisciplineTypeListView extends StatelessWidget {
   final TypeDao typeDao;
   final WeaponDao weaponDao;
 
-  const FavoriteListView(
+  const DisciplineTypeListView(
       {Key? key, required this.typeDao, required this.weaponDao})
       : super(key: key);
 
@@ -42,14 +42,13 @@ class FavoriteListView extends StatelessWidget {
                   final groups = snapshot.requireData;
 
                   return ListView.separated(
-                    itemCount: groups.length,
-                    itemBuilder: (context, index) {
-                      return FavoriteListCell(
-                          type: groups[index], weaponDao: weaponDao);
-                    },
-                    separatorBuilder: (context, index) =>
-                        const Divider(height: 5),
-                  );
+                      itemCount: groups.length,
+                      itemBuilder: (context, index) {
+                        return DisciplineTypeListCell(
+                            type: groups[index], weaponDao: weaponDao);
+                      },
+                      separatorBuilder: (context, index) =>
+                          const Divider(height: 5));
                 },
               )),
         ),
