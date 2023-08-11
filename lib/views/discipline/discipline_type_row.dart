@@ -17,7 +17,7 @@ class DisciplineTypeListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Image.asset("assets/images/disciplines.png", height: 16),
+        leading: Image.asset("assets/images/disciplines_type.png", height: 16),
         title: Text(tr(type.name)),
         trailing: const Icon(Icons.arrow_right_sharp, size: 35),
         onTap: () {
