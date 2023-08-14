@@ -153,6 +153,8 @@ class AppMigration {
         .insertWeapon(Weapon(56, "weapon_55", 55, "prefWeapon55", 5, false));
     await database.weaponDao
         .insertWeapon(Weapon(57, "weapon_56", 56, "prefWeapon56", 5, false));
+    await database.weaponDao
+        .insertWeapon(Weapon(58, "weapon_57", 57, "prefWeapon57", 5, false));
   }
 
   ///
@@ -275,6 +277,8 @@ class AppMigration {
           .insertWeapon(Weapon(56, "weapon_55", 55, "prefWeapon55", 5, false));
       await weaponDao
           .insertWeapon(Weapon(57, "weapon_56", 56, "prefWeapon56", 5, false));
+      await weaponDao
+          .insertWeapon(Weapon(58, "weapon_57", 57, "prefWeapon57", 5, false));
 
       log("Loading initial weapons finished.", name: "Migration");
     } on Exception catch (_) {
