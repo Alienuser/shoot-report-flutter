@@ -75,7 +75,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                       key: _formKey,
                       child: Column(children: [
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_evaluation")),
                             children: [
                               SizedBox(
@@ -103,7 +102,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                               )
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_general")),
                             children: [
                               DropdownButtonFormField<String>(
@@ -165,7 +163,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -205,7 +202,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                 onPressed: () {
                                   showMaterialModalBottomSheet(
                                     context: context,
-                                    backgroundColor: Colors.transparent,
                                     builder: (context) {
                                       return Material(
                                           child: SafeArea(
@@ -245,7 +241,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return AlertDialog(
+                                      return AlertDialog.adaptive(
                                         title: Text(tr("training_qr_title")),
                                         content:
                                             Text(tr("training_qr_description")),
@@ -265,7 +261,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
                           header: Text(tr("training_result")),
                           children: [
                             TextFormField(
@@ -316,7 +311,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                           ],
                         ),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_score")),
                             children: [
                               ListTile(
@@ -332,7 +326,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
@@ -351,7 +344,6 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),

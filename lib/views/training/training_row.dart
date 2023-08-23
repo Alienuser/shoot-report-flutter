@@ -62,7 +62,7 @@ class _TrainingListRowState extends State<TrainingListRow> {
     showDialog(
         context: context,
         builder: (BuildContext ctx) {
-          return AlertDialog(
+          return AlertDialog.adaptive(
             title: Text(tr("training_alert_title")),
             content: Text(tr("training_alert_message")),
             actions: [

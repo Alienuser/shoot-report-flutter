@@ -72,7 +72,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                       key: _formKey,
                       child: Column(children: [
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_general")),
                             children: [
                               DropdownButtonFormField<String>(
@@ -134,7 +133,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -176,7 +174,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                 onPressed: () {
                                   showMaterialModalBottomSheet(
                                     context: context,
-                                    backgroundColor: Colors.transparent,
                                     builder: (context) {
                                       return Material(
                                           child: SafeArea(
@@ -216,7 +213,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return AlertDialog(
+                                      return AlertDialog.adaptive(
                                         title: Text(tr("competition_qr_title")),
                                         content: Text(
                                             tr("competition_qr_description")),
@@ -236,7 +233,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
                           header: Text(tr("competition_result")),
                           children: [
                             TextFormField(
@@ -287,7 +283,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                           ],
                         ),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_score")),
                             children: [
                               ListTile(
@@ -299,7 +294,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_report")),
                             children: [
                               CupertinoTextFormFieldRow(
@@ -318,7 +312,6 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),

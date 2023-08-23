@@ -60,7 +60,7 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
     showDialog(
         context: context,
         builder: (BuildContext ctx) {
-          return AlertDialog(
+          return AlertDialog.adaptive(
             title: Text(tr("competition_alert_title")),
             content: Text(tr("competition_alert_message")),
             actions: [
