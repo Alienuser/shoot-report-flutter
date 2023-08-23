@@ -10,30 +10,32 @@ class AppMigration {
   /// Migration functions
   ///
 
-  static void migrate_1_6_1(FlutterDatabase database) {
+  static void migrate_1_6_1(FlutterDatabase database) async {
     // Migrate the database
-    addTypeTable(database);
-    addTypeColumn(database);
-    loadDefaultTypes(database.typeDao);
-    categorizeWeapons(database);
-    addNewWeapons(database);
+    await addTypeTable(database);
+    await addTypeColumn(database);
+    await loadDefaultTypes(database.typeDao);
+    await categorizeWeapons(database);
+    await addNewWeapons(database);
   }
 
   ///
   /// Helper functions
   ///
 
-  static void addTypeTable(FlutterDatabase database) async {
+  static Future<int> addTypeTable(FlutterDatabase database) async {
     await database.database.execute(
         "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
+    return 0;
   }
 
-  static void addTypeColumn(FlutterDatabase database) async {
+  static Future<int> addTypeColumn(FlutterDatabase database) async {
     await database.database
         .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER DEFAULT 0;");
+    return 0;
   }
 
-  static void categorizeWeapons(FlutterDatabase database) async {
+  static Future<int> categorizeWeapons(FlutterDatabase database) async {
     await database.database
         .execute("UPDATE `Weapon` SET typeId = 1 WHERE id = 1;");
     await database.database
@@ -60,9 +62,11 @@ class AppMigration {
         .execute("UPDATE `Weapon` SET typeId = 5 WHERE id = 12;");
     await database.database
         .execute("UPDATE `Weapon` SET typeId = 2 WHERE id = 13;");
+
+    return 0;
   }
 
-  static void addNewWeapons(FlutterDatabase database) async {
+  static Future<int> addNewWeapons(FlutterDatabase database) async {
     await database.weaponDao
         .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", 2, false));
     await database.weaponDao
@@ -155,12 +159,14 @@ class AppMigration {
         .insertWeapon(Weapon(57, "weapon_56", 56, "prefWeapon56", 5, false));
     await database.weaponDao
         .insertWeapon(Weapon(58, "weapon_57", 57, "prefWeapon57", 5, false));
+
+    return 0;
   }
 
   ///
   /// General functions
   ///
-  static void loadDefaultWeapons(WeaponDao weaponDao) async {
+  static Future<int> loadDefaultWeapons(WeaponDao weaponDao) async {
     log("Loading initial weapons.", name: "Migration");
     try {
       await weaponDao
@@ -281,12 +287,14 @@ class AppMigration {
           .insertWeapon(Weapon(58, "weapon_57", 57, "prefWeapon57", 5, false));
 
       log("Loading initial weapons finished.", name: "Migration");
+      return 0;
     } on Exception catch (_) {
       log("Default weapons already there.");
+      return 1;
     }
   }
 
-  static void loadDefaultTypes(TypeDao typeDao) async {
+  static Future<int> loadDefaultTypes(TypeDao typeDao) async {
     log("Loading initial types.", name: "Migration");
 
     try {
@@ -297,8 +305,10 @@ class AppMigration {
       await typeDao.insertGroup(Type(5, "type_04", 4));
 
       log("Loading initial types finished.", name: "Migration");
+      return 0;
     } on Exception catch (_) {
       log("Default types already there.");
+      return 1;
     }
   }
 }

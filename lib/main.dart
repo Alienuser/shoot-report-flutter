@@ -63,7 +63,7 @@ void _initialization() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   // Migrate to version 1.6.1
-  VersionMigration.migrateToVersion("1.6.1", () async {
+  await VersionMigration.migrateToVersion("1.6.1", () async {
     Trace migrationTrace161 =
         FirebasePerformance.instance.newTrace('migration_1.6.1');
     await migrationTrace161.start();
@@ -75,9 +75,9 @@ void _initialization() async {
   });
 
   // Check if we have to load default weapons
-  AppMigration.loadDefaultWeapons(database.weaponDao);
+  await AppMigration.loadDefaultWeapons(database.weaponDao);
   // Check if we have to load default types
-  AppMigration.loadDefaultTypes(database.typeDao);
+  await AppMigration.loadDefaultTypes(database.typeDao);
 
   // Log App opened
   FirebaseLog().logAppStart();
