@@ -69,8 +69,6 @@ class AppMigration {
 
   static Future<int> addNewWeapons(FlutterDatabase database) async {
     await database.weaponDao
-        .insertWeapon(Weapon(13, "weapon_12", 12, "prefWeapon12", 2, false));
-    await database.weaponDao
         .insertWeapon(Weapon(14, "weapon_13", 13, "prefWeapon13", 1, false));
     await database.weaponDao
         .insertWeapon(Weapon(15, "weapon_14", 14, "prefWeapon14", 1, false));
