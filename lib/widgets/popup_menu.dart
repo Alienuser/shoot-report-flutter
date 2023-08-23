@@ -49,10 +49,10 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
           value: 4,
           child: Text(tr("menu_instagram")),
         ),
-        PopupMenuItem<int>(
+        /*PopupMenuItem<int>(
           value: 5,
           child: Text(tr("menu_import")),
-        ),
+        ),*/
         PopupMenuItem<int>(
           value: 6,
           child: Text(tr("menu_export")),
@@ -131,7 +131,7 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
             duration: const Duration(seconds: 6),
             title: tr("import_database_alert_title"),
             subtitle: tr("import_database_alert_message"),
-            padding: EdgeInsets.zero,
+            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
             configuration: const FlareConfiguration(
                 'assets/animations/success.flr',
                 animation: 'check',
@@ -143,7 +143,7 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
         if (mounted) {
           StatusAlert.show(
             context,
-            duration: const Duration(seconds: 6),
+            duration: const Duration(seconds: 8),
             title: tr("import_database_alert_error_title"),
             subtitle: tr("import_database_alert_error_message"),
             padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),

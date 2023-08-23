@@ -90,7 +90,7 @@
     "tooltip_trainer":"Trainer",
 
     "import_database_alert_title":"Importiert",
-    "import_database_alert_message":"Die Datenbank wurde erfolgreich importiert. Bitte die App neu starten.",
+    "import_database_alert_message":"Datenimport war erfolgreich. Bitte die App neu starten.",
     "import_database_alert_error_title":"Fehlgeschlagen",
     "import_database_alert_error_message":"Die Datei ist fehlerhaft oder konnte nicht geladen werden. Es muss sich um ein Export von shoot report und eine .db-Datei handeln.",
 
