@@ -16,7 +16,7 @@ class AppMigration {
     await addTypeColumn(database);
     await loadDefaultTypes(database.typeDao);
     await categorizeWeapons(database);
-    //await addNewWeapons(database);
+    await addNewWeapons(database);
     return 0;
   }
 
