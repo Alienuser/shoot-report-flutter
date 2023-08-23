@@ -10,13 +10,14 @@ class AppMigration {
   /// Migration functions
   ///
 
-  static void migrate_1_6_1(FlutterDatabase database) async {
+  static Future<int> migrate_1_6_1(FlutterDatabase database) async {
     // Migrate the database
     await addTypeTable(database);
     await addTypeColumn(database);
     await loadDefaultTypes(database.typeDao);
     await categorizeWeapons(database);
-    await addNewWeapons(database);
+    //await addNewWeapons(database);
+    return 0;
   }
 
   ///

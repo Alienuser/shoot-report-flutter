@@ -68,7 +68,7 @@ void _initialization() async {
         FirebasePerformance.instance.newTrace('migration_1.6.1');
     await migrationTrace161.start();
     // Run migration
-    AppMigration.migrate_1_6_1(database);
+    await AppMigration.migrate_1_6_1(database);
     // Log migration
     FirebaseLog().logEvent("migration_1_6_1");
     await migrationTrace161.stop();
