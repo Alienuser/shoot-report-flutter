@@ -25,15 +25,25 @@ class AppMigration {
   ///
 
   static Future<int> addTypeTable(FlutterDatabase database) async {
-    await database.database.execute(
-        "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
-    return 0;
+    try {
+      await database.database.execute(
+          "CREATE TABLE `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL);");
+      return 0;
+    } on Exception catch (_) {
+      log("Type table already there.");
+      return 1;
+    }
   }
 
   static Future<int> addTypeColumn(FlutterDatabase database) async {
-    await database.database
-        .execute("ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER DEFAULT 0;");
-    return 0;
+    try {
+      await database.database.execute(
+          "ALTER TABLE `Weapon` ADD COLUMN `typeId` INTEGER DEFAULT 0;");
+      return 0;
+    } on Exception catch (_) {
+      log("Type column already there.");
+      return 1;
+    }
   }
 
   static Future<int> categorizeWeapons(FlutterDatabase database) async {

@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class TrainerViewWidget extends StatefulWidget {
   final String url;
 
-  const TrainerViewWidget({Key? key, required this.url}) : super(key: key);
+  const TrainerViewWidget({super.key, required this.url});
 
   @override
   State<TrainerViewWidget> createState() => _TrainerViewWidgetState();

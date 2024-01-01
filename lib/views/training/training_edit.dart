@@ -23,11 +23,10 @@ class TrainingEditWidget extends StatefulWidget {
   final Training training;
 
   const TrainingEditWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.trainingDao,
-      required this.training})
-      : super(key: key);
+      required this.training});
 
   @override
   State<TrainingEditWidget> createState() => _TrainingEditWidgetState();

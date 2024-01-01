@@ -8,10 +8,10 @@ class DisciplineWeaponListCell extends StatelessWidget {
   final WeaponDao weaponDao;
 
   const DisciplineWeaponListCell({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.weaponDao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

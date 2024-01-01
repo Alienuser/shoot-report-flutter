@@ -8,9 +8,9 @@ import 'package:shoot_report/views/goals/goals_whole.dart';
 class GoalsWidget extends StatelessWidget {
   final Weapon weapon;
   const GoalsWidget({
-    Key? key,
+    super.key,
     required this.weapon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -18,8 +18,7 @@ class TrainingAddWidget extends StatefulWidget {
   final TrainingDao trainingDao;
 
   const TrainingAddWidget(
-      {Key? key, required this.weapon, required this.trainingDao})
-      : super(key: key);
+      {super.key, required this.weapon, required this.trainingDao});
 
   @override
   State<TrainingAddWidget> createState() => _TrainingAddWidgetState();

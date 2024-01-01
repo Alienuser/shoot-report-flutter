@@ -13,11 +13,11 @@ class WeaponListView extends StatelessWidget {
   final CompetitionDao competitionDao;
 
   const WeaponListView({
-    Key? key,
+    super.key,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

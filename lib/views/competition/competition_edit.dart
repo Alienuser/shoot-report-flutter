@@ -22,11 +22,10 @@ class CompetitionEditWidget extends StatefulWidget {
   final Competition competition;
 
   const CompetitionEditWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.competitionDao,
-      required this.competition})
-      : super(key: key);
+      required this.competition});
 
   @override
   State<CompetitionEditWidget> createState() => _CompetitionEditWidgetState();

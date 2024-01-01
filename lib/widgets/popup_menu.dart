@@ -14,7 +14,7 @@ import 'package:status_alert/status_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PopupMenuWidget extends StatefulWidget {
-  const PopupMenuWidget({Key? key}) : super(key: key);
+  const PopupMenuWidget({super.key});
 
   @override
   State<StatefulWidget> createState() => _PopupMenuWidget();

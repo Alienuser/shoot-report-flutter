@@ -15,11 +15,10 @@ class CompetitionListWidget extends StatelessWidget {
   final CompetitionDao competitionDao;
 
   const CompetitionListWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.weaponDao,
-      required this.competitionDao})
-      : super(key: key);
+      required this.competitionDao});
 
   @override
   Widget build(BuildContext context) {

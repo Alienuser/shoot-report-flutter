@@ -14,12 +14,12 @@ class ShootReport extends StatelessWidget {
   final CompetitionDao competitionDao;
 
   const ShootReport({
-    Key? key,
+    super.key,
     required this.typeDao,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

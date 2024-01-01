@@ -13,11 +13,11 @@ class TrainingListRow extends StatefulWidget {
   final Training training;
 
   const TrainingListRow({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.trainingDao,
     required this.training,
-  }) : super(key: key);
+  });
 
   @override
   State<TrainingListRow> createState() => _TrainingListRowState();
@@ -118,7 +118,7 @@ class _TrainingListRowState extends State<TrainingListRow> {
       } else {
         num shots = training.shots.reduce((value, next) =>
             (value != null && next != null) ? value + next : value + 0);
-        return Text(shots.toStringAsFixed(1),
+        return Text(shots.toStringAsFixed(0),
             style: const TextStyle(fontWeight: FontWeight.bold));
       }
     } else {

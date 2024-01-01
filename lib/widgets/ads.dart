@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class AdsWidget extends StatefulWidget {
-  const AdsWidget({Key? key}) : super(key: key);
+  const AdsWidget({super.key});
 
   @override
   State<StatefulWidget> createState() => _AdsWidgetState();

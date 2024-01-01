@@ -6,7 +6,7 @@ import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PartnerWidget extends StatefulWidget {
-  const PartnerWidget({Key? key}) : super(key: key);
+  const PartnerWidget({super.key});
 
   @override
   State<PartnerWidget> createState() => _PartnerWidgetState();

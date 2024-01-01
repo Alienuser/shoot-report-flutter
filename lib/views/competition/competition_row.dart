@@ -12,11 +12,11 @@ class CompetitionListRow extends StatefulWidget {
   final Competition competition;
 
   const CompetitionListRow({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.competitionDao,
     required this.competition,
-  }) : super(key: key);
+  });
 
   @override
   State<CompetitionListRow> createState() => _CompetitionListRowState();
@@ -32,7 +32,7 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              getCompetitionPoints(widget.competition),
+              _getCompetitionPoints(widget.competition),
             ],
           )),
       title: Text(widget.competition.kind),
@@ -89,12 +89,19 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
         });
   }
 
-  Text getCompetitionPoints(Competition competition) {
+  Text _getCompetitionPoints(Competition competition) {
     if (competition.shots.isNotEmpty) {
-      num shots = competition.shots.reduce((value, next) =>
-          (value != null && next != null) ? value + next : value + 0);
-      return Text(shots.toStringAsFixed(1),
-          style: const TextStyle(fontWeight: FontWeight.bold));
+      if (competition.shots.any((element) => element is double)) {
+        num shots = competition.shots.reduce((value, next) =>
+            (value != null && next != null) ? value + next : value + 0);
+        return Text(shots.toStringAsFixed(1),
+            style: const TextStyle(fontWeight: FontWeight.bold));
+      } else {
+        num shots = competition.shots.reduce((value, next) =>
+            (value != null && next != null) ? value + next : value + 0);
+        return Text(shots.toStringAsFixed(0),
+            style: const TextStyle(fontWeight: FontWeight.bold));
+      }
     } else {
       return const Text("0", style: TextStyle(fontWeight: FontWeight.bold));
     }

@@ -10,8 +10,7 @@ class DisciplineTypeListView extends StatelessWidget {
   final WeaponDao weaponDao;
 
   const DisciplineTypeListView(
-      {Key? key, required this.typeDao, required this.weaponDao})
-      : super(key: key);
+      {super.key, required this.typeDao, required this.weaponDao});
 
   @override
   Widget build(BuildContext context) {

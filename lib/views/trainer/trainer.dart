@@ -7,8 +7,8 @@ import 'package:shoot_report/widgets/ads.dart';
 
 class TrainerWidget extends StatefulWidget {
   const TrainerWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TrainerWidget> createState() => _TrainerWidgetState();

@@ -12,10 +12,10 @@ class CompetitionStatisticWidget extends StatefulWidget {
   final CompetitionDao competitionDao;
 
   const CompetitionStatisticWidget({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   State<CompetitionStatisticWidget> createState() =>

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataDeviceWidget extends StatefulWidget {
-  const DataDeviceWidget({Key? key}) : super(key: key);
+  const DataDeviceWidget({super.key});
 
   @override
   State<DataDeviceWidget> createState() => _DataDeviceWidgetState();

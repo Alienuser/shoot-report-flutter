@@ -13,12 +13,12 @@ class WeaponListCell extends StatelessWidget {
   final CompetitionDao competitionDao;
 
   const WeaponListCell({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -17,8 +17,7 @@ class CompetitionAddWidget extends StatefulWidget {
   final CompetitionDao competitionDao;
 
   const CompetitionAddWidget(
-      {Key? key, required this.weapon, required this.competitionDao})
-      : super(key: key);
+      {super.key, required this.weapon, required this.competitionDao});
 
   @override
   State<CompetitionAddWidget> createState() => _CompetitionAddWidgetState();

@@ -5,8 +5,8 @@ import 'package:shoot_report/views/trainer/trainer_view.dart';
 
 class TrainerMentalWidget extends StatelessWidget {
   const TrainerMentalWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

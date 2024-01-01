@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataPersonWidget extends StatefulWidget {
-  const DataPersonWidget({Key? key}) : super(key: key);
+  const DataPersonWidget({super.key});
 
   @override
   State<DataPersonWidget> createState() => _DataPersonWidgetState();

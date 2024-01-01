@@ -17,12 +17,12 @@ class WeaponWidget extends StatefulWidget {
   final CompetitionDao competitionDao;
 
   const WeaponWidget({
-    Key? key,
+    super.key,
     required this.typeDao,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   State<WeaponWidget> createState() => _WeaponWidgetState();
