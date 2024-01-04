@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - DKImagePickerController/Core (4.3.4):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
@@ -48,14 +63,14 @@ PODS:
   - Firebase/Performance (10.18.0):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 10.18.0)
-  - firebase_analytics (10.7.4):
+  - firebase_analytics (10.8.0):
     - Firebase/Analytics (= 10.18.0)
     - firebase_core
     - Flutter
   - firebase_core (2.24.2):
     - Firebase/CoreOnly (= 10.18.0)
     - Flutter
-  - firebase_crashlytics (3.4.8):
+  - firebase_crashlytics (3.4.9):
     - Firebase/Crashlytics (= 10.18.0)
     - firebase_core
     - Flutter
@@ -180,9 +195,11 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.12.0):
     - GoogleUtilities/Logger
-  - images_picker (0.0.1):
+  - image_pickers (0.0.1):
+    - AFNetworking
     - Flutter
-    - ZLPhotoBrowser (= 4.2.5)
+    - SDWebImage
+    - ZLPhotoBrowser (= 4.4.8.1)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -212,9 +229,9 @@ PODS:
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
-  - ZLPhotoBrowser (4.2.5):
-    - ZLPhotoBrowser/Core (= 4.2.5)
-  - ZLPhotoBrowser/Core (4.2.5)
+  - ZLPhotoBrowser (4.4.8.1):
+    - ZLPhotoBrowser/Core (= 4.4.8.1)
+  - ZLPhotoBrowser/Core (4.4.8.1)
 
 DEPENDENCIES:
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -225,7 +242,7 @@ DEPENDENCIES:
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
-  - images_picker (from `.symlinks/plugins/images_picker/ios`)
+  - image_pickers (from `.symlinks/plugins/image_pickers/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -236,6 +253,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - DKImagePickerController
     - DKPhotoGallery
     - Firebase
@@ -278,8 +296,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
-  images_picker:
-    :path: ".symlinks/plugins/images_picker/ios"
+  image_pickers:
+    :path: ".symlinks/plugins/image_pickers/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
@@ -296,14 +314,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 15fd9539e4eb735dc54bae8c0534a7a9511a03de
   file_saver: 503e386464dbe118f630e17b4c2e1190fa0cf808
   Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
-  firebase_analytics: 88c111412070acc2b05c1734151f58824f3db657
+  firebase_analytics: b3d6dd14c61549a29abb10e9843446a4d8bb53eb
   firebase_core: 0af4a2b24f62071f9bf283691c0ee41556dcb3f5
-  firebase_crashlytics: 55714f63ae0973c54b3a721c451ae5f815086c1f
+  firebase_crashlytics: 4b91b8ad60ee7c168fe88979f84c9573a729de7a
   firebase_performance: 2183122a3c7a650c80d8c164e9e28f13c4c62fc7
   FirebaseABTesting: bfa3b384b68cee10a89183649c64cd7998a37a12
   FirebaseAnalytics: 4d310b35c48eaa4a058ddc04bdca6bdb5dc0fe80
@@ -322,7 +341,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 70ce9aa438cff1cfb31ea3e660bcc67734cb716e
   GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
-  images_picker: fa9364e3a7d3083c49f865fcfb2b9e7cdc574d3a
+  image_pickers: da92cbfcd65c0eabc7b37a349d9c3bd91bad7d00
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
@@ -335,7 +354,7 @@ SPEC CHECKSUMS:
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
-  ZLPhotoBrowser: 4bfab86b851042e18d7f413284472aa68759626a
+  ZLPhotoBrowser: 379473d376e3bee6f30f84778b2d5f9be09842e5
 
 PODFILE CHECKSUM: 9b31b7b6af5de69f87a5c68e4787368ba27aae46
 

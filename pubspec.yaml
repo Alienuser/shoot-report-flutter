@@ -34,8 +34,9 @@ dependencies:
   file_picker: any
   url_launcher: any
   status_alert: any
-  images_picker: any
+  image_pickers: any
   path_provider: any
+  mobile_scanner: any
   cupertino_icons: any
   webview_flutter: any
   easy_localization: any

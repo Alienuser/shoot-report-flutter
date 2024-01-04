@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:images_picker/images_picker.dart';
+import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -431,37 +431,28 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
 
   Future _getImageFromCamera() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.openCamera(
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
-    );
+    Media? res = await ImagePickers.openCamera();
 
     if (res != null) {
-      await ImagesPicker.saveImageToAlbum(File(res[0].path),
-          albumName: "shoot report");
+      await ImagePickers.saveImageToGallery(res.path!);
       setState(() {
-        imagePath = res[0].path;
+        imagePath = res.path!;
       });
     }
   }
 
   Future _getImageFromGallery() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.pick(
-      count: 1,
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
+    List<Media>? res = await ImagePickers.pickerPaths(
+      galleryMode: GalleryMode.image,
+      selectCount: 1,
+      showGif: false,
+      showCamera: true,
     );
 
-    if (res != null) {
+    if (res.isNotEmpty) {
       setState(() {
-        imagePath = res[0].path;
+        imagePath = res[0].path!;
       });
     }
   }
@@ -470,7 +461,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/tmp/$imagePath";
+        imagePath = "$directory/Documents/$imagePath";
       }
     });
   }
