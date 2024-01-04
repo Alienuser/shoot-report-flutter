@@ -49,10 +49,8 @@ android {
         applicationId "de.famprobst.report"
         targetSdkVersion 34
         minSdkVersion 21
-        compileSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
     }
 
     signingConfigs {
