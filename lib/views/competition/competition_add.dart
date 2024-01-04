@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_pickers/image_pickers.dart';
+import 'package:images_picker/images_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -209,7 +209,24 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 onPressed: () {
-                                  _getQRCode();
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog.adaptive(
+                                        title: Text(tr("competition_qr_title")),
+                                        content: Text(
+                                            tr("competition_qr_description")),
+                                        actions: <Widget>[
+                                          TextButton(
+                                              child: Text(
+                                                  tr("competition_qr_button")),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }),
+                                        ],
+                                      );
+                                    },
+                                  );
                                 },
                                 child: Text(tr("competition_qrcode")),
                               ),
@@ -353,35 +370,38 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
 
   Future _getImageFromCamera() async {
     Navigator.of(context).pop(null);
-    Media? res = await ImagePickers.openCamera();
+    List<Media>? res = await ImagesPicker.openCamera(
+      pickType: PickType.image,
+      cropOpt: CropOption(
+        aspectRatio: CropAspectRatio.custom,
+        cropType: CropType.rect,
+      ),
+    );
 
     if (res != null) {
-      await ImagePickers.saveImageToGallery(res.path!);
+      await ImagesPicker.saveImageToAlbum(File(res[0].path),
+          albumName: "shoot report");
       setState(() {
-        imagePath = res.path!;
+        imagePath = res[0].path;
       });
     }
   }
 
   Future _getImageFromGallery() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagePickers.pickerPaths(
-      galleryMode: GalleryMode.image,
-      selectCount: 1,
-      showGif: false,
-      showCamera: true,
+    List<Media>? res = await ImagesPicker.pick(
+      count: 1,
+      pickType: PickType.image,
+      cropOpt: CropOption(
+        aspectRatio: CropAspectRatio.custom,
+        cropType: CropType.rect,
+      ),
     );
 
-    if (res.isNotEmpty) {
+    if (res != null) {
       setState(() {
-        imagePath = res[0].path!;
+        imagePath = res[0].path;
       });
     }
-  }
-
-  void _getQRCode() {
-    print("Hallo");
-
-    ImagePickers.saveImageToGallery("URL");
   }
 }

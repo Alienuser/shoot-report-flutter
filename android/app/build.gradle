@@ -47,8 +47,8 @@ android {
 
     defaultConfig {
         applicationId "de.famprobst.report"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        compileSdkVersion flutter.compileSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
