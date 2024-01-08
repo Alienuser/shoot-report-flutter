@@ -22,11 +22,10 @@ class CompetitionEditWidget extends StatefulWidget {
   final Competition competition;
 
   const CompetitionEditWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.competitionDao,
-      required this.competition})
-      : super(key: key);
+      required this.competition});
 
   @override
   State<CompetitionEditWidget> createState() => _CompetitionEditWidgetState();
@@ -92,7 +91,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                       key: _formKey,
                       child: Column(children: [
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_general")),
                             children: [
                               DropdownButtonFormField<String>(
@@ -158,7 +156,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -203,7 +200,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                     ? () {
                                         showMaterialModalBottomSheet(
                                           context: context,
-                                          backgroundColor: Colors.transparent,
                                           builder: (context) {
                                             return Material(
                                                 child: SafeArea(
@@ -245,7 +241,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return AlertDialog(
+                                            return AlertDialog.adaptive(
                                               title: Text(
                                                   tr("competition_qr_title")),
                                               content: Text(tr(
@@ -268,7 +264,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
                           header: Text(tr("competition_result")),
                           children: [
                             TextFormField(
@@ -323,7 +318,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                           ],
                         ),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_score")),
                             children: [
                               ListTile(
@@ -335,7 +329,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
@@ -355,7 +348,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -478,7 +470,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/tmp/$imagePath";
+        imagePath = "$directory/Documents/$imagePath";
       }
     });
   }

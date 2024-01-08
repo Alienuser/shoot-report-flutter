@@ -10,11 +10,10 @@ class StatisticWidget extends StatefulWidget {
   final Color color;
 
   const StatisticWidget(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.dataSource,
-      required this.color})
-      : super(key: key);
+      required this.color});
 
   @override
   State<StatisticWidget> createState() => _StatisticWidgetState();
@@ -34,8 +33,8 @@ class _StatisticWidgetState extends State<StatisticWidget> {
       onTooltipRender: (TooltipArgs args) {
         args.header = args.dataPoints![args.pointIndex!.toInt()].x;
       },
-      primaryXAxis: CategoryAxis(
-        majorGridLines: const MajorGridLines(width: 0),
+      primaryXAxis: const CategoryAxis(
+        majorGridLines: MajorGridLines(width: 0),
         interval: 1,
         labelRotation: 30,
         autoScrollingDelta: 10,

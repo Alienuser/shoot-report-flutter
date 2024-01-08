@@ -6,7 +6,7 @@ import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CooperationWidget extends StatefulWidget {
-  const CooperationWidget({Key? key}) : super(key: key);
+  const CooperationWidget({super.key});
 
   @override
   State<CooperationWidget> createState() => _CooperationWidgetState();

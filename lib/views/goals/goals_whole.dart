@@ -8,7 +8,7 @@ import 'package:shoot_report/utilities/theme.dart';
 class GoalsWholeWidget extends StatefulWidget {
   final Weapon weapon;
 
-  const GoalsWholeWidget({Key? key, required this.weapon}) : super(key: key);
+  const GoalsWholeWidget({super.key, required this.weapon});
 
   @override
   State<GoalsWholeWidget> createState() => _GoalsWholeWidgetState();

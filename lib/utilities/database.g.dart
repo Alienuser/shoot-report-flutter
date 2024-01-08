@@ -61,6 +61,8 @@ class _$FlutterDatabase extends FlutterDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
+  TypeDao? _typeDaoInstance;
+
   WeaponDao? _weaponDaoInstance;
 
   TrainingDao? _trainingDaoInstance;
@@ -89,7 +91,9 @@ class _$FlutterDatabase extends FlutterDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Weapon` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `prefFile` TEXT NOT NULL, `show` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Type` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Weapon` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `prefFile` TEXT NOT NULL, `typeId` INTEGER NOT NULL, `show` INTEGER NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Training` (`id` INTEGER, `date` INTEGER NOT NULL, `image` TEXT NOT NULL, `indicator` INTEGER NOT NULL, `place` TEXT NOT NULL, `kind` TEXT NOT NULL, `shotCount` INTEGER NOT NULL, `shots` TEXT NOT NULL, `comment` TEXT NOT NULL, `weapon_id` INTEGER NOT NULL, FOREIGN KEY (`weapon_id`) REFERENCES `Weapon` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`id`))');
         await database.execute(
@@ -99,6 +103,11 @@ class _$FlutterDatabase extends FlutterDatabase {
       },
     );
     return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
+  }
+
+  @override
+  TypeDao get typeDao {
+    return _typeDaoInstance ??= _$TypeDao(database, changeListener);
   }
 
   @override
@@ -118,6 +127,79 @@ class _$FlutterDatabase extends FlutterDatabase {
   }
 }
 
+class _$TypeDao extends TypeDao {
+  _$TypeDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
+        _typeInsertionAdapter = InsertionAdapter(
+            database,
+            'Type',
+            (Type item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'order': item.order
+                },
+            changeListener),
+        _typeUpdateAdapter = UpdateAdapter(
+            database,
+            'Type',
+            ['id'],
+            (Type item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'order': item.order
+                },
+            changeListener),
+        _typeDeletionAdapter = DeletionAdapter(
+            database,
+            'Type',
+            ['id'],
+            (Type item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'order': item.order
+                },
+            changeListener);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Type> _typeInsertionAdapter;
+
+  final UpdateAdapter<Type> _typeUpdateAdapter;
+
+  final DeletionAdapter<Type> _typeDeletionAdapter;
+
+  @override
+  Stream<List<Type>> findAllTypes() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM type ORDER by \"order\" ASC;',
+        mapper: (Map<String, Object?> row) =>
+            Type(row['id'] as int?, row['name'] as String, row['order'] as int),
+        queryableName: 'type',
+        isView: false);
+  }
+
+  @override
+  Future<void> insertGroup(Type type) async {
+    await _typeInsertionAdapter.insert(type, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateGroup(Type type) async {
+    await _typeUpdateAdapter.update(type, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteGroup(Type type) async {
+    await _typeDeletionAdapter.delete(type);
+  }
+}
+
 class _$WeaponDao extends WeaponDao {
   _$WeaponDao(
     this.database,
@@ -131,6 +213,7 @@ class _$WeaponDao extends WeaponDao {
                   'name': item.name,
                   'order': item.order,
                   'prefFile': item.prefFile,
+                  'typeId': item.typeId,
                   'show': item.show ? 1 : 0
                 },
             changeListener),
@@ -143,6 +226,7 @@ class _$WeaponDao extends WeaponDao {
                   'name': item.name,
                   'order': item.order,
                   'prefFile': item.prefFile,
+                  'typeId': item.typeId,
                   'show': item.show ? 1 : 0
                 },
             changeListener),
@@ -155,6 +239,7 @@ class _$WeaponDao extends WeaponDao {
                   'name': item.name,
                   'order': item.order,
                   'prefFile': item.prefFile,
+                  'typeId': item.typeId,
                   'show': item.show ? 1 : 0
                 },
             changeListener);
@@ -172,7 +257,38 @@ class _$WeaponDao extends WeaponDao {
   final DeletionAdapter<Weapon> _weaponDeletionAdapter;
 
   @override
-  Stream<List<Weapon>> findAllWeapons(bool show) {
+  Stream<List<Weapon>> findAllWeapons() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM weapon ORDER by \"order\" ASC;',
+        mapper: (Map<String, Object?> row) => Weapon(
+            row['id'] as int?,
+            row['name'] as String,
+            row['order'] as int,
+            row['prefFile'] as String,
+            row['typeId'] as int,
+            (row['show'] as int) != 0),
+        queryableName: 'weapon',
+        isView: false);
+  }
+
+  @override
+  Stream<List<Weapon>> findAllWeaponsForType(int id) {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM weapon WHERE typeId = ?1 ORDER by \"order\" ASC;',
+        mapper: (Map<String, Object?> row) => Weapon(
+            row['id'] as int?,
+            row['name'] as String,
+            row['order'] as int,
+            row['prefFile'] as String,
+            row['typeId'] as int,
+            (row['show'] as int) != 0),
+        arguments: [id],
+        queryableName: 'weapon',
+        isView: false);
+  }
+
+  @override
+  Stream<List<Weapon>> findAllWeaponsDistinction(bool show) {
     return _queryAdapter.queryListStream(
         'SELECT * FROM weapon WHERE show = ?1 ORDER by \"order\" ASC;',
         mapper: (Map<String, Object?> row) => Weapon(
@@ -180,16 +296,11 @@ class _$WeaponDao extends WeaponDao {
             row['name'] as String,
             row['order'] as int,
             row['prefFile'] as String,
+            row['typeId'] as int,
             (row['show'] as int) != 0),
         arguments: [show ? 1 : 0],
         queryableName: 'weapon',
         isView: false);
-  }
-
-  @override
-  Future<void> showAllWeapons(bool show) async {
-    await _queryAdapter
-        .queryNoReturn('Update weapon SET show=?1', arguments: [show ? 1 : 0]);
   }
 
   @override

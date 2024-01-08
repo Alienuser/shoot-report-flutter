@@ -15,11 +15,10 @@ class TrainingListWidget extends StatelessWidget {
   final TrainingDao trainingDao;
 
   const TrainingListWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.weaponDao,
-      required this.trainingDao})
-      : super(key: key);
+      required this.trainingDao});
 
   @override
   Widget build(BuildContext context) {

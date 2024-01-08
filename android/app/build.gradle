@@ -33,13 +33,9 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
     namespace "de.famprobst.report"
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -51,13 +47,10 @@ android {
 
     defaultConfig {
         applicationId "de.famprobst.report"
+        targetSdkVersion 34
         minSdkVersion 21
-        targetSdkVersion 32
-        compileSdkVersion 33
-        buildToolsVersion "33.0.2"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
     }
 
     signingConfigs {
@@ -80,6 +73,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-}
+dependencies {}

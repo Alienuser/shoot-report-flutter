@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataPersonWidget extends StatefulWidget {
-  const DataPersonWidget({Key? key}) : super(key: key);
+  const DataPersonWidget({super.key});
 
   @override
   State<DataPersonWidget> createState() => _DataPersonWidgetState();
@@ -365,7 +365,8 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
       if (prefs.getString("data_person_photo") != null &&
           prefs.getString("data_person_photo") != "") {
         if (Platform.isIOS) {
-          imagePath = "$directory/tmp/${prefs.getString("data_person_photo")}";
+          imagePath =
+              "$directory/Documents/${prefs.getString("data_person_photo")}";
         } else if (Platform.isAndroid) {
           imagePath = prefs.getString("data_person_photo");
         }
