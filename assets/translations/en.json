@@ -59,7 +59,7 @@
     "weapon_46":"Percussion Revolver",
     "weapon_47":"Percussion Pistol",
     "weapon_48":"Flintlock Pistol",
-    "weapon_49":"Mtachlock Pistol",
+    "weapon_49":"Matchlock Pistol",
     "weapon_50":"Crossbow 10m on a rest",
     "weapon_51":"Crossbow 30m 2 postion",
     "weapon_52":"Crossbow 30m standing",
@@ -69,7 +69,7 @@
     "weapon_56":"Fieldcrossbow 65m",
     "weapon_57":"Fieldcrossbow IAU",
 
-    "weapon_data_no":"No disciplines are shown.",
+    "weapon_data_no":"You have not selected any disciplines yet.\nYou can select your favourites via the star.",
     "weapon_favorite_toolltip":"Disciplines",
     "weapon_favorite_title":"Disciplines",
 
