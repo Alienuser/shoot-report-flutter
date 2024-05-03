@@ -19,6 +19,7 @@ class _AdsWidgetState extends State<AdsWidget> {
     "assets/images/partner_sauer.png",
     "assets/images/partner_koch.png",
     "assets/images/partner_disag.png",
+    "assets/images/partner_sauer_academy.png",
   ];
 
   @override
