@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "629596194534",
+    "firebase_url": "https://shoot-report-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "shoot-report",
     "storage_bucket": "shoot-report.appspot.com"
   },
