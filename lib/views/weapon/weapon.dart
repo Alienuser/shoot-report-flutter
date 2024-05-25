@@ -41,7 +41,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
             color: Colors.white,
             tooltip: tr("weapon_favorite_toolltip"),
             onPressed: () {
-              showCupertinoModalBottomSheet(
+              showBarModalBottomSheet(
                   context: context,
                   expand: true,
                   enableDrag: true,
