@@ -8,6 +8,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -42,6 +43,7 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
   @override
   void initState() {
     _textDateController.text = DateFormat.yMd().format(date);
+    FirebaseLog().logScreenView("training_add.dart", "training_add");
     super.initState();
   }
 
@@ -426,9 +428,11 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
                 UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
             cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
         .then((List medias) {
-      setState(() {
-        imagePath = medias.first.path;
-      });
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
     });
   }
 }

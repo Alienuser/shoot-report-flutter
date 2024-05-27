@@ -4,6 +4,7 @@ import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/type_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/views/discipline/discipine_type.dart';
 import 'package:shoot_report/views/weapon/weapon_list.dart';
 import 'package:shoot_report/widgets/ads.dart';
@@ -29,6 +30,12 @@ class WeaponWidget extends StatefulWidget {
 }
 
 class _WeaponWidgetState extends State<WeaponWidget> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseLog().logScreenView("weapon.dart", "weapon");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

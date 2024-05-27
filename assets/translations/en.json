@@ -79,7 +79,7 @@
     "menu_facebook":"Facebook",
     "menu_instagram":"Instagram",
     "menu_import":"Data Import",
-    "menu_export":"Data Export",
+    "menu_export":"Developer export",
 
     "menu_bottom_training":"Training",
     "menu_bottom_competition":"Competition",
@@ -295,7 +295,7 @@
     "information_version_version":"Version",
     "information_version_build":"Build number",
     "information_version_date":"Build date",
-    "information_version_date_description":"202405XX",
+    "information_version_date_description":"202406XX",
     "information_source_title":"Sources",
     "information_source_description":"Texts ot the coach function are in accordance with the Trainer-C mass sports training of the Deutscher Schützenbund.",
 

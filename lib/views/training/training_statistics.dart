@@ -4,6 +4,7 @@ import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/utilities/chart_data.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/widgets/statistic.dart';
 
@@ -23,6 +24,13 @@ class TrainingStatisticWidget extends StatefulWidget {
 }
 
 class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseLog()
+        .logScreenView("training_statistics.dart", "training_statistic");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

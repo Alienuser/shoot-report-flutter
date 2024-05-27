@@ -55,6 +55,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     if (imagePath != "") {
       _setImage();
     }
+    FirebaseLog().logScreenView("training_edit.dart", "training_edit");
     super.initState();
   }
 
@@ -492,9 +493,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                 UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
             cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
         .then((List medias) {
-      setState(() {
-        imagePath = medias.first.path;
-      });
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
     });
   }
 

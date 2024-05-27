@@ -49,5 +49,18 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>In order to record a video and add it to your session, we need the permission to use the microphone.</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>In order to get a picture from the library to your session, we need the permission to access your library.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>In order to take a picture and add it to your session, we need the permission to use the camera.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>In order to add a picture from the library to your session, we need the permission to access your library.</string>
 	</dict>
 </plist>

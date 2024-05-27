@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/views/trainer/trainer_equipment.dart';
 import 'package:shoot_report/views/trainer/trainer_mental.dart';
 import 'package:shoot_report/views/trainer/trainer_tech.dart';
@@ -21,6 +22,12 @@ class _TrainerWidgetState extends State<TrainerWidget> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseLog().logScreenView("trainer.dart", "trainer");
   }
 
   @override

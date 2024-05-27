@@ -4,6 +4,7 @@ import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/utilities/chart_data.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/widgets/statistic.dart';
 
@@ -24,6 +25,13 @@ class CompetitionStatisticWidget extends StatefulWidget {
 
 class _CompetitionStatisticWidgetState
     extends State<CompetitionStatisticWidget> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseLog()
+        .logScreenView("competition_statistics.dart", "competition_statistic");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

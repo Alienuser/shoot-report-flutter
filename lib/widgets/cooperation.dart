@@ -60,6 +60,8 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                                   Uri.parse("https://www.kksvillingen.de"),
                                   mode: LaunchMode.externalApplication,
                                 );
+                                FirebaseLog()
+                                    .logEvent("Cooperation - KKSV Illingen");
                               },
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
@@ -89,6 +91,8 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                                   "https://www.burkhardt-sport.solutions/kontakt"),
                               mode: LaunchMode.externalApplication,
                             );
+                            FirebaseLog().logEvent(
+                                "Cooperation - Burkhardt Sport Solutions");
                           },
                           child: Text(tr("cooperation_action_contact")),
                         ),

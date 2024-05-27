@@ -100,7 +100,7 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
             importDatabase();
             break;
           case 6:
-            FirebaseLog().logEvent("Share Database");
+            FirebaseLog().logEvent("Export Database");
             Share.shareXFiles([XFile(database.database.database.path)],
                 text: tr("training_share_text"));
             break;

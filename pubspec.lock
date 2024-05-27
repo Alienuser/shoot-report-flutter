@@ -553,10 +553,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_pickers
-      sha256: "4d8e71082aac8d73ba0f80a66c467fd11ee3f8b0eb955e84a4af342786b9f3b5"
+      sha256: "43b3098d1d0cee1bbddd919814cee83582d40842f9fc41c1af3c7174dce5a3c9"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.5+1"
+    version: "2.0.5+2"
   intl:
     dependency: transitive
     description:

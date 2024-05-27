@@ -8,6 +8,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:status_alert/status_alert.dart';
@@ -39,6 +40,7 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
   @override
   void initState() {
     _textDateController.text = DateFormat.yMd().format(date);
+    FirebaseLog().logScreenView("competition_add.dart", "competition_add");
     super.initState();
   }
 
@@ -390,9 +392,11 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                 UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
             cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
         .then((List medias) {
-      setState(() {
-        imagePath = medias.first.path;
-      });
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
     });
   }
 }

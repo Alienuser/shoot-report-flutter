@@ -52,6 +52,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
     if (imagePath != "") {
       _setImage();
     }
+    FirebaseLog().logScreenView("competition_edit.dart", "competition_edit");
     super.initState();
   }
 
@@ -451,9 +452,11 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                 UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
             cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
         .then((List medias) {
-      setState(() {
-        imagePath = medias.first.path;
-      });
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
     });
   }
 
