@@ -86,5 +86,5 @@ void _initialization() async {
   await Future.delayed(const Duration(seconds: 2));
 
   // Dismiss the splash
-  FlutterNativeSplash.remove();
+  //FlutterNativeSplash.remove();
 }
