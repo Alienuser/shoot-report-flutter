@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "de.famprobst.report"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = flutter.compileSdk
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
