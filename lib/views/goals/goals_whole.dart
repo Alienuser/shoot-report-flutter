@@ -78,11 +78,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                 labelText: tr("goals_whole_jackpot"),
                               ),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_40_jackpot",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -101,11 +101,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_optimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_40_optimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -124,11 +124,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_real")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_40_real",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -147,11 +147,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_minimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_40_minimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -170,11 +170,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_chaos")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_40_chaos",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -201,11 +201,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_jackpot")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_60_jackpot",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -224,11 +224,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_optimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_60_optimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -247,11 +247,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_real")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /* SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_60_real",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -270,11 +270,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_minimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_60_minimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -293,11 +293,11 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   ),
                                   labelText: tr("goals_whole_chaos")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalWhole_60_chaos",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -305,7 +305,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    /*SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _textWhole40JackpotController.text =
           prefs.getString("${widget.weapon.prefFile}_goalWhole_40_jackpot") ??
@@ -333,6 +333,6 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
               "";
       _textWhole60ChaosController.text =
           prefs.getString("${widget.weapon.prefFile}_goalWhole_60_chaos") ?? "";
-    });
+    });*/
   }
 }

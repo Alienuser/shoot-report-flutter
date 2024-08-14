@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shoot_report/models/firebase.dart';
+import 'package:shoot_report/models/newWeapon.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/competition_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
@@ -22,13 +26,14 @@ class WeaponListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: StreamBuilder<List<Weapon>>(
-        stream: weaponDao.findAllWeaponsDistinction(true),
+      child: StreamBuilder(
+        stream: FirebaseDatabase.instance
+            .ref("${FirebaseAuth.instance.currentUser?.uid}/weapons")
+            .orderByChild('show')
+            .equalTo(true)
+            .onValue,
         builder: (_, snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox();
-          }
-          if (snapshot.data.toString() == "[]") {
+          if (!snapshot.hasData || snapshot.data.toString() == "[]") {
             final ThemeData mode = Theme.of(context);
             return Center(
                 child: Column(
@@ -48,13 +53,18 @@ class WeaponListView extends StatelessWidget {
                 ]));
           }
 
-          final weapons = snapshot.requireData;
+          var data = snapshot.data!.snapshot.value as Map;
+          List<NewWeapon> weapons = List.empty(growable: true);
+          data.forEach((key, value) {
+            weapons.add(NewWeapon(key, value["name"], 1, "", value["show"]));
+          });
 
           return ListView.separated(
               itemCount: weapons.length,
               itemBuilder: (context, index) {
                 return WeaponListCell(
-                    weapon: weapons[index],
+                    newWeapon: weapons[index],
+                    weapon: Weapon(0, "", 0, "", true),
                     weaponDao: weaponDao,
                     trainingDao: trainingDao,
                     competitionDao: competitionDao);

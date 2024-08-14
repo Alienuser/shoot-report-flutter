@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataDeviceWidget extends StatefulWidget {
@@ -12,6 +13,8 @@ class DataDeviceWidget extends StatefulWidget {
 }
 
 class _DataDeviceWidgetState extends State<DataDeviceWidget> {
+  final DatabaseReference firebaseDatabase = FirebaseDatabase.instance
+      .ref("${FirebaseAuth.instance.currentUser?.uid}/device");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textDataDeviceController =
       TextEditingController();
@@ -53,9 +56,9 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                                     : const Color(AppTheme.textColorDark),
                               ),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_device", value);
+                                await firebaseDatabase.update({
+                                  "data": value,
+                                });
                               },
                             ),
                           ]),
@@ -63,9 +66,11 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _textDataDeviceController.text = prefs.getString("data_device") ?? "";
+    firebaseDatabase.onValue.listen((DatabaseEvent event) {
+      final data = event.snapshot.value;
+      setState(() {
+        _textDataDeviceController.text = (data as Map)['data'] ?? "";
+      });
     });
   }
 }

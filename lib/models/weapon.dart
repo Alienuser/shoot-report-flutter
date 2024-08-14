@@ -9,11 +9,9 @@ class Weapon {
 
   final int order;
 
-  final String prefFile;
-
-  final int typeId;
+  final String? prefFile;
 
   bool show;
 
-  Weapon(this.id, this.name, this.order, this.prefFile, this.typeId, this.show);
+  Weapon(this.id, this.name, this.order, this.prefFile, this.show);
 }

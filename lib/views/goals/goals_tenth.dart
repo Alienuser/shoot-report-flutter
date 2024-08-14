@@ -73,11 +73,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_jackpot")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_40_jackpot",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -96,11 +96,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_optimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_40_optimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -119,11 +119,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_real")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_40_real",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -142,11 +142,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_minimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /* SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_40_minimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -165,11 +165,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_chaos")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_40_chaos",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -196,11 +196,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_jackpot")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_60_jackpot",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -219,11 +219,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_optimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_60_optimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -242,11 +242,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_real")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_60_real",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -265,11 +265,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_minimal")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_60_minimal",
-                                    value);
+                                    value);*/
                               },
                             ),
                             TextFormField(
@@ -288,11 +288,11 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                   ),
                                   labelText: tr("goals_tenth_chaos")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_goalTenth_60_chaos",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -300,7 +300,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    /*SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _text40JackpotController.text =
           prefs.getString("${widget.weapon.prefFile}_goalTenth_40_jackpot") ??
@@ -328,6 +328,6 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
               "";
       _text60ChaosController.text =
           prefs.getString("${widget.weapon.prefFile}_goalTenth_60_chaos") ?? "";
-    });
+    });*/
   }
 }

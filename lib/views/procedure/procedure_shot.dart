@@ -55,11 +55,11 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                                     : const Color(AppTheme.textColorDark),
                               ),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_procedure_shot",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -69,8 +69,8 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
   void _loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _textShotController.text =
-          prefs.getString("${widget.weapon.prefFile}_procedure_shot") ?? "";
+      /*_textShotController.text =
+          prefs.getString("${widget.weapon.prefFile}_procedure_shot") ?? "";*/
     });
   }
 }

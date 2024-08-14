@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataPersonWidget extends StatefulWidget {
@@ -17,6 +18,8 @@ class DataPersonWidget extends StatefulWidget {
 }
 
 class _DataPersonWidgetState extends State<DataPersonWidget> {
+  final DatabaseReference firebaseDatabase = FirebaseDatabase.instance
+      .ref("${FirebaseAuth.instance.currentUser?.uid}/user");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textDataPersonNameController =
       TextEditingController();
@@ -137,9 +140,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("data_person_name")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_name", value);
+                                await firebaseDatabase.update({
+                                  "name": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -151,9 +154,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   labelText: tr("data_person_age")),
                               keyboardType: TextInputType.number,
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_age", value);
+                                await firebaseDatabase.update({
+                                  "age": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -167,9 +170,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   const TextInputType.numberWithOptions(
                                       decimal: true),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_height", value);
+                                await firebaseDatabase.update({
+                                  "height": value,
+                                });
                               },
                             ),
                           ]),
@@ -188,9 +191,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("data_person_club_1")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_club_1", value);
+                                await firebaseDatabase.update({
+                                  "club_1": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -201,9 +204,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("data_person_club_2")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_club_2", value);
+                                await firebaseDatabase.update({
+                                  "club_2": value,
+                                });
                               },
                             ),
                           ]),
@@ -222,9 +225,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("data_person_trainer")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_trainer", value);
+                                await firebaseDatabase.update({
+                                  "trainer": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -236,10 +239,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   labelText: tr("data_person_trainer_mail")),
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_trainer_mail", value);
+                                await firebaseDatabase.update({
+                                  "trainer_mail": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -250,10 +252,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   contentPadding: const EdgeInsets.all(10.0),
                                   labelText: tr("data_person_squadtrainer")),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_squadtrainer", value);
+                                await firebaseDatabase.update({
+                                  "squadtrainer": value,
+                                });
                               },
                             ),
                             TextFormField(
@@ -267,10 +268,9 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                       tr("data_person_squadtrainer_mail")),
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_squadtrainer_mail", value);
+                                await firebaseDatabase.update({
+                                  "squadtrainer_mail": value,
+                                });
                               },
                             ),
                           ]),
@@ -281,11 +281,14 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
     Navigator.of(context).pop(null);
     ImagePickers.openCamera().then((Media? media) async {
       if (media != null) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
         if (Platform.isIOS) {
-          prefs.setString("data_person_photo", media.path!.split("/").last);
+          await firebaseDatabase.update({
+            "photo": media.path!.split("/").last,
+          });
         } else if (Platform.isAndroid) {
-          prefs.setString("data_person_photo", media.path!);
+          await firebaseDatabase.update({
+            "photo": media.path!,
+          });
         }
         setState(() {
           imagePath = media.path;
@@ -305,13 +308,14 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                 UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
             cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
         .then((List medias) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-
       if (Platform.isIOS) {
-        prefs.setString(
-            "data_person_photo", medias.first.path!.split("/").last);
+        await firebaseDatabase.update({
+          "photo": medias.first.path!.split("/").last,
+        });
       } else if (Platform.isAndroid) {
-        prefs.setString("data_person_photo", medias.first.path);
+        await firebaseDatabase.update({
+          "photo": medias.first.path,
+        });
       }
       setState(() {
         imagePath = medias.first.path;
@@ -320,47 +324,42 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
   }
 
   void _deleteImage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("data_person_photo");
+    await firebaseDatabase.update({
+      "photo": "",
+    });
     setState(() {
       imagePath = "";
     });
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
 
-    setState(() {
-      _textDataPersonNameController.text =
-          prefs.getString("data_person_name") ?? "";
-      _textDataPersonAgeController.text =
-          prefs.getString("data_person_age") ?? "";
-      _textDataPersonHightController.text =
-          prefs.getString("data_person_height") ?? "";
-      _textDataPersonClub1Controller.text =
-          prefs.getString("data_person_club_1") ?? "";
-      _textDataPersonClub2Controller.text =
-          prefs.getString("data_person_club_2") ?? "";
-      _textDataPersonTrainerontroller.text =
-          prefs.getString("data_person_trainer") ?? "";
-      _textDataPersonTrainerMailController.text =
-          prefs.getString("data_person_trainer_mail") ?? "";
-      _textDataPersonSquadTrainerController.text =
-          prefs.getString("data_person_squadtrainer") ?? "";
-      _textDataPersonSquadTrainerMailController.text =
-          prefs.getString("data_person_squadtrainer_mail") ?? "";
+    firebaseDatabase.onValue.listen((DatabaseEvent event) {
+      final data = event.snapshot.value;
+      setState(() {
+        _textDataPersonNameController.text = (data as Map)['name'] ?? "";
+        _textDataPersonAgeController.text = (data)['age'] ?? "";
+        _textDataPersonHightController.text = (data)['height'] ?? "";
+        _textDataPersonClub1Controller.text = (data)['club_1'] ?? "";
+        _textDataPersonClub2Controller.text = (data)['club_2'] ?? "";
+        _textDataPersonTrainerontroller.text = (data)['trainer'] ?? "";
+        _textDataPersonTrainerMailController.text =
+            (data)['trainer_mail'] ?? "";
+        _textDataPersonSquadTrainerController.text =
+            (data)['squadtrainer'] ?? "";
+        _textDataPersonSquadTrainerMailController.text =
+            (data)['squadtrainer_mail'] ?? "";
 
-      // Get image path if there is one
-      if (prefs.getString("data_person_photo") != null &&
-          prefs.getString("data_person_photo") != "") {
-        if (Platform.isIOS) {
-          imagePath =
-              "$directory/Documents/${prefs.getString("data_person_photo")}";
-        } else if (Platform.isAndroid) {
-          imagePath = prefs.getString("data_person_photo");
+        // Get image path if there is one
+        if ((data)['photo'] != null && (data)['photo'] != "") {
+          if (Platform.isIOS) {
+            imagePath = "$directory/Documents/${(data)['photo']}";
+          } else if (Platform.isAndroid) {
+            imagePath = (data)['photo'];
+          }
         }
-      }
+      });
     });
   }
 }

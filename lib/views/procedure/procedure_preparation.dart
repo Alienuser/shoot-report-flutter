@@ -58,11 +58,11 @@ class _ProcedurePreparationWidgetState
                                     : const Color(AppTheme.textColorDark),
                               ),
                               onChanged: (value) async {
-                                SharedPreferences prefs =
+                                /*SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     "${widget.weapon.prefFile}_procedure_before",
-                                    value);
+                                    value);*/
                               },
                             ),
                           ]),
@@ -72,8 +72,8 @@ class _ProcedurePreparationWidgetState
   void _loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _textPreparationController.text =
-          prefs.getString("${widget.weapon.prefFile}_procedure_before") ?? "";
+      /*_textPreparationController.text =
+          prefs.getString("${widget.weapon.prefFile}_procedure_before") ?? "";*/
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_performance/firebase_performance.dart';
@@ -12,8 +13,8 @@ import 'package:shoot_report/services/weapon_dao.dart';
 import 'package:shoot_report/utilities/app_migration.dart';
 import 'package:shoot_report/utilities/database.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
-import 'package:version_migration/version_migration.dart';
 import 'package:flutter/material.dart';
+import 'package:version_migration/version_migration.dart';
 
 late FlutterDatabase database;
 
@@ -62,16 +63,19 @@ void _initialization() async {
   // Firebase configuration
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-  // Migrate to version 1.6.1
-  await VersionMigration.migrateToVersion("1.6.1", () async {
-    Trace migrationTrace161 =
-        FirebasePerformance.instance.newTrace('migration_1.6.1');
-    await migrationTrace161.start();
+  FirebaseAuth.instance
+      .signInWithEmailAndPassword(email: "test@test.de", password: "test123");
+
+  // Migrate to version 1.7.0
+  await VersionMigration.migrateToVersion("1.7.0", () async {
+    Trace migrationTrace170 =
+        FirebasePerformance.instance.newTrace('migration_1.7.0');
+    await migrationTrace170.start();
     // Run migration
-    await AppMigration.migrate_1_6_1(database);
+    await AppMigration.migrate_1_7_0(database);
     // Log migration
-    FirebaseLog().logEvent("migration_1_6_1");
-    await migrationTrace161.stop();
+    FirebaseLog().logEvent("migration_1_7_0");
+    await migrationTrace170.stop();
   });
 
   // Check if we have to load default weapons
