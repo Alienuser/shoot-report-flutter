@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "de.famprobst.report"
-    compileSdk = flutter.compileSdk
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
         applicationId "de.famprobst.report"
-        minSdk = flutter.minSdkVersion
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
