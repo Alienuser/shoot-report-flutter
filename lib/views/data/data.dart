@@ -7,8 +7,8 @@ import 'package:shoot_report/widgets/ads.dart';
 
 class DataWidget extends StatelessWidget {
   const DataWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

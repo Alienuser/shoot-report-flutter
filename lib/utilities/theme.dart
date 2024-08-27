@@ -13,8 +13,8 @@ class AppTheme {
   static const textSublineColor = 0xFF9C9CA0;
   static const lightTextColor = 0xFF000000;
   static const darkTextColor = 0xFFE2E2E6;
-  static const chartWholeColor = 0x0AE20A;
-  static const chartTenthColor = 0x0E2435;
+  static const chartWholeColor = 0xFF0AE20A;
+  static const chartTenthColor = 0xFF0E2435;
   static const textColorDark = 0xFFFAFAFA;
   static const textColorLight = 0xFF363636;
 

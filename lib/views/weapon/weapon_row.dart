@@ -13,23 +13,19 @@ class WeaponListCell extends StatelessWidget {
   final CompetitionDao competitionDao;
 
   const WeaponListCell({
-    Key? key,
+    super.key,
     required this.weapon,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.legend_toggle_sharp),
       title: Text(tr(weapon.name)),
-      trailing: IconButton(
-          onPressed: () {
-            _deleteWeapon(context);
-          },
-          icon: const Icon(Icons.delete)),
+      trailing: const Icon(Icons.arrow_right_sharp, size: 35),
       onTap: () {
         Navigator.push(
           context,
@@ -44,40 +40,5 @@ class WeaponListCell extends StatelessWidget {
         );
       },
     );
-  }
-
-  void _deleteWeapon(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            title: Text(tr("weapon_alert_title")),
-            content: Text(tr("weapon_alert_message")),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    weapon.show = false;
-                    weaponDao.updateWeapon(weapon);
-
-                    final scaffoldMessengerState =
-                        ScaffoldMessenger.of(context);
-                    scaffoldMessengerState.hideCurrentSnackBar();
-                    scaffoldMessengerState.showSnackBar(
-                      SnackBar(
-                          content: Text(
-                              tr("weapon_deleted", args: [tr(weapon.name)])),
-                          behavior: SnackBarBehavior.floating),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_yes"))),
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_no")))
-            ],
-          );
-        });
   }
 }

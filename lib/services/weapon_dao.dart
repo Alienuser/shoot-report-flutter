@@ -3,8 +3,14 @@ import 'package:shoot_report/models/weapon.dart';
 
 @dao
 abstract class WeaponDao {
+  @Query("SELECT * FROM weapon ORDER by \"order\" ASC;")
+  Stream<List<Weapon>> findAllWeapons();
+
+  @Query("SELECT * FROM weapon WHERE typeId = :id ORDER by \"order\" ASC;")
+  Stream<List<Weapon>> findAllWeaponsForType(int id);
+
   @Query("SELECT * FROM weapon WHERE show = :show ORDER by \"order\" ASC;")
-  Stream<List<Weapon>> findAllWeapons(bool show);
+  Stream<List<Weapon>> findAllWeaponsDistinction(bool show);
 
   @insert
   Future<void> insertWeapon(Weapon weapon);
@@ -14,7 +20,4 @@ abstract class WeaponDao {
 
   @delete
   Future<void> deleteWeapon(Weapon weapon);
-
-  @Query("Update weapon SET show=:show")
-  Future<void> showAllWeapons(bool show);
 }

@@ -9,9 +9,9 @@ class ProcedureWidget extends StatelessWidget {
   final Weapon weapon;
 
   const ProcedureWidget({
-    Key? key,
+    super.key,
     required this.weapon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

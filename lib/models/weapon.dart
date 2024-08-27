@@ -11,7 +11,9 @@ class Weapon {
 
   final String prefFile;
 
+  final int typeId;
+
   bool show;
 
-  Weapon(this.id, this.name, this.order, this.prefFile, this.show);
+  Weapon(this.id, this.name, this.order, this.prefFile, this.typeId, this.show);
 }

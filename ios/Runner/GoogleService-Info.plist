@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.629596194534-fgunm6u3jpc5u8mdf3bltek3j82lcv27</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>629596194534-t992p933mn9813mk9jflp69s7210rrac.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -21,16 +17,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>shoot-report.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:629596194534:ios:e614c76ab3086803f29d27</string>
+	<key>DATABASE_URL</key>
+	<string>https://shoot-report-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

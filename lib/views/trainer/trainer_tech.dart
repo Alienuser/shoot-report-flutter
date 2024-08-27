@@ -5,8 +5,8 @@ import 'package:shoot_report/views/trainer/trainer_view.dart';
 
 class TrainerTechWidget extends StatelessWidget {
   const TrainerTechWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

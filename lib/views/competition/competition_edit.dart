@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:images_picker/images_picker.dart';
+import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -22,11 +22,10 @@ class CompetitionEditWidget extends StatefulWidget {
   final Competition competition;
 
   const CompetitionEditWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.competitionDao,
-      required this.competition})
-      : super(key: key);
+      required this.competition});
 
   @override
   State<CompetitionEditWidget> createState() => _CompetitionEditWidgetState();
@@ -53,6 +52,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
     if (imagePath != "") {
       _setImage();
     }
+    FirebaseLog().logScreenView("competition_edit.dart", "competition_edit");
     super.initState();
   }
 
@@ -92,7 +92,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                       key: _formKey,
                       child: Column(children: [
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_general")),
                             children: [
                               DropdownButtonFormField<String>(
@@ -158,7 +157,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -203,7 +201,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                     ? () {
                                         showMaterialModalBottomSheet(
                                           context: context,
-                                          backgroundColor: Colors.transparent,
                                           builder: (context) {
                                             return Material(
                                                 child: SafeArea(
@@ -224,7 +221,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                                       leading: const Icon(
                                                           Icons.image),
                                                       onTap: () =>
-                                                          _getImageFromGallery()),
+                                                          _getImageFromGallery())
                                                 ],
                                               ),
                                             ));
@@ -245,7 +242,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return AlertDialog(
+                                            return AlertDialog.adaptive(
                                               title: Text(
                                                   tr("competition_qr_title")),
                                               content: Text(tr(
@@ -268,7 +265,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
                           header: Text(tr("competition_result")),
                           children: [
                             TextFormField(
@@ -323,7 +319,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                           ],
                         ),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("competition_score")),
                             children: [
                               ListTile(
@@ -335,7 +330,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
@@ -355,7 +349,6 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -439,46 +432,40 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
 
   Future _getImageFromCamera() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.openCamera(
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
-    );
-
-    if (res != null) {
-      await ImagesPicker.saveImageToAlbum(File(res[0].path),
-          albumName: "shoot report");
-      setState(() {
-        imagePath = res[0].path;
-      });
-    }
+    ImagePickers.openCamera().then((Media? media) {
+      if (media != null) {
+        setState(() {
+          imagePath = media.path!;
+        });
+      }
+    });
   }
 
   Future _getImageFromGallery() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.pick(
-      count: 1,
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
-    );
-
-    if (res != null) {
-      setState(() {
-        imagePath = res[0].path;
-      });
-    }
+    ImagePickers.pickerPaths(
+            galleryMode: GalleryMode.image,
+            selectCount: 1,
+            showGif: false,
+            showCamera: true,
+            uiConfig:
+                UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
+            cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
+        .then((List medias) {
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
+    });
   }
 
   void _setImage() async {
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
+
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/tmp/$imagePath";
+        imagePath = "$directory/Documents/$imagePath";
       }
     });
   }

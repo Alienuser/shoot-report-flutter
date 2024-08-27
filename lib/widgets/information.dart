@@ -7,7 +7,7 @@ import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InformationWidget extends StatefulWidget {
-  const InformationWidget({Key? key}) : super(key: key);
+  const InformationWidget({super.key});
 
   @override
   State<InformationWidget> createState() => _InformationWidgetState();

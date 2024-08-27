@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:images_picker/images_picker.dart';
+import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -23,11 +23,10 @@ class TrainingEditWidget extends StatefulWidget {
   final Training training;
 
   const TrainingEditWidget(
-      {Key? key,
+      {super.key,
       required this.weapon,
       required this.trainingDao,
-      required this.training})
-      : super(key: key);
+      required this.training});
 
   @override
   State<TrainingEditWidget> createState() => _TrainingEditWidgetState();
@@ -56,6 +55,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     if (imagePath != "") {
       _setImage();
     }
+    FirebaseLog().logScreenView("training_edit.dart", "training_edit");
     super.initState();
   }
 
@@ -95,7 +95,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                       key: _formKey,
                       child: Column(children: [
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_evaluation")),
                             children: [
                               SizedBox(
@@ -125,7 +124,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               )
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_general")),
                             children: [
                               DropdownButtonFormField<String>(
@@ -192,7 +190,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -235,7 +232,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     ? () {
                                         showMaterialModalBottomSheet(
                                           context: context,
-                                          backgroundColor: Colors.transparent,
                                           builder: (context) {
                                             return Material(
                                                 child: SafeArea(
@@ -277,7 +273,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return AlertDialog(
+                                            return AlertDialog.adaptive(
                                               title:
                                                   Text(tr("training_qr_title")),
                                               content: Text(tr(
@@ -300,7 +296,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                          backgroundColor: Colors.transparent,
                           header: Text(tr("training_result")),
                           children: [
                             TextFormField(
@@ -357,7 +352,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                           ],
                         ),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_score")),
                             children: [
                               ListTile(
@@ -373,7 +367,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                               ),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             header: Text(tr("training_report")),
                             children: [
                               CupertinoTextFormFieldRow(
@@ -393,7 +386,6 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                   }),
                             ]),
                         CupertinoFormSection.insetGrouped(
-                            backgroundColor: Colors.transparent,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
@@ -481,46 +473,40 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
   Future _getImageFromCamera() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.openCamera(
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
-    );
-
-    if (res != null) {
-      await ImagesPicker.saveImageToAlbum(File(res[0].path),
-          albumName: "shoot report");
-      setState(() {
-        imagePath = res[0].path;
-      });
-    }
+    ImagePickers.openCamera().then((Media? media) {
+      if (media != null) {
+        setState(() {
+          imagePath = media.path!;
+        });
+      }
+    });
   }
 
   Future _getImageFromGallery() async {
     Navigator.of(context).pop(null);
-    List<Media>? res = await ImagesPicker.pick(
-      count: 1,
-      pickType: PickType.image,
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
-    );
-
-    if (res != null) {
-      setState(() {
-        imagePath = res[0].path;
-      });
-    }
+    ImagePickers.pickerPaths(
+            galleryMode: GalleryMode.image,
+            selectCount: 1,
+            showGif: false,
+            showCamera: true,
+            uiConfig:
+                UIConfig(uiThemeColor: const Color(AppTheme.primaryColor)),
+            cropConfig: CropConfig(enableCrop: false, width: 2, height: 1))
+        .then((List medias) {
+      if (medias.isNotEmpty) {
+        setState(() {
+          imagePath = medias.first.path;
+        });
+      }
+    });
   }
 
   void _setImage() async {
     String directory = (await getApplicationDocumentsDirectory()).parent.path;
+
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/tmp/$imagePath";
+        imagePath = "$directory/Documents/$imagePath";
       }
     });
   }

@@ -6,7 +6,7 @@ import 'package:shoot_report/utilities/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PartnerWidget extends StatefulWidget {
-  const PartnerWidget({Key? key}) : super(key: key);
+  const PartnerWidget({super.key});
 
   @override
   State<PartnerWidget> createState() => _PartnerWidgetState();
@@ -59,6 +59,7 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                   Uri.parse("https://www.feinwerkbau.de"),
                                   mode: LaunchMode.externalApplication,
                                 );
+                                FirebaseLog().logEvent("Partner - Feinwerkbau");
                               },
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
@@ -81,6 +82,8 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                       "https://www.sauer-shootingsportswear.de"),
                                   mode: LaunchMode.externalApplication,
                                 );
+                                FirebaseLog().logEvent(
+                                    "Partner - Sauer Shootingsportswear");
                               },
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
@@ -102,6 +105,8 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                   Uri.parse("https://coaching-koch.de"),
                                   mode: LaunchMode.externalApplication,
                                 );
+                                FirebaseLog()
+                                    .logEvent("Partner - Coaching Koch");
                               },
                               child: CupertinoFormRow(
                                   padding: const EdgeInsets.all(10),
@@ -123,6 +128,7 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                   Uri.parse("https://www.disag.de"),
                                   mode: LaunchMode.externalApplication,
                                 );
+                                FirebaseLog().logEvent("Partner - Disag");
                               },
                               child: CupertinoFormRow(
                                 padding: const EdgeInsets.all(10),
@@ -130,6 +136,29 @@ class _PartnerWidgetState extends State<PartnerWidget> {
                                 helper: Center(
                                     child: Image.asset(
                                         "assets/images/partner_disag.png",
+                                        height: 40)),
+                                child: Container(),
+                              ))),
+                      Container(
+                          color: (mode.brightness == Brightness.light)
+                              ? Colors.transparent
+                              : const Color(AppTheme.backgroundAdsDark),
+                          child: InkWell(
+                              onTap: () {
+                                launchUrl(
+                                  Uri.parse(
+                                      "https://www.sauer-shootingsportswear.de/sauer-academy"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                                FirebaseLog()
+                                    .logEvent("Partner - Sauer Academy");
+                              },
+                              child: CupertinoFormRow(
+                                padding: const EdgeInsets.all(10),
+                                prefix: Container(),
+                                helper: Center(
+                                    child: Image.asset(
+                                        "assets/images/partner_sauer_academy.png",
                                         height: 40)),
                                 child: Container(),
                               ))),

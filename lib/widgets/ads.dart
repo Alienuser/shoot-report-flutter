@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class AdsWidget extends StatefulWidget {
-  const AdsWidget({Key? key}) : super(key: key);
+  const AdsWidget({super.key});
 
   @override
   State<StatefulWidget> createState() => _AdsWidgetState();
@@ -19,6 +19,7 @@ class _AdsWidgetState extends State<AdsWidget> {
     "assets/images/partner_sauer.png",
     "assets/images/partner_koch.png",
     "assets/images/partner_disag.png",
+    "assets/images/partner_sauer_academy.png",
   ];
 
   @override

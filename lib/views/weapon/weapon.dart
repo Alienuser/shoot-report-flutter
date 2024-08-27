@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/type_dao.dart';
 import 'package:shoot_report/services/training_dao.dart';
 import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/utilities/firebase_log.dart';
+import 'package:shoot_report/views/discipline/discipine_type.dart';
 import 'package:shoot_report/views/weapon/weapon_list.dart';
 import 'package:shoot_report/widgets/ads.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:shoot_report/widgets/popup_menu.dart';
 
 class WeaponWidget extends StatefulWidget {
+  final TypeDao typeDao;
   final WeaponDao weaponDao;
   final TrainingDao trainingDao;
   final CompetitionDao competitionDao;
 
   const WeaponWidget({
-    Key? key,
+    super.key,
+    required this.typeDao,
     required this.weaponDao,
     required this.trainingDao,
     required this.competitionDao,
-  }) : super(key: key);
+  });
 
   @override
   State<WeaponWidget> createState() => _WeaponWidgetState();
 }
 
 class _WeaponWidgetState extends State<WeaponWidget> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseLog().logScreenView("weapon.dart", "weapon");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,22 +44,19 @@ class _WeaponWidgetState extends State<WeaponWidget> {
         centerTitle: false,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.settings_backup_restore_outlined),
+            icon: const Icon(Icons.star_border),
             color: Colors.white,
-            tooltip: tr("weapon_show_toolltip"),
+            tooltip: tr("weapon_favorite_toolltip"),
             onPressed: () {
-              setState(() {
-                widget.weaponDao.showAllWeapons(true);
-              });
-              final scaffoldMessengerState = ScaffoldMessenger.of(context);
-              scaffoldMessengerState.hideCurrentSnackBar();
-              scaffoldMessengerState.showSnackBar(
-                SnackBar(
-                    content: Text(tr("weapon_show")),
-                    behavior: SnackBarBehavior.floating),
-              );
+              showBarModalBottomSheet(
+                  context: context,
+                  expand: true,
+                  enableDrag: true,
+                  builder: (context) => DisciplineTypeListView(
+                      typeDao: widget.typeDao, weaponDao: widget.weaponDao));
             },
-          )
+          ),
+          const PopupMenuWidget()
         ],
       ),
       body: Column(

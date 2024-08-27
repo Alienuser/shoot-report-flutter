@@ -8,8 +8,7 @@ import 'package:shoot_report/utilities/theme.dart';
 class ProcedurePreparationWidget extends StatefulWidget {
   final Weapon weapon;
 
-  const ProcedurePreparationWidget({Key? key, required this.weapon})
-      : super(key: key);
+  const ProcedurePreparationWidget({super.key, required this.weapon});
 
   @override
   State<ProcedurePreparationWidget> createState() =>
