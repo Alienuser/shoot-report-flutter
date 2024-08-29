@@ -506,7 +506,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
 
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/Documents/$imagePath";
+        if (File("$directory/Documents/$imagePath").existsSync()) {
+          imagePath = "$directory/Documents/$imagePath";
+        } else {
+          imagePath = "$directory/tmp/$imagePath";
+        }
       }
     });
   }
