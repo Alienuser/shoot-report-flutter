@@ -52,7 +52,7 @@ Future<void> main() async {
 
 void _initialization() async {
   // Reset the migration for debug
-  VersionMigration.reset();
+  //VersionMigration.reset();
 
   // Firebase initialization
   await Firebase.initializeApp(
