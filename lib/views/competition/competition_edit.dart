@@ -465,7 +465,11 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
 
     setState(() {
       if (Platform.isIOS) {
-        imagePath = "$directory/Documents/$imagePath";
+        if (File("$directory/Documents/$imagePath").existsSync()) {
+          imagePath = "$directory/Documents/$imagePath";
+        } else {
+          imagePath = "$directory/tmp/$imagePath";
+        }
       }
     });
   }
