@@ -5,9 +5,20 @@ class NewWeapon {
 
   final int order;
 
-  final String? prefFile;
-
   bool show;
 
-  NewWeapon(this.id, this.name, this.order, this.prefFile, this.show);
+  NewWeapon(
+      {required this.id,
+      required this.name,
+      required this.order,
+      required this.show});
+
+  factory NewWeapon.fromJson(String key, Map<String, dynamic> json) {
+    return NewWeapon(
+      id: key,
+      name: json['name'] as String,
+      order: json['order'] as int,
+      show: json['show'] as bool,
+    );
+  }
 }
