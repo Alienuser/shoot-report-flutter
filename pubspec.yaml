@@ -43,11 +43,11 @@ dependencies:
   easy_localization: any
   package_info_plus: any
   version_migration: any
+  permission_handler: any
   shared_preferences: any
   modal_bottom_sheet: any
   flutter_native_splash: any
   syncfusion_flutter_charts: any
-  syncfusion_flutter_core: 25.2.7 # Line can be removed after fix from syncfusion with newest flutter version
 
   # Flutter
   flutter:
