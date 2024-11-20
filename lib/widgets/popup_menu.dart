@@ -6,8 +6,6 @@ import 'package:file_saver/file_saver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/main.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
@@ -53,10 +51,10 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
           value: 4,
           child: Text(tr("menu_instagram")),
         ),
-        PopupMenuItem<int>(
+        /*PopupMenuItem<int>(
           value: 5,
           child: Text(tr("menu_import")),
-        ),
+        ),*/
         PopupMenuItem<int>(
           value: 6,
           child: Text(tr("menu_export")),
