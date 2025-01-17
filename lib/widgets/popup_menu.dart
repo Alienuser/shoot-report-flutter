@@ -6,13 +6,13 @@ import 'package:file_saver/file_saver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/main.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
 import 'package:shoot_report/widgets/partner.dart';
-import 'package:status_alert/status_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PopupMenuWidget extends StatefulWidget {
@@ -130,27 +130,20 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
         await File(path).copy(database.database.database.path);
 
         if (mounted) {
-          StatusAlert.show(
-            context,
-            duration: const Duration(seconds: 6),
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
             title: tr("import_database_alert_title"),
-            subtitle: tr("import_database_alert_message"),
-            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-            configuration: const FlareConfiguration(
-                'assets/animations/success.flr',
-                animation: 'check',
-                margin: EdgeInsets.zero,
-                color: Colors.green),
+            text: tr("import_database_alert_message"),
           );
         }
       } else {
         if (mounted) {
-          StatusAlert.show(
-            context,
-            duration: const Duration(seconds: 8),
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
             title: tr("import_database_alert_error_title"),
-            subtitle: tr("import_database_alert_error_message"),
-            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+            text: tr("import_database_alert_error_message"),
           );
         }
       }
