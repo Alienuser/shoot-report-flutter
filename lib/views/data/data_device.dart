@@ -42,23 +42,22 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                                   fontSize: 15)),
                           children: [
                             CupertinoTextFormFieldRow(
-                              controller: _textDataDeviceController,
-                              textInputAction: TextInputAction.newline,
-                              placeholder: tr("data_device_value"),
-                              padding: const EdgeInsets.all(8),
-                              maxLines: 20,
-                              style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.textColorLight)
-                                    : const Color(AppTheme.textColorDark),
-                              ),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_device", value);
-                              },
-                            ),
-                          ]),
+                                controller: _textDataDeviceController,
+                                textInputAction: TextInputAction.newline,
+                                placeholder: tr("data_device_value"),
+                                padding: const EdgeInsets.all(8),
+                                maxLines: 20,
+                                style: TextStyle(
+                                  color: (mode.brightness == Brightness.light)
+                                      ? const Color(AppTheme.textColorLight)
+                                      : const Color(AppTheme.textColorDark),
+                                ),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_device", value);
+                                })
+                          ])
                     ])))));
   }
 

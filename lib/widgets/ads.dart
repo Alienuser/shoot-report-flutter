@@ -44,16 +44,12 @@ class _AdsWidgetState extends State<AdsWidget> {
   Widget build(BuildContext context) {
     final ThemeData mode = Theme.of(context);
     return Container(
-      color: (mode.brightness == Brightness.light)
-          ? const Color(AppTheme.backgroundAdsLight)
-          : const Color(AppTheme.backgroundAdsDark),
-      height: 70,
-      padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
-      child: Image.asset(
-        _photos[_pos],
-        fit: BoxFit.contain,
-      ),
-    );
+        color: (mode.brightness == Brightness.light)
+            ? const Color(AppTheme.backgroundAdsLight)
+            : const Color(AppTheme.backgroundAdsDark),
+        height: 70,
+        padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
+        child: Image.asset(_photos[_pos], fit: BoxFit.contain));
   }
 
   void _setTimer() {

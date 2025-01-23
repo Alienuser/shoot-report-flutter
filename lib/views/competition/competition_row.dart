@@ -26,34 +26,32 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 20,
-      leading: SizedBox(
-          width: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              _getCompetitionPoints(widget.competition),
-            ],
-          )),
-      title: Text(widget.competition.kind),
-      subtitle: Text(
-          "${DateFormat.yMMMd().format(widget.competition.date)}, in ${widget.competition.place}"),
-      trailing: IconButton(
-          onPressed: () {
-            _deleteCompetition();
-          },
-          icon: const Icon(Icons.delete)),
-      onTap: () {
-        showBarModalBottomSheet(
-          context: context,
-          expand: true,
-          builder: (context) => CompetitionEditWidget(
-              weapon: widget.weapon,
-              competitionDao: widget.competitionDao,
-              competition: widget.competition),
-        );
-      },
-    );
+        horizontalTitleGap: 20,
+        leading: SizedBox(
+            width: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                _getCompetitionPoints(widget.competition),
+              ],
+            )),
+        title: Text(widget.competition.kind),
+        subtitle: Text(
+            "${DateFormat.yMMMd().format(widget.competition.date)}, in ${widget.competition.place}"),
+        trailing: IconButton(
+            onPressed: () {
+              _deleteCompetition();
+            },
+            icon: const Icon(Icons.delete)),
+        onTap: () {
+          showBarModalBottomSheet(
+              context: context,
+              expand: true,
+              builder: (context) => CompetitionEditWidget(
+                  weapon: widget.weapon,
+                  competitionDao: widget.competitionDao,
+                  competition: widget.competition));
+        });
   }
 
   void _deleteCompetition() {
@@ -61,31 +59,31 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
         context: context,
         builder: (BuildContext ctx) {
           return AlertDialog.adaptive(
-            title: Text(tr("competition_alert_title")),
-            content: Text(tr("competition_alert_message")),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    widget.competitionDao.deleteCompetition(widget.competition);
+              title: Text(tr("competition_alert_title")),
+              content: Text(tr("competition_alert_message")),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      widget.competitionDao
+                          .deleteCompetition(widget.competition);
 
-                    final scaffoldMessengerState =
-                        ScaffoldMessenger.of(context);
-                    scaffoldMessengerState.hideCurrentSnackBar();
-                    scaffoldMessengerState.showSnackBar(
-                      SnackBar(
-                          content: Text(tr("competition_deleted")),
-                          behavior: SnackBarBehavior.floating),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_yes"))),
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_no")))
-            ],
-          );
+                      final scaffoldMessengerState =
+                          ScaffoldMessenger.of(context);
+                      scaffoldMessengerState.hideCurrentSnackBar();
+                      scaffoldMessengerState.showSnackBar(
+                        SnackBar(
+                            content: Text(tr("competition_deleted")),
+                            behavior: SnackBarBehavior.floating),
+                      );
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(tr("general_yes"))),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(tr("general_no")))
+              ]);
         });
   }
 

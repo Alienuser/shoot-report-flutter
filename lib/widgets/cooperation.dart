@@ -31,13 +31,9 @@ class _CooperationWidgetState extends State<CooperationWidget> {
                 style: const TextStyle(fontSize: 25),
               ),
               actions: <Widget>[
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Icon(Icons.close),
-                  onPressed: () => Navigator.of(context).pop(null),
-                ),
+                IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close, color: Colors.white))
               ],
             ),
             body: SingleChildScrollView(

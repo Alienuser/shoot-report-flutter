@@ -53,75 +53,66 @@ class _HomeWidgetState extends State<HomeWidget> {
         competitionDao: widget.competitionDao,
       ),
       ProcedureWidget(weapon: widget.weapon),
-      GoalsWidget(weapon: widget.weapon),
+      GoalsWidget(weapon: widget.weapon)
     ];
 
     return Scaffold(
-      body: Scaffold(
-        appBar: AppBar(
-          title: Text(tr(widget.weapon.name)),
-          centerTitle: false,
-          leading: const BackButton(color: Colors.white),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.account_circle),
-              color: Colors.white,
-              tooltip: tr("tooltip_user"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DataWidget(),
+        body: Scaffold(
+            appBar: AppBar(
+                title: Text(tr(widget.weapon.name)),
+                centerTitle: false,
+                leading: const BackButton(color: Colors.white),
+                actions: <Widget>[
+                  IconButton(
+                      icon: const Icon(Icons.account_circle),
+                      color: Colors.white,
+                      tooltip: tr("tooltip_user"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DataWidget(),
+                            ));
+                      }),
+                  IconButton(
+                      icon: const Icon(Icons.sports),
+                      color: Colors.white,
+                      tooltip: tr("tooltip_trainer"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TrainerWidget(),
+                            ));
+                      }),
+                  const PopupMenuWidget()
+                ]),
+            body: Center(
+                child: Container(
+              child: widgetOptions.elementAt(_selectedIndex),
+            )),
+            bottomNavigationBar: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                currentIndex: _selectedIndex,
+                onTap: _onItemTapped,
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.fitness_center),
+                    label: tr("menu_bottom_training"),
                   ),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.sports),
-              color: Colors.white,
-              tooltip: tr("tooltip_trainer"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const TrainerWidget(),
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.emoji_events),
+                    label: tr("menu_bottom_competition"),
                   ),
-                );
-              },
-            ),
-            const PopupMenuWidget()
-          ],
-        ),
-        body: Center(
-          child: Container(
-            child: widgetOptions.elementAt(_selectedIndex),
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.fitness_center),
-              label: tr("menu_bottom_training"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.emoji_events),
-              label: tr("menu_bottom_competition"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.format_list_bulleted),
-              label: tr("menu_bottom_procedure"),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.flag),
-              label: tr("menu_bottom_goals"),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: const AdsWidget(),
-    );
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.format_list_bulleted),
+                    label: tr("menu_bottom_procedure"),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.flag),
+                    label: tr("menu_bottom_goals"),
+                  )
+                ])),
+        bottomNavigationBar: const AdsWidget());
   }
 }

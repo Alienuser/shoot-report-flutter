@@ -35,117 +35,105 @@ class _InformationWidgetState extends State<InformationWidget> {
     return Material(
         child: Scaffold(
             appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                tr("information_title"),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Icon(Icons.close),
-                  onPressed: () => Navigator.of(context).pop(null),
+                automaticallyImplyLeading: false,
+                title: Text(
+                  tr("information_title"),
                 ),
-              ],
-            ),
+                actions: <Widget>[
+                  IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close, color: Colors.white))
+                ]),
             body: SingleChildScrollView(
-              child: Column(
+                child: Column(children: [
+              CupertinoFormSection.insetGrouped(
+                backgroundColor: Colors.transparent,
+                header: Text(tr("information_author_title"),
+                    style: const TextStyle(
+                        color: Color(AppTheme.accentColor), fontSize: 15)),
                 children: [
-                  CupertinoFormSection.insetGrouped(
-                    backgroundColor: Colors.transparent,
-                    header: Text(tr("information_author_title"),
+                  CupertinoFormRow(
+                    prefix: Text(tr("information_author_author"),
+                        style: TextStyle(
+                            color: (mode.brightness == Brightness.light)
+                                ? const Color(AppTheme.lightTextColor)
+                                : const Color(AppTheme.darkTextColor))),
+                    helper: Text(tr("information_author_description"),
                         style: const TextStyle(
-                            color: Color(AppTheme.accentColor), fontSize: 15)),
-                    children: [
-                      CupertinoFormRow(
-                        prefix: Text(tr("information_author_author"),
-                            style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.lightTextColor)
-                                    : const Color(AppTheme.darkTextColor))),
-                        helper: Text(tr("information_author_description"),
-                            style: const TextStyle(
-                                color: Color(AppTheme.textSublineColor))),
-                        child: Container(),
-                      ),
-                      CupertinoFormRow(
-                          prefix: Text(tr("information_author_website"),
-                              style: TextStyle(
-                                  color: (mode.brightness == Brightness.light)
-                                      ? const Color(AppTheme.lightTextColor)
-                                      : const Color(AppTheme.darkTextColor))),
-                          helper: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              launchUrl(
-                                Uri.parse(
-                                    "https://${tr('information_author_website_description')}"),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            child: Text(
-                                tr("information_author_website_description"),
-                                style: const TextStyle(color: Colors.blue)),
-                          ),
-                          child: Container()),
-                    ],
+                            color: Color(AppTheme.textSublineColor))),
+                    child: Container(),
                   ),
-                  CupertinoFormSection.insetGrouped(
-                    backgroundColor: Colors.transparent,
-                    header: Text(tr("information_version_title"),
-                        style: const TextStyle(
-                            color: Color(AppTheme.accentColor), fontSize: 15)),
-                    children: [
-                      CupertinoFormRow(
-                        prefix: Text(tr("information_version_version"),
-                            style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.lightTextColor)
-                                    : const Color(AppTheme.darkTextColor))),
-                        helper: Text(_packageInfo.version,
-                            style: const TextStyle(
-                                color: Color(AppTheme.textSublineColor))),
-                        child: Container(),
+                  CupertinoFormRow(
+                      prefix: Text(tr("information_author_website"),
+                          style: TextStyle(
+                              color: (mode.brightness == Brightness.light)
+                                  ? const Color(AppTheme.lightTextColor)
+                                  : const Color(AppTheme.darkTextColor))),
+                      helper: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse(
+                                "https://${tr('information_author_website_description')}"),
+                            mode: LaunchMode.externalApplication,
+                          );
+                        },
+                        child: Text(
+                            tr("information_author_website_description"),
+                            style: const TextStyle(color: Colors.blue)),
                       ),
-                      CupertinoFormRow(
-                        prefix: Text(tr("information_version_build"),
-                            style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.lightTextColor)
-                                    : const Color(AppTheme.darkTextColor))),
-                        helper: Text(_packageInfo.buildNumber,
-                            style: const TextStyle(
-                                color: Color(AppTheme.textSublineColor))),
-                        child: Container(),
-                      ),
-                      CupertinoFormRow(
-                        prefix: Text(tr("information_version_date"),
-                            style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.lightTextColor)
-                                    : const Color(AppTheme.darkTextColor))),
-                        helper: Text(tr("information_version_date_description"),
-                            style: const TextStyle(
-                                color: Color(AppTheme.textSublineColor))),
-                        child: Container(),
-                      ),
-                    ],
-                  ),
-                  CupertinoFormSection.insetGrouped(
-                    backgroundColor: Colors.transparent,
-                    header: Text(tr("information_source_title"),
-                        style: const TextStyle(
-                            color: Color(AppTheme.accentColor), fontSize: 15)),
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text(tr("information_source_description")))
-                    ],
-                  ),
+                      child: Container())
                 ],
               ),
-            )));
+              CupertinoFormSection.insetGrouped(
+                backgroundColor: Colors.transparent,
+                header: Text(tr("information_version_title"),
+                    style: const TextStyle(
+                        color: Color(AppTheme.accentColor), fontSize: 15)),
+                children: [
+                  CupertinoFormRow(
+                      prefix: Text(tr("information_version_version"),
+                          style: TextStyle(
+                              color: (mode.brightness == Brightness.light)
+                                  ? const Color(AppTheme.lightTextColor)
+                                  : const Color(AppTheme.darkTextColor))),
+                      helper: Text(_packageInfo.version,
+                          style: const TextStyle(
+                              color: Color(AppTheme.textSublineColor))),
+                      child: Container()),
+                  CupertinoFormRow(
+                      prefix: Text(tr("information_version_build"),
+                          style: TextStyle(
+                              color: (mode.brightness == Brightness.light)
+                                  ? const Color(AppTheme.lightTextColor)
+                                  : const Color(AppTheme.darkTextColor))),
+                      helper: Text(_packageInfo.buildNumber,
+                          style: const TextStyle(
+                              color: Color(AppTheme.textSublineColor))),
+                      child: Container()),
+                  CupertinoFormRow(
+                      prefix: Text(tr("information_version_date"),
+                          style: TextStyle(
+                              color: (mode.brightness == Brightness.light)
+                                  ? const Color(AppTheme.lightTextColor)
+                                  : const Color(AppTheme.darkTextColor))),
+                      helper: Text(tr("information_version_date_description"),
+                          style: const TextStyle(
+                              color: Color(AppTheme.textSublineColor))),
+                      child: Container()),
+                ],
+              ),
+              CupertinoFormSection.insetGrouped(
+                  backgroundColor: Colors.transparent,
+                  header: Text(tr("information_source_title"),
+                      style: const TextStyle(
+                          color: Color(AppTheme.accentColor), fontSize: 15)),
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Text(tr("information_source_description")))
+                  ])
+            ]))));
   }
 
   Future<void> _initPackageInfo() async {

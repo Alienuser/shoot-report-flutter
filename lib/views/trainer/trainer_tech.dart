@@ -11,32 +11,27 @@ class TrainerTechWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(tr("trainer_title")),
-          centerTitle: false,
-          leading: const BackButton(color: Colors.white),
-          bottom: TabBar(
-            indicator: const UnderlineTabIndicator(
-                borderSide:
-                    BorderSide(width: 4, color: Color(AppTheme.accentColor))),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
-            tabs: <Widget>[
-              Tab(text: tr("trainer_tab_tech_positioning")),
-              Tab(text: tr("trainer_tab_tech_procedure")),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            TrainerViewWidget(url: "tech_positioning.html"),
-            TrainerViewWidget(url: "tech_procedure.html"),
-          ],
-        ),
-      ),
-    );
+        length: 2,
+        child: Scaffold(
+            appBar: AppBar(
+                title: Text(tr("trainer_title")),
+                centerTitle: false,
+                leading: const BackButton(color: Colors.white),
+                bottom: TabBar(
+                    indicator: const UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                            width: 4, color: Color(AppTheme.accentColor))),
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.white,
+                    tabs: <Widget>[
+                      Tab(text: tr("trainer_tab_tech_positioning")),
+                      Tab(text: tr("trainer_tab_tech_procedure"))
+                    ])),
+            body: const TabBarView(
+                physics: NeverScrollableScrollPhysics(),
+                children: <Widget>[
+                  TrainerViewWidget(url: "tech_positioning.html"),
+                  TrainerViewWidget(url: "tech_procedure.html")
+                ])));
   }
 }

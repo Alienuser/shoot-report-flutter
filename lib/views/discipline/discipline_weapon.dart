@@ -19,35 +19,28 @@ class DisciplineWeaponListView extends StatelessWidget {
           automaticallyImplyLeading: true,
           title: Text(tr(type.name)),
           actions: <Widget>[
-            TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                ),
-                child: const Icon(Icons.close),
+            IconButton(
                 onPressed: () =>
-                    Navigator.of(context, rootNavigator: true).pop(null)),
+                    Navigator.of(context, rootNavigator: true).pop(),
+                icon: const Icon(Icons.close, color: Colors.white))
           ],
         ),
         body: Material(
-          child: StreamBuilder<List<Weapon>>(
-            stream: weaponDao.findAllWeaponsForType(type.id!),
-            builder: (_, snapshot) {
-              if (!snapshot.hasData) {
-                return const SizedBox();
-              }
-
-              final weapons = snapshot.requireData;
-
-              return ListView.separated(
-                itemCount: weapons.length,
-                itemBuilder: (context, index) {
-                  return DisciplineWeaponListCell(
-                      weapon: weapons[index], weaponDao: weaponDao);
-                },
-                separatorBuilder: (context, index) => const Divider(height: 5),
-              );
-            },
-          ),
-        ));
+            child: StreamBuilder<List<Weapon>>(
+                stream: weaponDao.findAllWeaponsForType(type.id!),
+                builder: (_, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const SizedBox();
+                  }
+                  final weapons = snapshot.requireData;
+                  return ListView.separated(
+                      itemCount: weapons.length,
+                      itemBuilder: (context, index) {
+                        return DisciplineWeaponListCell(
+                            weapon: weapons[index], weaponDao: weaponDao);
+                      },
+                      separatorBuilder: (context, index) =>
+                          const Divider(height: 5));
+                })));
   }
 }

@@ -69,27 +69,20 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
         child: Material(
           child: Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  tr("training_edit_title"),
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    onPressed: () => setState(() {
-                      isInEditMode = !isInEditMode;
-                    }),
-                    icon: const Icon(Icons.edit),
-                    color: Colors.white,
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    tr("training_edit_title"),
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(null),
-                  ),
-                ],
-              ),
+                  actions: <Widget>[
+                    IconButton(
+                        onPressed: () => setState(() {
+                              isInEditMode = !isInEditMode;
+                            }),
+                        icon: const Icon(Icons.edit, color: Colors.white)),
+                    IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close, color: Colors.white))
+                  ]),
               body: SingleChildScrollView(
                   child: Form(
                       key: _formKey,

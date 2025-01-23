@@ -57,20 +57,15 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
         child: Material(
           child: Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  tr("training_add_title"),
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(null),
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    tr("training_add_title"),
                   ),
-                ],
-              ),
+                  actions: <Widget>[
+                    IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close, color: Colors.white))
+                  ]),
               body: SingleChildScrollView(
                   child: Form(
                       key: _formKey,

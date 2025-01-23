@@ -23,31 +23,28 @@ class CompetitionWidget extends StatelessWidget {
     final ThemeData mode = Theme.of(context);
     return DefaultTabController(
         length: 2,
-        child: Column(
-          children: <Widget>[
-            Material(
-              color: (mode.brightness == Brightness.light)
-                  ? const Color(AppTheme.backgroundLight)
-                  : const Color(AppTheme.backgroundDark),
-              child: TabBar(tabs: <Widget>[
-                Tab(text: tr("competition_menu_competition").toUpperCase()),
-                Tab(text: tr("competition_menu_statistic").toUpperCase()),
-              ]),
-            ),
-            Flexible(
+        child: Column(children: <Widget>[
+          Material(
+            color: (mode.brightness == Brightness.light)
+                ? const Color(AppTheme.backgroundLight)
+                : const Color(AppTheme.backgroundDark),
+            child: TabBar(tabs: <Widget>[
+              Tab(text: tr("competition_menu_competition").toUpperCase()),
+              Tab(text: tr("competition_menu_statistic").toUpperCase()),
+            ]),
+          ),
+          Flexible(
               child: TabBarView(children: [
-                CompetitionListWidget(
-                  weapon: weapon,
-                  weaponDao: weaponDao,
-                  competitionDao: competitionDao,
-                ),
-                CompetitionStatisticWidget(
-                  weapon: weapon,
-                  competitionDao: competitionDao,
-                )
-              ]),
+            CompetitionListWidget(
+              weapon: weapon,
+              weaponDao: weaponDao,
+              competitionDao: competitionDao,
             ),
-          ],
-        ));
+            CompetitionStatisticWidget(
+              weapon: weapon,
+              competitionDao: competitionDao,
+            )
+          ]))
+        ]));
   }
 }

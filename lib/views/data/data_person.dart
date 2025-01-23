@@ -91,36 +91,35 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                     ),
                                     onPressed: () {
                                       showMaterialModalBottomSheet(
-                                        expand: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return Material(
-                                              child: SafeArea(
-                                            top: false,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                ListTile(
-                                                    title: Text(tr(
-                                                        "data_person_image_camera")),
-                                                    leading: const Icon(Icons
-                                                        .camera_alt_outlined),
-                                                    onTap: () =>
-                                                        _getImageFromCamera()),
-                                                ListTile(
-                                                    title: Text(tr(
-                                                        "data_person_image_gallery")),
-                                                    leading:
-                                                        const Icon(Icons.image),
-                                                    onTap: () =>
-                                                        _getImageFromGallery()),
-                                              ],
-                                            ),
-                                          ));
-                                        },
-                                      );
+                                          expand: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return Material(
+                                                child: SafeArea(
+                                                    top: false,
+                                                    child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: <Widget>[
+                                                          ListTile(
+                                                              title: Text(tr(
+                                                                  "data_person_image_camera")),
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .camera_alt_outlined),
+                                                              onTap: () =>
+                                                                  _getImageFromCamera()),
+                                                          ListTile(
+                                                              title: Text(tr(
+                                                                  "data_person_image_gallery")),
+                                                              leading: const Icon(
+                                                                  Icons.image),
+                                                              onTap: () =>
+                                                                  _getImageFromGallery()),
+                                                        ])));
+                                          });
                                     },
-                                    child: Text(tr("data_person_photo"))),
+                                    child: Text(tr("data_person_photo")))
                               ])),
                       CupertinoFormSection.insetGrouped(
                           backgroundColor: Colors.transparent,
@@ -130,48 +129,45 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   fontSize: 15)),
                           children: [
                             TextFormField(
-                              controller: _textDataPersonNameController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_name")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_name", value);
-                              },
-                            ),
+                                controller: _textDataPersonNameController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_name")),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_name", value);
+                                }),
                             TextFormField(
-                              controller: _textDataPersonAgeController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_age")),
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_age", value);
-                              },
-                            ),
+                                controller: _textDataPersonAgeController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_age")),
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_age", value);
+                                }),
                             TextFormField(
-                              controller: _textDataPersonHightController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_height")),
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_height", value);
-                              },
-                            ),
+                                controller: _textDataPersonHightController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_height")),
+                                keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_height", value);
+                                })
                           ]),
                       CupertinoFormSection.insetGrouped(
                           backgroundColor: Colors.transparent,
@@ -181,31 +177,29 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   fontSize: 15)),
                           children: [
                             TextFormField(
-                              controller: _textDataPersonClub1Controller,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_club_1")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_club_1", value);
-                              },
-                            ),
+                                controller: _textDataPersonClub1Controller,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_club_1")),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_club_1", value);
+                                }),
                             TextFormField(
-                              controller: _textDataPersonClub2Controller,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_club_2")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_club_2", value);
-                              },
-                            ),
+                                controller: _textDataPersonClub2Controller,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_club_2")),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_club_2", value);
+                                })
                           ]),
                       CupertinoFormSection.insetGrouped(
                           backgroundColor: Colors.transparent,
@@ -215,65 +209,63 @@ class _DataPersonWidgetState extends State<DataPersonWidget> {
                                   fontSize: 15)),
                           children: [
                             TextFormField(
-                              controller: _textDataPersonTrainerontroller,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_trainer")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString("data_person_trainer", value);
-                              },
-                            ),
+                                controller: _textDataPersonTrainerontroller,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_trainer")),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("data_person_trainer", value);
+                                }),
                             TextFormField(
-                              controller: _textDataPersonTrainerMailController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_trainer_mail")),
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_trainer_mail", value);
-                              },
-                            ),
+                                controller:
+                                    _textDataPersonTrainerMailController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_trainer_mail")),
+                                keyboardType: TextInputType.emailAddress,
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString(
+                                      "data_person_trainer_mail", value);
+                                }),
                             TextFormField(
-                              controller: _textDataPersonSquadTrainerController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText: tr("data_person_squadtrainer")),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_squadtrainer", value);
-                              },
-                            ),
+                                controller:
+                                    _textDataPersonSquadTrainerController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText: tr("data_person_squadtrainer")),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString(
+                                      "data_person_squadtrainer", value);
+                                }),
                             TextFormField(
-                              controller:
-                                  _textDataPersonSquadTrainerMailController,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                  labelText:
-                                      tr("data_person_squadtrainer_mail")),
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "data_person_squadtrainer_mail", value);
-                              },
-                            ),
-                          ]),
+                                controller:
+                                    _textDataPersonSquadTrainerMailController,
+                                textInputAction: TextInputAction.done,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                    labelText:
+                                        tr("data_person_squadtrainer_mail")),
+                                keyboardType: TextInputType.emailAddress,
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString(
+                                      "data_person_squadtrainer_mail", value);
+                                })
+                          ])
                     ])))));
   }
 

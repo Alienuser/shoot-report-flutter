@@ -23,30 +23,21 @@ class TrainingWidget extends StatelessWidget {
     final ThemeData mode = Theme.of(context);
     return DefaultTabController(
         length: 2,
-        child: Column(
-          children: <Widget>[
-            Material(
+        child: Column(children: <Widget>[
+          Material(
               color: (mode.brightness == Brightness.light)
                   ? const Color(AppTheme.backgroundLight)
                   : const Color(AppTheme.backgroundDark),
-              child: TabBar(
-                tabs: <Widget>[
-                  Tab(text: tr("training_menu_training").toUpperCase()),
-                  Tab(text: tr("training_menu_statistic").toUpperCase()),
-                ],
-              ),
-            ),
-            Flexible(
+              child: TabBar(tabs: <Widget>[
+                Tab(text: tr("training_menu_training").toUpperCase()),
+                Tab(text: tr("training_menu_statistic").toUpperCase()),
+              ])),
+          Flexible(
               child: TabBarView(children: [
-                TrainingListWidget(
-                    weapon: weapon,
-                    weaponDao: weaponDao,
-                    trainingDao: trainingDao),
-                TrainingStatisticWidget(
-                    weapon: weapon, trainingDao: trainingDao)
-              ]),
-            ),
-          ],
-        ));
+            TrainingListWidget(
+                weapon: weapon, weaponDao: weaponDao, trainingDao: trainingDao),
+            TrainingStatisticWidget(weapon: weapon, trainingDao: trainingDao)
+          ]))
+        ]));
   }
 }

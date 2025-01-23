@@ -23,60 +23,55 @@ class TrainingListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<List<Training>>(
-        stream: trainingDao.findAllTrainingsForWeapon(weapon.id!),
-        builder: (_, snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox();
-          }
-          if (snapshot.data.toString() == "[]") {
-            final ThemeData mode = Theme.of(context);
-            return Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Icon(
-                    Icons.fitness_center,
-                    color: (mode.brightness == Brightness.light)
-                        ? const Color(AppTheme.primaryColor)
-                        : const Color(AppTheme.backgroundLight),
-                    size: 120,
-                  ),
-                  Text(
-                    tr("training_data_no"),
-                    textAlign: TextAlign.center,
-                  )
-                ]));
-          }
+        body: StreamBuilder<List<Training>>(
+            stream: trainingDao.findAllTrainingsForWeapon(weapon.id!),
+            builder: (_, snapshot) {
+              if (!snapshot.hasData) {
+                return const SizedBox();
+              }
+              if (snapshot.data.toString() == "[]") {
+                final ThemeData mode = Theme.of(context);
+                return Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      Icon(
+                        Icons.fitness_center,
+                        color: (mode.brightness == Brightness.light)
+                            ? const Color(AppTheme.primaryColor)
+                            : const Color(AppTheme.backgroundLight),
+                        size: 120,
+                      ),
+                      Text(
+                        tr("training_data_no"),
+                        textAlign: TextAlign.center,
+                      )
+                    ]));
+              }
 
-          final trainings = snapshot.requireData;
+              final trainings = snapshot.requireData;
 
-          return ListView.separated(
-            itemCount: trainings.length,
-            itemBuilder: (context, index) {
-              return TrainingListRow(
-                  weapon: weapon,
-                  trainingDao: trainingDao,
-                  training: trainings[index]);
+              return ListView.separated(
+                  itemCount: trainings.length,
+                  itemBuilder: (context, index) {
+                    return TrainingListRow(
+                        weapon: weapon,
+                        trainingDao: trainingDao,
+                        training: trainings[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(height: 0);
+                  });
+            }),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showBarModalBottomSheet(
+                  context: context,
+                  expand: true,
+                  builder: (context) => TrainingAddWidget(
+                      weapon: weapon, trainingDao: trainingDao));
             },
-            separatorBuilder: (context, index) {
-              return const Divider(height: 0);
-            },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showBarModalBottomSheet(
-            context: context,
-            expand: true,
-            builder: (context) =>
-                TrainingAddWidget(weapon: weapon, trainingDao: trainingDao),
-          );
-        },
-        backgroundColor: const Color(AppTheme.accentColor),
-        child: const Icon(Icons.add),
-      ),
-    );
+            backgroundColor: const Color(AppTheme.accentColor),
+            child: const Icon(Icons.add)));
   }
 }

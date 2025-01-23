@@ -34,18 +34,16 @@ Future<void> main() async {
   _initialization();
 
   // Run the app
-  runApp(
-    EasyLocalization(
-        supportedLocales: const [Locale("en"), Locale("de")],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
-        child: ShootReport(
-          typeDao: typeDao,
-          weaponDao: weaponDao,
-          trainingDao: trainingDao,
-          competitionDao: competitionDao,
-        )),
-  );
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale("en"), Locale("de")],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: ShootReport(
+        typeDao: typeDao,
+        weaponDao: weaponDao,
+        trainingDao: trainingDao,
+        competitionDao: competitionDao,
+      )));
 }
 
 void _initialization() async {
