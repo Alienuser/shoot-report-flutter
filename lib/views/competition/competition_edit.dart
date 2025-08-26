@@ -92,7 +92,7 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                                       border: InputBorder.none,
                                       contentPadding:
                                           EdgeInsets.only(left: 10, right: 10)),
-                                  value: kind,
+                                  initialValue: kind,
                                   onChanged: isInEditMode
                                       ? (String? value) {
                                           setState(() {
@@ -403,7 +403,11 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
             title: tr("competition_edit_alert_title"),
             text: tr("competition_edit_alert_message"),
             autoCloseDuration: Duration(seconds: 3))
-        .then((value) => Navigator.of(context).pop());
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {

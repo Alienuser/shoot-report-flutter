@@ -124,7 +124,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     border: InputBorder.none,
                                     contentPadding:
                                         EdgeInsets.only(left: 10, right: 10)),
-                                value: kind,
+                                initialValue: kind,
                                 isDense: true,
                                 onChanged: isInEditMode
                                     ? (String? value) {
@@ -437,7 +437,11 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
             title: tr("training_edit_alert_title"),
             text: tr("training_edit_alert_message"),
             autoCloseDuration: Duration(seconds: 3))
-        .then((value) => Navigator.of(context).pop());
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {

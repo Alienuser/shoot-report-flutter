@@ -382,7 +382,11 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
             title: tr("training_add_alert_title"),
             text: tr("training_add_alert_message"),
             autoCloseDuration: Duration(seconds: 3))
-        .then((value) => Navigator.of(context).pop());
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {

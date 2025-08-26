@@ -354,7 +354,11 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
             title: tr("competition_add_alert_title"),
             text: tr("competition_add_alert_message"),
             autoCloseDuration: Duration(seconds: 3))
-        .then((value) => Navigator.of(context).pop());
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {
