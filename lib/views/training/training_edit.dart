@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
@@ -15,7 +16,6 @@ import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
-import 'package:status_alert/status_alert.dart';
 
 class TrainingEditWidget extends StatefulWidget {
   final Weapon weapon;
@@ -69,27 +69,20 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
         child: Material(
           child: Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  tr("training_edit_title"),
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    onPressed: () => setState(() {
-                      isInEditMode = !isInEditMode;
-                    }),
-                    icon: const Icon(Icons.edit),
-                    color: Colors.white,
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    tr("training_edit_title"),
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(null),
-                  ),
-                ],
-              ),
+                  actions: <Widget>[
+                    IconButton(
+                        onPressed: () => setState(() {
+                              isInEditMode = !isInEditMode;
+                            }),
+                        icon: const Icon(Icons.edit, color: Colors.white)),
+                    IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close, color: Colors.white))
+                  ]),
               body: SingleChildScrollView(
                   child: Form(
                       key: _formKey,
@@ -131,7 +124,7 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
                                     border: InputBorder.none,
                                     contentPadding:
                                         EdgeInsets.only(left: 10, right: 10)),
-                                value: kind,
+                                initialValue: kind,
                                 isDense: true,
                                 onChanged: isInEditMode
                                     ? (String? value) {
@@ -436,17 +429,19 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
     widget.training.comment = comment;
     widget.trainingDao.updateTraining(widget.training);
 
-    StatusAlert.show(
-      context,
-      duration: const Duration(seconds: 2),
-      title: tr("training_edit_alert_title"),
-      subtitle: tr("training_edit_alert_message"),
-      padding: EdgeInsets.zero,
-      configuration: const FlareConfiguration('assets/animations/success.flr',
-          animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
-    );
     HapticFeedback.heavyImpact();
-    Navigator.of(context).pop(null);
+    QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            showConfirmBtn: false,
+            title: tr("training_edit_alert_title"),
+            text: tr("training_edit_alert_message"),
+            autoCloseDuration: Duration(seconds: 3))
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {

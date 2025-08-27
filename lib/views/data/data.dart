@@ -13,34 +13,27 @@ class DataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(tr("data_title")),
-            centerTitle: false,
-            leading: const BackButton(color: Colors.white),
-            bottom: TabBar(
-              indicator: const UnderlineTabIndicator(
-                  borderSide:
-                      BorderSide(width: 4, color: Color(AppTheme.accentColor))),
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white,
-              tabs: <Widget>[
-                Tab(text: tr("data_tab_person")),
-                Tab(text: tr("data_tab_device")),
-              ],
-            ),
-          ),
-          body: const TabBarView(
-            children: <Widget>[
-              DataPersonWidget(),
-              DataDeviceWidget(),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: const AdsWidget(),
-    );
+        body: DefaultTabController(
+            length: 2,
+            child: Scaffold(
+                appBar: AppBar(
+                    title: Text(tr("data_title")),
+                    centerTitle: false,
+                    leading: const BackButton(color: Colors.white),
+                    bottom: TabBar(
+                        indicator: const UnderlineTabIndicator(
+                            borderSide: BorderSide(
+                                width: 4, color: Color(AppTheme.accentColor))),
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.white,
+                        tabs: <Widget>[
+                          Tab(text: tr("data_tab_person")),
+                          Tab(text: tr("data_tab_device")),
+                        ])),
+                body: const TabBarView(children: <Widget>[
+                  DataPersonWidget(),
+                  DataDeviceWidget(),
+                ]))),
+        bottomNavigationBar: const AdsWidget());
   }
 }

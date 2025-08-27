@@ -15,43 +15,35 @@ class DisciplineTypeListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Navigator(
-        onGenerateRoute: (_) => MaterialPageRoute(
-          builder: (context) => Scaffold(
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(tr("weapon_favorite_title")),
-                actions: <Widget>[
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                      ),
-                      child: const Icon(Icons.close),
-                      onPressed: () =>
-                          Navigator.of(context, rootNavigator: true).pop(null)),
-                ],
-              ),
-              body: StreamBuilder<List<Type>>(
-                stream: typeDao.findAllTypes(),
-                builder: (_, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const SizedBox();
-                  }
-
-                  final groups = snapshot.requireData;
-
-                  return ListView.separated(
-                      itemCount: groups.length,
-                      itemBuilder: (context, index) {
-                        return DisciplineTypeListCell(
-                            type: groups[index], weaponDao: weaponDao);
-                      },
-                      separatorBuilder: (context, index) =>
-                          const Divider(height: 5));
-                },
-              )),
-        ),
-      ),
-    );
+        child: Navigator(
+            onGenerateRoute: (_) => MaterialPageRoute(
+                builder: (context) => Scaffold(
+                    appBar: AppBar(
+                        automaticallyImplyLeading: false,
+                        title: Text(tr("weapon_favorite_title")),
+                        actions: <Widget>[
+                          IconButton(
+                              onPressed: () =>
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop(),
+                              icon:
+                                  const Icon(Icons.close, color: Colors.white))
+                        ]),
+                    body: StreamBuilder<List<Type>>(
+                        stream: typeDao.findAllTypes(),
+                        builder: (_, snapshot) {
+                          if (!snapshot.hasData) {
+                            return const SizedBox();
+                          }
+                          final groups = snapshot.requireData;
+                          return ListView.separated(
+                              itemCount: groups.length,
+                              itemBuilder: (context, index) {
+                                return DisciplineTypeListCell(
+                                    type: groups[index], weaponDao: weaponDao);
+                              },
+                              separatorBuilder: (context, index) =>
+                                  const Divider(height: 5));
+                        })))));
   }
 }

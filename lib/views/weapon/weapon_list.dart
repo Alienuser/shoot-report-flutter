@@ -22,46 +22,43 @@ class WeaponListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: StreamBuilder<List<Weapon>>(
-        stream: weaponDao.findAllWeaponsDistinction(true),
-        builder: (_, snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox();
-          }
-          if (snapshot.data.toString() == "[]") {
-            final ThemeData mode = Theme.of(context);
-            return Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Icon(
-                    Icons.legend_toggle_sharp,
-                    color: (mode.brightness == Brightness.light)
-                        ? const Color(AppTheme.primaryColor)
-                        : const Color(AppTheme.backgroundLight),
-                    size: 120,
-                  ),
-                  Text(
-                    tr("weapon_data_no"),
-                    textAlign: TextAlign.center,
-                  )
-                ]));
-          }
-
-          final weapons = snapshot.requireData;
-
-          return ListView.separated(
-              itemCount: weapons.length,
-              itemBuilder: (context, index) {
-                return WeaponListCell(
-                    weapon: weapons[index],
-                    weaponDao: weaponDao,
-                    trainingDao: trainingDao,
-                    competitionDao: competitionDao);
-              },
-              separatorBuilder: (context, index) => const Divider(height: 5));
-        },
-      ),
-    );
+        child: StreamBuilder<List<Weapon>>(
+            stream: weaponDao.findAllWeaponsDistinction(true),
+            builder: (_, snapshot) {
+              if (!snapshot.hasData) {
+                return const SizedBox();
+              }
+              if (snapshot.data.toString() == "[]") {
+                final ThemeData mode = Theme.of(context);
+                return Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      Icon(
+                        Icons.legend_toggle_sharp,
+                        color: (mode.brightness == Brightness.light)
+                            ? const Color(AppTheme.primaryColor)
+                            : const Color(AppTheme.backgroundLight),
+                        size: 120,
+                      ),
+                      Text(
+                        tr("weapon_data_no"),
+                        textAlign: TextAlign.center,
+                      )
+                    ]));
+              }
+              final weapons = snapshot.requireData;
+              return ListView.separated(
+                  itemCount: weapons.length,
+                  itemBuilder: (context, index) {
+                    return WeaponListCell(
+                        weapon: weapons[index],
+                        weaponDao: weaponDao,
+                        trainingDao: trainingDao,
+                        competitionDao: competitionDao);
+                  },
+                  separatorBuilder: (context, index) =>
+                      const Divider(height: 5));
+            }));
   }
 }

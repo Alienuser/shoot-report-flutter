@@ -27,7 +27,7 @@ class AppTheme {
           foregroundColor: Colors.white,
           backgroundColor: Color(primaryColor),
           titleTextStyle: TextStyle(fontSize: 20)),
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
           labelColor: Color(primaryColor),
           unselectedLabelColor: Color(greyColor),
           indicator: UnderlineTabIndicator(
@@ -63,7 +63,7 @@ class AppTheme {
         backgroundColor: Color(primaryColor),
         titleTextStyle: TextStyle(fontSize: 20),
       ),
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
           labelColor: Colors.white,
           unselectedLabelColor: Color(greyColor),
           indicator: UnderlineTabIndicator(

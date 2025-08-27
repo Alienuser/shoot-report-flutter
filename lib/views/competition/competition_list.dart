@@ -23,60 +23,54 @@ class CompetitionListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<List<Competition>>(
-        stream: competitionDao.findAllCompetitionForWeapon(weapon.id!),
-        builder: (_, snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox();
-          }
-          if (snapshot.data.toString() == "[]") {
-            final ThemeData mode = Theme.of(context);
-            return Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Icon(
-                    Icons.emoji_events,
-                    color: (mode.brightness == Brightness.light)
-                        ? const Color(AppTheme.primaryColor)
-                        : const Color(AppTheme.backgroundLight),
-                    size: 120,
-                  ),
-                  Text(
-                    tr("competition_data_no"),
-                    textAlign: TextAlign.center,
-                  )
-                ]));
-          }
+        body: StreamBuilder<List<Competition>>(
+            stream: competitionDao.findAllCompetitionForWeapon(weapon.id!),
+            builder: (_, snapshot) {
+              if (!snapshot.hasData) {
+                return const SizedBox();
+              }
+              if (snapshot.data.toString() == "[]") {
+                final ThemeData mode = Theme.of(context);
+                return Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      Icon(
+                        Icons.emoji_events,
+                        color: (mode.brightness == Brightness.light)
+                            ? const Color(AppTheme.primaryColor)
+                            : const Color(AppTheme.backgroundLight),
+                        size: 120,
+                      ),
+                      Text(tr("competition_data_no"),
+                          textAlign: TextAlign.center)
+                    ]));
+              }
 
-          final competitions = snapshot.requireData;
+              final competitions = snapshot.requireData;
 
-          return ListView.separated(
-            itemCount: competitions.length,
-            itemBuilder: (context, index) {
-              return CompetitionListRow(
-                  weapon: weapon,
-                  competitionDao: competitionDao,
-                  competition: competitions[index]);
+              return ListView.separated(
+                  itemCount: competitions.length,
+                  itemBuilder: (context, index) {
+                    return CompetitionListRow(
+                        weapon: weapon,
+                        competitionDao: competitionDao,
+                        competition: competitions[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(height: 0);
+                  });
+            }),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showBarModalBottomSheet(
+                context: context,
+                expand: true,
+                builder: (context) => CompetitionAddWidget(
+                    weapon: weapon, competitionDao: competitionDao),
+              );
             },
-            separatorBuilder: (context, index) {
-              return const Divider(height: 0);
-            },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showBarModalBottomSheet(
-            context: context,
-            expand: true,
-            builder: (context) => CompetitionAddWidget(
-                weapon: weapon, competitionDao: competitionDao),
-          );
-        },
-        backgroundColor: const Color(AppTheme.accentColor),
-        child: const Icon(Icons.add),
-      ),
-    );
+            backgroundColor: const Color(AppTheme.accentColor),
+            child: const Icon(Icons.add)));
   }
 }

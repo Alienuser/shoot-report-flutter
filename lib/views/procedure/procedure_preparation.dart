@@ -47,25 +47,24 @@ class _ProcedurePreparationWidgetState
                                   fontSize: 15)),
                           children: [
                             CupertinoTextFormFieldRow(
-                              controller: _textPreparationController,
-                              textInputAction: TextInputAction.newline,
-                              placeholder: tr("procedure_preparation_value"),
-                              padding: const EdgeInsets.all(8),
-                              maxLines: 20,
-                              style: TextStyle(
-                                color: (mode.brightness == Brightness.light)
-                                    ? const Color(AppTheme.textColorLight)
-                                    : const Color(AppTheme.textColorDark),
-                              ),
-                              onChanged: (value) async {
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setString(
-                                    "${widget.weapon.prefFile}_procedure_before",
-                                    value);
-                              },
-                            ),
-                          ]),
+                                controller: _textPreparationController,
+                                textInputAction: TextInputAction.newline,
+                                placeholder: tr("procedure_preparation_value"),
+                                padding: const EdgeInsets.all(8),
+                                maxLines: 20,
+                                style: TextStyle(
+                                  color: (mode.brightness == Brightness.light)
+                                      ? const Color(AppTheme.textColorLight)
+                                      : const Color(AppTheme.textColorDark),
+                                ),
+                                onChanged: (value) async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString(
+                                      "${widget.weapon.prefFile}_procedure_before",
+                                      value);
+                                })
+                          ])
                     ])))));
   }
 

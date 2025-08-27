@@ -18,24 +18,21 @@ class ProcedureWidget extends StatelessWidget {
     final ThemeData mode = Theme.of(context);
     return DefaultTabController(
         length: 2,
-        child: Column(
-          children: <Widget>[
-            Material(
-              color: (mode.brightness == Brightness.light)
-                  ? const Color(AppTheme.backgroundLight)
-                  : const Color(AppTheme.backgroundDark),
-              child: TabBar(tabs: <Widget>[
-                Tab(text: tr("procedure_preparation").toUpperCase()),
-                Tab(text: tr("procedure_shot").toUpperCase()),
-              ]),
-            ),
-            Flexible(
+        child: Column(children: <Widget>[
+          Material(
+            color: (mode.brightness == Brightness.light)
+                ? const Color(AppTheme.backgroundLight)
+                : const Color(AppTheme.backgroundDark),
+            child: TabBar(tabs: <Widget>[
+              Tab(text: tr("procedure_preparation").toUpperCase()),
+              Tab(text: tr("procedure_shot").toUpperCase()),
+            ]),
+          ),
+          Flexible(
               child: TabBarView(children: [
-                ProcedurePreparationWidget(weapon: weapon),
-                ProcedureShotWidget(weapon: weapon)
-              ]),
-            ),
-          ],
-        ));
+            ProcedurePreparationWidget(weapon: weapon),
+            ProcedureShotWidget(weapon: weapon)
+          ]))
+        ]));
   }
 }

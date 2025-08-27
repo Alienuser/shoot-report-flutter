@@ -17,10 +17,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.6.3+21
+version: 1.6.4+22
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.3.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,23 +31,22 @@ environment:
 dependencies:
   csv: any
   floor: any
+  quickalert: any
   share_plus: any
   file_saver: any
   file_picker: any
   url_launcher: any
-  status_alert: any
   image_pickers: any
   path_provider: any
   cupertino_icons: any
   webview_flutter: any
   easy_localization: any
   package_info_plus: any
-  version_migration: any
+  permission_handler: any
   shared_preferences: any
   modal_bottom_sheet: any
   flutter_native_splash: any
   syncfusion_flutter_charts: any
-  syncfusion_flutter_core: 25.2.7 # Line can be removed after fix from syncfusion with newest flutter version
 
   # Flutter
   flutter:
@@ -86,7 +85,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/images/
-  - assets/animations/
   - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see

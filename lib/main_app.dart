@@ -24,18 +24,24 @@ class ShootReport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: WeaponWidget(
-        typeDao: typeDao,
-        weaponDao: weaponDao,
-        trainingDao: trainingDao,
-        competitionDao: competitionDao,
-      ),
-    );
+        builder: (context, child) {
+          return SafeArea(
+            top: false,
+            bottom: true,
+            child: child!,
+          );
+        },
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: WeaponWidget(
+          typeDao: typeDao,
+          weaponDao: weaponDao,
+          trainingDao: trainingDao,
+          competitionDao: competitionDao,
+        ));
   }
 }

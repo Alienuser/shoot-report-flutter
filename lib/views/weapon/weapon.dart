@@ -39,36 +39,32 @@ class _WeaponWidgetState extends State<WeaponWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(tr("general_title")),
-        centerTitle: false,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.star_border),
-            color: Colors.white,
-            tooltip: tr("weapon_favorite_toolltip"),
-            onPressed: () {
-              showBarModalBottomSheet(
-                  context: context,
-                  expand: true,
-                  enableDrag: true,
-                  builder: (context) => DisciplineTypeListView(
-                      typeDao: widget.typeDao, weaponDao: widget.weaponDao));
-            },
-          ),
-          const PopupMenuWidget()
-        ],
-      ),
-      body: Column(
-        children: <Widget>[
+        appBar: AppBar(
+            title: Text(tr("general_title")),
+            centerTitle: false,
+            actions: <Widget>[
+              IconButton(
+                  icon: const Icon(Icons.star_border),
+                  color: Colors.white,
+                  tooltip: tr("weapon_favorite_toolltip"),
+                  onPressed: () {
+                    showBarModalBottomSheet(
+                        context: context,
+                        expand: true,
+                        enableDrag: true,
+                        builder: (context) => DisciplineTypeListView(
+                            typeDao: widget.typeDao,
+                            weaponDao: widget.weaponDao));
+                  }),
+              const PopupMenuWidget()
+            ]),
+        body: Column(children: <Widget>[
           WeaponListView(
             weaponDao: widget.weaponDao,
             trainingDao: widget.trainingDao,
             competitionDao: widget.competitionDao,
-          ),
-        ],
-      ),
-      bottomNavigationBar: const AdsWidget(),
-    );
+          )
+        ]),
+        bottomNavigationBar: const AdsWidget());
   }
 }

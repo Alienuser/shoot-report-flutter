@@ -23,22 +23,19 @@ class WeaponListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.legend_toggle_sharp),
-      title: Text(tr(weapon.name)),
-      trailing: const Icon(Icons.arrow_right_sharp, size: 35),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeWidget(
-              weapon: weapon,
-              weaponDao: weaponDao,
-              trainingDao: trainingDao,
-              competitionDao: competitionDao,
-            ),
-          ),
-        );
-      },
-    );
+        leading: const Icon(Icons.legend_toggle_sharp),
+        title: Text(tr(weapon.name)),
+        trailing: const Icon(Icons.arrow_right_sharp, size: 35),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomeWidget(
+                        weapon: weapon,
+                        weaponDao: weaponDao,
+                        trainingDao: trainingDao,
+                        competitionDao: competitionDao,
+                      )));
+        });
   }
 }

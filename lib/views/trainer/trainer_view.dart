@@ -25,43 +25,34 @@ class _TrainerViewWidgetState extends State<TrainerViewWidget> {
     var controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(AppTheme.backgroundColorLight))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (String url) {
-            /*setState(() {
-                isLoading = true;
-              });*/
-          },
-          onPageFinished: (String url) {
-            /*setState(() {
-                isLoading = false;
-              });*/
-          },
-          onNavigationRequest: (NavigationRequest request) {
-            if (!request.url.contains(host)) {
-              launchUrl(
-                Uri.parse(request.url),
-                mode: LaunchMode.externalApplication,
-              );
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
+      ..setNavigationDelegate(NavigationDelegate(onPageStarted: (String url) {
+        /*setState(() {
+          isLoading = true;
+        });*/
+      }, onPageFinished: (String url) {
+        /*setState(() {
+          isLoading = false;
+        });*/
+      }, onNavigationRequest: (NavigationRequest request) {
+        if (!request.url.contains(host)) {
+          launchUrl(
+            Uri.parse(request.url),
+            mode: LaunchMode.externalApplication,
+          );
+          return NavigationDecision.prevent;
+        }
+        return NavigationDecision.navigate;
+      }))
       ..loadRequest(Uri.parse("$host/$language/${widget.url}"));
 
     return Scaffold(
-        body: Stack(
-      children: [
-        WebViewWidget(controller: controller),
-        Visibility(
+        body: Stack(children: [
+      WebViewWidget(controller: controller),
+      Visibility(
           visible: isLoading,
           child: const Center(
             child: CircularProgressIndicator(),
-          ),
-        )
-      ],
-    ));
+          ))
+    ]));
   }
 }

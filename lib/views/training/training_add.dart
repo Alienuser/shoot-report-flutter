@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
 import 'package:shoot_report/services/training_dao.dart';
@@ -12,7 +13,6 @@ import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
-import 'package:status_alert/status_alert.dart';
 
 class TrainingAddWidget extends StatefulWidget {
   final Weapon weapon;
@@ -57,20 +57,15 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
         child: Material(
           child: Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  tr("training_add_title"),
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(null),
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    tr("training_add_title"),
                   ),
-                ],
-              ),
+                  actions: <Widget>[
+                    IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close, color: Colors.white))
+                  ]),
               body: SingleChildScrollView(
                   child: Form(
                       key: _formKey,
@@ -379,18 +374,19 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
         widget.weapon.id!);
 
     widget.trainingDao.insertTraining(training);
-
-    StatusAlert.show(
-      context,
-      duration: const Duration(seconds: 2),
-      title: tr("training_add_alert_title"),
-      subtitle: tr("training_add_alert_message"),
-      padding: EdgeInsets.zero,
-      configuration: const FlareConfiguration('assets/animations/success.flr',
-          animation: 'check', margin: EdgeInsets.zero, color: Colors.green),
-    );
     HapticFeedback.heavyImpact();
-    Navigator.of(context).pop(null);
+    QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            showConfirmBtn: false,
+            title: tr("training_add_alert_title"),
+            text: tr("training_add_alert_message"),
+            autoCloseDuration: Duration(seconds: 3))
+        .then((value) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   void _calculateTotalAndAverage() {

@@ -22,11 +22,10 @@ class DisciplineTypeListCell extends StatelessWidget {
         trailing: const Icon(Icons.arrow_right_sharp, size: 35),
         onTap: () {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    DisciplineWeaponListView(type: type, weaponDao: weaponDao)),
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DisciplineWeaponListView(
+                      type: type, weaponDao: weaponDao)));
         });
   }
 }

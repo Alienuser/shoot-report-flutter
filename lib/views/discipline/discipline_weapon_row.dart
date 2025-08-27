@@ -16,14 +16,14 @@ class DisciplineWeaponListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset("assets/images/disciplines_weapon.png", height: 16),
-      title: Text(tr(weapon.name)),
-      trailing: IconButton(
-          onPressed: () {
-            _updateFavorite(weapon);
-          },
-          icon: Icon(weapon.show ? Icons.star : Icons.star_outline)),
-    );
+        leading:
+            Image.asset("assets/images/disciplines_weapon.png", height: 16),
+        title: Text(tr(weapon.name)),
+        trailing: IconButton(
+            onPressed: () {
+              _updateFavorite(weapon);
+            },
+            icon: Icon(weapon.show ? Icons.star : Icons.star_outline)));
   }
 
   void _updateFavorite(Weapon weapon) {

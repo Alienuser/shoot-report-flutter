@@ -27,35 +27,33 @@ class _TrainingListRowState extends State<TrainingListRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 20,
-      leading: SizedBox(
-          width: 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _getTrainingIcon(widget.training),
-              _getTrainingPoints(widget.training)
-            ],
-          )),
-      title: Text(widget.training.kind),
-      subtitle: Text(
-          "${DateFormat.yMMMd().format(widget.training.date)}, in ${widget.training.place}"),
-      trailing: IconButton(
-          onPressed: () {
-            _deleteTraining();
-          },
-          icon: const Icon(Icons.delete)),
-      onTap: () {
-        showBarModalBottomSheet(
-          context: context,
-          expand: true,
-          builder: (context) => TrainingEditWidget(
-              weapon: widget.weapon,
-              trainingDao: widget.trainingDao,
-              training: widget.training),
-        );
-      },
-    );
+        horizontalTitleGap: 20,
+        leading: SizedBox(
+            width: 80,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _getTrainingIcon(widget.training),
+                  _getTrainingPoints(widget.training)
+                ])),
+        title: Text(widget.training.kind),
+        subtitle: Text(
+            "${DateFormat.yMMMd().format(widget.training.date)}, in ${widget.training.place}"),
+        trailing: IconButton(
+            onPressed: () {
+              _deleteTraining();
+            },
+            icon: const Icon(Icons.delete)),
+        onTap: () {
+          showBarModalBottomSheet(
+            context: context,
+            expand: true,
+            builder: (context) => TrainingEditWidget(
+                weapon: widget.weapon,
+                trainingDao: widget.trainingDao,
+                training: widget.training),
+          );
+        });
   }
 
   void _deleteTraining() {
@@ -63,31 +61,29 @@ class _TrainingListRowState extends State<TrainingListRow> {
         context: context,
         builder: (BuildContext ctx) {
           return AlertDialog.adaptive(
-            title: Text(tr("training_alert_title")),
-            content: Text(tr("training_alert_message")),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    widget.trainingDao.deleteTraining(widget.training);
-
-                    final scaffoldMessengerState =
-                        ScaffoldMessenger.of(context);
-                    scaffoldMessengerState.hideCurrentSnackBar();
-                    scaffoldMessengerState.showSnackBar(
-                      SnackBar(
-                          content: Text(tr("training_removed")),
-                          behavior: SnackBarBehavior.floating),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_yes"))),
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(tr("general_no")))
-            ],
-          );
+              title: Text(tr("training_alert_title")),
+              content: Text(tr("training_alert_message")),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      widget.trainingDao.deleteTraining(widget.training);
+                      final scaffoldMessengerState =
+                          ScaffoldMessenger.of(context);
+                      scaffoldMessengerState.hideCurrentSnackBar();
+                      scaffoldMessengerState.showSnackBar(
+                        SnackBar(
+                            content: Text(tr("training_removed")),
+                            behavior: SnackBarBehavior.floating),
+                      );
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(tr("general_yes"))),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(tr("general_no")))
+              ]);
         });
   }
 

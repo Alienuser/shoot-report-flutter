@@ -62,5 +62,9 @@
 		<string>In order to take a picture and add it to your session, we need the permission to use the camera.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>In order to add a picture from the library to your session, we need the permission to access your library.</string>
+		<key>LSSupportsOpeningDocumentsInPlace</key>
+		<true/>
+		<key>UIFileSharingEnabled</key>
+		<true/>
 	</dict>
 </plist>
