@@ -9,7 +9,7 @@ class Training {
   List shots;
   String comment;
   final int weaponId;
-  
+
   // Firebase key for deletion
   String? firebaseKey;
 

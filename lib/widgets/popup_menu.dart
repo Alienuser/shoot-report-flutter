@@ -43,7 +43,6 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
                 value: 4,
                 child: Text(tr("menu_instagram")),
               ),
-
             ],
         onSelected: (item) {
           switch (item) {
@@ -82,10 +81,7 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
                 mode: LaunchMode.externalApplication,
               );
               break;
-
           }
         });
   }
-
-
 }

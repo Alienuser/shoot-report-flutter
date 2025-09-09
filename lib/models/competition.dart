@@ -8,7 +8,7 @@ class Competition {
   List shots;
   String comment;
   final int weaponId;
-  
+
   // Firebase key for deletion/update
   String? firebaseKey;
 

@@ -31,6 +31,8 @@ environment:
 dependencies:
   csv: any
   quickalert: any
+  sqflite: any
+  path: any
   share_plus: any
   file_saver: any
   file_picker: any
