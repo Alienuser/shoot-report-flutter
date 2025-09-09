@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class GoalsTenthWidget extends StatefulWidget {
@@ -73,9 +73,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_jackpot")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_40_jackpot",
                                       value);
                                 }),
@@ -95,9 +93,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_optimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_40_optimal",
                                       value);
                                 }),
@@ -117,9 +113,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_real")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_40_real",
                                       value);
                                 }),
@@ -139,9 +133,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_minimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_40_minimal",
                                       value);
                                 }),
@@ -161,9 +153,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_chaos")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_40_chaos",
                                       value);
                                 })
@@ -191,9 +181,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_jackpot")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_60_jackpot",
                                       value);
                                 }),
@@ -213,9 +201,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_optimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_60_optimal",
                                       value);
                                 }),
@@ -235,9 +221,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_real")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_60_real",
                                       value);
                                 }),
@@ -257,9 +241,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_minimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_60_minimal",
                                       value);
                                 }),
@@ -279,9 +261,7 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
                                     ),
                                     labelText: tr("goals_tenth_chaos")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalTenth_60_chaos",
                                       value);
                                 })
@@ -290,34 +270,26 @@ class _GoalsTenthWidgetState extends State<GoalsTenthWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _text40JackpotController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_jackpot") ??
-              "";
-      _text40OptimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_optimal") ??
-              "";
-      _text40RealController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_real") ?? "";
-      _text40MinimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_minimal") ??
-              "";
-      _text40ChaosController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_40_chaos") ?? "";
-      _text60JackpotController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_jackpot") ??
-              "";
-      _text60OptimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_optimal") ??
-              "";
-      _text60RealController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_real") ?? "";
-      _text60MinimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_minimal") ??
-              "";
-      _text60ChaosController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalTenth_60_chaos") ?? "";
-    });
+    _text40JackpotController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_40_jackpot") ?? "";
+    _text40OptimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_40_optimal") ?? "";
+    _text40RealController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_40_real") ?? "";
+    _text40MinimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_40_minimal") ?? "";
+    _text40ChaosController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_40_chaos") ?? "";
+    _text60JackpotController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_60_jackpot") ?? "";
+    _text60OptimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_60_optimal") ?? "";
+    _text60RealController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_60_real") ?? "";
+    _text60MinimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_60_minimal") ?? "";
+    _text60ChaosController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalTenth_60_chaos") ?? "";
+    setState(() {});
   }
 }

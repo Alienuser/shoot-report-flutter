@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class DataDeviceWidget extends StatefulWidget {
@@ -53,18 +53,14 @@ class _DataDeviceWidgetState extends State<DataDeviceWidget> {
                                       : const Color(AppTheme.textColorDark),
                                 ),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString("data_device", value);
+                                  await FirebaseDataService.setPreference("data_device", value);
                                 })
                           ])
                     ])))));
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _textDataDeviceController.text = prefs.getString("data_device") ?? "";
-    });
+    _textDataDeviceController.text = await FirebaseDataService.getPreference("data_device") ?? "";
+    setState(() {});
   }
 }

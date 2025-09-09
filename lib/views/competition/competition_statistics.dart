@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/chart_data.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -10,13 +10,8 @@ import 'package:shoot_report/widgets/statistic.dart';
 
 class CompetitionStatisticWidget extends StatefulWidget {
   final Weapon weapon;
-  final CompetitionDao competitionDao;
 
-  const CompetitionStatisticWidget({
-    super.key,
-    required this.weapon,
-    required this.competitionDao,
-  });
+  const CompetitionStatisticWidget({super.key, required this.weapon});
 
   @override
   State<CompetitionStatisticWidget> createState() =>
@@ -35,14 +30,10 @@ class _CompetitionStatisticWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: StreamBuilder<List<Competition>>(
-            stream: widget.competitionDao
-                .findAllCompetitionForWeapon(widget.weapon.id!),
+        body: StreamBuilder<Map<String, dynamic>?>(
+            stream: FirebaseDataService.getUserCompetitionsStream(),
             builder: (_, snapshot) {
-              if (!snapshot.hasData) {
-                return const SizedBox();
-              }
-              if (snapshot.data.toString() == "[]") {
+              if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
                 final ThemeData mode = Theme.of(context);
                 return Center(
                     child: Column(
@@ -62,7 +53,27 @@ class _CompetitionStatisticWidgetState
 
               List<ChartData> dataWhole = <ChartData>[];
               List<ChartData> dataTenth = <ChartData>[];
-              final competitions = snapshot.requireData;
+              final competitionsData = snapshot.data!;
+              final competitions = competitionsData.entries
+                  .where((entry) {
+                    final data = Map<String, dynamic>.from(entry.value as Map);
+                    return data['weaponId'] == widget.weapon.id!;
+                  })
+                  .map((entry) {
+                    final data = Map<String, dynamic>.from(entry.value as Map);
+                    return Competition(
+                      null,
+                      DateTime.fromMillisecondsSinceEpoch(data['date']),
+                      data['image'] ?? '',
+                      data['place'] ?? '',
+                      data['kind'] ?? '',
+                      data['shotCount'] ?? 0,
+                      data['shots'] ?? [],
+                      data['comment'] ?? '',
+                      data['weaponId'] ?? widget.weapon.id!,
+                    );
+                  }).toList();
+              
               for (var competition in competitions) {
                 if (competition.shots.isNotEmpty) {
                   var rings = competition.shots.reduce((value, next) =>

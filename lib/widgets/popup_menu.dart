@@ -1,14 +1,6 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:file_saver/file_saver.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:shoot_report/main.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
@@ -51,14 +43,7 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
                 value: 4,
                 child: Text(tr("menu_instagram")),
               ),
-              /*PopupMenuItem<int>(
-          value: 5,
-          child: Text(tr("menu_import")),
-        ),*/
-              PopupMenuItem<int>(
-                value: 6,
-                child: Text(tr("menu_export")),
-              )
+
             ],
         onSelected: (item) {
           switch (item) {
@@ -97,55 +82,10 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
                 mode: LaunchMode.externalApplication,
               );
               break;
-            case 5:
-              FirebaseLog().logEvent("Import Database");
-              importDatabase();
-              break;
-            case 6:
-              FirebaseLog().logEvent("Export Database");
-              Share.shareXFiles([XFile(database.database.database.path)],
-                  text: tr("training_share_text"));
-              break;
+
           }
         });
   }
 
-  void importDatabase() async {
-    // Get the new database
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(withData: true);
 
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      if (file.extension == "db") {
-        Uint8List? fileBytes = result.files.first.bytes;
-
-        String path = await FileSaver.instance.saveFile(
-          name: "flutter_shoot_report.db",
-          bytes: fileBytes,
-        );
-
-        // Move file
-        await File(path).copy(database.database.database.path);
-
-        if (mounted) {
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            title: tr("import_database_alert_title"),
-            text: tr("import_database_alert_message"),
-          );
-        }
-      } else {
-        if (mounted) {
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            title: tr("import_database_alert_error_title"),
-            text: tr("import_database_alert_error_message"),
-          );
-        }
-      }
-    }
-  }
 }

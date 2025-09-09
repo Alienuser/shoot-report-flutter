@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
-import 'package:shoot_report/services/weapon_dao.dart';
+
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/competition/competition_list.dart';
 import 'package:shoot_report/views/competition/competition_statistics.dart';
 
 class CompetitionWidget extends StatelessWidget {
   final Weapon weapon;
-  final WeaponDao weaponDao;
-  final CompetitionDao competitionDao;
 
-  const CompetitionWidget(
-      {super.key,
-      required this.weapon,
-      required this.weaponDao,
-      required this.competitionDao});
+  const CompetitionWidget({super.key, required this.weapon});
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +28,8 @@ class CompetitionWidget extends StatelessWidget {
           ),
           Flexible(
               child: TabBarView(children: [
-            CompetitionListWidget(
-              weapon: weapon,
-              weaponDao: weaponDao,
-              competitionDao: competitionDao,
-            ),
-            CompetitionStatisticWidget(
-              weapon: weapon,
-              competitionDao: competitionDao,
-            )
+            CompetitionListWidget(weapon: weapon),
+            CompetitionStatisticWidget(weapon: weapon)
           ]))
         ]));
   }

@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/training_dao.dart';
-import 'package:shoot_report/services/weapon_dao.dart';
+
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/training/training_list.dart';
 import 'package:shoot_report/views/training/training_statistics.dart';
 
 class TrainingWidget extends StatelessWidget {
   final Weapon weapon;
-  final WeaponDao weaponDao;
-  final TrainingDao trainingDao;
 
-  const TrainingWidget(
-      {super.key,
-      required this.weapon,
-      required this.weaponDao,
-      required this.trainingDao});
+  const TrainingWidget({super.key, required this.weapon});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +27,8 @@ class TrainingWidget extends StatelessWidget {
               ])),
           Flexible(
               child: TabBarView(children: [
-            TrainingListWidget(
-                weapon: weapon, weaponDao: weaponDao, trainingDao: trainingDao),
-            TrainingStatisticWidget(weapon: weapon, trainingDao: trainingDao)
+            TrainingListWidget(weapon: weapon),
+            TrainingStatisticWidget(weapon: weapon)
           ]))
         ]));
   }
