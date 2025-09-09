@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:shoot_report/models/training.dart';
+
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
@@ -16,10 +16,8 @@ import 'package:shoot_report/utilities/theme.dart';
 
 class TrainingAddWidget extends StatefulWidget {
   final Weapon weapon;
-  final TrainingDao trainingDao;
 
-  const TrainingAddWidget(
-      {super.key, required this.weapon, required this.trainingDao});
+  const TrainingAddWidget({super.key, required this.weapon});
 
   @override
   State<TrainingAddWidget> createState() => _TrainingAddWidgetState();
@@ -360,20 +358,19 @@ class _TrainingAddWidgetState extends State<TrainingAddWidget> {
         ));
   }
 
-  void _addTraining() {
-    var training = Training(
-        null,
-        date,
-        Platform.isIOS ? imagePath.split("/").last : imagePath,
-        indicator,
-        place,
-        kind,
-        shotCount,
-        shots,
-        comment,
-        widget.weapon.id!);
-
-    widget.trainingDao.insertTraining(training);
+  void _addTraining() async {
+    await FirebaseDataService.saveTraining({
+      'date': date.millisecondsSinceEpoch,
+      'image': Platform.isIOS ? imagePath.split("/").last : imagePath,
+      'indicator': indicator,
+      'place': place,
+      'kind': kind,
+      'shotCount': shotCount,
+      'shots': shots,
+      'comment': comment,
+      'weaponId': widget.weapon.id!,
+    });
+    
     HapticFeedback.heavyImpact();
     QuickAlert.show(
             context: context,

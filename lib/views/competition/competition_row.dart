@@ -3,18 +3,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/views/competition/competition_edit.dart';
 
 class CompetitionListRow extends StatefulWidget {
   final Weapon weapon;
-  final CompetitionDao competitionDao;
   final Competition competition;
 
   const CompetitionListRow({
     super.key,
     required this.weapon,
-    required this.competitionDao,
     required this.competition,
   });
 
@@ -49,7 +47,6 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
               expand: true,
               builder: (context) => CompetitionEditWidget(
                   weapon: widget.weapon,
-                  competitionDao: widget.competitionDao,
                   competition: widget.competition));
         });
   }
@@ -63,19 +60,21 @@ class _CompetitionListRowState extends State<CompetitionListRow> {
               content: Text(tr("competition_alert_message")),
               actions: [
                 TextButton(
-                    onPressed: () {
-                      widget.competitionDao
-                          .deleteCompetition(widget.competition);
-
-                      final scaffoldMessengerState =
-                          ScaffoldMessenger.of(context);
-                      scaffoldMessengerState.hideCurrentSnackBar();
-                      scaffoldMessengerState.showSnackBar(
-                        SnackBar(
-                            content: Text(tr("competition_deleted")),
-                            behavior: SnackBarBehavior.floating),
-                      );
+                    onPressed: () async {
                       Navigator.of(context).pop();
+                      if (widget.competition.firebaseKey != null) {
+                        await FirebaseDataService.deleteCompetition(widget.competition.firebaseKey!);
+                      }
+                      if (mounted) {
+                        final scaffoldMessengerState =
+                            ScaffoldMessenger.of(context);
+                        scaffoldMessengerState.hideCurrentSnackBar();
+                        scaffoldMessengerState.showSnackBar(
+                          SnackBar(
+                              content: Text(tr("competition_deleted")),
+                              behavior: SnackBarBehavior.floating),
+                        );
+                      }
                     },
                     child: Text(tr("general_yes"))),
                 TextButton(

@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
-import 'package:shoot_report/services/training_dao.dart';
-import 'package:shoot_report/services/weapon_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/theme.dart';
 import 'package:shoot_report/views/weapon/weapon_row.dart';
 
 class WeaponListView extends StatelessWidget {
-  final WeaponDao weaponDao;
-  final TrainingDao trainingDao;
-  final CompetitionDao competitionDao;
-
-  const WeaponListView({
-    super.key,
-    required this.weaponDao,
-    required this.trainingDao,
-    required this.competitionDao,
-  });
+  const WeaponListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: StreamBuilder<List<Weapon>>(
-            stream: weaponDao.findAllWeaponsDistinction(true),
+        child: StreamBuilder<List<Map<String, dynamic>>>(
+            stream: FirebaseDataService.getVisibleWeaponsStream(),
             builder: (_, snapshot) {
-              if (!snapshot.hasData) {
-                return const SizedBox();
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
               }
-              if (snapshot.data.toString() == "[]") {
+              
+              if (snapshot.hasError) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error, size: 64, color: Colors.red),
+                      const SizedBox(height: 16),
+                      const Text('Connection Error'),
+                    ],
+                  ),
+                );
+              }
+              
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              
+              final weaponsData = snapshot.data!;
+              if (weaponsData.isEmpty) {
                 final ThemeData mode = Theme.of(context);
                 return Center(
                     child: Column(
@@ -47,18 +55,24 @@ class WeaponListView extends StatelessWidget {
                       )
                     ]));
               }
-              final weapons = snapshot.requireData;
+              
+              final weapons = weaponsData.map((data) {
+                return Weapon(
+                  data['id'],
+                  data['name'],
+                  data['order'],
+                  data['prefFile'],
+                  data['typeId'],
+                  true, // Always true for visible weapons
+                );
+              }).toList();
+              
               return ListView.separated(
                   itemCount: weapons.length,
                   itemBuilder: (context, index) {
-                    return WeaponListCell(
-                        weapon: weapons[index],
-                        weaponDao: weaponDao,
-                        trainingDao: trainingDao,
-                        competitionDao: competitionDao);
+                    return WeaponListCell(weapon: weapons[index]);
                   },
-                  separatorBuilder: (context, index) =>
-                      const Divider(height: 5));
+                  separatorBuilder: (context, index) => const Divider(height: 5));
             }));
   }
 }

@@ -6,19 +6,17 @@ import 'package:flutter/services.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:shoot_report/models/competition.dart';
+
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class CompetitionAddWidget extends StatefulWidget {
   final Weapon weapon;
-  final CompetitionDao competitionDao;
 
-  const CompetitionAddWidget(
-      {super.key, required this.weapon, required this.competitionDao});
+  const CompetitionAddWidget({super.key, required this.weapon});
 
   @override
   State<CompetitionAddWidget> createState() => _CompetitionAddWidgetState();
@@ -333,19 +331,18 @@ class _CompetitionAddWidgetState extends State<CompetitionAddWidget> {
                         ]))))));
   }
 
-  void _addCompetition() {
-    var competition = Competition(
-        null,
-        date,
-        Platform.isIOS ? imagePath.split("/").last : imagePath,
-        place,
-        kind,
-        shotCount,
-        shots,
-        comment,
-        widget.weapon.id!);
-
-    widget.competitionDao.insertCompetition(competition);
+  void _addCompetition() async {
+    await FirebaseDataService.saveCompetition({
+      'date': date.millisecondsSinceEpoch,
+      'image': Platform.isIOS ? imagePath.split("/").last : imagePath,
+      'place': place,
+      'kind': kind,
+      'shotCount': shotCount,
+      'shots': shots,
+      'comment': comment,
+      'weaponId': widget.weapon.id!,
+    });
+    
     HapticFeedback.heavyImpact();
     QuickAlert.show(
             context: context,

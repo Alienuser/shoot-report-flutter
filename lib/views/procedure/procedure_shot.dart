@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class ProcedureShotWidget extends StatefulWidget {
@@ -55,9 +55,7 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
                                       : const Color(AppTheme.textColorDark),
                                 ),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_procedure_shot",
                                       value);
                                 })
@@ -66,10 +64,8 @@ class _ProcedureShotWidgetState extends State<ProcedureShotWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _textShotController.text =
-          prefs.getString("${widget.weapon.prefFile}_procedure_shot") ?? "";
-    });
+    _textShotController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_procedure_shot") ?? "";
+    setState(() {});
   }
 }

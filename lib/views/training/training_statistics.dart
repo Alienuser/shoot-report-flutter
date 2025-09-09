@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/chart_data.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/theme.dart';
@@ -10,13 +10,8 @@ import 'package:shoot_report/widgets/statistic.dart';
 
 class TrainingStatisticWidget extends StatefulWidget {
   final Weapon weapon;
-  final TrainingDao trainingDao;
 
-  const TrainingStatisticWidget({
-    super.key,
-    required this.weapon,
-    required this.trainingDao,
-  });
+  const TrainingStatisticWidget({super.key, required this.weapon});
 
   @override
   State<TrainingStatisticWidget> createState() =>
@@ -34,14 +29,10 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: StreamBuilder<List<Training>>(
-            stream:
-                widget.trainingDao.findAllTrainingsForWeapon(widget.weapon.id!),
+        body: StreamBuilder<Map<String, dynamic>?>(
+            stream: FirebaseDataService.getUserTrainingsStream(),
             builder: (_, snapshot) {
-              if (!snapshot.hasData) {
-                return const SizedBox();
-              }
-              if (snapshot.data.toString() == "[]") {
+              if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
                 final ThemeData mode = Theme.of(context);
                 return Center(
                     child: Column(
@@ -63,7 +54,28 @@ class _TrainingStatisticWidgetState extends State<TrainingStatisticWidget> {
 
               List<ChartData> dataWhole = <ChartData>[];
               List<ChartData> dataTenth = <ChartData>[];
-              final trainings = snapshot.requireData;
+              final trainingsData = snapshot.data!;
+              final trainings = trainingsData.entries
+                  .where((entry) {
+                    final data = Map<String, dynamic>.from(entry.value as Map);
+                    return data['weaponId'] == widget.weapon.id!;
+                  })
+                  .map((entry) {
+                    final data = Map<String, dynamic>.from(entry.value as Map);
+                    return Training(
+                      null,
+                      DateTime.fromMillisecondsSinceEpoch(data['date']),
+                      data['image'] ?? '',
+                      data['indicator'] ?? 2,
+                      data['place'] ?? '',
+                      data['kind'] ?? '',
+                      data['shotCount'] ?? 0,
+                      data['shots'] ?? [],
+                      data['comment'] ?? '',
+                      data['weaponId'] ?? widget.weapon.id!,
+                    );
+                  }).toList();
+              
               for (var training in trainings) {
                 if (training.shots.isNotEmpty) {
                   var rings = training.shots.reduce((value, next) =>

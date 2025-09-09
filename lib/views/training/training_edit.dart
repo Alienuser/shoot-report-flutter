@@ -10,7 +10,7 @@ import 'package:quickalert/quickalert.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/csv_converter.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
@@ -19,13 +19,11 @@ import 'package:shoot_report/utilities/theme.dart';
 
 class TrainingEditWidget extends StatefulWidget {
   final Weapon weapon;
-  final TrainingDao trainingDao;
   final Training training;
 
   const TrainingEditWidget(
       {super.key,
       required this.weapon,
-      required this.trainingDao,
       required this.training});
 
   @override
@@ -414,20 +412,20 @@ class _TrainingEditWidgetState extends State<TrainingEditWidget> {
         ));
   }
 
-  void _editTraining() {
-    widget.training.date = date;
-    if (Platform.isIOS) {
-      widget.training.image = imagePath.split("/").last;
-    } else {
-      widget.training.image = imagePath;
+  void _editTraining() async {
+    if (widget.training.firebaseKey != null) {
+      await FirebaseDataService.updateTraining(widget.training.firebaseKey!, {
+        'date': date.millisecondsSinceEpoch,
+        'image': Platform.isIOS ? imagePath.split("/").last : imagePath,
+        'indicator': indicator,
+        'place': place,
+        'kind': kind,
+        'shotCount': shotCount,
+        'shots': shots,
+        'comment': comment,
+        'weaponId': widget.weapon.id!,
+      });
     }
-    widget.training.indicator = indicator;
-    widget.training.place = place;
-    widget.training.kind = kind;
-    widget.training.shotCount = shotCount;
-    widget.training.shots = shots;
-    widget.training.comment = comment;
-    widget.trainingDao.updateTraining(widget.training);
 
     HapticFeedback.heavyImpact();
     QuickAlert.show(

@@ -10,7 +10,7 @@ import 'package:quickalert/quickalert.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoot_report/models/competition.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/csv_converter.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/utilities/kind_list.dart';
@@ -18,13 +18,11 @@ import 'package:shoot_report/utilities/theme.dart';
 
 class CompetitionEditWidget extends StatefulWidget {
   final Weapon weapon;
-  final CompetitionDao competitionDao;
   final Competition competition;
 
   const CompetitionEditWidget(
       {super.key,
       required this.weapon,
-      required this.competitionDao,
       required this.competition});
 
   @override
@@ -381,19 +379,19 @@ class _CompetitionEditWidgetState extends State<CompetitionEditWidget> {
                         ]))))));
   }
 
-  void _editCompetition() {
-    widget.competition.date = date;
-    if (Platform.isIOS) {
-      widget.competition.image = imagePath.split("/").last;
-    } else {
-      widget.competition.image = imagePath;
+  void _editCompetition() async {
+    if (widget.competition.firebaseKey != null) {
+      await FirebaseDataService.updateCompetition(widget.competition.firebaseKey!, {
+        'date': date.millisecondsSinceEpoch,
+        'image': Platform.isIOS ? imagePath.split("/").last : imagePath,
+        'place': place,
+        'kind': kind,
+        'shotCount': shotCount,
+        'shots': shots,
+        'comment': comment,
+        'weaponId': widget.weapon.id!,
+      });
     }
-    widget.competition.place = place;
-    widget.competition.kind = kind;
-    widget.competition.shotCount = shotCount;
-    widget.competition.shots = shots;
-    widget.competition.comment = comment;
-    widget.competitionDao.updateCompetition(widget.competition);
 
     HapticFeedback.heavyImpact();
     QuickAlert.show(

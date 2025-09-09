@@ -1,14 +1,7 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:file_saver/file_saver.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:shoot_report/main.dart';
+import 'package:shoot_report/services/auth_service.dart';
 import 'package:shoot_report/utilities/firebase_log.dart';
 import 'package:shoot_report/widgets/cooperation.dart';
 import 'package:shoot_report/widgets/information.dart';
@@ -52,13 +45,9 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
                 child: Text(tr("menu_instagram")),
               ),
               /*PopupMenuItem<int>(
-          value: 5,
-          child: Text(tr("menu_import")),
-        ),*/
-              PopupMenuItem<int>(
-                value: 6,
-                child: Text(tr("menu_export")),
-              )
+                value: 5,
+                child: Text(tr("menu_create_account")),
+              ),*/
             ],
         onSelected: (item) {
           switch (item) {
@@ -98,53 +87,127 @@ class _PopupMenuWidget extends State<PopupMenuWidget> {
               );
               break;
             case 5:
-              FirebaseLog().logEvent("Import Database");
-              importDatabase();
-              break;
-            case 6:
-              FirebaseLog().logEvent("Export Database");
-              Share.shareXFiles([XFile(database.database.database.path)],
-                  text: tr("training_share_text"));
+              FirebaseLog().logEvent("Create Account");
+              _showCreateAccountDialog(context);
               break;
           }
         });
   }
 
-  void importDatabase() async {
-    // Get the new database
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(withData: true);
+  void _showCreateAccountDialog(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      if (file.extension == "db") {
-        Uint8List? fileBytes = result.files.first.bytes;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(tr("create_account_title")),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: tr("email"),
+                hintText: "user@example.com",
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: tr("password"),
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              tr("create_account_info"),
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(tr("general_cancel")),
+          ),
+          TextButton(
+            onPressed: () async {
+              final email = emailController.text.trim();
+              final password = passwordController.text;
 
-        String path = await FileSaver.instance.saveFile(
-          name: "flutter_shoot_report.db",
-          bytes: fileBytes,
+              if (email.isEmpty || password.isEmpty) {
+                return;
+              }
+
+              Navigator.of(context).pop();
+              await _createAccount(context, email, password);
+            },
+            child: Text(tr("create_account_button")),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _createAccount(
+      BuildContext context, String email, String password) async {
+    try {
+      // Show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const AlertDialog(
+          content: Row(
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(width: 16),
+              Text("Creating account..."),
+            ],
+          ),
+        ),
+      );
+
+      await AuthService.createAccountAndMigrateData(email, password);
+
+      if (context.mounted) {
+        Navigator.of(context).pop(); // Close loading
+
+        // Show success
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(tr("success")),
+            content: Text(tr("account_created_success")),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(tr("general_ok")),
+              ),
+            ],
+          ),
         );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.of(context).pop(); // Close loading
 
-        // Move file
-        await File(path).copy(database.database.database.path);
-
-        if (mounted) {
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            title: tr("import_database_alert_title"),
-            text: tr("import_database_alert_message"),
-          );
-        }
-      } else {
-        if (mounted) {
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            title: tr("import_database_alert_error_title"),
-            text: tr("import_database_alert_error_message"),
-          );
-        }
+        // Show error
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(tr("error")),
+            content: Text(tr("account_creation_failed")),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(tr("general_ok")),
+              ),
+            ],
+          ),
+        );
       }
     }
   }

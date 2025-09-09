@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/competition_dao.dart';
-import 'package:shoot_report/services/training_dao.dart';
-import 'package:shoot_report/services/weapon_dao.dart';
+
 import 'package:shoot_report/views/home.dart';
 
 class WeaponListCell extends StatelessWidget {
   final Weapon weapon;
-  final WeaponDao weaponDao;
-  final TrainingDao trainingDao;
-  final CompetitionDao competitionDao;
 
-  const WeaponListCell({
-    super.key,
-    required this.weapon,
-    required this.weaponDao,
-    required this.trainingDao,
-    required this.competitionDao,
-  });
+  const WeaponListCell({super.key, required this.weapon});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +19,7 @@ class WeaponListCell extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => HomeWidget(
-                        weapon: weapon,
-                        weaponDao: weaponDao,
-                        trainingDao: trainingDao,
-                        competitionDao: competitionDao,
-                      )));
+                  builder: (context) => HomeWidget(weapon: weapon)));
         });
   }
 }

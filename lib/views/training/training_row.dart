@@ -3,19 +3,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shoot_report/models/training.dart';
 import 'package:shoot_report/models/weapon.dart';
-import 'package:shoot_report/services/training_dao.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/indicator_to_image.dart';
 import 'package:shoot_report/views/training/training_edit.dart';
 
 class TrainingListRow extends StatefulWidget {
   final Weapon weapon;
-  final TrainingDao trainingDao;
   final Training training;
 
   const TrainingListRow({
     super.key,
     required this.weapon,
-    required this.trainingDao,
     required this.training,
   });
 
@@ -50,7 +48,6 @@ class _TrainingListRowState extends State<TrainingListRow> {
             expand: true,
             builder: (context) => TrainingEditWidget(
                 weapon: widget.weapon,
-                trainingDao: widget.trainingDao,
                 training: widget.training),
           );
         });
@@ -65,17 +62,21 @@ class _TrainingListRowState extends State<TrainingListRow> {
               content: Text(tr("training_alert_message")),
               actions: [
                 TextButton(
-                    onPressed: () {
-                      widget.trainingDao.deleteTraining(widget.training);
-                      final scaffoldMessengerState =
-                          ScaffoldMessenger.of(context);
-                      scaffoldMessengerState.hideCurrentSnackBar();
-                      scaffoldMessengerState.showSnackBar(
-                        SnackBar(
-                            content: Text(tr("training_removed")),
-                            behavior: SnackBarBehavior.floating),
-                      );
+                    onPressed: () async {
                       Navigator.of(context).pop();
+                      if (widget.training.firebaseKey != null) {
+                        await FirebaseDataService.deleteTraining(widget.training.firebaseKey!);
+                      }
+                      if (mounted) {
+                        final scaffoldMessengerState =
+                            ScaffoldMessenger.of(context);
+                        scaffoldMessengerState.hideCurrentSnackBar();
+                        scaffoldMessengerState.showSnackBar(
+                          SnackBar(
+                              content: Text(tr("training_removed")),
+                              behavior: SnackBarBehavior.floating),
+                        );
+                      }
                     },
                     child: Text(tr("general_yes"))),
                 TextButton(

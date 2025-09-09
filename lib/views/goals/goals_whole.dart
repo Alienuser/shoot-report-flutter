@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoot_report/models/weapon.dart';
+import 'package:shoot_report/services/firebase_data_service.dart';
 import 'package:shoot_report/utilities/theme.dart';
 
 class GoalsWholeWidget extends StatefulWidget {
@@ -78,9 +78,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                   labelText: tr("goals_whole_jackpot"),
                                 ),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_40_jackpot",
                                       value);
                                 }),
@@ -100,9 +98,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_optimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_40_optimal",
                                       value);
                                 }),
@@ -122,9 +118,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_real")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_40_real",
                                       value);
                                 }),
@@ -144,9 +138,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_minimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_40_minimal",
                                       value);
                                 }),
@@ -166,9 +158,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_chaos")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_40_chaos",
                                       value);
                                 })
@@ -196,9 +186,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_jackpot")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_60_jackpot",
                                       value);
                                 }),
@@ -218,9 +206,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_optimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_60_optimal",
                                       value);
                                 }),
@@ -240,9 +226,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_real")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_60_real",
                                       value);
                                 }),
@@ -262,9 +246,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_minimal")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_60_minimal",
                                       value);
                                 }),
@@ -284,9 +266,7 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
                                     ),
                                     labelText: tr("goals_whole_chaos")),
                                 onChanged: (value) async {
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString(
+                                  await FirebaseDataService.setPreference(
                                       "${widget.weapon.prefFile}_goalWhole_60_chaos",
                                       value);
                                 })
@@ -295,34 +275,26 @@ class _GoalsWholeWidgetState extends State<GoalsWholeWidget> {
   }
 
   void _loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _textWhole40JackpotController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_jackpot") ??
-              "";
-      _textWhole40OptimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_optimal") ??
-              "";
-      _textWhole40RealController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_real") ?? "";
-      _textWhole40MinimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_minimal") ??
-              "";
-      _textWhole40ChaosController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_40_chaos") ?? "";
-      _textWhole60JackpotController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_jackpot") ??
-              "";
-      _textWhole60OptimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_optimal") ??
-              "";
-      _textWhole60RealController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_real") ?? "";
-      _textWhole60MinimalController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_minimal") ??
-              "";
-      _textWhole60ChaosController.text =
-          prefs.getString("${widget.weapon.prefFile}_goalWhole_60_chaos") ?? "";
-    });
+    _textWhole40JackpotController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_40_jackpot") ?? "";
+    _textWhole40OptimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_40_optimal") ?? "";
+    _textWhole40RealController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_40_real") ?? "";
+    _textWhole40MinimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_40_minimal") ?? "";
+    _textWhole40ChaosController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_40_chaos") ?? "";
+    _textWhole60JackpotController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_60_jackpot") ?? "";
+    _textWhole60OptimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_60_optimal") ?? "";
+    _textWhole60RealController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_60_real") ?? "";
+    _textWhole60MinimalController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_60_minimal") ?? "";
+    _textWhole60ChaosController.text =
+        await FirebaseDataService.getPreference("${widget.weapon.prefFile}_goalWhole_60_chaos") ?? "";
+    setState(() {});
   }
 }
